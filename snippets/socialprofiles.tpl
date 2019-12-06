@@ -1,90 +1,90 @@
 <ul class="social-icons list-inline">
-{if !empty($Einstellungen.template.footer.facebook)}
+{if !empty($snackyConfig.facebook)}
 	<li>
-	<a href="{if $Einstellungen.template.footer.facebook|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.facebook}" class="image-content icon btn-facebook" title="Facebook" target="_blank" rel="noopener">
+	<a href="{if $snackyConfig.facebook|strpos:'http' !== 0}https://{/if}{$snackyConfig.facebook}" class="img-ct icon btn-facebook" title="Facebook" target="_blank" rel="noopener">
 		<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
-		  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-facebook"></use>
+		  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-facebook"></use>
 		</svg>
 	</a>
 	</li>
 {/if}
-{if !empty($Einstellungen.template.footer.twitter)}
+{if !empty($snackyConfig.twitter)}
 	<li>
-	<a href="{if $Einstellungen.template.footer.twitter|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.twitter}" class="image-content icon btn-twitter" title="Twitter" target="_blank" rel="noopener">
+	<a href="{if $snackyConfig.twitter|strpos:'http' !== 0}https://{/if}{$snackyConfig.twitter}" class="img-ct icon btn-twitter" title="Twitter" target="_blank" rel="noopener">
 		<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
-		  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-twitter"></use>
+		  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-twitter"></use>
 		</svg>
 	</a>
 	</li>
 {/if}
-{if !empty($Einstellungen.template.footer.googleplus)}
+{if !empty($snackyConfig.googleplus)}
 	<li>
-	<a href="{if $Einstellungen.template.footer.googleplus|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.googleplus}" class="image-content icon btn-googleplus" title="Google+" target="_blank" rel="noopener">
+	<a href="{if $snackyConfig.googleplus|strpos:'http' !== 0}https://{/if}{$snackyConfig.googleplus}" class="img-ct icon btn-googleplus" title="Google+" target="_blank" rel="noopener">
 		<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
-		  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-google-plus"></use>
+		  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-google-plus"></use>
 		</svg>
 	</a>
 	</li>
 {/if}
-{if !empty($Einstellungen.template.footer.youtube)}
+{if !empty($snackyConfig.youtube)}
 	<li>
-	<a href="{if $Einstellungen.template.footer.youtube|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.youtube}" class="image-content icon btn-youtube" title="YouTube" target="_blank" rel="noopener">
+	<a href="{if $snackyConfig.youtube|strpos:'http' !== 0}https://{/if}{$snackyConfig.youtube}" class="img-ct icon btn-youtube" title="YouTube" target="_blank" rel="noopener">
 		<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
-		  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-youtube"></use>
+		  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-youtube"></use>
 		</svg>
 	</a>
 	</li>
 {/if}
-{if !empty($Einstellungen.template.footer.vimeo)}
+{if !empty($snackyConfig.vimeo)}
 	<li>
-	<a href="{if $Einstellungen.template.footer.vimeo|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.vimeo}" class="image-content icon btn-vimeo" title="Vimeo" target="_blank" rel="noopener">
+	<a href="{if $snackyConfig.vimeo|strpos:'http' !== 0}https://{/if}{$snackyConfig.vimeo}" class="img-ct icon btn-vimeo" title="Vimeo" target="_blank" rel="noopener">
 		<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
-		  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-vimeo"></use>
+		  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-vimeo"></use>
 		</svg>
 	</a>
 	</li>
 {/if}
-{if !empty($Einstellungen.template.footer.pinterest)}
+{if !empty($snackyConfig.pinterest)}
 	<li>
-	<a href="{if $Einstellungen.template.footer.pinterest|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.pinterest}" class="image-content icon btn-pinterest" title="PInterest" target="_blank" rel="noopener">
+	<a href="{if $snackyConfig.pinterest|strpos:'http' !== 0}https://{/if}{$snackyConfig.pinterest}" class="img-ct icon btn-pinterest" title="PInterest" target="_blank" rel="noopener">
 		<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
-		  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-pinterest"></use>
+		  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-pinterest"></use>
 		</svg>
 	</a>
 	</li>
 {/if}
-{if !empty($Einstellungen.template.footer.instagram)}
+{if !empty($snackyConfig.instagram)}
 	<li>
-	<a href="{if $Einstellungen.template.footer.instagram|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.instagram}" class="image-content icon btn-instagram" title="Instagram" target="_blank" rel="noopener">
+	<a href="{if $snackyConfig.instagram|strpos:'http' !== 0}https://{/if}{$snackyConfig.instagram}" class="img-ct icon btn-instagram" title="Instagram" target="_blank" rel="noopener">
 		<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
-		  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-instagram"></use>
+		  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-instagram"></use>
 		</svg>
 	</a>
 	</li>
 {/if}
-{if !empty($Einstellungen.template.footer.skype)}
+{if !empty($snackyConfig.skype)}
 	<li>
-	<a href="{if $Einstellungen.template.footer.skype|strpos:'skype:' !== 0}skype:{$Einstellungen.template.footer.skype}?add{else}{$Einstellungen.template.footer.skype}{/if}" class="image-content icon btn-skype" title="Skype" target="_blank" rel="noopener">
+	<a href="{if $snackyConfig.skype|strpos:'skype:' !== 0}skype:{$snackyConfig.skype}?add{else}{$snackyConfig.skype}{/if}" class="img-ct icon btn-skype" title="Skype" target="_blank" rel="noopener">
 		<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
-		  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-skype"></use>
+		  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-skype"></use>
 		</svg>
 	</a>
 	</li>
 {/if}
-{if !empty($Einstellungen.template.footer.xing)}
+{if !empty($snackyConfig.xing)}
 	<li>
-	<a href="{if $Einstellungen.template.footer.xing|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.xing}" class="image-content icon btn-xing" title="Xing" target="_blank" rel="noopener">
+	<a href="{if $snackyConfig.xing|strpos:'http' !== 0}https://{/if}{$snackyConfig.xing}" class="img-ct icon btn-xing" title="Xing" target="_blank" rel="noopener">
 		<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
-		  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-xing"></use>
+		  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-xing"></use>
 		</svg>
 	</a>
 	</li>
 {/if}
-{if !empty($Einstellungen.template.footer.linkedin)}
+{if !empty($snackyConfig.linkedin)}
 	<li>
-	<a href="{if $Einstellungen.template.footer.linkedin|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.linkedin}" class="image-content icon btn-linkedin" title="Linkedin" target="_blank" rel="noopener">
+	<a href="{if $snackyConfig.linkedin|strpos:'http' !== 0}https://{/if}{$snackyConfig.linkedin}" class="img-ct icon btn-linkedin" title="Linkedin" target="_blank" rel="noopener">
 		<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
-		  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-linkedin"></use>
+		  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-linkedin"></use>
 		</svg>
 	</a>
 	</li>

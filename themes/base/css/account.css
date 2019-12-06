@@ -1,89 +1,10 @@
-#account-list{
-    border: 1px solid @lightborder;
-    padding: 2rem;
-    border-radius: .3rem;
-}
-#account-list > a{
-    display: block;
-    padding: .3rem 0;
-}
-#account-list > a.active{
-    font-weight: 600;
-}
-#account-listul{
-    padding: 0;
-    list-style: none;
-}
-#order-details > .row:not(:last-child){
-    margin-bottom: 3rem;
-}
-#customerorder p{
-    margin: 0;
-}
-#order-details .list-group{
-    padding: 0;
-    list-style: none;
-}
-#order-details .list-group li{
-    margin: .5rem 0;
-}
-.send-wishlist{
-    margin-bottom: 1rem;
-}
-#panel-billing-address .edit{
-    display: flex;
-}
-#panel-billing-address .edit .image-content{
-    width: 1rem;
-    margin-right: .5rem;
-}
-#panel-billing-address .edit .image-content img{
-    opacity: .7;
-}
-#account .preload button{
-    display: flex;
-    align-items: center;
-}
-#account .preload button .image-content{
-    margin-right: .25rem;
-}
-#edit-wishlist-name .input-group{
-    margin-top: .25rem;
-}
-.alert + #account{
-    margin-top: 3rem;
-}
-.table-striped .img-col img{
-    max-width: 10rem;
-}
-.big-hr{
-	margin-top: 50px;
-	margin-bottom: 50px;
-}
 @media screen and (max-width: 991px){
     #account-list{
         padding: 0;
         border: 0;
         margin-bottom: 1.5rem;
         padding-bottom: 1.5rem;
-        border-bottom: 1px solid;
+        border-bottom: 1px solid @lightborder;
         border-radius: 0;
-    }
-    #account-list>a{
-        padding: .15rem 0;
-    }
-    #account > div:last-child > .row > .col-xs-12{
-        margin-bottom: 1rem;
-    }
-    #order-details>.row:not(:last-child) {
-        margin-bottom: 2rem;
-    }
-}
-@media screen and (max-width: 767px){
-    #order-details>.row:not(:last-child) {
-        margin-bottom: 1rem;
-    }
-    #order-details .col-xs-12{
-        margin-bottom: 1rem;
     }
 }

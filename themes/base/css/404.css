@@ -1,0 +1,58 @@
+
+/* 404 */
+#snackys-tpl .error404 #bc-w,
+#snackys-tpl .error404 #footer{
+	margin: 0;
+}
+#snackys-tpl .error404 #content-wrapper{
+	padding: 0;
+	max-width: none;
+	margin: 0;
+	overflow: hidden;
+}
+.error404 #content > *:not(#page-not-found){
+	display: none;
+}
+.error404 #shop-nav{
+	margin-bottom: 0;
+}
+#page-not-found{
+	height: 60vh;
+	position: relative;
+}
+#page-not-found .background-image{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+}
+#page-not-found .background-image:before{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0,0,0,.5);
+}
+#page-not-found .content{
+	z-index: 2;
+	position: relative;
+}
+#page-not-found h1{
+	font-size: 9rem;
+	margin: 0;
+}
+#page-not-found h1,
+#page-not-found h2{
+	color: white;
+}
+#page-not-found .btn:first-letter{
+	text-transform: uppercase;
+}
+#page-not-found .btn{
+	padding-left: 2rem;
+	padding-right: 2rem;
+}

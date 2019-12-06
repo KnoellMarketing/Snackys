@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 <div class="form-group float-label-control required">
     <label for="email" class="control-label">{lang key="email" section="account data"}</label>
     <input type="text" name="email" id="email" class="form-control" placeholder="{lang key="email" section="account data"}" required />

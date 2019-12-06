@@ -1,9 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
-{snackysBasics}
 {block name="header"}
     {include file='layout/header.tpl'}
 {/block}
@@ -24,13 +18,15 @@
     {if !isset($cPost_arr)}
         {assign var=cPost_arr value=array()}
     {/if}
+	<h1>{lang key="newsletter" section="newsletter"}</h1>
     {if $cOption === 'eintragen'}
         {if empty($bBereitsAbonnent)}
             {block name="newsletter-subscribe"}
+			{include file="snippets/zonen.tpl" id="before_newsletter_subscribe" title="before_newsletter_subscribe"}
             <div id="newsletter-subscribe" class="panel-wrap">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{block name="newsletter-subscribe-title"}{lang key="newsletterSubscribe" section="newsletter"}{/block}</h3>
+                        <h2 class="panel-title h3">{block name="newsletter-subscribe-title"}{lang key="newsletterSubscribe" section="newsletter"}{/block}</h2>
                     </div>
                     <div class="panel-body">
                         {block name="newsletter-subscribe-body"}
@@ -109,10 +105,11 @@
         {/if}
         
         {block name="newsletter-unsubscribe"}
+		{include file="snippets/zonen.tpl" id="before_newsletter_unsubscribe" title="before_newsletter_unsubscribe"}
         <div id="newsletter-unsubscribe" class="panel-wrap top15">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                <h3 class="panel-title">{block name="newsletter-unsubscribe-title"}{lang key="newsletterUnsubscribe" section="newsletter"}{/block}</h3></div>
+                <h2 class="panel-title h3">{block name="newsletter-unsubscribe-title"}{lang key="newsletterUnsubscribe" section="newsletter"}{/block}</h2></div>
                 <div class="panel-body">
                     {block name="newsletter-unsubscribe-body"}
                     <p>{lang key="newsletterUnsubscribeDesc" section="newsletter"}</p>
@@ -141,7 +138,7 @@
     {elseif $cOption === 'anzeigen'}
         {if isset($oNewsletterHistory) && $oNewsletterHistory->kNewsletterHistory > 0}
             {block name="newsletter-history"}
-            <h2>{lang key="newsletterhistory" section="global"}</h2>
+            <h2 class="h3">{lang key="newsletterhistory" section="global"}</h2>
             <div id="newsletterContent">
                 <div class="newsletter">
                     <p class="newsletterSubject">

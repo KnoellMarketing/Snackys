@@ -201,7 +201,7 @@
                 <td class="{if $tplscope === "cart"}col-xs-2{else}col-xs-2 col-sm-1{/if} qty-col">
                     {if $tplscope === 'cart'}
                         {if $oPosition->nPosTyp == $C_WARENKORBPOS_TYP_ARTIKEL}
-                            {if !isset($Einstellungen.template.theme.qty_modify_dropdown) || $Einstellungen.template.theme.qty_modify_dropdown === 'Y'}
+                            {if !isset($snackyConfig.qty_modify_dropdown) || $snackyConfig.qty_modify_dropdown === 'Y'}
                                 {if $oPosition->istKonfigVater()}
                                     <div class="qty-wrapper dropdown modify">
                                         {$oPosition->nAnzahl|replace_delim} {if !empty($oPosition->Artikel->cEinheit)}{$oPosition->Artikel->cEinheit}{/if}

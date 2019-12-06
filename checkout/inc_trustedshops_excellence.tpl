@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 {if !empty($oTrustedShops->tsId) && $oTrustedShops->eType == $TS_BUYERPROT_CLASSIC}
     <table width=400 border="0" cellspacing="0" cellpadding="4">
         <tr>

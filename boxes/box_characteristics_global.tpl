@@ -6,16 +6,19 @@
     {assign var=gmma value=""}
 {/if}
 
+
+
 {foreach name=globalemerkmale from=$gmma item=oMerkmal}
     {if !empty($oMerkmal)}
-    <section class="panel panel-default box box-global-characteristics" id="sidebox{$oBox->kBox}">
+    <section class="panel panel-default box box-global-characteristics sidebox{$oBox->kBox}">
         <div class="panel-heading">
-            <h5 class="panel-title">
+            <span class="panel-title h5 m0 dpflex-a-center dpflex-j-between">
             {if !empty($oMerkmal->cBildpfadKlein) && $oMerkmal->cBildpfadKlein !== $BILD_KEIN_MERKMALBILD_VORHANDEN}
                 <img src="{$oMerkmal->cBildpfadKlein}" alt="" class="vmiddle" />
             {/if}
             {$oMerkmal->cName}
-            </h5>
+			{include file="snippets/careticon.tpl"}
+            </span>
         </div>
         <div class="box-body">
             {if ($oMerkmal->cTyp === 'SELECTBOX') && $oMerkmal->oMerkmalWert_arr|@count > 1}
@@ -40,7 +43,7 @@
                     </ul>
                 </div>
             {else}
-                <ul class="nav nav-list">
+                <ul class="nav nav-list blanklist">
                     {foreach name=globalmerkmalwert from=$oMerkmal->oMerkmalWert_arr item=oMerkmalWert}
                         <li>
                             <a href="{$oMerkmalWert->cURL}"{if isset($NaviFilter->MerkmalWert->kMerkmalWert) && $NaviFilter->MerkmalWert->kMerkmalWert > 0 && isset($oMerkmalWert->kMerkmalWert) && $NaviFilter->MerkmalWert->kMerkmalWert == $oMerkmalWert->kMerkmalWert} class="active"{/if}>
@@ -57,5 +60,6 @@
             {/if}
         </div>
     </section>
+			{if $oBox->ePosition == 'bottom' && not $smarty.foreach.globalemerkmale.last}<hr>{/if}
     {/if}
 {/foreach}

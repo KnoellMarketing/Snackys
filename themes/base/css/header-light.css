@@ -1,8 +1,8 @@
 @media screen and (min-width: 768px){
-	body.show-desktop-search #logo{
+	body.shw-sr-d #logo{
 		display: none;
 	}
-	body:not(.show-desktop-search) #search{
+	body:not(.shw-sr-d) #search{
 		visibility: hidden;
 		opacity: 0;
 		pointer-events: none;
@@ -15,18 +15,19 @@
 	#shop-nav .social-icons{
 		font-size: 50%;
 	}
-	#shop-nav .social-icons .image-content{
+	#shop-nav .social-icons .img-ct{
 		width: 1.5rem;
 	}
 	/* Megamenü */
-	#category-nav-wrapper{
+	#cat-w{
 		box-shadow: none;
 	}
-	#category-nav-wrapper .mm-mainlink{
+	#cat-w .mm-mainlink{
 		font-size: 1rem;
 		padding: 1rem 1.25rem;
+		height: 3.375rem;
 	}
-	#category-nav-wrapper svg{
+	#cat-w svg{
 		width: 1rem;
 		height: 1rem;
 	}

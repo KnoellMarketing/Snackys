@@ -1,10 +1,7 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
+{include file="snippets/zonen.tpl" id="before_free_gift" title="before_free_gift"}
 <p class="box_info">{lang key="freeGiftFromOrderValue" section="global"}</p>
 {if !empty($oArtikelGeschenk_arr)}
+	{include file="snippets/zonen.tpl" id="before_free_gift_list" title="before_free_gift_list"}
     <div id="freegift" class="row row-eq-height">
         {foreach name=gratisgeschenke from=$oArtikelGeschenk_arr item=oArtikelGeschenk}
             <div class="col-sm-6 col-md-4 text-center">

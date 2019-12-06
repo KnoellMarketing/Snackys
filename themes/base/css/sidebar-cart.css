@@ -1,4 +1,4 @@
-.cart-dropdown{
+.c-dp{
     position: absolute;
     margin: 0;
     border: 0;
@@ -6,7 +6,7 @@
     z-index: 11;
     display: block;
 }
-.cart-dropdown > .inside{
+.c-dp > .inside{
     position: fixed;
     top: 0;
     bottom: 0;
@@ -21,28 +21,28 @@
     max-height: 100%;
     z-index: 11;
 }
-.dropdown.open .cart-dropdown > .inside{
+.dropdown.open .c-dp > .inside,
+.cart-menu.open .c-dp > .inside{
     transform: translateX(0);
 }
-.cart-dropdown .items-list{
-    height: 100%;
+.c-dp .items-list{
+    height: calc(100% - 8.3rem);
     position: relative;
     overflow: auto;
-    padding-bottom: 8.3rem;
 }
-.dropdown.open .cart-dropdown .overlay-bg{
+.dropdown.open .c-dp .overlay-bg{
     opacity: 1;
 }
-.cart-dropdown li{
+.c-dp li{
     margin: 0;
 }
-.cart-dropdown .item-price{
+.c-dp .item-price{
     text-align: right;
 }
-.cart-dropdown td{
+.c-dp td{
     padding: .3rem .5rem;
 }
-.cart-dropdown .fixed-btn-group{
+.c-dp .fixed-btn-group{
     position: absolute;
     left: 0;
     right: 0;
@@ -51,29 +51,39 @@
     height: 8.3rem;
     background: @lightbg;
 }
-.cart-dropdown .fixed-btn-group.one-button{
+.c-dp .fixed-btn-group.one-button{
 	height: 5.7rem;
 }
-.cart-dropdown.no-items .fixed-btn-group {display: none;}
-.cart-dropdown .fixed-btn-group .btn{
+.c-dp.no-items .fixed-btn-group {display: none;}
+.c-dp .fixed-btn-group .btn{
     border-radius: .3rem;
 }
-.cart-dropdown .fixed-btn-group a:first-child{
+.c-dp .fixed-btn-group a:first-child{
     margin-bottom: .5rem;
 }
+.c-dp .close-sidebar{
+	position: fixed;
+    top: 0.8rem;
+    right: .8rem;
+    z-index: 11;
+    font-size: 1rem;
+}
+.cart-menu:not(.open) .close-sidebar{
+	display: none;
+}
 @media screen and (max-width:767px){
-    .cart-dropdown>.inside{
+    .c-dp>.inside{
         max-width: 320px;
         padding: 1.25rem 15px;
     }
-    .cart-dropdown{
+    .c-dp{
         z-index: 110;
     }
-    .cart-dropdown .fixed-btn-group {
+    .c-dp .fixed-btn-group {
         padding: 1.25rem 15px;
         height: 7.8rem;
     }
-    .cart-dropdown .items-list{
-        padding-bottom: 7.5rem
+    .c-dp .items-list{
+		height: calc(100% - 7.5rem);
     }
 }

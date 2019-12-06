@@ -50,20 +50,21 @@
 
 {if useDescription || $useDownloads || $useMediaFiles || $useVotes || $useQuestionOnItem || $usePriceFlow
     || $useAvailabilityNotification || $useMediaGroup || $useTags || !empty($separatedTabs)}
-    <div class="tab-content row" id="article-tabs">
+    <div class="tab-content row notabs dpflex-j-between" id="article-tabs">
         <div class="{if $useDownloads || $useMediaFiles || $usePriceFlow || $useMediaGroup || $useTags || $useAvailabilityNotification || (isset($oAehnlicheArtikel_arr) && count($oAehnlicheArtikel_arr) > 0)}col-xs-12 col-md-6 col-lg-7{else}col-xs-12{/if}">
         {if $useDescription}
         <div class="panel panel-default open-show" id="tab-description">
             <div class="panel-heading">
-                <h3 class="panel-title">
+                <h2 class="panel-title h3">
                     {block name='tab-description-title'}{lang key='description' section='productDetails'}{/block}
-                </h3>
+                </h2>
             </div>
             <div class="panel-body">
             <div class="tab-content-wrapper">
                 {block name="tab-description-content"}
+					{include file="snippets/zonen.tpl" id="before_desc" title="before_desc"}
                     <div class="desc">
-                        {if $Einstellungen.template.general.optimize_artikel == "Y"}{$Artikel->cBeschreibung|optimize}{else}{$Artikel->cBeschreibung}{/if}
+                        {if $snackyConfig.optimize_artikel == "Y"}{$Artikel->cBeschreibung|optimize}{else}{$Artikel->cBeschreibung}{/if}
                         {if $useMediaFiles && !empty($Artikel->cMedienTyp_arr)}
                             {foreach name="mediendateigruppen" from=$Artikel->cMedienTyp_arr item=cMedienTyp}
                                 <div class="media">
@@ -72,6 +73,7 @@
                             {/foreach}
                         {/if}
                     </div>
+					{include file="snippets/zonen.tpl" id="after_desc" title="after_desc"}
                 {/block}
                 {block name="tab-description-attributes"}
                     {include file="productdetails/attributes.tpl" tplscope="details"}
@@ -84,7 +86,7 @@
             {foreach from=$separatedTabs item=separatedTab name=separatedTabsBody}
             <div class="panel panel-default" id="tab-{$separatedTab.id}">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{$separatedTab.name}</h3>
+                    <h2 class="panel-title h3">{$separatedTab.name}</h2>
                 </div>
                 <div class="panel-body">
                 {$separatedTab.content}
@@ -95,7 +97,7 @@
         {if $useVotes}
         <div class="panel panel-default" id="tab-votes">
             <div class="panel-heading">
-                <h3 class="panel-title">{lang key="Votes" section="global"}</h3>
+                <h2 class="panel-title h3">{lang key="Votes" section="global"}</h2>
             </div>
             <div class="panel-body">
             {include file="productdetails/reviews.tpl" stars=$Artikel->Bewertungen->oBewertungGesamt->fDurchschnitt}
@@ -105,7 +107,7 @@
         {if $useQuestionOnItem}
         <div class="panel panel-default" id="tab-questionOnItem">
             <div class="panel-heading">
-                <h3 class="panel-title">{lang key="productQuestion" section="productDetails"}</h3>
+                <h2 class="panel-title h3">{lang key="productQuestion" section="productDetails"}</h2>
             </div>
             <div class="panel-body">
             {include file="productdetails/question_on_item.tpl" position="tab"}
@@ -118,7 +120,7 @@
             {if $useAvailabilityNotification}
             <div class="panel panel-default" id="tab-availabilityNotification">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{lang key="notifyMeWhenProductAvailableAgain" section="global"}</h3>
+                    <h2 class="panel-title h3">{lang key="notifyMeWhenProductAvailableAgain" section="global"}</h2>
                 </div>
                 <div class="panel-body">
                 {include file="productdetails/availability_notification_form.tpl" position="tab" tplscope="artikeldetails"}
@@ -128,40 +130,42 @@
             {if $useDownloads}
             <div class="panel panel-default" id="tab-downloads">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{lang section="productDownloads" key="downloadSection"}</h3>
+                    <h2 class="panel-title h3">{lang section="productDownloads" key="downloadSection"}</h2>
                 </div>
                 <div class="panel-body">
                 {include file="productdetails/download.tpl"}
                 </div>
             </div>
             {/if}
-            {* Coming Soon – if $usePriceFlow} 
+            {if $usePriceFlow} 
             <div class="panel panel-default" id="tab-priceFlow">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{lang key="priceFlow" section="productDetails"}</h3>
+                    <h2 class="panel-title h3">{lang key="priceFlow" section="productDetails"}</h2>
                 </div>
                 <div class="panel-body">
                 {include file="productdetails/price_history.tpl"}
                 </div>
             </div>
-            {/if *}
+            {/if}
             {if $useMediaGroup}
                 {foreach name="mediendateigruppen" from=$Artikel->cMedienTyp_arr item=cMedienTyp}
                     {$cMedienTypId = $cMedienTyp|@seofy}
+				{if $cMedienTypId !== 'videos'}
                 <div class="panel panel-default" id="tab-{$cMedienTypId}">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{$cMedienTyp}</h3>
+                        <h2 class="panel-title h3">{$cMedienTyp}</h2>
                     </div>
                     <div class="panel-body">
                     {include file="productdetails/mediafile.tpl"}
                     </div>
                 </div>
+				{/if}
                 {/foreach}
             {/if}
             {if $useTags}
             <div class="panel panel-default" id="tab-tags">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{lang key="productTags" section="productDetails"}</h3>
+                    <h2 class="panel-title h3">{lang key="productTags" section="productDetails"}</h2>
                 </div>
                 <div class="panel-body">
                 {include file="productdetails/tags.tpl"}

@@ -1,7 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
 {if !empty($hinweis)}
     <div class="alert alert-danger">
         {$hinweis}
@@ -30,8 +26,8 @@
 									</span>
 									{if $versandart->cBild}
 										<span class="payship-img">
-											<span class="image-content icon">
-												<img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$versandart->cBild}" alt="{$versandart->angezeigterName|trans}">
+											<span class="img-ct icon">
+												<img src="{$snackyConfig.preloadImage}" data-src="{$versandart->cBild}" alt="{$versandart->angezeigterName|trans}">
 											</span>
 										</span>
 									{/if}

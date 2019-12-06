@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 {if $Einstellungen.sitemap.sitemap_seiten_anzeigen === 'Y'}
     {block name="sitemap-pages"}
     <div class="sitemap panel panel-default">

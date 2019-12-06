@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 {assign var=kArtikel value=$Artikel->kArtikel}
 {if $Artikel->kArtikelVariKombi > 0}
     {assign var=kArtikel value=$Artikel->kArtikelVariKombi}

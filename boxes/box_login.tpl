@@ -1,6 +1,10 @@
+{if ($oBox->ePosition == 'left' && !$device->isMobile()) || $oBox->ePosition != 'left'}
 <section class="panel panel-default box box-login" id="sidebox{$oBox->kBox}">
     <div class="panel-heading">
-        <h5 class="panel-title">{if empty($smarty.session.Kunde)}{lang key='login'}{else}{lang key='hello'}, {$smarty.session.Kunde->cVorname} {$smarty.session.Kunde->cNachname}{/if}</h5>
+        <span class="panel-title h5 m0 dpflex-a-center dpflex-j-between">
+			{if empty($smarty.session.Kunde)}{lang key='login'}{else}{lang key='hello'}, {$smarty.session.Kunde->cVorname} {$smarty.session.Kunde->cNachname}{/if}
+			{include file="snippets/careticon.tpl"}
+		</span>
     </div>
     <div class="panel-body">
         {if empty($smarty.session.Kunde->kKunde)}
@@ -32,7 +36,7 @@
                     {/if}
                     <input type="submit" value="{lang key='login' section='checkout'}" class="btn btn-primary btn-block submit" />
                 </div>
-                <ul class="register-or-resetpw nav">
+                <ul class="register-or-resetpw nav blanklist">
                     <li>
                         <a class="resetpw pull-left btn-block" href="{get_static_route id='pass.php' secure=true}">
                             {lang key='forgotPassword'}
@@ -51,3 +55,4 @@
         {/if}
     </div>
 </section>
+{/if}

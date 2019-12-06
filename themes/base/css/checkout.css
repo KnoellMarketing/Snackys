@@ -67,7 +67,7 @@ body[data-page="11"] #content-wrapper{
 #checkout .nav-wizard li.active a{
     pointer-events: none;
 }
-#checkout .nav-wizard .image-content{
+#checkout .nav-wizard .img-ct{
     width: 1.25rem;
     margin-right: .5rem;
 }
@@ -83,6 +83,9 @@ body[data-page="11"] #content-wrapper{
 }
 #fieldset-payment label{
     cursor: pointer;
+}
+#checkout .btn.hidden{
+	display: none;
 }
 .form-group label .control-label.flex{
     display: flex;
@@ -108,10 +111,10 @@ body[data-page="11"] #content-wrapper{
 #panel-edit-coupon fieldset{
     width: 100%;
 }
-.edit.preload{
+.edit.pr{
     display: flex;
 }
-.edit.preload .image-content{
+.edit.pr .img-ct{
     margin-right: .5rem;
 }
 #vcard-upload .dropdown-menu{
@@ -140,7 +143,7 @@ body[data-page="11"] #content-wrapper{
     right: 0;
     bottom: 0;
     padding: 1.5rem 2rem;
-    height: 5.75rem;
+    min-height: 5.75rem;
     background: @lightbg;
 }
 #checkout-total-sum > div{
@@ -153,13 +156,13 @@ body[data-page="11"] #content-wrapper{
 #footer > .container > .row:first-child{
     display: none;
 }
-.basket-item.sidebar-item>.row>div:not(.preload)>.row:last-child{
+.c-it.sb-it>.row>div:not(.pr)>.row:last-child{
     justify-content: flex-end;
 }
-.basket-item.sidebar-item > .row > div:not(.preload) > .row.first .col-lg-9{
+.c-it.sb-it > .row > div:not(.pr) > .row.first .col-lg-9{
     white-space: normal;
 }
-#register-customer legend{
+form-register > .panel-wrap > fieldset:first-of-type legend{
 	display: none;
 }
 #choose-way{
@@ -177,27 +180,31 @@ body[data-page="11"] #content-wrapper{
 	padding: 1.3rem 1rem;
 	transition: .3s ease;
 	cursor: pointer;
+	flex-grow: 1;
+	order: 1;
 }
 #choose-way .step-box:hover,
 #choose-way .step-box.active{
 	background: #f2f2f2;
 }
-#choose-way .step-box:first-child{
+#choose-way .step-box.first{
 	right: -1px;
 	border-top-left-radius: .3rem;
 	border-bottom-left-radius: .3rem;
+	order: 0;
 }
-#choose-way .step-box:last-child{
+#choose-way .step-box.last{
 	left: -1px;
 	border-top-right-radius: .3rem;
 	border-bottom-right-radius: .3rem;
+	order: 2;
 }
-#choose-way .image-content{
+#choose-way .img-ct{
 	width: 1.5rem;
 	min-width: 1.5rem;
 	margin-right: 1rem;
 }
-#choose-way .preload{
+#choose-way .pr{
 	margin: 0;
 }
 label[data-target="#create_account_data"]{
@@ -215,7 +222,8 @@ body[data-page="11"] #logo img{
 
 /* Zahlungs- und Versandarten */
 .payship-option,
-.payship-option.col-xs-12{
+.payship-option.col-xs-12,
+#fieldset-payment #zahlung .list-group-item{
 	padding-left: 0;
 	padding-right: 0;
     padding-top: 1rem;
@@ -225,7 +233,8 @@ body[data-page="11"] #logo img{
 .payship-option label{
 	font-weight: 400;
 }
-.payship-option .stc-input{
+.payship-option .stc-input,
+#fieldset-payment #zahlung .list-group-item input[type="radio"]{
 	min-width: 14px;
 	margin-right: 1rem;
 }
@@ -233,11 +242,13 @@ body[data-page="11"] #logo img{
 	opacity: 1;
 	width: 3rem;
 }
-.payship-option .payship-img{
+.payship-option .payship-img,
+#fieldset-payment #zahlung img{
 	margin-right: 1rem;
 	min-width: 3rem;
 }
-.payship-option .badge{
+.payship-option .badge,
+#fieldset-payment #zahlung .badge{
 	padding: .05rem .4rem;
 	background: #999;
 	border-radius: .3rem;
@@ -247,7 +258,161 @@ body[data-page="11"] #logo img{
 	position: relative;
 	top: -.1rem;
 }
-
+/* Amazon Pay */
+#checkout .lpa-alternate-checkout-snippet{
+	margin: 0;
+	padding: 0;
+	margin-bottom: 1rem;
+}
+#checkout .lpa-alternate-checkout-snippet .panel-body{
+	border-top: 1px solid @lightborder;
+	padding: 1rem 0;
+	padding-left: calc(14px + 1rem);
+	position: relative;
+}
+#checkout .lpa-alternate-checkout-snippet .panel-body > div{
+	padding: 0;
+	width: 100%;
+	font-size: .9rem;
+}
+#checkout .lpa-alternate-checkout-snippet .panel-body:before{
+	content: '';
+	width: 14px;
+	margin-right: 1rem;
+	display: block;
+	height: 14px;
+	box-sizing: border-box;
+	position: absolute;
+	top: calc(50% - 7px);
+	left: 0;
+}
+#checkout .lpa-checkout-hint-button{
+	padding: 0;
+}
+#checkout .lpa-checkout-hint-button .lpa-pay-button{
+	text-align: left;
+	margin: 0;
+}
+/* Vorteile Kundenkonto / Nachteile Gastkonto */
+#create_account_data:not([style*="none"]) ~ .account-con{
+	display: none;
+}
+#create_account_data[style*="none"] ~ .account-pro{
+	display: none;
+}
+#form-register > .panel-wrap{
+	display: flex;
+	flex-wrap: wrap;
+}
+#form-register > .panel-wrap > fieldset,
+#form-register > .panel-wrap > div,
+#form-register > .panel-wrap > hr{
+	width: 100%;
+	order: 1;
+}
+#form-register > .panel-wrap > .account-pro,
+#form-register > .panel-wrap > .account-con{
+	order: 0;
+	margin: 2rem 0;
+}
+.account-pro ul,
+.account-pro ol,
+.account-con ul,
+.account-con ol{
+	padding: 0;
+	list-style: none;
+}
+.account-pro li,
+.account-con li{
+	padding-left: 1.5rem;
+	position: relative;
+	margin: .15rem 0;
+}
+.account-pro li:before{
+	    content: '';
+    width: 5px;
+    min-width: 5px;
+    height: 10px;
+    border: solid @success;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    left: 4px;
+    top: .2rem;
+    display: inline-block;
+    position: absolute;
+}
+.account-con li:before{
+	content: '\00d7';
+    color: @danger;
+    left: 4px;
+    display: inline-block;
+    position: absolute;
+    transform: scale(1.5);
+    transform-origin: left center;
+	top: -3px;
+}
+/* PayPal Zahlungsarten unter Payment wall */
+#fieldset-payment #zahlung .list-group{
+	padding: 0;
+	margin: .5rem 0;
+	list-style: none;
+}
+#fieldset-payment #zahlung .list-group-item label{
+	margin: 0;
+	font-weight: 400;
+	position: relative;
+	padding-left: 30px;
+	display: block;
+}
+#fieldset-payment #zahlung img{
+	width: 3rem;
+}
+#fieldset-payment #zahlung .text-muted{
+	color: @defaulttext; 
+}
+#fieldset-payment #zahlung .badge{
+	font-weight: 600;
+	float: none;
+}
+#fieldset-payment #zahlung input[type="radio"]{
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+#fieldset-payment #zahlung p{
+	margin: 0;
+}
+/* Styled Controls */
+.stc-radio input[type="radio"],
+.stc-checkbox input[type="checkbox"]{
+	opacity: 0;
+	width: 0;
+	height: 0;
+	position: absolute;
+}
+.stc-radio .stc-radio-btn,
+.stc-checkbox .stc-checkbox-btn,
+#checkout .lpa-alternate-checkout-snippet .panel-body:before{
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	position: relative;
+	background: white;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+}
+.stc-checkbox .stc-checkbox-btn{
+	border-radius: 3px;
+}
+.stc-radio input:checked + .stc-radio-btn,
+#checkout .lpa-alternate-checkout-snippet .panel-body:hover:before{
+	border: 5px solid @brand;
+}
+.stc-checkbox input:checked + .stc-checkbox-btn{
+	border-color: transparent;
+	background: @brand url('templates/snackys/img/icons/icon-check-w.svg')no-repeat center center/8px;
+}
 @media screen and (max-width: 1199px){
     #checkout-cart{
         padding: 2rem 1.5rem;
@@ -316,7 +481,7 @@ body[data-page="11"] #logo img{
     #shop-nav .hidden-xs{
         display: none
     }
-    #shop-nav .image-content{
+    #shop-nav .img-ct{
         width: 1.5rem;
     }
     #shop-nav .visible-xs > span{
@@ -325,21 +490,21 @@ body[data-page="11"] #logo img{
     #check-payment-shipping{
         margin-top: 2rem;
     }
-    .basket-item:not(.sidebar-item) .price{
+    .c-it:not(.sb-it) .price{
         font-size: 1rem;
     }
-    .basket-item>.row>div:not(.preload)>.row:last-child > .text-right{
+    .c-it>.row>div:not(.pr)>.row:last-child > .text-right{
         margin-left: auto;
     }
 	#choose-way .step-box{
 		flex-wrap: wrap;
 		padding: .8rem;
 	}
-	#choose-way .step-box span:not(.image-content){
+	#choose-way .step-box span:not(.img-ct){
 		width: 100%;
 		text-align: center;
 	}
-	#choose-way .image-content{
+	#choose-way .img-ct{
 		margin-right: 0;
 		margin-bottom: .3rem;
 	}

@@ -1,4 +1,4 @@
-/* Warepper */
+/* Wrapper */
 #shop-nav{
     padding-top: 1.4rem;
     padding-bottom: 1.4rem;
@@ -71,17 +71,20 @@
 
 
 /* Shop-Nav */
-.header-shop-nav > div{
+.hdr-nav > div{
 	position: relative;
 }
-.header-shop-nav > div:not(:first-child){
+.hdr-nav > div:not(:first-child){
 	margin-left: .75rem;
 }
-.header-shop-nav .badge,
+.hdr-nav .badge,
 #navbar-offcanvas .badge{
     position: absolute;
     top: -.625rem;
     right: -.625rem;
+}
+#login-popup .modal-content{
+	max-width: 25rem;
 }
 
 
@@ -109,7 +112,7 @@
 	top: calc(50% - .075rem);
 }
 
-#category-nav-wrapper .fa-caret-down.visible-xs{
+#cat-w .fa-caret-down.visible-xs{
 	display: none;
 }
 
@@ -138,12 +141,12 @@
         min-width: 1.25rem;
         padding: 0 .25rem;
     }
-    .header-shop-nav .badge {
+    .hdr-nav .badge {
         position: absolute;
         top: -.5rem;
         right: -.5rem;
     }
-	.header-shop-nav > div:not(:first-child){
+	.hdr-nav > div:not(:first-child){
 		margin-left: .5rem;
 	}
 }
@@ -161,7 +164,7 @@
 		max-width: none;
 		width: 100%;
 	}
-    #mobile-search-toggle{
+    #sr-tg-m{
         position: absolute;
         width: 2rem;
         height: 2rem;
@@ -171,32 +174,33 @@
         transition: .5s ease;
 		top: 0;
     }
-    #mobile-search-toggle .image-content{
+    #sr-tg-m .img-ct{
         width: 1.6rem;
     }
-    body.show-search .header-shop-nav > div,
+    body.show-search .hdr-nav > div,
     body.show-search #logo,
     body.show-search #mobile-nav-toggle,
-    body.show-search #mobile-search-toggle .image-content,
-    #mobile-search-toggle .close{
+    body.show-search #sr-tg-m .img-ct,
+    #sr-tg-m .close{
         transform: scale(0);
         opacity: 0;
         pointer-events: none;
     }
-    body.show-search #mobile-search-toggle .image-content{
+    body.show-search #sr-tg-m .img-ct{
         display: none;
     }
-    #mobile-search-toggle .close{
+    #sr-tg-m .close{
         width: 0;
         position: static;
+		margin: 0;
     }
-    body.show-search .header-shop-nav>li{
+    body.show-search .hdr-nav>li{
         pointer-events: none;
     }
-    body.show-search #mobile-search-toggle{
+    body.show-search #sr-tg-m{
         left: 0;
     }
-    body.show-search #mobile-search-toggle .close{
+    body.show-search #sr-tg-m .close{
         transform: scale(1);
         opacity: 1;
         width: 2rem;
@@ -216,7 +220,7 @@
         opacity: 0;
         z-index: 10;
     }
-	.show-sidebar-nav #search{
+	.shw-sb #search{
 		overflow: inherit;
 	}
     body.ie #search{
@@ -226,7 +230,7 @@
         max-width: 100%; 
         opacity: 1;
     }
-    #mobile-search-toggle .image-content img{
+    #sr-tg-m .img-ct img{
         opacity: 1;
     }
 	#logo .visible-xs{

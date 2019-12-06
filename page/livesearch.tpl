@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 {if count($LivesucheTop) === 0 && count($LivesucheLast) === 0}
 <div class="alert alert-warning">
     {lang key="noDataAvailable" section="global"}

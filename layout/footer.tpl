@@ -1,27 +1,14 @@
 {block name="content-all-closingtags"}
     {block name="content-closingtag"}
+		{include file="snippets/zonen.tpl" id="after_content" title="after_content"}
     </div>{* /content *}
     {/block}
     
     {block name="aside"}
     {has_boxes position='left' assign='hasLeftBox'}
-    {if $nSeitenTyp === 2 && (!$bExclusive && $hasLeftBox && isset($boxes) && !empty($boxes.left) && $Einstellungen.template.pdListing.filterPos == 0)}
-        {block name="footer-sidepanel-left"}
-            <aside id="sidepanel_left"
-                   class="hidden-print col-xs-12 {if $nSeitenTyp === 2} col-md-3 col-md-pull-9 col-lg-3 col-lg-pull-9 col-xl-2 col-xl-pull-10{/if}">
-                <div class="inside">
-                    <div class="visible-xs visible-sm">
-						<h3>{lang key="filterBy" setion="global"}</h3>
-						<hr class="op0">
-					</div>
-                	{block name="footer-sidepanel-left-content"}
-						{$boxes.left}
-					{/block}
-				</div>
-            	<div class="visible-xs visible-sm overlay-bg"></div>
-            	<div class="visible-xs visible-sm close-sidebar"></div>
-            </aside>
-        {/block}
+    {* if $nSeitenTyp === 2 && ((!$bExclusive && $hasLeftBox && isset($boxes) && !empty($boxes.left) && $snackyConfig.filterPos == 0 ) || (isset($smarty.get.sidebar))) *}
+	{if (isset($boxes.left) && !$bExclusive && !empty($boxes.left)) && (($snackyConfig.filterPos == 0 && $nSeitenTyp === 2) || ($snackyConfig.sidepanelEverywhere == 'Y' && !$device->isMobile()) || isset($smarty.get.sidebar))}
+		{include file="layout/sidebar.tpl"}
     {/if}
     {/block}
     
@@ -43,15 +30,15 @@
 {block name="footer"}
 {if !$bExclusive}
     <div class="clearfix"></div>
-	{if $Einstellungen.template.footer.paymentWall != 0 && $nSeitenTyp!=11}
+	{if $snackyConfig.paymentWall != 0 && $nSeitenTyp!=11 && !$device->isMobile()}
 		{getZahlungsarten cAssign="zahlungsartenFooter"}
 		{if $zahlungsartenFooter}
-			<div id="payment-wall-footer" class="hidden-xs">
+			<div id="pay-f" class="hidden-xs">
 				<ul class="mw-container">
 				{foreach from=$zahlungsartenFooter item=zahlungsart}
-					{if $zahlungsart->nActive == 1 && $zahlungsart->nNutzbar==1 && !empty($zahlungsart->cBild) && $Einstellungen.template.footer.paymentWall != 3}
-						<li class="img"><img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$zahlungsart->cBild}" alt="{$zahlungsart->cName}"></li>
-					{else if $zahlungsart->nActive == 1 && $zahlungsart->nNutzbar==1 && $Einstellungen.template.footer.paymentWall != 2}
+					{if $zahlungsart->nActive == 1 && $zahlungsart->nNutzbar==1 && !empty($zahlungsart->cBild) && $snackyConfig.paymentWall != 3}
+						<li class="img"><img src="{$snackyConfig.preloadImage}" data-src="{$zahlungsart->cBild}" alt="{$zahlungsart->cName}"></li>
+					{else if $zahlungsart->nActive == 1 && $zahlungsart->nNutzbar==1 && $snackyConfig.paymentWall != 2}
 						<li class="text">{$zahlungsart->cName}</li>
 					{/if}	
 				{/foreach}
@@ -60,19 +47,23 @@
 		{/if}
 	{/if}
 
-    <footer id="footer"{if isset($Einstellungen.template.theme.pagelayout) && $Einstellungen.template.theme.pagelayout === 'fluid'} class="container-block"{/if}>
+    <footer id="footer"{if isset($snackyConfig.pagelayout) && $snackyConfig.pagelayout === 'fluid'} class="container-block"{/if}>
 
             {block name="footer-boxes"}
-                {load_boxes_raw type='bottom' assign='arrBoxBottom' array=true}
+				{if $isShopFive}
+					{getBoxesByPosition position='bottom' assign='arrBoxBottom'}
+				{else}
+					{load_boxes_raw type='bottom' assign='arrBoxBottom' array=true}
+				{/if}
                 {if isset($arrBoxBottom) && count($arrBoxBottom) > 0}
-                    <div id="footer-boxes" class="mw-container">
-                        <div class="row">
-							 {if $Einstellungen.template.footer.logoFooter == 0}
-                             {if isset($ShopLogoURL) || !empty($Einstellungen.template.header.svgLogo)}
-                                <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2" id="logo-footer">  
+                    <div id="footer-boxes" class="mw-container{if $snackyConfig.footerBoxesOpen === '0'} collapse{/if}">
+                        <div class="row row-multi dpflex-j-center">
+							 {if $snackyConfig.logoFooter == 0}
+                             {if isset($ShopLogoURL) || !empty($snackyConfig.svgLogo)}
+                                <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2" id="logo-footer">  
                                     
-									{if !empty($Einstellungen.template.header.svgLogo)}
-										<img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$Einstellungen.template.header.svgLogo}" alt="{$Einstellungen.global.global_shopname}">
+									{if !empty($snackyConfig.svgLogo)}
+										<img src="{$snackyConfig.preloadImage}" data-src="{$snackyConfig.svgLogo}" alt="{$Einstellungen.global.global_shopname}">
 									{else}
 										{image src=$ShopLogoURL alt=$Einstellungen.global.global_shopname class="img-responsive"}
 									{/if}
@@ -80,43 +71,50 @@
                             {/if}
 							{/if}
                             {foreach name=bottomBoxes from=$arrBoxBottom item=box}
-                                {if ($box.obj->kBoxvorlage != 0 && $box.obj->anzeigen === 'Y' ) ||
-                                ($box.obj->kBoxvorlage == 0 && !empty($box.obj->oContainer_arr))}
-                                    <div class="{block name="footer-boxes-class"}col-xs-6 col-sm-6 col-md-3 col-lg-2{/block}">
-                                        {if isset($box.obj) && isset($box.tpl)}
-                                            {if $smarty.foreach.bottomBoxes.iteration < 10}
-                                                {assign var=oBox value=$box.obj}
-                                                {include file=$box.tpl}
-                                            {/if}
-                                        {/if}
-                                    </div>
-                                {/if}
+								{if $isShopFive}
+									<div class="{block name='footer-boxes-class'}col-xs-12 col-sm-6 col-md-3{/block}">
+										{$box->getRenderedContent()}
+									</div>
+								{else}
+									{if ($box.obj->kBoxvorlage != 0 && $box.obj->anzeigen === 'Y' ) ||
+									($box.obj->kBoxvorlage == 0 && !empty($box.obj->oContainer_arr))}
+										<div class="{block name="footer-boxes-class"}col-xs-12 col-sm-6 col-md-3 col-lg-2{/block}">
+											{if isset($box.obj) && isset($box.tpl)}
+												{if $smarty.foreach.bottomBoxes.iteration < 10}
+													{assign var=oBox value=$box.obj}
+													{include file=$box.tpl}
+												{/if}
+											{/if}
+										</div>
+									{/if}
+								{/if}
                             {/foreach}
-                            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2">    
-                                {if $Einstellungen.template.footer.newsletter_footer === 'Y'}
+							{if $snackyConfig.newsletter_footer === 'Y'}
+                            	<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">    
                                     <div class="panel box{block name="footer-newsletter-class"} newsletter-footer{/block}">
-                                            {block name="footer-newsletter"}
-                                                <div class="panel-heading">
-                                                    <h5 class="panel-title">{lang key="newsletter" section="newsletter"} {lang key="newsletterSendSubscribe" section="newsletter"}
-                                                    </h5>
-                                                </div>
-                                                <div class="panel-body">
-                                                    <p class="info small">
-                                                        {lang key="unsubscribeAnytime" section="newsletter"}
-                                                    </p>
-                                                    <a href="{get_static_route id='newsletter.php'}" title="{lang key="newsletterSendSubscribe" section="newsletter"}" class="btn btn-xl btn-block btn-primary">
-                                                        {lang key="newsletterSendSubscribe" section="newsletter"}
-                                                    </a>
-                                                </div>
-                                            {/block}
+										{block name="footer-newsletter"}
+											<div class="panel-heading">
+												<span class="panel-title h5 m0 dpflex-a-center dpflex-j-between">{lang key="newsletter" section="newsletter"} {lang key="newsletterSendSubscribe" section="newsletter"}
+												{include file="snippets/careticon.tpl"} 
+												</span>
+											</div>
+											<div class="box-body">
+												<p class="info small">
+													{lang key="unsubscribeAnytime" section="newsletter"}
+												</p>
+												<a href="{get_static_route id='newsletter.php'}" title="{lang key="newsletterSendSubscribe" section="newsletter"}" class="btn btn-xl btn-block btn-primary">
+													{lang key="newsletterSendSubscribe" section="newsletter"}
+												</a>
+											</div>
+										{/block}
                                     </div>
-                                {/if}
-                            </div>
-							{if ((isset($smarty.session.Sprachen) && $smarty.session.Sprachen|@count > 1) || (isset($smarty.session.Waehrungen) && $smarty.session.Waehrungen|@count > 1)) && $Einstellungen.template.footer.lgcu_footer != N}
-								<div class="col-xs-6 col-sm-6 col-md-3 col-lg-2">
+                            	</div>
+							{/if}
+							{if ((isset($smarty.session.Sprachen) && $smarty.session.Sprachen|@count > 1) || (isset($smarty.session.Waehrungen) && $smarty.session.Waehrungen|@count > 1)) && $snackyConfig.lgcu_footer != N}
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-2">
 									<div class="panel box box-lng-cur">
 										<div class="panel-heading">
-											<h5 class="panel-title">
+											<span class="panel-title h5 m0 dpflex-a-center dpflex-j-between">
 												{if isset($smarty.session.Sprachen) && $smarty.session.Sprachen|@count > 1}
 												{lang key="language" section="custom"}
 												{/if}
@@ -126,13 +124,14 @@
 												{if isset($smarty.session.Waehrungen) && $smarty.session.Waehrungen|@count > 1}
 												{lang key="currency" section="global"}
 												{/if}
-											</h5>
+												{include file="snippets/careticon.tpl"} 
+											</span>
 										</div>
-										<div class="panel-body">
+										<div class="box-body">
 										{block name="footer-language"}
 										{if isset($smarty.session.Sprachen) && $smarty.session.Sprachen|@count > 1}
 										<div class="language-dropdown dropdown">
-											<a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" itemprop="inLanguage" itemscope itemtype="http://schema.org/Language" title="{lang key='selectLang'}">
+											<a href="#" class="dropdown-toggle btn btn-primary dpflex-a-center dpflex-j-between" data-toggle="dropdown" itemprop="inLanguage" itemscope itemtype="http://schema.org/Language" title="{lang key='selectLang'}">
 												{foreach from=$smarty.session.Sprachen item=Sprache}
 													{if $Sprache->kSprache == $smarty.session.kSprache}
 														<span class="lang-{$lang}" itemprop="name">{if $lang === 'ger'}{$Sprache->cNameDeutsch}{else}{$Sprache->cNameEnglisch}{/if}</span>
@@ -157,7 +156,7 @@
 										{block name="footer-currency"}
 										{if isset($smarty.session.Waehrungen) && $smarty.session.Waehrungen|@count > 1}
 										<div class="dropdown">
-											<a href="#" class="dropdown-toggle btn btn-primary" data-toggle="dropdown" title="{lang key='selectCurrency'}">
+											<a href="#" class="dropdown-toggle btn btn-primary dpflex-a-center dpflex-j-between" data-toggle="dropdown" title="{lang key='selectCurrency'}">
 												{$smarty.session.Waehrung->cName}
 												<span class="caret"></span></a>
 											<ul id="currency-dropdown" class="dropdown-menu dropdown-menu-left">
@@ -176,77 +175,77 @@
 							{/if}
                         </div>
                     </div>
-                    {if $Einstellungen.template.footer.socialmedia_footer === 'Y'}
+                    {if $snackyConfig.socialmedia_footer === 'Y'}
                         <div id="footer-social" class="mw-container">
-                            <div class="footer-additional-wrapper">
+                            <div class="footer-additional-wrapper dpflex-a-center dpflex-j-center dpflex-wrap">
                                 {block name="footer-socialmedia"}
-                                    {if !empty($Einstellungen.template.footer.facebook)}
-                                        <a href="{if $Einstellungen.template.footer.facebook|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.facebook}" class="btn-social btn-facebook" title="Facebook" target="_blank" rel="noopener">
+                                    {if !empty($snackyConfig.facebook)}
+                                        <a href="{if $snackyConfig.facebook|strpos:'http' !== 0}https://{/if}{$snackyConfig.facebook}" class="btn-social btn-facebook dpflex-a-center dpflex-j-center" title="Facebook" target="_blank" rel="noopener">
 											<svg class="icon-darkmode">
-											  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-facebook"></use>
+											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-facebook"></use>
 											</svg>
 										</a>
                                     {/if}
-                                    {if !empty($Einstellungen.template.footer.twitter)}
-                                        <a href="{if $Einstellungen.template.footer.twitter|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.twitter}" class="btn-social btn-twitter" title="Twitter" target="_blank" rel="noopener">
+                                    {if !empty($snackyConfig.twitter)}
+                                        <a href="{if $snackyConfig.twitter|strpos:'http' !== 0}https://{/if}{$snackyConfig.twitter}" class="btn-social btn-twitter dpflex-a-center dpflex-j-center" title="Twitter" target="_blank" rel="noopener">
 											<svg class="icon-darkmode">
-											  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-twitter"></use>
+											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-twitter"></use>
 											</svg>
 										</a>
                                     {/if}
-                                    {if !empty($Einstellungen.template.footer.googleplus)}
-                                        <a href="{if $Einstellungen.template.footer.googleplus|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.googleplus}" class="btn-social btn-googleplus" title="Google+" target="_blank" rel="noopener">
+                                    {if !empty($snackyConfig.googleplus)}
+                                        <a href="{if $snackyConfig.googleplus|strpos:'http' !== 0}https://{/if}{$snackyConfig.googleplus}" class="btn-social btn-googleplus dpflex-a-center dpflex-j-center" title="Google+" target="_blank" rel="noopener">
 											<svg class="icon-darkmode">
-											  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-google-plus"></use>
+											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-google-plus"></use>
 											</svg>
 										</a>
                                     {/if}
-                                    {if !empty($Einstellungen.template.footer.youtube)}
-                                        <a href="{if $Einstellungen.template.footer.youtube|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.youtube}" class="btn-social btn-youtube" title="YouTube" target="_blank" rel="noopener">
+                                    {if !empty($snackyConfig.youtube)}
+                                        <a href="{if $snackyConfig.youtube|strpos:'http' !== 0}https://{/if}{$snackyConfig.youtube}" class="btn-social btn-youtube dpflex-a-center dpflex-j-center" title="YouTube" target="_blank" rel="noopener">
 											<svg class="icon-darkmode">
-											  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-youtube"></use>
+											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-youtube"></use>
 											</svg>
 										</a>
                                     {/if}
-                                    {if !empty($Einstellungen.template.footer.vimeo)}
-                                        <a href="{if $Einstellungen.template.footer.vimeo|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.vimeo}" class="btn-social btn-vimeo" title="Vimeo" target="_blank" rel="noopener">
+                                    {if !empty($snackyConfig.vimeo)}
+                                        <a href="{if $snackyConfig.vimeo|strpos:'http' !== 0}https://{/if}{$snackyConfig.vimeo}" class="btn-social btn-vimeo dpflex-a-center dpflex-j-center" title="Vimeo" target="_blank" rel="noopener">
 											<svg class="icon-darkmode">
-											  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-vimeo"></use>
+											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-vimeo"></use>
 											</svg>
 										</a>
                                     {/if}
-                                    {if !empty($Einstellungen.template.footer.pinterest)}
-                                        <a href="{if $Einstellungen.template.footer.pinterest|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.pinterest}" class="btn-social btn-pinterest" title="PInterest" target="_blank" rel="noopener">
+                                    {if !empty($snackyConfig.pinterest)}
+                                        <a href="{if $snackyConfig.pinterest|strpos:'http' !== 0}https://{/if}{$snackyConfig.pinterest}" class="btn-social btn-pinterest dpflex-a-center dpflex-j-center" title="PInterest" target="_blank" rel="noopener">
 											<svg class="icon-darkmode">
-											  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-pinterest"></use>
+											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-pinterest"></use>
 											</svg>
 										</a>
                                     {/if}
-                                    {if !empty($Einstellungen.template.footer.instagram)}
-                                        <a href="{if $Einstellungen.template.footer.instagram|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.instagram}" class="btn-social btn-instagram" title="Instagram" target="_blank" rel="noopener">
+                                    {if !empty($snackyConfig.instagram)}
+                                        <a href="{if $snackyConfig.instagram|strpos:'http' !== 0}https://{/if}{$snackyConfig.instagram}" class="btn-social btn-instagram dpflex-a-center dpflex-j-center" title="Instagram" target="_blank" rel="noopener">
 											<svg class="icon-darkmode">
-											  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-instagram"></use>
+											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-instagram"></use>
 											</svg>
 										</a>
                                     {/if}
-                                    {if !empty($Einstellungen.template.footer.skype)}
-                                        <a href="{if $Einstellungen.template.footer.skype|strpos:'skype:' !== 0}skype:{$Einstellungen.template.footer.skype}?add{else}{$Einstellungen.template.footer.skype}{/if}" class="btn-social btn-skype" title="Skype" target="_blank" rel="noopener">
+                                    {if !empty($snackyConfig.skype)}
+                                        <a href="{if $snackyConfig.skype|strpos:'skype:' !== 0}skype:{$snackyConfig.skype}?add{else}{$snackyConfig.skype}{/if}" class="btn-social btn-skype dpflex-a-center dpflex-j-center" title="Skype" target="_blank" rel="noopener">
 											<svg class="icon-darkmode">
-											  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-skype"></use>
+											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-skype"></use>
 											</svg>
 										</a>
                                     {/if}
-                                    {if !empty($Einstellungen.template.footer.xing)}
-                                        <a href="{if $Einstellungen.template.footer.xing|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.xing}" class="btn-social btn-xing" title="Xing" target="_blank" rel="noopener">
+                                    {if !empty($snackyConfig.xing)}
+                                        <a href="{if $snackyConfig.xing|strpos:'http' !== 0}https://{/if}{$snackyConfig.xing}" class="btn-social btn-xing dpflex-a-center dpflex-j-center" title="Xing" target="_blank" rel="noopener">
 											<svg class="icon-darkmode">
-											  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-xing"></use>
+											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-xing"></use>
 											</svg>
 										</a>
                                     {/if}
-                                    {if !empty($Einstellungen.template.footer.linkedin)}
-                                        <a href="{if $Einstellungen.template.footer.linkedin|strpos:'http' !== 0}https://{/if}{$Einstellungen.template.footer.linkedin}" class="btn-social btn-linkedin" title="Linkedin" target="_blank" rel="noopener">
+                                    {if !empty($snackyConfig.linkedin)}
+                                        <a href="{if $snackyConfig.linkedin|strpos:'http' !== 0}https://{/if}{$snackyConfig.linkedin}" class="btn-social btn-linkedin dpflex-a-center dpflex-j-center" title="Linkedin" target="_blank" rel="noopener">
 											<svg class="icon-darkmode">
-											  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-linkedin"></use>
+											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-linkedin"></use>
 											</svg>
 										</a>
                                     {/if}
@@ -260,9 +259,9 @@
             {block name="footer-additional"}
             {/block}{* /footer-additional *}
 			
-        <div id="copyright" class="mw-container">
+        <div id="copyright" class="mw-container text-center small">
             {block name="footer-copyright"}
-				<ul class="list-unstyled">
+				<ul class="blanklist{if $snackyConfig.footerCopyright == 1 && !$device->isMobile()} list-inline{/if}">
 					{if $NettoPreise == 1}
 						<li>{lang key="footnoteExclusiveVat" section="global" assign="footnoteVat"}</li>
 					{else}
@@ -292,9 +291,9 @@
 						Powered by <a href="http://jtl-url.de/jtlshop" title="JTL-Shop" target="_blank" rel="noopener nofollow">JTL-Shop</a>
 						</li>
 					{/if}
-					{if $Einstellungen.template.general.noCopyright|checkCopyfree}
+					{if $snackyConfig.noCopyright|checkCopyfree}
 						<li id="template-copyright">
-							Made with <span class="heart">&hearts;</span> by <a href="https://www.knoell-marketing.de/" title="Werbeagentur - Knoell marketing">Knoell Marketing</a>
+							Made with <span class="color-brand">&hearts;</span> by <a href="https://www.knoell-marketing.de/" title="Werbeagentur - Knoell marketing">Knoell Marketing</a>
 						</li>
 					{/if}
 				</ul>
@@ -306,27 +305,43 @@
 
 {block name="main-wrapper-closingtag"}
 {/block}
-{if $Einstellungen.template.theme.designWidth == 1}
+{if $snackyConfig.designWidth == 1}
 </div>
 {/if}
 {* JavaScripts *}
 {block name="footer-js"}
-{if !isset($Einstellungen.template.general.use_minify) || $Einstellungen.template.general.use_minify === 'N'}
-	{if isset($cJS_arr)}{foreach from=$cJS_arr item="cJS"}<script src="{$snackysTemplate}{$cJS}?v={$nTemplateVersion}" type="text/javascript" defer></script>{/foreach}{/if}
-	{if isset($cPluginJsBody_arr)}{foreach from=$cPluginJsBody_arr item="cJS"}<script src="{$snackysTemplate}{$cJS}?v={$nTemplateVersion}" type="text/javascript" defer></script>{/foreach}{/if}
-{else}
-	{if isset($cJS_arr)}{if isset($cJS_arr) && $cJS_arr|@count > 0}<script src="{$snackysTemplateAsset}asset/jtl3.js?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}{/if}
-	{if isset($cPluginJsBody_arr)}{if isset($cPluginJsBody_arr) && $cPluginJsBody_arr|@count > 0}<script src="{$snackysTemplateAsset}asset/plugin_js_body?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}{/if}
-{/if}
-{if $nSeitenTyp==1}<script src="{$snackysTemplate}js/article.min.js?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}
-{if $nSeitenTyp==1 && $Artikel->bHasKonfig}<script src="{$snackysTemplate}js/configurator.min.js?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}
-{if $nSeitenTyp==11}<script src="{$snackysTemplate}js/checkout.min.js?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}
-{if $nSeitenTyp==2}<script src="{$snackysTemplate}js/listing.min.js?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}
+	<script data-inline=1>
+	{include file="js/snackys/lazyImages.js"}
+	</script>
+	{if $nSeitenTyp==11}<script src="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}js/snackys/checkout.min.js?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}
+	{if $nSeitenTyp==2}<script src="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}js/snackys/listing.min.js?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}
 
-{if !empty($Einstellungen.template.analytics.id1) ||  !empty($Einstellungen.template.analytics.gtag) || !empty($Einstellungen.global.global_google_analytics_id)}<script src="{$snackysTemplate}js/analytics.min.js?v={$nTemplateVersion}" type="text/javascript" async></script>{/if}
+	{if !empty($snackyConfig.gtag) || !empty($snackyConfig.matomo)}
+		<script data-inline=1>{if !empty($snackyConfig.gtag)}var gtagId="{$snackyConfig.gtag}";{/if}{if !empty($snackyConfig.matomo)}var matomoUrl="{$snackyConfig.matomo}";var matomoSiteId="{$snackyConfig.matomoSiteId}";{/if}</script>
+		<script src="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}js/snackys/analytics.min.js?v={$nTemplateVersion}" type="text/javascript" async></script>
+	{/if}
+	{if $device->version("IE")}
+	<script>svg4everybody();</script>
+	{/if}
+
+	{if (!isset($Einstellungen.template.general.use_cron) || $Einstellungen.template.general.use_cron === 'Y') && $smarty.now % 10 === 0}
+		<script>$.get('includes/cron_inc.php');</script>
+	{/if}
 {/block}
 
-{if isset($cookieHinweisLink) && $Einstellungen.template.general.use_cookie_hint=='Y'}{include file='snippets/cookie-hinweis.tpl'}{/if}
 <div class="overlay-bg"></div>
+<div id="bodyloader" class="text-center">
+	<strong class="small">Loading ...</strong>
+</div>
+	{if $snackyConfig.pwa == 'Y'}
+		<script data-inline=1>
+			if ('serviceWorker' in navigator) {ldelim}
+			  window.addEventListener('load', () => {ldelim}
+				navigator.serviceWorker.register('/pwa.js?v={$nTemplateVersion}');
+			  {rdelim});
+			{rdelim}
+		</script>
+	{/if}
+	{snackys_content id="html_body_end" title="html_body_end"}
 </body>
 </html>

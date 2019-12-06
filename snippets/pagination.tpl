@@ -28,40 +28,40 @@
                     </span>
                 {/if}
                 {if in_array('pagi', $parts)}
-                    <ul class="pagination btn-group">
+                    <ul class="pagination btn-group blanklist dpflex-a-center dpflex-j-center list-inline">
                         {if $oPagination->getPage() > 0}
                             <li>
-                                <a href="{$cThisUrl}?{$oPagination->getId()}_nPage={$oPagination->getPrevPage()}{$cUrlAppend}{$cAnchor}">&laquo;</a>
+                                <a class="block text-center" href="{$cThisUrl}?{$oPagination->getId()}_nPage={$oPagination->getPrevPage()}{$cUrlAppend}{$cAnchor}">&laquo;</a>
                             </li>
                         {/if}
                         {if $oPagination->getLeftRangePage() > 0}
                             <li>
-                                <a href="{$cThisUrl}?{$oPagination->getId()}_nPage=0{$cUrlAppend}{$cAnchor}">1</a>
+                                <a class="block text-center" href="{$cThisUrl}?{$oPagination->getId()}_nPage=0{$cUrlAppend}{$cAnchor}">1</a>
                             </li>
                         {/if}
                         {if $oPagination->getLeftRangePage() > 1}
                             <li>
-                                <a>&hellip;</a>
+                                <a class="block text-center">&hellip;</a>
                             </li>
                         {/if}
                         {for $i=$oPagination->getLeftRangePage() to $oPagination->getRightRangePage()}
                             <li class="{if $oPagination->getPage() === $i}active{elseif $i > 0 && $i < $oPagination->getPageCount() - 1}hidden-xs{/if}">
-                                <a href="{$cThisUrl}?{$oPagination->getId()}_nPage={$i}{$cUrlAppend}{$cAnchor}">{$i+1}</a>
+                                <a class="block text-center" href="{$cThisUrl}?{$oPagination->getId()}_nPage={$i}{$cUrlAppend}{$cAnchor}">{$i+1}</a>
                             </li>
                         {/for}
                         {if $oPagination->getRightRangePage() < $oPagination->getPageCount() - 2}
                             <li>
-                                <a>&hellip;</a>
+                                <a class="block text-center">&hellip;</a>
                             </li>
                         {/if}
                         {if $oPagination->getRightRangePage() < $oPagination->getPageCount() - 1}
                             <li>
-                                <a href="{$cThisUrl}?{$oPagination->getId()}_nPage={$oPagination->getPageCount() - 1}{$cUrlAppend}{$cAnchor}">{$oPagination->getPageCount()}</a>
+                                <a class="block text-center" href="{$cThisUrl}?{$oPagination->getId()}_nPage={$oPagination->getPageCount() - 1}{$cUrlAppend}{$cAnchor}">{$oPagination->getPageCount()}</a>
                             </li>
                         {/if}
                         {if $oPagination->getPage() < $oPagination->getPageCount() - 1}
                             <li>
-                                <a href="{$cThisUrl}?{$oPagination->getId()}_nPage={$oPagination->getNextPage()}{$cUrlAppend}{$cAnchor}">&raquo;</a>
+                                <a class="block text-center" href="{$cThisUrl}?{$oPagination->getId()}_nPage={$oPagination->getNextPage()}{$cUrlAppend}{$cAnchor}">&raquo;</a>
                             </li>
                         {/if}
                     </ul>
@@ -82,7 +82,7 @@
     {/if}{/if}
 
     {if $showFilter === true && (in_array('count', $parts) || in_array('sort', $parts))}
-        <form action="{$cThisUrl}{$cAnchor}" method="get" class="form-inline form-group pull-right">
+        <form action="{$cThisUrl}{$cAnchor}" method="get" class="form-inline form-group">
             {foreach $cParam_arr as $cParamName => $cParamValue}
                 <input type="hidden" name="{$cParamName}" value="{$cParamValue}" />
             {/foreach}

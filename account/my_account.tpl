@@ -1,10 +1,5 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 <h1 class="menu-title">{lang key="welcome" section="login"} {if $Kunde->cAnrede === 'w'}{$Anrede_w}{elseif $Kunde->cAnrede === 'm'}{$Anrede_m}{/if} {$smarty.session.Kunde->cNachname}</h1>
-
+{include file="snippets/zonen.tpl" id="before_account_page" title="before_account_page"}
 <div class="row">
     <div class="col-xs-12 col-md-6">
     {block name="account-billing-address"}
@@ -17,10 +12,10 @@
                     <p>
                         {include file='checkout/inc_billing_address.tpl' additional=false}
                     </p>
-                    <a class="small edit top15 preload" href="{get_static_route id='jtl.php' params=['editRechnungsadresse' => 1]}">
-                        <div class="image-content icon">
+                    <a class="small edit top15 dpflex" href="{get_static_route id='jtl.php' params=['editRechnungsadresse' => 1]}">
+                        <div class="img-ct icon icon-wt">
 							<svg>
-							  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-edit"></use>
+							  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-edit"></use>
 							</svg>
 						</div> {lang key="modifyBillingAdress" section="global"}
                     </a>
@@ -66,5 +61,5 @@
         {/block}
     </div>
 </div>
-
+{include file="snippets/zonen.tpl" id="after_account_page" title="after_account_page"}
 {include file='account/downloads.tpl'}

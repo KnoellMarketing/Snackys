@@ -1,13 +1,13 @@
 <div class="row">
-	<button id="close-lightbox">X</button>
-    {if $Artikel->Bilder|@count > 1}
-    <div id="gallery-thumbs" class="hidden-sm col-md-2 col-lg-2 preload"> 
+	<span id="close-lightbox" class="close-btn"></span>
+    {if $Artikel->Bilder|@count > 1 && !$device->isMobile()}
+    <div id="gallery-thumbs" class="col-md-2 col-lg-2{if $Artikel->Bilder|@count > 5} two-cols{/if}"> 
         {block name="product-image"}
         {foreach $Artikel->Bilder as $image name="thumbnails"}
             {strip}
-                <div class="image-wrapper{if $smarty.foreach.thumbnails.first} active{/if}">
-                    <div class="image-content">
-                    <img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$image->cPfadKlein}" alt="{$image->cAltAttribut|escape:"html"}" data-list='{$image->galleryJSON|replace:"'":"&apos;"}' />
+                <div class="img-w{if $smarty.foreach.thumbnails.first} active{/if}">
+                    <div class="img-ct">
+                    <img src="{$snackyConfig.preloadImage}" data-src="{$image->cPfadKlein}" alt="{$image->cAltAttribut|escape:"html"}" data-list='{$image->galleryJSON|replace:"'":"&apos;"}' />
                     </div>
                 </div>
             {/strip}
@@ -16,14 +16,21 @@
     </div>   
     {/if}
 
-    <div id="gallery" class="preload {if $Artikel->Bilder|@count > 1}col-xs-12 col-md-10 col-lg-10{else}col-xs-12{/if}">
+    <div id="gallery" class="{if $Artikel->Bilder|@count > 1 && !$device->isMobile()}col-xs-12 col-md-10 col-lg-10{else}col-xs-12{/if}">
+		{if $Artikel->Bilder|@count > 1 && $device->isMobile()}
+			<div id="gallery-prev" class="sl-ar sl-pr">
+				<div class="ar ar-l"></div>
+			</div>
+		{/if}
+		<div class="inner">
         {block name="product-image"}
-        {foreach $Artikel->Bilder as $image}
+        {foreach $Artikel->Bilder as $image name="gallery"}
+			{if $smarty.foreach.gallery.first}<meta itemprop="image" content="{$image->cPfadGross}">{/if}
             {strip}
 			{assign var=bildGroessen value=$image->galleryJSON|json_decode:1}
-                <a href="{$image->cPfadGross}">
-                    <div class="image-content" data-src="{$image->cPfadGross}">
-                        <img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$image->cPfadNormal}" alt="{$image->cAltAttribut|escape:"html"}" data-list='{$image->galleryJSON|replace:"'":"&apos;"}'
+                <a href="{$image->cPfadGross}"{if $smarty.foreach.gallery.first} class="active"{/if}>
+                    <div class="img-ct" data-src="{$image->cPfadGross}">
+                        <img {if $smarty.foreach.gallery.first}src="{$image->cPfadNormal}"{else}src="{$snackyConfig.preloadImage}" data-src="{$image->cPfadNormal}"{/if} alt="{$image->cAltAttribut|escape:"html"}" data-list='{$image->galleryJSON|replace:"'":"&apos;"}'
 						{if $bildGroessen.lg.size.width > $bildGroessen.md.size.width}
 						data-big="{$image->cPfadGross}"
 						{/if}
@@ -33,7 +40,13 @@
             {/strip}
         {/foreach}
         {/block}
-    </div>                                                                                                                                
+		</div>
+		{if $Artikel->Bilder|@count > 1 && $device->isMobile()}
+			<div id="gallery-next" class=" sl-ar sl-nx">
+				<div class="ar ar-r"></div>
+			</div>
+		{/if}   
+    </div>                                                                                                                             
 </div>
 {*
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

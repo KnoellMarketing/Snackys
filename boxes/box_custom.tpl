@@ -1,9 +1,14 @@
+{if ($oBox->ePosition == 'left' && !$device->isMobile()) || $oBox->ePosition != 'left'}
 <section class="panel panel-default box box-custom" id="sidebox{$oBox->kBox}">
     <div class="panel-heading">
-        <h5 class="panel-title">{$oBox->cTitel}</h5>
+        <span class="panel-title h5 m0 dpflex-a-center dpflex-j-between">
+			{$oBox->cTitel}
+			{include file="snippets/careticon.tpl"}
+		</span>
     </div>
     <div class="panel-body panel-strap">
-		{if $Einstellungen.template.general.optimize_content == "Y"}{eval var=$oBox->cInhalt|optimize}{else}{eval var=$oBox->cInhalt}{/if}
+		{if $snackyConfig.optimize_content == "Y"}{eval var=$oBox->cInhalt|optimize}{else}{eval var=$oBox->cInhalt}{/if}
         
     </div>
 </section>
+{/if}

@@ -1,9 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
- 
-{snackysBasics}
 {block name="header"}
     {if !isset($bAjaxRequest) || !$bAjaxRequest}
         {include file='layout/header-min.tpl'}
@@ -11,11 +5,11 @@
 {/block}
 
 {block name="content"}
+    
+            {include file="snippets/extension.tpl"}
     <div id="result-wrapper">
         <div id="checkout">
             {include file="checkout/inc_steps.tpl"}
-    
-            {include file="snippets/extension.tpl"}
             {if $step === 'accountwahl'}
                 {include file='checkout/step0_login_or_register.tpl'}{*bestellvorgang_accountwahl.tpl*}
             {elseif $step === 'edit_customer_address' || $step === 'Lieferadresse'}
@@ -38,9 +32,6 @@
 		{lang key="basket2PersMerge" section="login"}<div class="answer"><a href="{get_static_route id='bestellvorgang.php'}?basket2Pers=1">{lang key="yes" section="global"}</a><a href="javascript:void();" class="x">{lang key="no" section="global"}</a></div>
 	</div>
 	</section></div> </div>
-        <script type="text/javascript">
-		$('.x').on('click',function(e){ldelim}e.preventDefault();$(this).closest('.modal-dialog').remove();{rdelim});
-        </script>
     {/if}
     
     <script type="text/javascript">

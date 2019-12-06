@@ -1,0 +1,124 @@
+.p-w.hv-e:hover{
+	position: relative;
+	z-index: 10;
+	background: white;
+}
+.p-w:hover .p-c.hv-e:after{
+	content: '';
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	left: -15px;
+	bottom: 0;
+	border-top-left-radius: .3rem;
+	border-top-right-radius: .3rem;
+	box-shadow: 0 0 17px 0 rgba(0,0,0,0.2);
+	pointer-events: none;
+	z-index: -1;
+}
+.p-c.hv-e .exp{
+	position: absolute;
+	top: 100%;
+	background: white;
+	z-index: 11;
+	visibility: hidden;
+	opacity: 0;
+	box-shadow: 0 17px 17px 0 rgba(0,0,0,0.2);
+}
+.p-c.hv-e .img-w:hover .img-ct{
+	box-shadow: none;
+}
+.p-w:hover .hv-e .exp{
+	display: block;
+	visibility: visible;
+	opacity: 1;
+	left: -15px;
+	right: -15px;
+	padding: 15px;
+	background: white;
+	border-bottom-left-radius: .3rem;
+	border-bottom-right-radius: .3rem;
+}
+.p-w .hv-e .exp .imgswatches [type="radio"]{
+	opacity: 0;
+	height: 0;
+	width: 0;
+	position: absolute;
+}
+.p-w .hv-e .exp .imgswatches img{
+	max-width: 100%;
+}
+.p-w .hv-e .exp .imgswatches .btn{
+	padding: .25rem;
+	flex-grow: 1;
+	overflow: hidden;
+}
+.p-w .hv-e .exp .imgswatches .btn span{
+	padding: .25rem;
+}
+.p-w .hv-e .exp .textswatches{
+	flex-wrap: wrap;
+}
+.p-w .hv-e .exp .textswatches label{
+	width: 100%;
+    border-radius: .3rem !important;
+    margin: .15rem 0;
+    padding: .35rem .5rem;
+    display: flex;
+    align-items: center;
+}
+.p-w .hv-e .exp [type="radio"]{
+	margin-right: .5rem;
+}
+.p-w .hv-e .exp .textswatches [type="radio"]{
+	position: relative;
+    top: -2px;
+}
+.p-w .hv-e .exp .basket-variations{
+	margin-top: -10px;
+}
+.p-w .hv-e .exp .quantity-wrapper .form-group,
+.p-w .hv-e .exp .quantity-wrapper.form-group,
+.p-w .hv-e .exp .quantity-wrapper.form-group .alert{
+	margin: 0;
+	font-size: .9rem;
+}
+.p-w .hv-e .exp dl{
+	margin: .5rem 0;
+}
+.p-w .hv-e .exp .selectric .button,
+.p-w .hv-e .exp .selectric .label{
+	line-height: 30px;
+	height: 30px;
+	font-size: .9rem;
+}
+.p-w .hv-e .exp label,
+.p-w .hv-e .exp select{
+	font-size: .9rem;
+	font-weight: 400;
+}
+.p-w .hv-e .exp select{
+	padding-top: .4rem;
+	padding-bottom: .4rem;
+}
+.selectric-items li.variation .label-surcharge{
+	color: #fff;
+	padding: .2rem 0.4rem;
+	font-size: .8rem;
+	background: @brand;
+	border-radius: .3rem;
+	margin-left: .5rem;
+}
+label.variation .label-not-available,
+.selectric-items li.variation .label-not-available{
+	margin-left: auto;
+	font-size: 12px;
+}
+label[data-stock="out-of-stock"]{
+	opacity: .6;
+	pointer-events: none;
+}
+.selectric-items li.variation{
+	display: flex;
+	align-items: center;
+}

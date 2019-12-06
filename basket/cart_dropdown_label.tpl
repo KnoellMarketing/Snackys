@@ -1,7 +1,7 @@
-<a href="{get_static_route id='warenkorb.php'}" class="basket-opener preload" data-toggle="dropdown" title="{lang key='basket'}">
-    <span class="image-content icon icon-xl">
+<a href="{get_static_route id='warenkorb.php'}" class="basket-opener pr" title="{lang key='basket'}">
+    <span class="img-ct icon icon-xl">
 		<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
-		  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-cart"></use>
+		  <use xlink:href="{if empty($parentTemplateDir)}{if empty($currentTemplateDir)}templates/snackys/{else}{$currentTemplateDir}{/if}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-cart"></use>
 		</svg>
     </span>
     {if $WarenkorbArtikelPositionenanzahl >= 1}
@@ -10,20 +10,20 @@
         </sup>
     {/if}
 </a>
-<ul class="cart-dropdown dropdown-menu dropdown-menu-right{if $smarty.session.Warenkorb->PositionenArr|@count == 0} no-items{/if}">
+<ul class="c-dp dropdown-menu dropdown-menu-right{if $smarty.session.Warenkorb->PositionenArr|@count == 0} no-items{/if}">
     <li class="inside">
         <div class="items-list">
             {include file='checkout/inc_order_items.tpl' isSidebar="1"}
         </div>
         {* if $smarty.session.Warenkorb->PositionenArr|@count > 0 *}
-        <div class="fixed-btn-group{if $Einstellungen.template.theme.shopBButton == 1} one-button{/if}">
-            <a href="{get_static_route id='warenkorb.php'}" class="btn btn-block{if $Einstellungen.template.theme.shopBButton == 1} btn-primary btn-lg{/if}" title="{lang key='gotoBasket'}"> {lang key='gotoBasket'}</a>
-			{if $Einstellungen.template.theme.shopBButton == 0}
+        <div class="fixed-btn-group{if $snackyConfig.shopBButton == 1} one-button{/if}">
+            <a href="{get_static_route id='warenkorb.php'}" class="btn btn-block{if $snackyConfig.shopBButton == 1} btn-primary btn-lg{/if}" title="{lang key='gotoBasket'}"> {lang key='gotoBasket'}</a>
+			{if $snackyConfig.shopBButton == 0}
             <a href="{get_static_route id='bestellvorgang.php'}" class="btn btn-primary btn-block btn-lg">{lang key="checkout" section="basketpreview"}</a>
 			{/if}
         </div>
         {* /if *}
     </li>
     <li class="overlay-bg"></li>
-    <li class="close-sidebar"></li>
+    <li class="close-sidebar close-btn"></li>
 </ul>

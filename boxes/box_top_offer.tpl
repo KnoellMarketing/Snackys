@@ -1,3 +1,4 @@
+{if ($oBox->ePosition == 'left' && !$device->isMobile()) || $oBox->ePosition != 'left'}
 {if isset($oBox->Artikel->elemente)}
     {lang key="topOffer" section="global" assign='slidertitle'}
     
@@ -11,4 +12,5 @@
 {elseif isset($Boxen.TopAngebot->Artikel->elemente)}
     {lang key="topOffer" section="global" assign='slidertitle'}
     {include file='snippets/product_slider.tpl' id='boxslider-topoffer' productlist=$Boxen.TopAngebot->Artikel->elemente title=$slidertitle tplscope='box' isBox="1"}
+{/if}
 {/if}

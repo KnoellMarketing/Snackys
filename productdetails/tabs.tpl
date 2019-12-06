@@ -51,6 +51,7 @@
 {if $useDescription || $useDownloads || $useMediaFiles || $useVotes || $useQuestionOnItem || $usePriceFlow
     || $useAvailabilityNotification || $useMediaGroup || $useTags || !empty($separatedTabs)}
     {if $tabanzeige}
+		{include file="snippets/zonen.tpl" id="before_tabs" title="before_tabs"}
         <ul class="nav nav-tabs bottom15" role="tablist" id="article-tab-nav">
             {if $useDescription}
                 <li role="presentation" {if $setActiveClass.description} class="active"{/if}>
@@ -239,8 +240,9 @@
             {/if}
             <div class="tab-content-wrapper">
                 {block name="tab-description-content"}
+					{include file="snippets/zonen.tpl" id="before_desc" title="before_desc"}
                     <div class="desc">
-						{if $Einstellungen.template.general.optimize_artikel == "Y"}{$Artikel->cBeschreibung|optimize}{else}{$Artikel->cBeschreibung}{/if}
+						{if $snackyConfig.optimize_artikel == "Y"}{$Artikel->cBeschreibung|optimize}{else}{$Artikel->cBeschreibung}{/if}
                         {if $useMediaFiles && !empty($Artikel->cMedienTyp_arr)}
                             {foreach name="mediendateigruppen" from=$Artikel->cMedienTyp_arr item=cMedienTyp}
                                 <div class="media">
@@ -249,6 +251,7 @@
                             {/foreach}
                         {/if}
                     </div>
+					{include file="snippets/zonen.tpl" id="after_desc" title="after_desc"}
                 {/block}
                 {block name="tab-description-attributes"}
                     {include file="productdetails/attributes.tpl" tplscope="details"}
@@ -308,7 +311,7 @@
             {else}
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">{lang section="productDownloads" key="downloadSection"}</h3>
+                        <h3 class="panel-title">{lang key="Votes" section="global"}</h3>
                     </div>
                     <div class="panel-body" id="tab-votes">
             {/if}

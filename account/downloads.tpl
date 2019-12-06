@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 {if !empty($Bestellung->oDownload_arr)}
 <hr class="big-hr">
     <h2 class="m0">{lang key="yourDownloads" section="global"}</h2>

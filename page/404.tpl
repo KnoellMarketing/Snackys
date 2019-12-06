@@ -1,12 +1,14 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-<div id="page-not-found">
+<div id="page-not-found" class="dpflex-a-center dpflex-j-center text-center" 
+	 style="background: url('{if !empty($snackyConfig.error404BG)}{$snackyConfig.error404BG}{else}/templates/snackys/img/background/background-404.jpg{/if}')no-repeat center center/cover">
     {if $bSeiteNichtGefunden}
-        <p class="alert alert-danger">
-            {lang key="pageNotFound" section="global"}
-        </p>
+		<div class="background-image"></div>
+	<div class="content">
+	<h1>404</h1>
+        <h2>
+            {lang key="pagenotfound" section="breadcrumb"}
+        </h2>
+		<a href="index.php" class="btn btn-primary btn-lg">{lang key="goToStartpage" section="checkout"}</a>
+	
+	</div>
     {/if}
-    {include file='page/sitemap.tpl'}
 </div>

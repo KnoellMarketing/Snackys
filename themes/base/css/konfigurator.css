@@ -1,0 +1,71 @@
+/* Konfigurator */
+#product-configurator{
+	margin-top: 4rem;
+}
+#product-configuration-sidebar{
+	position: -webkit-sticky;
+	position: sticky;
+	top: 60px;
+	max-height: 80vh;
+	overflow: auto;
+	width: 100% !important
+}
+#product-configurator ul{
+	padding: 0;
+	list-style: none;
+}
+#product-configurator .list-group-item{
+	margin-bottom: 1rem;
+}
+#product-configurator .cfg-group{
+	margin-bottom: 2rem;
+}
+#product-configurator #quantity-grp>input{
+	margin-right: 0;
+}
+#product-configurator .collapse{
+	margin: 1rem 0;
+	background: #eee;
+	border-radius: .3rem;
+	color: @defaulttext;
+	height: 0;
+	padding: 0;
+	opacity: 0;
+}
+#product-configurator .collapse.in{
+	padding: 1rem;
+	height: auto !important;
+	opacity: 1;
+}
+#product-configurator .panel-title{
+	padding-bottom: 1rem;
+	border-bottom: 1px solid @lightborder;
+}
+#cfg-container .row{
+	align-items: center;
+}
+#cfg-container .row > div{
+	width: 100%;
+}
+#cfg-container .filter-collapsible-control,
+#cfg-container .badge{
+	margin-left: auto;
+}
+#cfg-container .badge ~ .filter-collapsible-control{
+	margin-left: .5rem;
+}
+#cfg-container .badge{
+	display: inline-block;
+	padding: 3px 5px;
+	border-radius: .3rem;
+	background: @brand;
+	color: white;
+}
+@media screen and (max-width: 767px){
+	#product-configurator {
+		margin-top: 2rem;
+	}
+	#product-configurator .cfg-group{
+		margin-bottom: 1rem;
+	}
+}

@@ -1,5 +1,4 @@
-{snackysBasics}
-<ul class="{if isset($class)}{$class}{else}nav nav-list{/if}">
+<ul class="{if isset($class)}{$class}{else}nav nav-list blanklist{/if}">
     {if !empty($Suchergebnisse->Suchspecialauswahl[1]) && $Suchergebnisse->Suchspecialauswahl[1]->nAnzahl > 0}
         <li>
             <a href="{$Suchergebnisse->Suchspecialauswahl[1]->cURL}" rel="nofollow">

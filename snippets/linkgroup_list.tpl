@@ -14,9 +14,9 @@
             {assign var=checkLinkParents value=true}
         {/if}
         {foreach $links as $li}
-            <li class="{if !empty($li->oSub_arr) && isset($dropdownSupport)}megamenu-fw dropdown-style{/if}{if $li->bIsActive || ($checkLinkParents === true && isset($activeParents) && in_array($li->kLink, $activeParents))} active{/if}{if $tplscope === 'megamenu' && !empty($li->oSub_arr)} bs-hover-enabled{/if}" id="mm-dropdown{$li@iteration}">
+            <li class="{if !empty($li->oSub_arr) && isset($dropdownSupport)}mgm-fw dropdown-style{/if}{if $li->bIsActive || ($checkLinkParents === true && isset($activeParents) && in_array($li->kLink, $activeParents))} active{/if}" id="mm-dropdown{$li@iteration}">
                 {if isset($li->cLocalizedName[$smarty.session.cISOSprache])}
-                    <a href="{$li->cURLFull}" class="mm-mainlink"{if $li->cNoFollow === 'Y'} rel="nofollow"{/if}{if !empty($li->cTitle)} title="{$li->cTitle}"{/if}{if !empty($li->oSub_arr) && isset($dropdownSupport)} class="dropdown-toggle-mmenu" data-toggle="dropdown" data-hover="dropdown" data-hover-delay="100" data-delay="300"{/if}>
+                    <a href="{$li->cURLFull}" class="mm-mainlink"{if $li->cNoFollow === 'Y'} rel="nofollow"{/if}{if !empty($li->cTitle)} title="{$li->cTitle}"{/if}>
                         {$li->cLocalizedName|trans}
                         {if !empty($li->oSub_arr) && isset($dropdownSupport)} <span class="caret hidden-xs"></span>{include file='snippets/mobile-menu-arrow.tpl'}{/if}
                     </a>

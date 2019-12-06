@@ -1,4 +1,3 @@
-{snackysBasics}
 {block name="header"}
     {include file='layout/header.tpl'}
 {/block}

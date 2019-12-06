@@ -30,10 +30,10 @@
                             <p>
                                 {include file='checkout/inc_billing_address.tpl'}
                             </p>
-                            <a class="small edit preload" href="{get_static_route id='bestellvorgang.php'}?editRechnungsadresse=1">
-                                <span class="image-content icon">
+                            <a class="small edit pr" href="{get_static_route id='bestellvorgang.php'}?editRechnungsadresse=1">
+                                <span class="img-ct icon">
 									<svg>
-									  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-edit"></use>
+									  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-edit"></use>
 									</svg>
 								</span> {lang key="modifyBillingAdress" section="global"}
                             </a>
@@ -47,10 +47,10 @@
                             <p>
                                 {include file='checkout/inc_delivery_address.tpl'}
                             </p>
-                            <a class="small edit preload" href="{get_static_route id='bestellvorgang.php'}?editLieferadresse=1">
-                                <span class="image-content icon">
+                            <a class="small edit pr" href="{get_static_route id='bestellvorgang.php'}?editLieferadresse=1#select_shipping_address">
+                                <span class="img-ct icon">
 									<svg>
-									  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-edit"></use>
+									  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-edit"></use>
 									</svg>
 								</span> {lang key="modifyShippingAdress" section="checkout"}
                             </a>
@@ -83,10 +83,10 @@
                                     <strong>{lang key="shippingTime" section="global"}</strong>: {$cEstimatedDelivery}
                                 </p>
                             {/if}
-                            <a class="small edit preload" href="{get_static_route id='bestellvorgang.php'}?editVersandart=1">
-                                <span class="image-content icon">
+                            <a class="small edit pr" href="{get_static_route id='bestellvorgang.php'}?editVersandart=1">
+                                <span class="img-ct icon">
 									<svg>
-									  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-edit"></use>
+									  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-edit"></use>
 									</svg>
 								</span> {lang key="modifyShippingOption" section="checkout"}
                             </a>
@@ -102,10 +102,10 @@
                         {if isset($smarty.session.Zahlungsart->cHinweisText) && !empty($smarty.session.Zahlungsart->cHinweisText)}{* this should be localized *}
                             <p class="small text-muted">{$smarty.session.Zahlungsart->cHinweisText}</p>
                         {/if}
-                        <a class="small edit preload" href="{get_static_route id='bestellvorgang.php'}?editZahlungsart=1">
-                            <span class="image-content icon">
+                        <a class="small edit pr" href="{get_static_route id='bestellvorgang.php'}?editZahlungsart=1">
+                            <span class="img-ct icon">
 								<svg>
-								  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-edit"></use>
+								  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-edit"></use>
 								</svg>
 							</span> {lang key="modifyPaymentOption" section="checkout"}
                         </a>
@@ -128,7 +128,7 @@
             </div>
         {/block}
     {/if}
-    <div class="row row-eq-height">
+    <div class="row row-eq-height row-multi">
         {block name="checkout-confirmation-comment"}
             <div class="col-xs-12 col-md-{if $KuponMoeglich == 1}8{else}12{/if}">
                 <div class="panel panel-default" id="panel-edit-comment">
@@ -232,6 +232,36 @@
                             <input type="hidden" id="comment-hidden" name="kommentar" value="" />
                             <div class="visible-sm visible-xs">
                             {include file="checkout/inc_order_items.tpl" tplscope="confirmation"}
+								<hR>
+							<div class="cart-sum mb-spacer">
+								{if $NettoPreise}
+									<div class="total-net dpflex-a-center dpflex-j-between">
+										<span class="price_label"><strong>{lang key="totalSum" section="global"} ({lang key="net" section="global"}):</strong></span>
+										<strong class="price total-sum">{$WarensummeLocalized[$NettoPreise]}</strong>
+									</div>
+								{/if}
+
+								{if $Einstellungen.global.global_steuerpos_anzeigen !== 'N' && $Steuerpositionen|@count > 0}
+									{foreach name=steuerpositionen from=$Steuerpositionen item=Steuerposition}
+										<div class="tax dpflex-a-center dpflex-j-between">
+											<span class="tax_label">{$Steuerposition->cName}:</span>
+											<span class="tax_label">{$Steuerposition->cPreisLocalized}</span>
+										</div>
+									{/foreach}
+								{/if}
+
+								{if isset($smarty.session.Bestellung->GuthabenNutzen) && $smarty.session.Bestellung->GuthabenNutzen == 1}
+									 <div class="customer-credit dpflex-a-center dpflex-j-between">
+										 <span>{lang key="useCredit" section="account data"}</span>
+										  <span>{$smarty.session.Bestellung->GutscheinLocalized}</span>
+									 </div>
+								{/if}
+
+								<div class="total info dpflex-a-center dpflex-j-between">
+									<span class="price_label"><strong>{lang key="totalSum" section="global"}:</strong></span>
+									<strong class="price total-sum">{$WarensummeLocalized[0]}</strong>
+								</div>
+							</div>
                             </div>
                             <input type="submit" value="{lang key="orderLiableToPay" section="checkout"}" id="complete-order-button" class="btn btn-primary btn-lg pull-right submit submit_once" />
                             <a href="{get_static_route id='warenkorb.php'}" class="btn btn-link btn-lg hidden-xxs">{lang key="modifyBasket" section="checkout"}</a>

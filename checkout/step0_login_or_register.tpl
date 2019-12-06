@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 {if !empty($hinweis)}
     <div class="alert alert-info">{$hinweis}</div>
 {/if}
@@ -20,36 +15,75 @@
 {else}
     {assign var="withSidebar" value=0}
 {/if}
+
+{if $snackyConfig.checkoutPosTabs == '0'}
+	{assign var="loginClass" value="first"}
+	{if $Einstellungen.kaufabwicklung.bestellvorgang_unregistriert === 'Y'}
+		{assign var="guestClass" value="last"}
+	{else}
+		{assign var="regClass" value="last"}
+	{/if}
+{elseif $snackyConfig.checkoutPosTabs == '1'}
+	{assign var="loginClass" value="first"}
+	{assign var="regClass" value="last"}
+{elseif $snackyConfig.checkoutPosTabs == '2'}
+	{assign var="regClass" value="first"}
+	{if $Einstellungen.kaufabwicklung.bestellvorgang_unregistriert === 'Y'}
+		{assign var="guestClass" value="last"}
+	{else}
+		{assign var="loginClass" value="last"}
+	{/if}
+{elseif $snackyConfig.checkoutPosTabs == '3'}
+	{assign var="regClass" value="first"}
+	{assign var="loginClass" value="last"}
+{elseif $snackyConfig.checkoutPosTabs == '4'}
+	{if $Einstellungen.kaufabwicklung.bestellvorgang_unregistriert === 'Y'}
+		{assign var="guestClass" value="first"}
+	{else}
+		{assign var="loginClass" value="first"}
+	{/if}
+	{assign var="regClass" value="last"}
+{elseif $snackyConfig.checkoutPosTabs == '5'}
+	{if $Einstellungen.kaufabwicklung.bestellvorgang_unregistriert === 'Y'}
+		{assign var="guestClass" value="first"}
+	{else}
+		{assign var="regClass" value="first"}
+	{/if}
+	{assign var="loginClass" value="last"}
+{/if}
+
 <div id="register-customer" class="row">
 	<div class="col-xs-12" id="choose-way">
-		<div class="row preload">
-			<div class="col-xs-4 step-box {if empty($hinweis) && empty($fehlendeAngaben)}active {/if}login">
-				<span class="image-content">
+		<div class="row pr">
+			<div class="col-xs-4 step-box login {$loginClass}{if $loginClass == 'first'} active{/if}">
+				<span class="img-ct">
 					<svg>
-					  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-user-reg"></use>
+					  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-user-reg"></use>
 					</svg>
 				</span>
 				<span>{lang key="COlogin" section="custom"}</span>
 			</div>
-			<div class="col-xs-4 step-box nouser reg{if !empty($hinweis) || !empty($fehlendeAngaben)} active{/if}">
-				<span class="image-content">
+			<div class="col-xs-4 step-box nouser reg {$regClass}{if $regClass == 'first' || !empty($hinweis) || !empty($fehlendeAngaben)} active{/if}">
+				<span class="img-ct">
 					<svg>
-					  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-user-new"></use>
+					  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-user-new"></use>
 					</svg>
 				</span>
 				<span>{lang key="COreg" section="custom"}</span>
 			</div>
-			<div class="col-xs-4 step-box nouser guest">
-				<span class="image-content">
+			{if $Einstellungen.kaufabwicklung.bestellvorgang_unregistriert === 'Y'}
+			<div class="col-xs-4 step-box nouser guest {$guestClass}{if $guestClass == 'first'} active{/if}" id="checkout-guest-btn">
+				<span class="img-ct">
 					<svg>
-					  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-user-guest"></use>
+					  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-user-guest"></use>
 					</svg>
 				</span>
 				<span>{lang key="COguest" section="custom"}</span>
 			</div>
+			{/if}
 		</div>
 	</div>
-    <div id="existing-customer" class="col-xs-12{if !empty($hinweis) || !empty($fehlendeAngaben)} hidden{/if}"">
+    <div id="existing-customer" class="col-xs-12{if $loginClass != 'first'} hidden{/if}"">
         <form method="post" action="{get_static_route id='bestellvorgang.php'}" class="form evo-validate" id="order_register_or_login">
             {block name="checkout-login"}
                 <div class="panel-wrap">
@@ -64,7 +98,7 @@
             {/block}
         </form>
     </div>
-    <div id="customer" class="col-xs-12 {if empty($hinweis) && empty($fehlendeAngaben)} hidden{/if}">
+    <div id="customer" class="col-xs-12{if $loginClass == 'first'} hidden{/if}">
         <div>
             {include file='register/inc_vcard_upload.tpl' id='bestellvorgang.php'}
             <form method="post" action="{get_static_route id='bestellvorgang.php'}" class="form evo-validate" id="form-register">

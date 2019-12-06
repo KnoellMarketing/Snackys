@@ -1,27 +1,26 @@
 {strip}
 {assign var=max_subsub_items value=5}
-{if $Einstellungen.template.megamenu.megaHome == 0}
-<li{if $nSeitenTyp == 18} class="active"{/if}>
-	<a href="{$ShopURL}" title="{$Einstellungen.global.global_shopname}" class="home-icon mm-mainlink hidden-xs">
+{if $snackyConfig.megaHome == 0}
+<li class="is-lth{if $nSeitenTyp == 18} active{/if}">
+	<a href="{$ShopURL}" title="{$Einstellungen.global.global_shopname}" class="home-icon mm-mainlink">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 26.25"><path d="M3.75 26.25h9.37v-7.5h3.76v7.5h9.37V15H30L15 0 0 15h3.75z"/></svg>
 	</a>
-	<a href="{$ShopURL}" title="{$Einstellungen.global.global_shopname}" class="hidden visible-xs mm-mainlink">{lang key="linkHome" section="custom"}</a>
 </li>
-{else if $Einstellungen.template.megamenu.megaHome == 1}
-<li{if $nSeitenTyp == 18} class="active"{/if}>
+{else if $snackyConfig.megaHome == 1}
+<li class="is-lth{if $nSeitenTyp == 18} active{/if}">
 	<a href="{$ShopURL}" title="{$Einstellungen.global.global_shopname}" class="mm-mainlink">
 		{lang key="linkHome" section="custom"}
 	</a>
 </li>
 {/if}
-{if isset($Einstellungen.template.megamenu.show_pages) && $Einstellungen.template.megamenu.show_pages !== 'N'}
+{if isset($snackyConfig.show_pages) && $snackyConfig.show_pages !== 'N'}
     {include file='snippets/linkgroup_list.tpl' linkgroupIdentifier='megamenu_start' dropdownSupport=true tplscope='megamenu_start'}
 {/if}
 
 {block name="megamenu-categories"}
-{if isset($Einstellungen.template.megamenu.show_categories) && $Einstellungen.template.megamenu.show_categories !== 'N' && isset($Einstellungen.global.global_sichtbarkeit) && ($Einstellungen.global.global_sichtbarkeit != 3 || isset($smarty.session.Kunde->kKunde) && $smarty.session.Kunde->kKunde != 0)}
+{if isset($snackyConfig.show_categories) && $snackyConfig.show_categories !== 'N' && isset($Einstellungen.global.global_sichtbarkeit) && ($Einstellungen.global.global_sichtbarkeit != 3 || isset($smarty.session.Kunde->kKunde) && $smarty.session.Kunde->kKunde != 0)}
     {assign var='show_subcategories' value=false}
-    {if isset($Einstellungen.template.megamenu.show_subcategories) && $Einstellungen.template.megamenu.show_subcategories !== 'N'}
+    {if isset($snackyConfig.show_subcategories) && $snackyConfig.show_subcategories !== 'N'}
         {assign var='show_subcategories' value=true}
     {/if}
 
@@ -41,10 +40,10 @@
         {if !isset($activeParents) && ($nSeitenTyp == 1 || $nSeitenTyp == 2)}
             {get_category_parents categoryId=$activeId assign='activeParents'}
         {/if}
-		{if $Einstellungen.template.megamenu.drodownMaincat == 1}
+		{if $snackyConfig.drodownMaincat == 1}
             {assign var='isDropdown' value=false}
-			<li class="megamenu-fw dropdown-style">
-			<span class="no-link mm-mainlink"{if $isDropdown} data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-hover-delay="100" data-close-others="true"{/if}>
+			<li class="mgm-fw dropdown-style">
+			<span class="no-link mm-mainlink">
 				{lang key="allCats" section="custom"}
 				<span class="caret hidden-xs"></span>{include file='snippets/mobile-menu-arrow.tpl'}
 			</span>
@@ -54,14 +53,14 @@
             {if isset($category->bUnterKategorien) && !empty($category->Unterkategorien)}
                 {assign var='isDropdown' value=true}
             {/if}
-            <li class="{if $isDropdown && $category->Unterkategorien|@count gt 0}megamenu-fw dropdown-style{/if}{if $category->kKategorie == $activeId || (isset($activeParents[0]) && $activeParents[0]->kKategorie == $category->kKategorie)} active{/if}">
-                <a href="{$category->cURL}" class="{if $Einstellungen.template.megamenu.drodownMaincat == 0}mm-mainlink{else}dropdown-link defaultlink{/if}"{if $isDropdown} data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-hover-delay="100" data-close-others="true"{/if}>
+            <li class="{if $isDropdown && $category->Unterkategorien|@count gt 0}mgm-fw dropdown-style{/if}{if $category->kKategorie == $activeId || (isset($activeParents[0]) && $activeParents[0]->kKategorie == $category->kKategorie)} active{/if}">
+                <a href="{$category->cURL}" class="{if $snackyConfig.drodownMaincat == 0}mm-mainlink{else}dropdown-link defaultlink{/if}">
                     <span class="notextov">{$category->cKurzbezeichnung}</span>
                     {if $isDropdown && $category->Unterkategorien|@count gt 0}
-						{if $Einstellungen.template.megamenu.drodownMaincat == 0}
+						{if $snackyConfig.drodownMaincat == 0}
 						<span class="caret hidden-xs"></span>{include file='snippets/mobile-menu-arrow.tpl'}
 						{else}
-						<span class="css-arrow css-arrow-right hidden-xs"></span>{include file='snippets/mobile-menu-arrow.tpl'}
+						<span class="ar ar-r hidden-xs"></span>{include file='snippets/mobile-menu-arrow.tpl'}
 						{/if}
 					{/if}
                 </a>
@@ -74,7 +73,7 @@
 								{get_category_array categoryId=$category->kKategorie assign='sub_categories'}
 							{/if}
 							{foreach name='sub_categories' from=$sub_categories item='sub'}
-								<li class="title{if $show_subcategories && $sub->bUnterKategorien} megamenu-fw keepopen{/if}">
+								<li class="title{if $show_subcategories && $sub->bUnterKategorien} mgm-fw keepopen{/if}{if $sub->kKategorie == $activeId || (isset($activeParents[1]) && $activeParents[1]->kKategorie == $sub->kKategorie)} active{/if}">
 									{if !empty($sub->Unterkategorien)}
 										{assign var=subsub_categories value=$sub->Unterkategorien}
 									{else}
@@ -85,7 +84,7 @@
 											{$sub->cKurzbezeichnung}
 										</span>
 										{if $show_subcategories && $sub->bUnterKategorien && count($subsub_categories)  > 0}
-										<span class="css-arrow css-arrow-right hidden-xs"></span>{include file='snippets/mobile-menu-arrow.tpl'}
+										<span class="ar ar-r hidden-xs"></span>{include file='snippets/mobile-menu-arrow.tpl'}
 										{/if}
 									</a>
 									{if $show_subcategories && $sub->bUnterKategorien && count($subsub_categories)  > 0}
@@ -107,7 +106,7 @@
             </li>
         {/foreach}
 					
-		{if $Einstellungen.template.megamenu.drodownMaincat == 1}
+		{if $snackyConfig.drodownMaincat == 1}
 		</ul>	
 		</li>
 		{/if}
@@ -116,32 +115,32 @@
 {/block}{* /megamenu-categories*}
 
 {block name="megamenu-pages"}
-{if isset($Einstellungen.template.megamenu.show_pages) && $Einstellungen.template.megamenu.show_pages !== 'N'}
+{if isset($snackyConfig.show_pages) && $snackyConfig.show_pages !== 'N'}
     {include file='snippets/linkgroup_list.tpl' linkgroupIdentifier='megamenu' dropdownSupport=true tplscope='megamenu'}
 {/if}
 {/block}{* megamenu-pages *}
 
 {block name="megamenu-manufacturers"}
-{if isset($Einstellungen.template.megamenu.show_manufacturers) && $Einstellungen.template.megamenu.show_manufacturers !== 'N' && isset($Einstellungen.global.global_sichtbarkeit) && ($Einstellungen.global.global_sichtbarkeit != 3 || isset($smarty.session.Kunde->kKunde) && $smarty.session.Kunde->kKunde != 0)}
+{if isset($snackyConfig.show_manufacturers) && $snackyConfig.show_manufacturers !== 'N' && isset($Einstellungen.global.global_sichtbarkeit) && ($Einstellungen.global.global_sichtbarkeit != 3 || isset($smarty.session.Kunde->kKunde) && $smarty.session.Kunde->kKunde != 0)}
     {get_manufacturers assign='manufacturers'}
     {if !empty($manufacturers)}
-        <li class="dropdown-style megamenu-fw{if (isset($NaviFilter->Hersteller) && !empty($NaviFilter->Hersteller->kHersteller)) || $nSeitenTyp == PAGE_HERSTELLER} active{/if}">
+        <li class="dropdown-style mgm-fw{if (isset($NaviFilter->Hersteller) && !empty($NaviFilter->Hersteller->kHersteller)) || $nSeitenTyp == PAGE_HERSTELLER} active{/if}">
             {assign var="linkKeyHersteller" value=LinkHelper::getInstance()->getSpecialPageLinkKey(LINKTYP_HERSTELLER)}
             {if !empty($linkKeyHersteller)}{assign var="linkSEOHersteller" value=LinkHelper::getInstance()->getPageLinkLanguage($linkKeyHersteller)}{/if}
             {if isset($linkSEOHersteller)}
-                <a href="{$linkSEOHersteller->cSeo}" class="mm-mainlink" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-hover-delay="100" data-close-others="true">
+                <a href="{$linkSEOHersteller->cSeo}" class="mm-mainlink">
                     {$linkSEOHersteller->cName}
                     <span class="caret hidden-xs"></span>{include file='snippets/mobile-menu-arrow.tpl'}
                 </a>
             {else}
-                <span class="mm-mainlink" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-hover-delay="100" data-close-others="true">
+                <span class="mm-mainlink">
                     {lang key="manufacturers" section="global"}
                     <span class="caret hidden-xs"></span>{include file='snippets/mobile-menu-arrow.tpl'}
                 </span>
             {/if}
             <ul class="dropdown-menu keepopen{if $manufacturers|@count > 40} items-threecol{else if $manufacturers|@count > 20} items-twocol{/if}">
 				{foreach name=hersteller from=$manufacturers item=hst}
-					<li class="title"><a href="{$hst->cSeo}" class="dropdown-link defaultlink"><span class="notextov">{$hst->cName}</span></a></li>
+					<li class="title{if isset($NaviFilter->Hersteller) && $NaviFilter->Hersteller->kHersteller == $hst->kHersteller} active{/if}"><a href="{$hst->cSeo}" class="dropdown-link defaultlink"><span class="notextov">{$hst->cName}</span></a></li>
 				{/foreach}
             </ul>
         </li>

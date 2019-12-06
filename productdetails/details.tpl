@@ -34,19 +34,18 @@
     {/foreach}
 {/if}
 
-<div class="h1 visible-xs text-center">{$Artikel->cName}</div>
 
 {block name="product-pagination"}
 	{if $Einstellungen.artikeldetails.artikeldetails_navi_blaettern === 'Y' && isset($NavigationBlaettern)}
-		<div id="prevNextRow" class="preload hidden-xs">
+		<div id="prevNextRow" class="pr hidden-xs">
 			<div class="visible-lg product-pagination previous">
 				{if isset($NavigationBlaettern->vorherigerArtikel) && $NavigationBlaettern->vorherigerArtikel->kArtikel}
 					<a href="{$NavigationBlaettern->vorherigerArtikel->cURL}" title="{$NavigationBlaettern->vorherigerArtikel->cName}">
 						<span class="button">
-							<span class="css-arrow css-arrow-left"></span>
+							<span class="ar ar-l"></span>
 						</span>
-						<span class="image-content">
-							<img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$NavigationBlaettern->vorherigerArtikel->Bilder[0]->cPfadNormal}" alt="{$NavigationBlaettern->vorherigerArtikel->cName}">
+						<span class="img-ct">
+							<img src="{$snackyConfig.preloadImage}" data-src="{$NavigationBlaettern->vorherigerArtikel->Bilder[0]->cPfadNormal}" alt="{$NavigationBlaettern->vorherigerArtikel->cName}">
 					 	</span>	
 					</a>
 				{/if}
@@ -55,11 +54,11 @@
 			<div class="visible-lg product-pagination next">
 				{if isset($NavigationBlaettern->naechsterArtikel) && $NavigationBlaettern->naechsterArtikel->kArtikel}
 					<a href="{$NavigationBlaettern->naechsterArtikel->cURL}" title="{$NavigationBlaettern->naechsterArtikel->cName}">
-						<span class="image-content">
-							<img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$NavigationBlaettern->naechsterArtikel->Bilder[0]->cPfadNormal}" alt="{$NavigationBlaettern->naechsterArtikel->cName}">
+						<span class="img-ct">
+							<img src="{$snackyConfig.preloadImage}" data-src="{$NavigationBlaettern->naechsterArtikel->Bilder[0]->cPfadNormal}" alt="{$NavigationBlaettern->naechsterArtikel->cName}">
 						</span>
 						<span class="button">
-							<span class="css-arrow css-arrow-right"></span>
+							<span class="ar ar-r"></span>
 						</span>
 					</a>
 				{/if}
@@ -74,23 +73,30 @@
 		{assign var=cate value=$oItem->name}
 	{/if}
 {/foreach}
+{include file="snippets/zonen.tpl" id="before_buy_form" title="before_buy_form"}
 <form id="buy_form" method="post" action="{$Artikel->cURLFull}" class="evo-validate"
-gtag-type="start" gtag-event="view_item" gtag-p-items='[{ldelim}"id":"{if $Einstellungen.template.analytics.artnr == "id"}{$Artikel->kArtikel}{else}{$Artikel->cArtNr}{/if}","category":"{$cate|escape}","name":"{$Artikel->cName|escape}","price":"{$Artikel->Preise->fVKNetto}"{rdelim}]'
+data-track-type="start" data-track-event="view_item" data-track-p-items='[{ldelim}"id":"{if $snackyConfig.artnr == "id"}{$Artikel->kArtikel}{else}{$Artikel->cArtNr}{/if}","category":"{$cate|escape}","name":"{$Artikel->cName|escape}","price":"{$Artikel->Preise->fVKNetto}"{rdelim}]'
 >
     {$jtl_token}
     <div class="row product-primary" id="product-offer">
         <div class="product-gallery{if $hasLeftBox} col-sm-5{else} col-sm-6{/if}">
+			{include file="snippets/zonen.tpl" id="before_gallery" title="before_gallery"}
             {include file="productdetails/image.tpl"}
+			{include file="snippets/zonen.tpl" id="after_gallery" title="after_gallery"}
         </div>
         <div class="product-info{if $hasLeftBox} col-sm-7{else} col-sm-6{/if}">
             {block name="productdetails-info"}
 					
 				{if $Einstellungen.artikeldetails.artikeldetails_navi_blaettern !== 'Y' && !isset($NavigationBlaettern)}
-                <div class="product-headline hidden-xs">
+                <div class="product-headline">
                     {block name="productdetails-info-product-title"}
                     <h1 class="fn product-title" itemprop="name">{$Artikel->cName}</h1>
                     {/block}
                 </div>
+				{else}
+				<div class="product-headline visible-xs">
+					<span class="fn product-title h1 block" itemprop="name">{$Artikel->cName}</span>
+				</div>
 				{/if}
 
                 {block name="productdetails-info-essential-wrapper"}
@@ -106,6 +112,15 @@ gtag-type="start" gtag-event="view_item" gtag-p-items='[{ldelim}"id":"{if $Einst
                                 {/if}
                             </div>
                         {/if}
+						{if isset($Artikel->cBarcode) && !empty($Artikel->cBarcode)}
+							{if $Artikel->cBarcode|count_characters == 8}
+								<meta itemprop="gtin8" content="{$Artikel->cBarcode}">
+							{else if $Artikel->cBarcode|count_characters == 12}
+								<meta itemprop="gtin12" content="{$Artikel->cBarcode}">
+							{else if $Artikel->cBarcode|count_characters == 13}
+								<meta itemprop="gtin13" content="{$Artikel->cBarcode}">
+							{/if}
+						{/if}
 
                         {block name="productdetails-info-category-wrapper"}
                         {if $Einstellungen.artikeldetails.artikeldetails_kategorie_anzeigen === 'Y'}
@@ -139,6 +154,7 @@ gtag-type="start" gtag-event="view_item" gtag-p-items='[{ldelim}"id":"{if $Einst
                         <div class="hidden-xs hidden-sm col-md-4 col-lg-6">
                                 {block name="productdetails-info-manufacturer-wrapper"}
                                 {if $Einstellungen.artikeldetails.artikeldetails_hersteller_anzeigen !== 'N' && isset($Artikel->cHersteller)}
+									<meta itemprop="brand" content="{$Artikel->cHersteller}">
                                     {block name="product-info-manufacturer"}
                                     <div class="manufacturer-row text-right small" itemprop="manufacturer" itemscope itemtype="http://schema.org/Organization">
                                         <a href="{$Artikel->cHerstellerSeo}"{if $Einstellungen.artikeldetails.artikeldetails_hersteller_anzeigen !== 'B'} data-toggle="tooltip" data-placement="left" title="{$Artikel->cHersteller}"{/if} itemprop="url">
@@ -163,9 +179,11 @@ gtag-type="start" gtag-event="view_item" gtag-p-items='[{ldelim}"id":"{if $Einst
                 {block name="productdetails-info-description-wrapper"}
                 {if $Einstellungen.artikeldetails.artikeldetails_kurzbeschreibung_anzeigen === 'Y' && $Artikel->cKurzBeschreibung}
                     {block name="productdetails-info-description"}
+					{include file="snippets/zonen.tpl" id="before_short_desc" title="before_short_desc"}
                     <div class="shortdesc" itemprop="description">
-						{if $Einstellungen.template.general.optimize_artikel == "Y"}{$Artikel->cKurzBeschreibung|optimize}{else}{$Artikel->cKurzBeschreibung}{/if}
+						{if $snackyConfig.optimize_artikel == "Y"}{$Artikel->cKurzBeschreibung|optimize}{else}{$Artikel->cKurzBeschreibung}{/if}
                     </div>
+					{include file="snippets/zonen.tpl" id="after_short_desc" title="after_short_desc"}
                     {/block}
                     <div class="clearfix top10"></div>
                 {/if}
@@ -223,16 +241,6 @@ gtag-type="start" gtag-event="view_item" gtag-p-items='[{ldelim}"id":"{if $Einst
                     {if isset($varKombiJSON) && $varKombiJSON!= ''}
                     <script id="varKombiArr" type="application/json">{$varKombiJSON}</script>
                     {/if}
-                    <div submit-success>
-                    {literal}
-                        <template></template>
-                    {/literal}
-                    </div>
-                    <div submit-error>
-                    {literal}
-                        <template><div class="alert alert-danger">{{fehler}}</div></template>
-                    {/literal}
-                    </div>
                     <hr>
                 </div>
 
@@ -240,6 +248,7 @@ gtag-type="start" gtag-event="view_item" gtag-p-items='[{ldelim}"id":"{if $Einst
                     {include file="productdetails/actions.tpl"}
                 {/if}
             {/block}{* productdetails-info *}
+			{include file="snippets/zonen.tpl" id="after_product_info" title="after_product_info"}
 			
 			
 			{block name="details-matrix"}
@@ -317,6 +326,7 @@ gtag-type="start" gtag-event="view_item" gtag-p-items='[{ldelim}"id":"{if $Einst
         <hr>
         {if isset($Einstellungen.artikeldetails.artikeldetails_stueckliste_anzeigen) && $Einstellungen.artikeldetails.artikeldetails_stueckliste_anzeigen === 'Y' && isset($Artikel->oStueckliste_arr) && $Artikel->oStueckliste_arr|@count > 0}
             <div class="partslist">
+				<hr class="invisible">
                 {lang key='listOfItems' section='global' assign='slidertitle'}
                 {include file='snippets/product_slider.tpl' id='slider-partslist' productlist=$Artikel->oStueckliste_arr title=$slidertitle showPartsList=true}
             </div>

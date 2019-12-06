@@ -1,0 +1,81 @@
+/* Auswahlassistent */
+#selection_wizard hr{
+	display: none;
+}
+body[data-page="18"] #selection_wizard{
+	margin: 0 0 5rem 0;
+}
+body:not([data-page="18"]) #selection_wizard{
+	margin: 3rem 0;
+}
+#selection_wizard .list-group{
+	list-style: none;
+	padding: 0;
+}
+#selection_wizard .list-group-item{
+	margin-top: .75rem;
+	transition: .3s ease;
+	height: auto;
+	overflow: auto;
+}
+#selection_wizard .list-group-item:not(.disabled){
+	opacity: 1;
+}
+#selection_wizard .list-group-item.closed{
+	height: 0;
+	overflow: hidden;
+	opacity: 0;
+}
+#selection_wizard .answers{
+	margin-top: .35rem;
+}
+#selection_wizard .answers > span{
+	display: flex;
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+#selection_wizard .answers > span > a,
+#selection_wizard .answers > span > span{
+	padding: .3rem 1rem;
+	border: 1px solid @defaultborder;
+	border-radius: .3rem;
+	display: inline-block;
+	margin: .35rem .35rem .35rem 0;
+	transition: .3s ease;
+	display: flex;
+	align-items: center;
+}
+#selection_wizard .answers > span > a img,
+#selection_wizard .answers > span > span img{
+	display: block;
+	max-width: 100px;
+}
+#selection_wizard .answers > span > a img + span{
+	margin-left: .5rem;
+}
+#selection_wizard .answers > span > a:hover{
+	background: @lightbg;
+}
+#selection_wizard .disabled{
+	pointer-events: all;
+	cursor: auto;
+	transition: .3s ease;
+}
+#selection_wizard .list-group-item ~ .disabled{
+	pointer-events: none;
+	cursor: not-allowed;
+}
+#selection_wizard .disabled:hover{
+	opacity: 1;
+}
+#selection_wizard .edit{
+	width: 1rem;
+    height: 1rem;
+    display: inline-block !important;
+    background: url(./templates/snackys/img/icons/icon-edit.svg)no-repeat center center/contain;
+    vertical-align: middle;
+    position: relative;
+    top: -.1rem;
+    margin-left: .5rem;
+	cursor: pointer;
+}

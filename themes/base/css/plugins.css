@@ -1,0 +1,77 @@
+/* Amazon Checkout */
+#amazonpayments{
+	margin: 0 -15px;
+}
+#amazonpayments > form{
+	display: flex;
+	flex-wrap: wrap;
+}
+#amazonpayments .lpa-billing-address-override-hint,
+#amazonpayments > form > div,
+#amazonpayments .box_error{
+	margin-bottom: 2rem;
+}
+#amazonpayments .lpa-billing-address-override-hint .panel-body p{
+	margin: 0;
+}
+#amazonpayments #shippingmethodform ul{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+#amazonpayments #shippingmethodform li{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid @lightborder;
+}
+#amazonpayments #shippingmethodform li:last-child{
+	border-bottom: 1px solid @lightborder;
+}
+#amazonpayments #shippingmethodform img{
+	width: 3rem;
+}
+#amazonpayments #shippingmethodform .pull-right{
+	order: 1;
+	margin-left: auto;
+}
+#amazonpayments #shippingmethodform p{
+	margin: 0;
+}
+#amazonpayments .text-center.h2.block{
+	text-align: left;
+}
+@media screen and (max-width: 767px){
+	#amazonpayments .lpa-billing-address-override-hint,
+	#amazonpayments > form > div,
+	#amazonpayments .box_error{
+		margin-bottom: 1rem;
+	}
+}
+@media screen and (max-width: 575px){
+	#amazonpayments{
+		margin: 0 -8px;
+	}
+}
+/* Amazon Login */
+#OffAmazonPaymentsWidgets1IFrame{
+	z-index: 1 !important;
+}
+#lpa-create-account-form{
+	display: flex;
+	flex-wrap: wrap;
+}
+#addressBookWidgetDiv,
+#lpa-create-account-form fieldset.col-xs-12{
+	width: 100%;
+	margin-bottom: 2rem;
+	padding: 0;
+}
+#lpa-create-account-form .col-xs-6.padded-lg-bottom{
+	padding: 0;
+}
+#lpa-create-account-form .col-xs-6.padded-lg-bottom:last-child{
+	text-align: right;
+}
+/* PayPal Sidebarbasket Button */
+.items-list .btn-ppe-cart-container {text-align:center}
+.paypalexpress.btn-ppe-cart {float: none !important;display:block;}

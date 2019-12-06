@@ -3,13 +3,13 @@
 	<div class="mw-container dpflex-a-center dpflex-wrap">
 		<div class="col-xs-4 visible-xs">
 			{include file="snippets/mobilenav-toggle.tpl"}
-			<div id="mobile-search-toggle" class="preload">
-				<span class="image-content icon">
+			<div id="sr-tg-m" class="pr">
+				<span class="img-ct icon">
 					<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
-					  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-search"></use>
+					  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-search"></use>
 					</svg>
 				</span>
-				<span class="close"></span>
+				<span class="close close-btn"></span>
 			</div>
 		</div>
 		<div id="search" class="col-xs-12 col-sm-4">
@@ -28,7 +28,7 @@
 {/block}
 
 {if $nSeitenTyp !== 11}
-	<div id="category-nav-wrapper">
+	<div id="cat-w">
 		{include file="layout/header_category_nav.tpl"}
 	</div>{* /category-nav *}
 

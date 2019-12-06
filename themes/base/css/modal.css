@@ -1,14 +1,13 @@
 /* Modal Popup */
 .modal[tabindex]{
 	display:none;
+	position: fixed;
+	z-index: 999;
+}
+body .modal .modal-dialog{
+	width: 100%;
 }
 .modal-dialog{
-    background: rgba(0,0,0,.8);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     align-items: center;
     justify-content: center;
     z-index: 11;
@@ -19,7 +18,7 @@
 }
 .modal-dialog .modal-content{
     background: white;
-    padding: 2rem;
+    padding: 0 2rem 2rem 2rem;
     border-radius: .3rem;
     max-width: 40rem;
     max-height: 90vh;
@@ -33,6 +32,11 @@
     border-bottom: 1px solid @lightborder;
     margin-bottom: 1rem;
     padding-bottom: 1rem;
+	position: sticky;
+	position: -webkit-sticky;
+	top: 0;
+	background: white;
+	padding-top: 2rem;
 }
 .modal-dialog .modal-header .modal-title{
     margin: 0;

@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 {if !empty($oUploadSchema_arr)}
     <script type="text/javascript" src="{$currentTemplateDir}js/fileinput.min.js"></script>
     {assign var=availableLocale value=array('ar', 'bg', 'cr', 'cz', 'da', 'de', 'el', 'es', 'fa', 'fr', 'hu', 'lt', 'nl', 'pl', 'pt', 'sk', 'uk')}
@@ -39,7 +34,7 @@
                                     <p class="upload_title m0">{$oUpload->cName}</p>
                                 {/if}
                                 {if !empty($oUpload->cBeschreibung)}
-                                    <p class="upload_desc">{$oUpload->cBeschreibung}</p>
+                                    <p class="upload_desc m0">{$oUpload->cBeschreibung}</p>
                                 {/if}
                             </div>
                         {/if}

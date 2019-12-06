@@ -1,5 +1,6 @@
 <input type="submit" name="fake" class="hidden">
 
+
 {if !isset($tplscope)}{assign var=tplscope value=""}{/if}
 
 {if $tplscope !== 'cart'}
@@ -24,14 +25,18 @@
 
 {foreach name=positionen from=$smarty.session.Warenkorb->PositionenArr item=oPosition}
     {if !$oPosition->istKonfigKind()}
-        <div class="type-{$oPosition->nPosTyp} basket-item{if isset($isSidebar)} sidebar-item{/if}{if isset($isCheckout)} sidebar-item{/if}">
+        <div class="type-{$oPosition->nPosTyp} c-it{if isset($isSidebar)} sb-it{/if}{if isset($isCheckout)} sb-it{/if}">
             <div class="row">
                 {* if $Einstellungen.kaufabwicklung.warenkorb_produktbilder_anzeigen === 'Y' *}
-                    <div class="img-col col-xs-3 col-md-2 preload">
+                    <div class="img-col col-xs-3 col-md-2 pr">
                         {if !empty($oPosition->Artikel->cVorschaubild)}
                         <a href="{$oPosition->Artikel->cURL}" title="{$oPosition->cName|trans}">
-                            <div class="image-content">
-                                <img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$oPosition->Artikel->cVorschaubild}" alt="{$oPosition->cName|trans}" class="img-responsive-width" />
+                            <div class="img-ct">
+								{if isset($nSeitenTyp) && $nSeitenTyp == 37}
+                                <img src="{$oPosition->Artikel->cVorschaubild}" alt="{$oPosition->cName|trans}" class="img-responsive-width" />
+                                {else}
+								<img src="{$snackyConfig.preloadImage}" data-src="{$oPosition->Artikel->cVorschaubild}" alt="{$oPosition->cName|trans}" class="img-responsive-width" />
+								{/if}
                             </div>
                         </a>
                         {/if}
@@ -40,7 +45,7 @@
                 <div class="col-xs-9 col-md-10">
                     <div class="row first">
                         <div class="col-xs-9 col-lg-9">
-                             {if $oPosition->nPosTyp == $C_WARENKORBPOS_TYP_ARTIKEL}
+                             {if $oPosition->nPosTyp == 1}
                                 <a href="{$oPosition->Artikel->cURL}" title="{$oPosition->cName|trans}"><strong>{$oPosition->cName|trans}</strong></a>
                                 {if !isset($isSidebar)}
                                 <ul class="list-unstyled text-muted small">
@@ -104,7 +109,7 @@
                                     
                                     {if !isset($isCheckout)}
                                     {if $Einstellungen.kaufabwicklung.bestellvorgang_artikelkurzbeschreibung == 'Y' && $oPosition->Artikel->cKurzBeschreibung|strlen > 0}
-                                        <li class="shortdescription">{$oPosition->Artikel->cKurzBeschreibung}</li>
+                                        <li class="shortdescription hidden-xs hidden-sm hidden-md">{$oPosition->Artikel->cKurzBeschreibung}</li>
                                     {/if}
                                     {/if}
 
@@ -136,7 +141,7 @@
                                 {/if}
                             {/if}
 
-                            {if $oPosition->istKonfigVater()}
+                            {if $oPosition->istKonfigVater() && !isset($isSidebar)}
                                 <ul class="config-items text-muted small">
                                     {foreach from=$smarty.session.Warenkorb->PositionenArr item=KonfigPos name=konfigposition}
                                         {if $oPosition->cUnique == $KonfigPos->cUnique && $KonfigPos->kKonfigitem > 0
@@ -172,14 +177,14 @@
                         </div>
                         <div class="col-xs-3 col-lg-3 text-right">
                             {if $tplscope === 'cart'}
-                                {if $oPosition->nPosTyp == $C_WARENKORBPOS_TYP_ARTIKEL}
-                                    {if !isset($Einstellungen.template.theme.qty_modify_dropdown) || $Einstellungen.template.theme.qty_modify_dropdown === 'Y'}
+                                {if $oPosition->nPosTyp == 1}
+                                    {if !isset($snackyConfig.qty_modify_dropdown) || $snackyConfig.qty_modify_dropdown === 'Y'}
                                         {if $oPosition->istKonfigVater()}
                                             <div class="qty-wrapper modify">
                                                 <input name="anzahl[{$smarty.foreach.positionen.index}]" type="hidden" class="form-control" value="{$oPosition->nAnzahl}" />
                                                 <div id="cartitem-dropdown-menu{$smarty.foreach.positionen.index}" class="">
                                                     <div class="panel-body text-center">
-                                                        <div class="form-inline">
+                                                        <div class="form-inline dpflex-j-end">
                                                             <span class="btn-group">
                                                                 <a class="btn btn-default configurepos"
                                                                    href="index.php?a={$oPosition->kArtikel}&ek={$smarty.foreach.positionen.index}">
@@ -195,7 +200,7 @@
                                             <div class="qty-wrapper modify">                    
                                                 <div id="cartitem-dropdown-menu{$smarty.foreach.positionen.index}" class="">
                                                     <div class="panel-body text-center">
-                                                        <div class="form-inline">
+                                                        <div class="form-inline dpflex-j-end">
                                                            {* <label for="quantity{$smarty.foreach.positionen.index}">{lang key='quantity'}
                                                                 {if $oPosition->Artikel->cEinheit}
                                                                     ({$oPosition->Artikel->cEinheit})
@@ -204,10 +209,10 @@
                                                             <div id="quantity-grp{$smarty.foreach.positionen.index}" class="choose_quantity input-group">
                                                                 <input name="anzahl[{$smarty.foreach.positionen.index}]" id="quantity{$smarty.foreach.positionen.index}" class="form-control quantity form-control text-right" size="3" value="{$oPosition->nAnzahl}" />
                                                                 <span class="input-group-btn">
-                                                                    <button type="submit" class="btn btn-default preload" title="{lang key='refresh' section='checkout'}">
-                                                                        <span class="image-content icon">
+                                                                    <button type="submit" class="btn btn-default pr" title="{lang key='refresh' section='checkout'}">
+                                                                        <span class="img-ct icon">
 																			<svg>
-																			  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-refresh"></use>
+																			  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-refresh"></use>
 																			</svg>
                                                                         </span>
                                                                     </button>
@@ -233,17 +238,17 @@
                                                 </div>
                                             </div>
                                         {else}
-                                            <div class="form-inline">
+                                            <div class="form-inline dpflex-j-end">
                                                 <div class="input-group" role="group" id="quantity-grp{$smarty.foreach.positionen.index}">
                                                     <input name="anzahl[{$smarty.foreach.positionen.index}]" id="quantity{$smarty.foreach.positionen.index}" class="btn-group form-control quantity text-right" size="3" value="{$oPosition->nAnzahl}" />
                                                     {* if $oPosition->Artikel->cEinheit}
                                                         <span class="btn-group unit input-group-addon hidden-xs">{$oPosition->Artikel->cEinheit}</span>
                                                     {/if *}
                                                     <span class="input-group-btn">
-                                                        <button type="submit" class="btn btn-default preload" title="{lang key='refresh' section='checkout'}">
-                                                            <span class="image-content icon">
+                                                        <button type="submit" class="btn btn-default pr" title="{lang key='refresh' section='checkout'}">
+                                                            <span class="img-ct icon">
 																<svg>
-																  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-refresh"></use>
+																  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-refresh"></use>
 																</svg>
                                                                         </span>
                                                         </button>
@@ -264,7 +269,7 @@
                         {if $tplscope === 'cart'}
                         <div class="col-xs-9 col-lg-9 small">
                             {if $Einstellungen.kaufabwicklung.bestellvorgang_einzelpreise_anzeigen === 'Y'}
-                                {if $oPosition->nPosTyp == $C_WARENKORBPOS_TYP_ARTIKEL}
+                                {if $oPosition->nPosTyp == 1}
                                     {if !$oPosition->istKonfigVater()}
                                         <span class="single-price">
                                             {lang key="pricePerUnit" section="productDetails"}: {$oPosition->cEinzelpreisLocalized[$NettoPreise][$smarty.session.cWaehrungName]}
@@ -273,13 +278,13 @@
                                 {/if}
                             {/if}                        
                             {if $tplscope === 'cart'}
-                                {if $oPosition->nPosTyp == $C_WARENKORBPOS_TYP_ARTIKEL}
-                                    <button type="submit" class="droppos btn btn-xs text-muted preload" name="dropPos" value="{$smarty.foreach.positionen.index}" title="{lang key="delete" section="global"}"
-										gtag-type="click" gtag-event="remove_from_cart" gtag-p-value="{$oPosition->Artikel->Preise->fVKNetto}" gtag-p-currency="{$smarty.session.Waehrung->cISO}" gtag-p-items='[{ldelim}"id":"{$oPosition->Artikel->cArtNr}","name":"{$oPosition->Artikel->cName|replace:'"':''}","price":"{$oPosition->Artikel->Preise->fVKNetto}","quantity":"{$oPosition->nAnzahl}"{rdelim}]'
+                                {if $oPosition->nPosTyp == 1}
+                                    <button type="submit" class="droppos btn btn-xs text-muted pr dpflex-a-center btn-flex" name="dropPos" value="{$smarty.foreach.positionen.index}" title="{lang key="delete" section="global"}"
+										data-track-type="click" data-track-event="remove_from_cart" data-track-p-value="{$oPosition->Artikel->Preise->fVKNetto}" data-track-p-currency="{$smarty.session.Waehrung->cISO}" data-track-p-items='[{ldelim}"id":"{$oPosition->Artikel->cArtNr}","name":"{$oPosition->Artikel->cName|replace:'"':''}","price":"{$oPosition->Artikel->Preise->fVKNetto}","quantity":"{$oPosition->nAnzahl}"{rdelim}]'
 									>
-                                        <span class="image-content icon">
+                                        <span class="img-ct icon icon-wt">
 											<svg>
-											  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-bin"></use>
+											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-bin"></use>
 											</svg
                                         </span> <span class="hidden-xxs">{lang key="delete" section="global"}</span>
                             </button>

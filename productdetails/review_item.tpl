@@ -16,17 +16,17 @@
             {if $Einstellungen.bewertung.bewertung_hilfreich_anzeigen === 'Y'}
                 {if isset($smarty.session.Kunde) && $smarty.session.Kunde->kKunde > 0 && $smarty.session.Kunde->kKunde != $oBewertung->kKunde}
                     <span class="review-helpful vmiddle" id="help{$oBewertung->kBewertung}">
-                        <button class="helpful btn btn-blank preload" title="{lang key="yes"}" name="hilfreich_{$oBewertung->kBewertung}" type="submit">
-                            <div class="image-content icon">
+                        <button class="helpful btn btn-blank pr" title="{lang key="yes"}" name="hilfreich_{$oBewertung->kBewertung}" type="submit">
+                            <div class="img-ct icon">
 								<svg width="16">
-								  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-thumb-up"></use>
+								  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-thumb-up"></use>
 								</svg>
                             </div>
                         </button>
-                        <button class="not_helpful btn btn-blank preload" title="{lang key="no"}" name="nichthilfreich_{$oBewertung->kBewertung}" type="submit">
-                            <div class="image-content icon">
+                        <button class="not_helpful btn btn-blank pr" title="{lang key="no"}" name="nichthilfreich_{$oBewertung->kBewertung}" type="submit">
+                            <div class="img-ct icon">
 								<svg width="16">
-								  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-thumb-down"></use>
+								  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-thumb-down"></use>
 								</svg>
                             </div>
                         </button>

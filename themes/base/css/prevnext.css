@@ -1,0 +1,70 @@
+/* Prev/Next */
+
+#prevNextRow{
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 3rem;
+}
+#prevNextRow .button{
+	background: #888;
+	height: 5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 2rem;
+	position: relative;
+	z-index: 1;
+	transition: .3s ease;
+}
+#prevNextRow a:hover .button{
+	background: @defaulttext;
+}
+#prevNextRow [class*="next"] .button,
+#prevNextRow [class*="prev"] img{
+	border-top-right-radius: .3rem;
+	border-bottom-right-radius: .3rem;
+}
+#prevNextRow [class*="prev"] .button,
+#prevNextRow [class*="next"] img{
+	border-top-left-radius: .3rem;
+	border-bottom-left-radius: .3rem;
+}
+#prevNextRow [class*="prev"] .img-ct{
+	transform: translateX(-1rem);
+}
+#prevNextRow [class*="next"] .img-ct{
+	transform: translateX(1rem);
+}
+#prevNextRow a{
+	display: flex;
+}
+#prevNextRow .img-ct{
+	width: 5rem;
+	opacity: .5;
+	transition: .3s ease;
+}
+#prevNextRow a:hover .img-ct{
+	opacity: 1;
+	transform: none;
+}
+#prevNextRow .ar{
+	border-color: white;
+}
+#prevNextRow h1{
+	max-width: calc(100% - 16rem);
+}
+@media screen and (max-width: 1199px){
+	#prevNextRow{
+		display: block;
+	}
+	#prevNextRow h1{
+		max-width: none;
+	}	
+}
+@media screen and (max-width: 767px){
+	#prevNextRow{
+		display: none;
+	}
+}

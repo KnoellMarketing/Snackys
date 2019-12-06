@@ -1,44 +1,44 @@
 {* template to display products in slider *}
 
-<div class="product-cell {if isset($class)} {$class}{/if} thumbnail preload">
-    <a class="image-wrapper" href="{$Artikel->cURL}">
-        <span class="image-content">
+<div class="p-c {if isset($class)} {$class}{/if} thumbnail pr">
+    <a class="img-w block" href="{$Artikel->cURL}">
+        <span class="img-ct">
         {if isset($Artikel->Bilder[0]->cAltAttribut)}
             {assign var="alt" value=$Artikel->Bilder[0]->cAltAttribut|strip_tags|truncate:60|escape:"html"}
         {else}
             {assign var="alt" value=$Artikel->cName}
         {/if}
 
-        <img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$Artikel->Bilder[0]->cPfadKlein}" alt="{$alt}" />
-		{if isset($Artikel->Bilder[1])}
-		<div class="second-img">
-			<img data-src="{$Artikel->Bilder[1]->cPfadKlein}" src="{$snackysTemplate}img/preload/1x1.png" alt="{$alt}" />
-		</div>
+        <img src="{$snackyConfig.preloadImage}" data-src="{$Artikel->Bilder[0]->cPfadKlein}" alt="{$alt}" />
+		{if isset($Artikel->Bilder[1]) && !$device->isMobile()}
+		<span class="second-img block">
+			<img data-src="{$Artikel->Bilder[1]->cPfadKlein}" src="{$snackyConfig.preloadImage}" alt="{$alt}" />
+		</span>
 		{/if}
         {if isset($Artikel->oSuchspecialBild) && !isset($hideOverlays)}
-			{if $Artikel->oSuchspecialBild->cSuchspecial == 'Sonderangebote' && $Einstellungen.template.general.saleprozent == 'Y'}
+			{if $Artikel->oSuchspecialBild->cSuchspecial == 'Sonderangebote' && $snackyConfig.saleprozent == 'Y'}
 				{assign var="rabatt" value=($Artikel->Preise->alterVKNetto-$Artikel->Preise->fVKNetto)/$Artikel->Preise->alterVKNetto*100}
-				<span class="overlay-text {$Artikel->oSuchspecialBild->cSuchspecial|lower|strip:''}">- {$rabatt|round:0}%</span>
+				<span class="ov-t {$Artikel->oSuchspecialBild->cSuchspecial|lower|strip:''}">- {$rabatt|round:0}%</span>
 			{elseif isset($oSuchspecial[$Artikel->oSuchspecialBild->cSuchspecial|replace:'ü':''])}
-				<span class="overlay-text {$Artikel->oSuchspecialBild->cSuchspecial|lower|strip:''}">{$oSuchspecial[$Artikel->oSuchspecialBild->cSuchspecial|replace:'ü':'']}</span>
+				<span class="ov-t {$Artikel->oSuchspecialBild->cSuchspecial|lower|strip:''}">{$oSuchspecial[$Artikel->oSuchspecialBild->cSuchspecial|replace:'ü':'']}</span>
 			{*Workaround for damn ü !*}
 			{elseif $Artikel->oSuchspecialBild->cSuchspecial|substr:0:4|lower == 'in k'}
-				<span class="overlay-text bald-verfuegbar">{$oSuchspecial['bald-verfuegbar']}</span>
+				<span class="ov-t bald-verfuegbar">{$oSuchspecial['bald-verfuegbar']}</span>
 			{else}
-				<span class="overlay-text {$Artikel->oSuchspecialBild->cSuchspecial|lower|strip:''}">#{$Artikel->oSuchspecialBild->cSuchspecial}</span>
+				<span class="ov-t {$Artikel->oSuchspecialBild->cSuchspecial|lower|strip:''}">#{$Artikel->oSuchspecialBild->cSuchspecial}</span>
 			{/if}
         {/if}
         </span>
     </a>
     <div class="caption">
-        <h4 class="title word-break">
+        <span class="title word-break block h4 m0">
             {if isset($showPartsList) && $showPartsList === true && isset($Artikel->fAnzahl_stueckliste)}
                 <span class="article-bundle-info">
                     <span class="bundle-amount">{$Artikel->fAnzahl_stueckliste}</span> <span class="bundle-times">x</span>
                 </span>
             {/if}
             <a href="{$Artikel->cURL}">{$Artikel->cKurzbezeichnung}</a>
-        </h4>
+        </span>
         {* if $Einstellungen.bewertung.bewertung_anzeigen === 'Y' && $Artikel->fDurchschnittsBewertung > 0}<small>{include file='productdetails/rating.tpl' stars=$Artikel->fDurchschnittsBewertung}</small>{/if *}
         {if isset($Artikel->Preise->strPreisGrafik_Suche)}
             {include file="productdetails/price.tpl" Artikel=$Artikel price_image=$Artikel->Preise->strPreisGrafik_Suche tplscope=$tplscope}
@@ -84,34 +84,34 @@
                 {/if}
             </div>
         {/block}
-		{if $Einstellungen.template.pdListing.listShowCart != 1}
-        <div class="expandable{if $Einstellungen.template.pdListing.listShowCart == 2} floating-button preload{/if}{if $Einstellungen.template.pdListing.listShowAmountCart == 1} hide-qty{/if}">
+		{if $snackyConfig.listShowCart != 1}
+        <div class="exp{if $snackyConfig.listShowCart == 2} flo-bt pr{/if}{if $snackyConfig.listShowAmountCart == 1} hide-qty{/if}">
             {block name="form-expandable"}
             <div>
                 {block name="productlist-add-basket"}
                 {if ($Artikel->inWarenkorbLegbar === 1 || ($Artikel->nErscheinendesProdukt === 1 && $Einstellungen.global.global_erscheinende_kaeuflich === 'Y')) &&
                     (($Artikel->nIstVater === 0 && $Artikel->Variationen|@count === 0) || $hasOnlyListableVariations === 1) && !$Artikel->bHasKonfig
                 }
-                    <div class="quantity-wrapper{if $Einstellungen.template.pdListing.listShowCart == 3} form-group{/if}">
+                    <div class="quantity-wrapper{if $snackyConfig.listShowCart == 3} form-group{/if}">
                         {if $Artikel->nIstVater && $Artikel->kVaterArtikel == 0}
                         {else}
-                                <div class="{if $Einstellungen.template.pdListing.listShowCart == 3 && $Einstellungen.template.pdListing.listShowAmountCart == 2}input-group input-group-sm small{/if}">
+                                <div class="{if $snackyConfig.listShowCart == 3 && $snackyConfig.listShowAmountCart == 2}input-group input-group-sm small{/if}">
                                     <input type="number" min="0"
-                                           {if $Artikel->fAbnahmeintervall > 0}step="{$Artikel->fAbnahmeintervall}"{/if} size="2"
+                                           {if $Artikel->fAbnahmeintervall > 0}step="{$Artikel->fAbnahmeintervall}"{/if}
                                            class="quantity form-control text-right" name="anzahl"
                                            autocomplete="off"
-                                           value="{if $Artikel->fAbnahmeintervall > 0}{if $Artikel->fMindestbestellmenge > $Artikel->fAbnahmeintervall}{$Artikel->fMindestbestellmenge}{else}{$Artikel->fAbnahmeintervall}{/if}{else}{$Einstellungen.template.pdListing.listAmountCart}{/if}">
+                                           value="{if $Artikel->fAbnahmeintervall > 0}{if $Artikel->fMindestbestellmenge > $Artikel->fAbnahmeintervall}{$Artikel->fMindestbestellmenge}{else}{$Artikel->fAbnahmeintervall}{/if}{else}{$snackyConfig.listAmountCart}{/if}">
 
                                     <span class="input-group-btn">
                                         <button type="submit" class="btn btn-primary sn-addBasket"
                                                 title="{lang key="addToCart" section="global"}">
-											{if $Einstellungen.template.pdListing.listShowCart == 2}
-											<span class="image-content icon">
+											{if $snackyConfig.listShowCart == 2}
+											<span class="img-ct icon">
 												<svg>
-												  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-cart-simple-w"></use>
+												  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-cart-simple-w"></use>
 												</svg>
 											</span>
-											{elseif $Einstellungen.template.pdListing.listShowCart == 3}
+											{elseif $snackyConfig.listShowCart == 3}
                                             {lang key="addToCart" section="global"}
 											{/if}
                                         </button>
@@ -163,4 +163,4 @@
         </div>
 		{/if}
     </form>
-</div>{* /product-cell *}
+</div>{* /p-c *}

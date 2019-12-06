@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 <fieldset>
     <legend>
         {if isset($checkout)}
@@ -19,8 +14,8 @@
                     <label for="salutation" class="control-label">{lang key="salutation" section="account data"}</label>
                     <select name="anrede" id="salutation" class="form-control" required>
                         <option value="" selected="selected" disabled>{lang key="salutation" section="account data"}</option>
-                        <option value="w" {if isset($cPost_var['anrede']) && $cPost_var['anrede'] === 'w'}selected="selected"{elseif isset($Kunde->cAnrede) && $Kunde->cAnrede === 'w'}selected="selected"{/if}>{$Anrede_w}</option>
-                        <option value="m" {if isset($cPost_var['anrede']) && $cPost_var['anrede'] === 'm'}selected="selected"{elseif isset($Kunde->cAnrede) && $Kunde->cAnrede === 'm'}selected="selected"{/if}>{$Anrede_m}</option>
+                        <option value="w" {if isset($cPost_var['anrede']) && $cPost_var['anrede'] === 'w'}selected="selected"{elseif isset($Kunde->cAnrede) && $Kunde->cAnrede === 'w'}selected="selected"{/if}>{if $isShopFive}{lang key='salutationW'}{else}{$Anrede_w}{/if}</option>
+                        <option value="m" {if isset($cPost_var['anrede']) && $cPost_var['anrede'] === 'm'}selected="selected"{elseif isset($Kunde->cAnrede) && $Kunde->cAnrede === 'm'}selected="selected"{/if}>{if $isShopFive}{lang key='salutationM'}{else}{$Anrede_m}{/if}</option>
                     </select>
                     {if isset($fehlendeAngaben.anrede)}
                         <div class="form-error-msg text-danger">
@@ -43,6 +38,9 @@
                     class="form-control" 
                     placeholder="{lang key="title" section="account data"}" 
                     {if $Einstellungen.kunden.kundenregistrierung_abfragen_titel === 'Y'}required{/if} 
+				    {if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternTitel)}pattern="{$snackyConfig.patternTitel}"{/if}
+				    spellcheck="false" 
+				    autocorrect="off"
                     >
                     {if isset($fehlendeAngaben.titel)}
                         <div class="form-error-msg text-danger">
@@ -64,8 +62,11 @@
                 value="{if isset($cPost_var['vorname'])}{$cPost_var['vorname']}{elseif isset($Kunde->cVorname)}{$Kunde->cVorname}{/if}"
                 id="firstName" 
                 class="form-control" 
-                placeholder="{lang key="firstName" section="account data"}"
+                placeholder="{lang key="firstName" section="account data"}" 
                 {if $Einstellungen.kunden.kundenregistrierung_pflicht_vorname === 'Y'} required{/if} 
+				{if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternVorname)}pattern="{$snackyConfig.patternVorname}"{/if}
+				spellcheck="false" 
+				autocorrect="off"
                 >
                 {if isset($fehlendeAngaben.vorname)}
                     <div class="form-error-msg text-danger">
@@ -88,7 +89,10 @@
                 id="lastName" 
                 class="form-control" 
                 placeholder="{lang key="lastName" section="account data"}" 
-                required 
+                required  
+				{if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternNachname)}pattern="{$snackyConfig.patternNachname}"{/if}
+				spellcheck="false" 
+				autocorrect="off" 
                 >
                 {if isset($fehlendeAngaben.nachname)}
                     <div class="form-error-msg text-danger">
@@ -116,6 +120,8 @@
                 class="form-control" 
                 placeholder="{lang key="firm" section="account data"}" 
                 {if $Einstellungen.kunden.kundenregistrierung_abfragen_firma === 'Y'} required{/if} 
+				spellcheck="false" 
+				autocorrect="off"
                 >
                 {if isset($fehlendeAngaben.firma)}
                     <div class="form-error-msg text-danger">
@@ -137,7 +143,9 @@
                 id="firmext"
                 class="form-control" 
                 placeholder="{lang key="firmext" section="account data"}"
-                {if $Einstellungen.kunden.kundenregistrierung_abfragen_firmazusatz === 'Y'} required{/if} 
+                {if $Einstellungen.kunden.kundenregistrierung_abfragen_firmazusatz === 'Y'} required{/if}
+				spellcheck="false" 
+				autocorrect="off" 
                 />
                 {if isset($fehlendeAngaben.firmazusatz)}
                     <div class="form-error-msg text-danger">
@@ -160,7 +168,10 @@
                 id="street" 
                 class="form-control" 
                 placeholder="{lang key="street" section="account data"}" 
-                required 
+                required  
+				{if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternStrasse)}pattern="{$snackyConfig.patternStrasse}"{/if}
+				spellcheck="false" 
+				autocorrect="off"  
                 >
                 {if isset($fehlendeAngaben.strasse)}
                     <div class="form-error-msg text-danger">
@@ -180,7 +191,10 @@
                 id="streetnumber" 
                 class="form-control" 
                 placeholder="{lang key="streetnumber" section="account data"}" 
-                required 
+                required  
+				{if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternHausnummer)}pattern="{$snackyConfig.patternHausnummer}"{/if} 
+				spellcheck="false" 
+				autocorrect="off"
                 >
                 {if isset($fehlendeAngaben.hausnummer)}
                     <div class="form-error-msg text-danger">
@@ -203,7 +217,10 @@
                     id="street2" 
                     class="form-control"
                     placeholder="{lang key="street2" section="account data"}" 
-                    {if $Einstellungen.kunden.kundenregistrierung_abfragen_adresszusatz === 'Y'} required{/if} 
+                    {if $Einstellungen.kunden.kundenregistrierung_abfragen_adresszusatz === 'Y'} required{/if}
+					{if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternAdresszusatz)}pattern="{$snackyConfig.patternAdresszusatz}"{/if} 
+				    spellcheck="false" 
+				    autocorrect="off"
                     />
                     {if isset($fehlendeAngaben.adresszusatz)}
                         <div class="form-error-msg text-danger">
@@ -249,6 +266,9 @@
                 class="form-control"
                 placeholder="{lang key="state" section="account data"}"
                 {if $Einstellungen.kunden.kundenregistrierung_abfragen_bundesland === 'Y'} required{/if}
+				{if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternBundesland)}pattern="{$snackyConfig.patternBundesland}"{/if}
+				spellcheck="false" 
+				autocorrect="off"
                 >
                 {if isset($fehlendeAngaben.bundesland)}
                     <div class="form-error-msg text-danger">
@@ -272,6 +292,9 @@
                 class="postcode_input form-control"
                 placeholder="{lang key="plz" section="account data"}"
                 required
+				{if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternPLZ)}pattern="{$snackyConfig.patternPLZ}"{/if}
+				spellcheck="false" 
+				autocorrect="off"
                 >
                 {if isset($fehlendeAngaben.plz)}
                     <div class="form-error-msg text-danger">
@@ -296,6 +319,9 @@
                 class="city_input form-control typeahead"
                 placeholder="{lang key="city" section="account data"}" 
                 required 
+				{if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternOrt)}pattern="{$snackyConfig.patternOrt}"{/if}
+				spellcheck="false" 
+				autocorrect="off"
                 >
                 {if isset($fehlendeAngaben.ort)}
                     <div class="form-error-msg text-danger">
@@ -323,6 +349,9 @@
                 class="form-control" 
                 placeholder="{lang key="ustid" section="account data"}" 
                 {if $Einstellungen.kunden.kundenregistrierung_abfragen_ustid === 'Y'} required{/if} 
+				{if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternUst)}pattern="{$snackyConfig.patternUst}"{/if}
+				spellcheck="false" 
+				autocorrect="off"
                 >
                 {if isset($fehlendeAngaben.ustid)}
                 <div class="form-error-msg text-danger">
@@ -356,6 +385,8 @@
                 class="form-control"
                 placeholder="{lang key="email" section="account data"}" 
                 required 
+				spellcheck="false" 
+				autocorrect="off"
                 >
                 {if isset($fehlendeAngaben.email) || isset($fehlendeAngaben.email_vorhanden)}
                 <div class="form-error-msg text-danger">
@@ -390,6 +421,9 @@
                     class="form-control"
                     placeholder="{lang key="tel" section="account data"}" 
                     {if $Einstellungen.kunden.kundenregistrierung_abfragen_tel === 'Y'} required{/if} 
+					{if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternTelefon)}pattern="{$snackyConfig.patternTelefon}"{/if}
+				    spellcheck="false" 
+				    autocorrect="off"
                     />
                     {if isset($fehlendeAngaben.tel)}
                     <div class="form-error-msg text-danger">
@@ -416,6 +450,9 @@
                     class="form-control"
                     placeholder="{lang key="fax" section="account data"}" 
                     {if $Einstellungen.kunden.kundenregistrierung_abfragen_fax === 'Y'} required{/if}
+					{if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternFax)}pattern="{$snackyConfig.patternFax}"{/if}
+				    spellcheck="false" 
+				    autocorrect="off"
                     />
                     {if isset($fehlendeAngaben.fax)}
                         <div class="form-error-msg text-danger">
@@ -446,6 +483,9 @@
                         class="form-control"
                         placeholder="{lang key="mobile" section="account data"}" 
                         {if $Einstellungen.kunden.kundenregistrierung_abfragen_mobil === 'Y'} required{/if} 
+						{if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternMobil)}pattern="{$snackyConfig.patternMobil}"{/if}
+						spellcheck="false" 
+						autocorrect="off"
                         />
                         {if isset($fehlendeAngaben.mobil)}
                             <div class="form-error-msg text-danger">
@@ -465,13 +505,15 @@
                     <div class="form-group float-label-control{if isset($fehlendeAngaben.www)} has-error{/if}{if $Einstellungen.kunden.kundenregistrierung_abfragen_www === 'Y'} required{/if}">
                         <label class="control-label" for="www">{lang key="www" section="account data"}</label>
                         <input 
-                        type="text" 
+                        type="url" 
                         name="www" 
                         value="{if isset($cPost_var['www'])}{$cPost_var['www']}{elseif isset($Kunde->cWWW)}{$Kunde->cWWW}{/if}"
                         id="www" 
                         class="form-control"
                         placeholder="{lang key="www" section="account data"}" 
                         {if $Einstellungen.kunden.kundenregistrierung_abfragen_www === 'Y'} required{/if} 
+						spellcheck="false" 
+						autocorrect="off"
                         />
                         {if isset($fehlendeAngaben.www)}
                             <div class="form-error-msg text-danger">
@@ -490,13 +532,15 @@
                 <div class="form-group float-label-control{if isset($fehlendeAngaben.geburtstag)} has-error{/if}{if $Einstellungen.kunden.kundenregistrierung_abfragen_geburtstag === 'Y'} required{/if}">
                     <label class="control-label" for="birthday">{lang key="birthday" section="account data"}</label>
                     <input 
-                    type="text"
+                    type="date"
                     name="geburtstag"
-                    value="{if isset($cPost_var['geburtstag'])}{$cPost_var['geburtstag']}{elseif isset($Kunde->dGeburtstag) && $Kunde->dGeburtstag !== '00.00.0000'}{$Kunde->dGeburtstag|date_format:"%d.%m.%Y"}{/if}"
+                    value="{if isset($cPost_var['geburtstag'])}{$cPost_var['geburtstag']|date_format:"%Y-%m-%d"}{elseif isset($Kunde->dGeburtstag) && $Kunde->dGeburtstag !== '00.00.0000'}{$Kunde->dGeburtstag|date_format:"%Y-%m-%d"}{/if}"
                     id="birthday" 
                     class="birthday form-control" 
                     placeholder="{lang key="birthdayFormat" section="account data"}"
                     {if $Einstellungen.kunden.kundenregistrierung_abfragen_geburtstag === 'Y'} required{/if} 
+				    spellcheck="false" 
+				    autocorrect="off"
                     >
                     {if isset($fehlendeAngaben.geburtstag)}
                         <div class="form-error-msg text-danger">

@@ -1,3 +1,4 @@
+{if ($oBox->ePosition == 'left' && !$device->isMobile()) || $oBox->ePosition != 'left'}
 {if isset($oBox->Artikel->elemente)}
     {lang key="upcomingProducts" section="global" assign='slidertitle'}
     
@@ -14,4 +15,5 @@
     {*
     <a href="{$Boxen.ErscheinendeProdukte->cURL}">{lang key="showAllUpcomingProducts" section="global"}</a>
     *}
+{/if}
 {/if}

@@ -1,4 +1,4 @@
-{if $Einstellungen.template.trustedshops.show_trustbadge === 'Y'}
+{if $snackyConfig.show_trustbadge === 'Y'}
     {ts_data assign=tsData}
     {if $tsData.tsId !== '' && $tsData.nAktiv == true}
         <script type="text/javascript">
@@ -6,8 +6,8 @@
             (function () {
                 var _tsid = '{/literal}{$tsData.tsId}{literal}';
                 _tsConfig = {
-                    'yOffset': '{/literal}{$Einstellungen.template.trustedshops.trustbadge_yoffset}{literal}',
-                    'variant': '{/literal}{$Einstellungen.template.trustedshops.trustbadge_variant}{literal}'
+                    'yOffset': '{/literal}{$snackyConfig.trustbadge_yoffset}{literal}',
+                    'variant': '{/literal}{$snackyConfig.trustbadge_variant}{literal}'
                 };
                 var _ts = document.createElement('script');
                 _ts.type = 'text/javascript';

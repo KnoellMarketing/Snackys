@@ -41,7 +41,7 @@
                                                     {/if}
                                                     {if $smarty.foreach.konfigitem.first}
                                                         {if $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_DROPDOWN || $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_DROPDOWN_MULTI}
-                                                        <div class="item clearfix{if isset($aKonfigitemerror_arr[$kKonfigitem]) && $aKonfigitemerror_arr[$kKonfigitem]} error{/if}">
+                                                        <div class="item clearfix form-group{if isset($aKonfigitemerror_arr[$kKonfigitem]) && $aKonfigitemerror_arr[$kKonfigitem]} error{/if}">
                                                             <select class="form-control" name="item[{$kKonfiggruppe}][]"
                                                                 {if $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_DROPDOWN_MULTI} multiple="multiple" size="4"{/if} ref="{$kKonfiggruppe}"{if $oGruppe->getMin() > 0} required{/if}>
                                                                 {if $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_DROPDOWN}
@@ -50,7 +50,7 @@
                                                         {/if}
                                                     {/if}
                                                     {if $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_CHECKBOX || $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_RADIO}
-                                                        <div class="{if $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_CHECKBOX}checkbox{else}radio{/if}">
+                                                        <div class="form-group{if $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_CHECKBOX} checkbox{else} radio{/if}" >
                                                             <label class="btn-block">
                                                                 <input type="{if $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_CHECKBOX}checkbox{else}radio{/if}"
                                                                        name="item[{$kKonfiggruppe}][]"

@@ -1,7 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
 <div id="download-preview">
     <div class="download-title">
         <h1>{$oDownload->oDownloadSprache->getName()}</h1>

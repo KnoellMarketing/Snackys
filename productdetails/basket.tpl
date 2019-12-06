@@ -15,7 +15,7 @@
             {elseif $Artikel->inWarenkorbLegbar == 1 && !$Artikel->oKonfig_arr}
                 {if !$showMatrix}
                     {block name="basket-form-inline"}
-                    <div class="form-inline">
+                    <div class="form-inline form-group m0">
                         <div id="quantity-grp" class="choose_quantity">
                             <input type="{if $Artikel->cTeilbar === 'Y' && $Artikel->fAbnahmeintervall == 0}text{else}number{/if}" min="0"{if $Artikel->fAbnahmeintervall > 0} required step="{$Artikel->fAbnahmeintervall}"{/if}
                                    id="quantity" class="quantity form-control text-right" name="anzahl"
@@ -26,7 +26,7 @@
                             {/if}
                             <span class="input-group-btn">
                                 <button aria-label="{lang key='addToCart'}" name="inWarenkorb" type="submit" value="{lang key='addToCart'}" class="sn-addBasket submit btn btn-primary btn-lg btn-block{if isset($wkWeiterleiten)} wkWeiterleiten{/if}"
-									gtag-type="click" gtag-event="add_to_cart" gtag-p-value="{$Artikel->Preise->fVKNetto}" gtag-p-currency="{$smarty.session.Waehrung->cISO}" gtag-p-items='[{ldelim}"id":"{$Artikel->cArtNr}","category":"{$cate|htmlspecialchars}","name":"{$Artikel->cName|htmlspecialchars}","price":"{$Artikel->Preise->fVKNetto}","quantity":"selectorval:#quantity"{rdelim}]'
+									data-track-type="click" data-track-event="add_to_cart" data-track-p-value="{$Artikel->Preise->fVKNetto}" data-track-p-currency="{$smarty.session.Waehrung->cISO}" data-track-p-items='[{ldelim}"id":"{$Artikel->cArtNr}","category":"{$cate|htmlspecialchars}","name":"{$Artikel->cName|htmlspecialchars}","price":"{$Artikel->Preise->fVKNetto}","quantity":"selectorval:#quantity"{rdelim}]'
 								>
                                     <span class="">{lang key='addToCart'}</span>
                                 </button>

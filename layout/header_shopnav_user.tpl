@@ -17,7 +17,7 @@
 				{$jtl_token}
 				<div class="form-group">
 					<label for="email_quick">{lang key='emailadress'}</label>
-					<input type="email" name="email" id="email_quick" class="form-control" placeholder="{lang key='emailadress'}" required/>
+					<input type="email" name="email" id="email_quick" class="form-control" placeholder="{lang key='emailadress'}" required spellcheck="false" autocorrect="off"/>
 				</div>
 				<div class="form-group">
 					<label for="password_quick">{lang key='password'}</label>
@@ -49,34 +49,34 @@
     {else}
 			<div class="styled-list">
 				<a href="{get_static_route id='jtl.php' secure=true}" title="{lang key='myAccount'}" class="dpflex-a-center list-entry defaultlink">
-					<span class="image-content icon">
+					<span class="img-ct icon icon-wt">
 						<svg>
-						  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-user"></use>
+						  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-user"></use>
 						</svg>
 					</span>
 					{lang key="accountOverview" section="account data"}
 				</a>
 				<a href="{get_static_route id='jtl.php' params=['bestellungen' => 1]}" class="dpflex-a-center list-entry defaultlink">
-					<span class="image-content icon">
+					<span class="img-ct icon icon icon-wt">
 						<svg>
-						  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-cart"></use>
+						  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-cart"></use>
 						</svg>
 					</span>
 					{lang key="orders" section="account data"}
 				</a>
 				<a href="{get_static_route id='jtl.php' params=['editRechnungsadresse' => 1]}" class="dpflex-a-center list-entry defaultlink">
-					<span class="image-content icon">
+					<span class="img-ct icon icon icon-wt">
 						<svg>
-						  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-house"></use>
+						  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-house"></use>
 						</svg>
 					</span>
 					{lang key="addresses" section="account data"}
 				</a>
 				{if $Einstellungen.global.global_wunschliste_anzeigen === 'Y'}
 					<a href="{get_static_route id='jtl.php' params=['wllist' => 1]}" class="dpflex-a-center list-entry defaultlink">
-						<span class="image-content icon">
+						<span class="img-ct icon icon icon-wt">
 							<svg>
-							  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-heart"></use>
+							  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-heart"></use>
 							</svg>
 						</span>
 						{lang key="wishlists" section="account data"}

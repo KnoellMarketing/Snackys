@@ -1,5 +1,4 @@
 <h1>{lang key="editBillingAdress" section="account data"}</h1>
-{include file="snippets/extension.tpl"}
 <form id="rechnungsdaten" action="{get_static_route id='jtl.php' params=['editRechnungsadresse' => 1]}" method="post" class="panel-wrap evo-validate">
     <div id="panel-address-form">
         {$jtl_token}

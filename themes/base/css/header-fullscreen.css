@@ -4,6 +4,7 @@
 }
 #km-fullscreen-wrapper #usps-header,
 #km-fullscreen-wrapper #top-bar-wrapper,
+#km-fullscreen-wrapper #header-promo,
 #km-fullscreen-wrapper #shop-nav{
 	z-index: 2;
 	position: relative;
@@ -16,10 +17,14 @@
 	background: @blackbg;
 }
 /* Fullscreen Slider */
+#km-fullscreen-wrapper .banner a{
+	display: none;
+}
 #km-fullscreen-wrapper{
 	margin-bottom: 5rem;
 }
-#km-fullscreen-wrapper .slider-wrapper,
+#km-fullscreen-wrapper .sl-w,
+#km-fullscreen-wrapper .banner,
 #km-fullscreen-wrapper .video-background{
 	position: absolute;
 	top: 0;
@@ -35,17 +40,17 @@
 	height: 100%;
 	object-fit: cover;
 }
-#km-fullscreen-wrapper .full-width-slider,
+#km-fullscreen-wrapper .fw-sl,
 #km-fullscreen-wrapper .slide,
 #km-fullscreen-wrapper .slick-list,
 #km-fullscreen-wrapper .slick-track,
-#km-fullscreen-wrapper .image-content{
+#km-fullscreen-wrapper .img-ct{
 	height: 100%;
 }
 #km-fullscreen-wrapper .slick-list{
 	height: 100% !important;
 }
-#km-fullscreen-wrapper .slider-wrapper .image-content:before{
+#km-fullscreen-wrapper .sl-w .img-ct:before{
 	display: none;
 }
 #km-fullscreen-wrapper .dots-wrapper{
@@ -55,8 +60,11 @@
     right: 0;
 }
 @media screen and (min-width: 768px){
-	.show-sidebar-nav #mobile-nav-toggle{
+	.shw-sb #mobile-nav-toggle{
 		display: none;
+	}
+	#cat-w .mm-mainlink{
+		height: auto;
 	}
 }
 @media screen and (max-width: 767px){

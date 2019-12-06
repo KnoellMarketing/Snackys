@@ -1,0 +1,5 @@
+#manu-row .img-w{
+	padding: 1rem;
+	border: 1px solid @lightborder;
+	border-radius: .3rem;
+}

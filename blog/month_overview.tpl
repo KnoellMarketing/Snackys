@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 <h1>{lang key="newsMonthOverview" section="news"}</h1>
 
 {if !empty($hinweis)}
@@ -26,7 +21,7 @@
          </div>*}
     </div>
     {if !empty($oNews_arr)}
-        <div id="newsContent">
+        <div id="news-c">
             {foreach name=monatsuebersicht from=$oNews_arr item=oNews}
                 <div class="newsBox">
                     <div class="newsTopTitle">
@@ -41,7 +36,7 @@
                         {if $oNews->cVorschauText|count_characters > 0}
                             {$oNews->cVorschauText}
                             <div class="flt_right">
-                                <a class="news-more-link" href="{$oNews->cURL}">{lang key='moreLink' section='news'}</a>
+                                <a class="news-more" href="{$oNews->cURL}">{lang key='moreLink' section='news'}</a>
                             </div>
                             <div class="clearer"></div>
                         {elseif $oNews->cText|count_characters > 200}

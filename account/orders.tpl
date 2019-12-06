@@ -1,7 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
 {block name="account-orders"}
     <h1 class="menu-title">{block name="account-orders-title"}{lang key="yourOrders" section="login"}{/block}</h1>
 

@@ -1,22 +1,43 @@
-.image-content{
+.img-ct{
     position: relative;
     border-radius: .3rem;
 	display: flex;
 	overflow: hidden;
 }
-.image-content:before{
+/* Ratios Standard 1x1 */
+.img-ct:before{
 	content: '';
 	padding-top: 100%;
 }
-.image-content.icon{
+.img-ct.r4x3:before,
+.img-ct.pt75:before{
+	content: '';
+	padding-top: 75%;
+}
+.img-ct.r16x9:before{
+	content: '';
+	padding-top: 56.25%;
+}
+.img-ct.pt25:before{
+	content: '';
+	padding-top: 25%;
+}
+.img-ct.pt50:before{
+	content: '';
+	padding-top: 50%;
+}
+.img-ct.icon{
     width: 1rem;
 	opacity: .7;
 	border-radius: 0;
 }
-.image-content.icon.icon-xl{
+.img-ct.icon.icon-xl{
     width: 2.5rem;
 }
-.image-content img, .image-content>svg{
+.img-ct.icon.op1{
+	opacity: 1;
+}
+.img-ct img, .img-ct>svg{
     position: absolute;
     top: 0;
     left: 0;
@@ -27,13 +48,13 @@
     object-fit: cover;
 }
 svg.icon-darkmode {fill:#fff;}
-.image-content.fit-contain img{
+.img-ct.contain img{
 	object-fit: contain;
 }
-body.ie-10 .image-content{
+body.ie-10 .img-ct{
 	display: block;
 }
-body.ie-10 .image-content:before{
+body.ie-10 .img-ct:before{
 	display: block;
 	width: 100%;
 }

@@ -5,23 +5,23 @@
 #newslist > div{
     padding: 15px;
 }
-#newslist .image-wrapper{
+#newslist .img-w{
     margin-bottom: 1rem;
     overflow: hidden;
     border-radius: .5rem;
     transition: .3s ease;
 }
-#newslist .image-wrapper:hover{
+#newslist .img-w:hover{
     box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.2);
 }
-#newslist .image-wrapper img{
+#newslist .img-w img{
     display: block;
 }
-#newslist .more-link-container{
+#newslist .more-l-c{
     margin-top: .75rem;
     display: block;
 }
-#newslist a.news-more-link{
+#newslist a.news-more{
     text-decoration: none;
     font-weight: 600;
     position: relative;
@@ -29,7 +29,7 @@
     padding-bottom: .2rem;
 }
 
-#newslist a.news-more-link:after{
+#newslist a.news-more:after{
     content: '';
     position: absolute;
     left: 0;
@@ -55,7 +55,7 @@
     height: auto !important;
     border-radius: .3rem;
 }
-#newslist .v-box.preload{
+#newslist .v-box.pr{
 	white-space: nowrap;
 	display: flex;
 }

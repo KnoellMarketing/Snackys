@@ -1,3 +1,4 @@
+{if ($oBox->ePosition == 'left' && !$device->isMobile()) || $oBox->ePosition != 'left'}
 {if isset($oBox->oArtikel_arr)}
     {lang key="topReviews" section="global" assign='slidertitle'}
     
@@ -13,4 +14,5 @@
     {lang key="topReviews" section="global" assign='slidertitle'}
     {include file='snippets/product_slider.tpl' id='boxslider-toprated' productlist=$Boxen.TopBewertet->oArtikel_arr title=$slidertitle tplscope='box' isBox="1"}
     {*<a href="{$Boxen.TopBewertet->cURL}">{lang key="topReviews" section="global"}</a>*}
+{/if}
 {/if}

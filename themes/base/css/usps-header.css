@@ -1,25 +1,29 @@
-#usps-header{
+#h-us{
 	position: relative;
-	z-index: 1;
+	z-index: 2;
 	font-weight: 600;
+	height: 2.32rem;
 }
-#usps-header:not(.theme-light){
-	background: @lightbg;
-}
-#usps-header.theme-dark{
-	background: @blackbg;
-	color: white;
-}
-#usps-header .row{
+#h-us .row{
 	padding-top: 0.6rem;
 	padding-bottom: .6rem;	
 }
-#usps-header.theme-light{
-	border-bottom: 1px solid @lightborder;
-}
-#usps-header .row > div:first-child{
+#h-us span:first-child{
 	padding-left: 0;
 }
-#usps-header .row > div:last-child{
+#h-us span:last-child{
 	padding-right: 0;
+}
+/* Default */
+#h-us:not(.th-l){
+	background: @lightbg;
+}
+/* Light */
+#h-us.th-l{
+	border-bottom: 1px solid @lightborder;
+}
+/* Dark */
+#h-us.th-d{
+	background: @blackbg;
+	color: white;
 }

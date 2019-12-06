@@ -1,133 +1,16 @@
-.basket-item button.droppos .icon img{
-    opacity: .5;
-}
-.basket-item button.droppos .icon{
-    width: 1rem;
-    margin-right: .25rem;
-}
-button.droppos{
-    display: flex;
-    align-items: center;
-}
-.choose_quantity button.preload .image-content{
-    width: 1rem;
-}
-.choose_quantity button.preload .image-content img{
-    opacity: .6;
-}
-.basket-item button[type="submit"]:not(.droppos):hover .image-content{
+.choose_quantity button:hover .img-ct{
     transform: rotate(360deg);
     transition: 1s ease;
 }
-.basket_wrapper{
-    margin-top: 2rem;
-}
-.right-boxes > div{
-    padding: 2rem;
-    border-radius: .3rem;
-    border: 1px solid @lightborder;
-}
-.right-boxes > div:not(:last-child){
-    margin-bottom: 1rem;
-}
-.apply-coupon .form-group,
-.apply-coupon p{
-    margin: 0;
-}
-.cart-sum > div{
-    display: flex;
-    justify-content: space-between;
-}
-.cart-sum > a{
-    margin-top: 1rem;
-}
-.cart-sum > h3{
-    line-height: 1;
-}
 .right-boxes{
     max-width: 26rem;
-    padding-left: 50px;
-    margin-left: auto;
-}
-#basket-shipping-estimate-form .input-group{
-    width: 100%;
-    margin-top: .75rem;
-}
-#freegift .thumbnail{
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    flex-wrap: nowrap;
-}
-#freegift p{
-    margin: 0;
-}
-#fileupload-wrapper{
-    margin-top: 3rem;
 }
 #fileupload-wrapper:empty,
 fileupload-wrapper:blank{
     display: none;
 }
-.basket_wrapper > .panel-slider{
-    margin-top: 4rem;
-}
-.basket-item input.quantity{
-    margin: 0;
-    margin: 0;
-    padding-left: .5rem;
-    padding-right: .5rem;
+.c-it input.quantity{
     min-width: 3rem;
-}
-.basket-item .form-inline{
-    justify-content: flex-end;
-}
-#fileupload-wrapper .upload_title{
-    font-weight: 600;
-}
-#fileupload-wrapper .hide{
-    display: none;
-}
-#fileupload-wrapper .input-group-btn{
-    display: flex;
-    align-items: center;
-}
-#fileupload-wrapper .input-group-btn > a,
-#fileupload-wrapper .input-group-btn > button{
-    order: 1;
-    border-radius: .3rem;
-}
-#fileupload-wrapper .btn-primary{
-    background: none;
-    padding-left: 0;
-    color: @defaulttext;
-}
-#fileupload-wrapper .input-group{
-    flex-wrap: wrap;
-}
-#fileupload-wrapper .file-caption{
-    width: 100%;
-    text-align: left;
-}
-.file-error-message{
-    position: relative;
-    background: @danger;
-    color: @backgroundtext;
-}
-.file-error-message ul{
-    margin: 0;
-    list-style: none;
-    text-align: left;
-}
-.kv-error-close{
-    position: absolute;
-    color: white;
-    left: 1rem;
-}
-#fileupload-wrapper .btn-file{
-	box-shadow: none;
 }
 /* PayPal Finanzierung*/
 .ppf-container{
@@ -157,65 +40,42 @@ fileupload-wrapper:blank{
 	font-size: 0;
 	text-indent: -999em;
 }
-@media screen and (max-width: 1199px){
-    #cart-form .shortdescription{
-        display: none;
-    }
+/* Amazon pay Button */
+.cart-sum .lpa-pay-button{
+	justify-content: center;
+	margin: .75rem 0 0 0;
+}
+/* PayPal Express Button */
+.cart-sum .paypalexpress.btn-ppe-cart{
+	text-align: center;
+	margin-top: .75rem;
+	float: none;
+	display: inline-block;
 }
 @media screen and (max-width: 991px){
     .basket_wrapper>.panel-slider{
         display: none;
     }
     .right-boxes{
-        padding-left: 15px;
         max-width: none;
-        margin-top: 3rem;
     }
-    .basket-item input.quantity + .input-group-btn > button{
+    .choose_quantity button.pr{
         padding: .5rem;
     }
 }
 @media screen and (max-width: 767px){
-    .right-boxes{
-        margin-top: 2rem;
-    }
-    .right-boxes>div{
-        padding: 1.5rem;
-    }
-    .basket-item:not(.sidebar-item) .price {
+    #content .price {
         font-size: 1rem;
-    }
-    #fileupload-wrapper .text-right{
-        text-align: left;
-    }
-    #fileupload-wrapper .input-group-btn > a .hidden-xs{
-        display: block;
-    }
-    #fileupload-wrapper .input-group,
-    #fileupload-wrapper .input-group .input-group-btn,
-    #fileupload-wrapper .input-group .input-group-btn a{
-        display: block;
-    }
-    #fileupload-wrapper .input-group-btn > button:not(.hide){
-        display: block;
-        width: 100%;
-    }
-    #fileupload-wrapper .input-group-btn > button > .hidden-xs{
-        display: block;
     }
 }
 @media screen and (max-width: 575px){
-    .right-boxes{
-        padding-left: 8px;
-        margin-top: 1rem;
-    }    
-    .basket-item input.quantity{
+    .c-it input.quantity{
         padding: .4rem 0;
         font-size: .9rem;
         min-width: 2rem;
         text-align: center;
     }
-    .basket-item button.droppos .icon{
+    .c-it .icon-wt{
         margin-right: 0;
     }
 }

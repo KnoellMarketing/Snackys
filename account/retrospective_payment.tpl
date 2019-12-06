@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 <form id="form-payment-extra" class="form payment-extra" method="post" action="bestellab_again.php">
     {$jtl_token}
     <fieldset class="outer">

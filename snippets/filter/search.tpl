@@ -1,5 +1,4 @@
-{snackysBasics}
-<ul class="filter_state nav nav-list">
+<ul class="filter_state nav nav-list blanklist">
     {foreach name=suchfilter from=$NaviFilter->SuchFilter item=oSuchFilter}
         {assign var=kSuchanfrage value=$oSuchFilter->kSuchanfrage}
         <li>

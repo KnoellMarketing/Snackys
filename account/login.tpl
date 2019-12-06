@@ -1,22 +1,5 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 <h1>{if !empty($oRedirect->cName)}{$oRedirect->cName}{else}{lang key="loginTitle" section="login"}{/if}</h1>
-{if !$bCookieErlaubt}
-    <div class="alert alert-danger hidden" id="no-cookies-warning" style="display:none;">
-     <strong>{lang key="noCookieHeader" section="errorMessages"}</strong>
-     <p>{lang key="noCookieDesc" section="errorMessages"}</p>
-    </div>
-    <script type="text/javascript">
-       $(function() {ldelim}
-           if (navigator.cookieEnabled === false) {ldelim}
-               $('#no-cookies-warning').show();
-           {rdelim}
-       {rdelim});
-    </script>
-{elseif empty($cHinweis)}
+{if empty($cHinweis)}
     <div class="alert alert-info">{lang key="loginDesc" section="login"} {if isset($oRedirect) && $oRedirect->cName}{lang key="redirectDesc1" section="global"} {$oRedirect->cName} {lang key="redirectDesc2" section="global"}.{/if}</div>
 {/if}
 
@@ -25,6 +8,7 @@
 <div class="">
     <div class="">
         {block name="login-form"}
+		{include file="snippets/zonen.tpl" id="before_login" title="before_login"}
         <div class="panel-wrap">
             <form id="login_form" action="{get_static_route id='jtl.php'}" method="post" role="form" class="evo-validate">
                 {$jtl_token}
@@ -38,7 +22,7 @@
                         id="email"
                         class="form-control"
                         placeholder="{lang key="emailadress" section="global"}*"
-                        required
+                        required spellcheck="false"  autocorrect="off"
                         />
                     </div>
                     <div class="form-group float-label-control required">

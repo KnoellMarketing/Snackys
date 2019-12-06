@@ -1,28 +1,28 @@
 @media screen and (min-width: 768px){
-	#category-nav-wrapper{
+	#cat-w{
 		background: white;
 		border-bottom: 1px solid @lightborder;
 	}
-	#category-nav-wrapper .mm-mainlink{
+	#cat-w .mm-mainlink{
 		color: @defaulttext;
 	}
-	#category-nav-wrapper .mm-mainlink:hover, 
-	#category-nav-wrapper .active > .mm-mainlink{
+	#cat-w .mm-mainlink:hover, 
+	#cat-w .active > .mm-mainlink{
 		background: none;
 		color: @brand;
 	}
-	#category-nav-wrapper svg{
+	#cat-w svg{
 		fill: @defaulttext;
 	}
-	#category-nav-wrapper li.active > .home-icon svg,
-	#category-nav-wrapper li:hover svg{
+	#cat-w li.active > .home-icon svg,
+	#cat-w li:hover svg{
 		fill: @brand;
 	}
-	#category-nav-wrapper{
+	#cat-w{
 		border-top: 1px solid @lightborder;
 	}
-	#category-nav-wrapper .megamenu-content,
-	#category-nav-wrapper .dropdown-style > .dropdown-menu{
+	#cat-w .mgm-c,
+	#cat-w .dropdown-style > .dropdown-menu{
 		border-top: 2px solid @brand;
 	}
 	li.dropdown-style > .dropdown-menu .dropdown-menu{

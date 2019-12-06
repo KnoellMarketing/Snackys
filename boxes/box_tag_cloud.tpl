@@ -1,7 +1,11 @@
+{if ($oBox->ePosition == 'left' && !$device->isMobile()) || $oBox->ePosition != 'left'}
 {if (isset($Boxen.Tagwolke->Tagbegriffe) && $Boxen.Tagwolke->Tagbegriffe|@count > 0) || (isset($oBox->Tagbegriffe) && $oBox->Tagbegriffe|@count > 0)}
     <section class="panel panel-default box box-tagcloud" id="sidebox{$oBox->kBox}">
         <div class="panel-heading">
-            <h5 class="panel-title">{lang key="tagcloud" section="global"}</h5>
+            <span class="panel-title h5 m0 dpflex-a-center dpflex-j-between">
+				{lang key="tagcloud" section="global"}
+				{include file="snippets/careticon.tpl"}
+			</span>
         </div>
         <div class="panel-body">
             <div class="tagbox">
@@ -16,4 +20,5 @@
             </div>
         </div>
     </section>
+{/if}
 {/if}

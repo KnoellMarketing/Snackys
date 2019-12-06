@@ -38,18 +38,13 @@
                         </td>
                         {foreach name="variationsbox0" from=$Artikel->VariationenOhneFreifeld[0]->Werte item=oVariationWert0}
                             {assign var=bAusblenden value=false}
-                            {if $Artikel->nVariationKombiNichtMoeglich_arr|@count > 0}
-                                {foreach name="variNichtMoeglich" from=$Artikel->nVariationKombiNichtMoeglich_arr[$kEigenschaftWert1] item=kEigenschaftWertNichtMoeglich}
-                                    {if $kEigenschaftWertNichtMoeglich == $oVariationWert0->kEigenschaftWert && $Einstellungen.artikeldetails.artikeldetails_warenkorbmatrix_lagerbeachten !== 'N'}
-                                        {assign var=bAusblenden value=true}
-                                    {/if}
-                                {/foreach}
-                            {/if}
-                            {if !$bAusblenden}
                                 {assign var=cVariBox value=$oVariationWert0->kEigenschaft|cat:':'|cat:$oVariationWert0->kEigenschaftWert|cat:'_'|cat:$oVariationWert1->kEigenschaft|cat:':'|cat:$oVariationWert1->kEigenschaftWert}
                                 {if isset($Artikel->oVariationKombiKinderAssoc_arr[$cVariBox])}
                                     {assign var=child value=$Artikel->oVariationKombiKinderAssoc_arr[$cVariBox]}
+								{elseif $Artikel->nIstVater}
+									{assign var=bAusblenden value=true}
                                 {/if}
+								{if !$bAusblenden}
                                 <td class="vcenter">
                                     {if $Einstellungen.global.global_erscheinende_kaeuflich === 'N' && isset($child->nErscheinendesProdukt) && $child->nErscheinendesProdukt == 1}
                                         <small>

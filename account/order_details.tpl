@@ -1,7 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
 <script type="text/javascript">
     if (top.location !== self.location) {ldelim}
         top.location = self.location.href;
@@ -16,23 +12,23 @@
 
 <h1>{lang key="orderCompletedPre" section="checkout"}</h1>
 
-<div class="row">
+<div class="row mb-spacer mb-small">
     <div class="col-xs-12">
         {block name="order-details-order-info"}
-        <ul class="list-group">
-            <li class="list-group-item"><strong>{lang key="yourOrderId" section="checkout"}:</strong> {$Bestellung->cBestellNr}</li>
-            <li class="list-group-item"><strong>{lang key="orderDate" section="login"}:</strong> {$Bestellung->dErstelldatum_de}</li>
-            <li class="list-group-item alert-info"><strong>Status:</strong> {$Bestellung->Status}</li>
+        <ul class="blanklist styled-list">
+            <li class="list-entry"><strong>{lang key="yourOrderId" section="checkout"}:</strong> {$Bestellung->cBestellNr}</li>
+            <li class="list-entry"><strong>{lang key="orderDate" section="login"}:</strong> {$Bestellung->dErstelldatum_de}</li>
+            <li class="list-entry alert-info"><strong>Status:</strong> {$Bestellung->Status}</li>
         </ul>
         {/block}
     </div>
 </div>
 
-<div class="row">
+<div class="row mb-spacer mb-small">
     <div class="col-xs-12 col-md-6">
         {block name="order-details-billing-address"}
         <div class="panel panel-default">
-            <div class="panel-heading"><h3 class="panel-title">{block name="order-details-billing-address-title"}{lang key="billingAdress" section="checkout"}{/block}</h3></div>
+            <div class="panel-heading"><h2 class="panel-title h4">{block name="order-details-billing-address-title"}{lang key="billingAdress" section="checkout"}{/block}</h2></div>
             <div class="panel-body">
                 {include file='checkout/inc_billing_address.tpl'}
             </div>
@@ -43,12 +39,12 @@
         {block name="order-details-shipping-address"}
         <div class="panel panel-default">
             {if !empty($Lieferadresse->kLieferadresse)}
-                <div class="panel-heading"><h3 class="panel-title">{block name="order-details-shipping-address-title"}{lang key="shippingAdress" section="checkout"}{/block}</h3></div>
+                <div class="panel-heading"><h2 class="panel-title h4">{block name="order-details-shipping-address-title"}{lang key="shippingAdress" section="checkout"}{/block}</h2></div>
                 <div class="panel-body">
                     {include file='checkout/inc_delivery_address.tpl'}
                 </div>
             {else}
-                <div class="panel-heading"><h3 class="panel-title">{block name="order-details-shipping-address-title"}{lang key="shippingAdressEqualBillingAdress" section="account data"}{/block}</h3></div>
+                <div class="panel-heading"><h2 class="panel-title h4">{block name="order-details-shipping-address-title"}{lang key="shippingAdressEqualBillingAdress" section="account data"}{/block}</h2></div>
                 <div class="panel-body">
                     {include file='checkout/inc_billing_address.tpl'}
                 </div>
@@ -57,11 +53,11 @@
         {/block}
     </div>
 </div>
-<div class="row">
+<div class="row mb-spacer mb-small">
     <div class="col-xs-12 col-md-6">
         <div class="panel panel-default">
             {block name="order-details-payment"}
-            <div class="panel-heading"><h3 class="panel-title">{block name="order-details-payment-title"}{lang key="paymentOptions" section="global"}: {$Bestellung->cZahlungsartName}{/block}</h3></div>
+            <div class="panel-heading"><h2 class="panel-title h4">{block name="order-details-payment-title"}{lang key="paymentOptions" section="global"}: {$Bestellung->cZahlungsartName}{/block}</h2></div>
             <div class="panel-body">
             {block name="order-details-payment-body"}
             {if $Bestellung->cStatus != BESTELLUNG_STATUS_STORNO && $Bestellung->dBezahldatum_de !== '00.00.0000'}
@@ -81,7 +77,7 @@
     <div class="col-xs-12 col-md-6">
         <div class="panel panel-default">
             {block name="order-details-shipping"}
-            <div class="panel-heading"><h3 class="panel-title">{block name="order-details-shipping-title"}{lang key="shippingOptions" section="global"}: {$Bestellung->cVersandartName}{/block}</h3></div>
+            <div class="panel-heading"><h2 class="panel-title h4">{block name="order-details-shipping-title"}{lang key="shippingOptions" section="global"}: {$Bestellung->cVersandartName}{/block}</h2></div>
             <div class="panel-body">
             {block name="order-details-shipping-body"}
             {if $Bestellung->cStatus == BESTELLUNG_STATUS_VERSANDT}
@@ -161,13 +157,20 @@
                         <tr>
                             <th>{lang key="partialShippedPosition" section="order"}</th>
                             <th>{lang key="partialShippedCount" section="order"}</th>
+							<th>{lang key='productNo' section='global'}</th>
+							<th>{lang key='product' section='global'}</th>
+							<th>{lang key="order" section="global"}</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         {foreach from=$oLieferschein->oLieferscheinPos_arr item=oLieferscheinpos}
                             <tr>
-                                <td>{include file="account/order_item.tpl" Position=$oLieferscheinpos->oPosition bPreis=false bKonfig=false}</td>
+								<td>{$oLieferscheinpos@iteration}</td>
                                 <td>{$oLieferscheinpos->getAnzahl()}</td>
+								<td>{$oLieferscheinpos->oPosition->cArtNr}</td>
+								<td>{$oLieferscheinpos->oPosition->cName}</td>
+								<td>{$Bestellung->cBestellNr}</td>
                             </tr>
                         {/foreach}
                     </tbody>
@@ -180,7 +183,7 @@
 {/if}
 
 {if $Bestellung->cKommentar}
-    <h3>{lang key="yourOrderComment" section="login"}</h3>
+    <h2 class="h3">{lang key="yourOrderComment" section="login"}</h2>
     <p>{$Bestellung->cKommentar}</p>
 {/if}
 

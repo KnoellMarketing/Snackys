@@ -1,0 +1,104 @@
+.variations dt{
+    font-weight: bold;
+}
+.variations dt:not(:first-child){
+	margin-top: 1rem;
+}
+label.variation{
+	display: flex;
+	align-items: center;
+	margin-bottom: .5rem;
+	padding-bottom: .5rem;
+	border-bottom: 1px solid @lightborder;
+}
+label.variation .label-surcharge,
+.selectric-items li.variation .label-surcharge,
+.selectric>.label> .label-surcharge{
+	color: #fff;
+	padding: .2rem 0.4rem;
+	font-size: .8rem;
+	background: @brand;
+	border-radius: .3rem;
+	margin-left: .5rem;
+	display: inline;
+}
+.selectric-items li.variation .label-surcharge{
+	
+}
+label.variation .label-not-available,
+.selectric-items li.variation .label-not-available{
+	margin-left: auto;
+	font-size: 12px;
+}
+#content #buy_form label.variation.not-available,
+#content #buy_form label.variation[data-stock="out-of-stock"]{
+	opacity: .4;
+	cursor: not-allowed;
+	pointer-events: all;
+}
+.noimgswatch.not-available .label-variation{
+	text-decoration: line-through;
+}
+.selectric-items li.variation{
+	display: flex;
+	align-items: center;
+}
+#content .variations .imgswatches,
+#content .variations .textswatches{
+    flex-wrap: wrap;
+}
+#content .variations .textswatches input[type="radio"],
+#content .variations .form-group > label input[type="radio"]{
+    margin-right: .5rem;
+}
+.variations .textswatches label:not(.active){
+    background: none;
+}
+#content .variations .imgswatches label{
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+	border: 0;
+    margin: 0 .5rem .5rem 0;
+	background: none;
+}
+#content .variations .imgswatches label.noimgswatch .label-variation{
+	padding: .5rem;
+	border-color: @defaultborder;
+}
+#content .variations .imgswatches label.noimgswatch.active .label-variation{
+	color: @brand;
+}
+#content .variations .imgswatches .label-variation{
+    pointer-events: none;
+	border: 1px solid @lightborder;
+	border-radius: .3rem;
+	overflow: hidden;
+}
+#content .variations .imgswatches input:checked ~ .label-variation{
+	border-color: @brand;
+}
+#content .simple-variations .imgswatches .label-variation{
+    display: block;
+    border: 1px solid @lightborder;
+    transition: .3s ease;
+}
+#content .simple-variations .imgswatches label{
+    border: 0;
+}
+#content .switch-variations .imgswatches label.active,
+#content .switch-variations .imgswatches label:hover,
+#content .simple-variations .imgswatches input:checked ~ .label-variation,
+#content .simple-variations .imgswatches label:hover .label-variation{
+    border-color: @brand;
+}
+.variations .imgswatches label input[type="radio"]{
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    opacity: 0;
+}
+.label-not-available{
+    margin-left: .25rem;
+    font-weight: normal;
+}

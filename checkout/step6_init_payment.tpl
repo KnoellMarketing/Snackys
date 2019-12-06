@@ -1,11 +1,3 @@
-{**
- * @copyright (c) 2006-2010 JTL-Software-GmbH, all rights reserved
- * @author JTL-Software-GmbH (www.jtl-software.de)
- *
- * use is subject to license terms
- * http://jtl-software.de/jtlshop3license.html
- *}
-
 {block name="header"}
     {include file='layout/header.tpl'}
 {/block}

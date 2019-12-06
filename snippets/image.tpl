@@ -1,11 +1,15 @@
 {counter assign=imgcounter print=0}
 <div class="image-box">
-    <div class="image-content{if isset($second)} has-second{/if}">
-        <img alt="{$alt}" src="{$snackysTemplate}img/preload/1x1.png" data-src="{$src}" data-id="{$imgcounter}" />
-		{if isset($second)}
-		<div class="second-img">
-			<img alt="{$alt}" src="{$snackysTemplate}img/preload/1x1.png" data-src="{$second}" data-id="{$imgcounter}" />
-		</div>
+    <div class="img-ct{if isset($second)} has-second{/if}">
+		{if $noLazy==1}
+			<img alt="{$alt}" src="{$src}" data-id="{$imgcounter}" />
+		{else}
+			<img alt="{$alt}" src="{$snackyConfig.preloadImage}" data-src="{$src}" data-id="{$imgcounter}" />
+		{/if}
+		{if isset($second) && !$device->isMobile()}
+		<span class="second-img block">
+			<img alt="{$alt}" src="{$snackyConfig.preloadImage}" data-hover="{$second}" data-id="{$imgcounter}" />
+		</span>
 		{/if}
         {if !empty($src)}
             <meta itemprop="image" content="{$ShopURL}/{$src}">

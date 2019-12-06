@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 {if $Einstellungen.global.global_wunschliste_freunde_aktiv === 'Y'}
     <h1>{lang key="wishlistViaEmail" section="login"}</h1>
     {if !empty($hinweis)}
@@ -22,7 +17,7 @@
                             <input type="hidden" name="wl" value="{$CWunschliste->kWunschliste}" />
                             <input type="hidden" name="send" value="1" />
                             <label for="wishlist-email">{lang key="wishlistEmails" section="login"}{if $Einstellungen.global.global_wunschliste_max_email > 0} | {lang key="wishlistEmailCount" section="login"}: {$Einstellungen.global.global_wunschliste_max_email}{/if}</label>
-                            <textarea id="wishlist-email" name="email" rows="5" style="width:100%" class="form-control"></textarea>
+                            <textarea id="wishlist-email" name="email" rows="5" class="form-control"></textarea>
                             <hr>
                             <div class="row">
                                 <div class="col-xs-12">

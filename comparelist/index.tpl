@@ -1,4 +1,3 @@
-{snackysBasics}
 {block name="header"}
     {include file='layout/header.tpl'}
 {/block}
@@ -41,10 +40,10 @@
                                 </p>
                             {/if}
                             <p>
-                                <a href="{$oArtikel->cURLDEL}" data-id="{$oArtikel->kArtikel}" class="remove preload">
-                                                <span class="image-content icon">
+                                <a href="{$oArtikel->cURLDEL}" data-id="{$oArtikel->kArtikel}" class="remove pr">
+                                                <span class="img-ct icon">
 													<svg>
-													  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-bin"></use>
+													  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-bin"></use>
 													</svg>
                                                 </span> </a>
                             </p>
@@ -201,9 +200,9 @@
                                     {foreach name=vergleich from=$oVergleichsliste->oArtikel_arr item=oArtikel}
                                         <td class="text-center" style="min-width: {$Einstellungen_Vergleichsliste.vergleichsliste.vergleichsliste_spaltengroesseattribut}px">
                                             <a href="{$oArtikel->cURLDEL}" class="btn btn-default">
-                                                <span class="image-content icon">
+                                                <span class="img-ct icon">
 													<svg>
-													  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-bin"></use>
+													  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-bin"></use>
 													</svg>
                                                 </span> 
                                             </a>

@@ -23,10 +23,10 @@
                     <div class="input-group">
                         <input id="add-tag" placeholder="{lang key="addTag" section="productDetails"}" name="tag" type="text" class="form-control">
                         <span class="input-group-btn">
-                            <button name="submit" type="submit" class="btn btn-default preload">
-								<div class="image-content icon">
+                            <button name="submit" type="submit" class="btn btn-default pr">
+								<div class="img-ct icon">
 									<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
-									  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-save"></use>
+									  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-save"></use>
 									</svg>
 								</div>
 							</button>

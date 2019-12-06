@@ -1,31 +1,38 @@
 {block name="doctype"}<!DOCTYPE html>{/block}
 <html {block name="html-attributes"}lang="{$meta_language}" itemscope {if $nSeitenTyp == URLART_ARTIKEL}itemtype="http://schema.org/ItemPage"
       {elseif $nSeitenTyp == URLART_KATEGORIE}itemtype="http://schema.org/CollectionPage"
-      {else}itemtype="http://schema.org/WebPage"{/if}{/block}>
+      {else}itemtype="http://schema.org/WebPage"{/if}{/block} id="snackys-tpl">
 {block name="head"}
 <head>
-	{snackysBasics}
-	{$snackysBasics}
-	{if $Einstellungen.template.theme.google_font != ''}
-		<link rel="dns-prefetch preconnect" href="https://fonts.googleapis.com">
-		<link rel="dns-prefetch preconnect" href="https://fonts.gstatic.com/" crossorigin>
-	{/if}
-	{if !empty($Einstellungen.template.general.cdnDomain)}<link rel="dns-prefetch preconnect" href="{$Einstellungen.template.general.cdnDomain}">{/if}
+	{snackys_content id="html_head_start" title="html_head_start"}
+	{if $snackyConfig.pwa == 'Y'}<link rel="manifest" href="manifest.json">{/if}
+	{if !empty($snackyConfig.gtag)}<link rel="dns-prefetch preconnect" href="https://www.googletagmanager.com">{/if}
 	
-	{if !empty($Einstellungen.global.global_google_analytics_id) || !empty($Einstellungen.template.analytics.id1)}<link rel="dns-prefetch preconnect" href="https://www.googletagmanager.com"><link rel="dns-prefetch preconnect" href="https://www.google-analytics.com">
-	{else if !empty($Einstellungen.template.analytics.gtag)}<link rel="dns-prefetch preconnect" href="https://www.googletagmanager.com">{/if}
-	{if $Einstellungen.template.general.optimize_all_js == 'Y' || $Einstellungen.template.general.optimize_all_js == 'YD'}
-		<meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' 'unsafe-eval' data: *;">
-	{/if}
     {block name="head-resources-jquery"}
-		{if $Einstellungen.template.general.optimize_jquery == 'E'}
-		<script src="{$snackysTemplate}js/jquery.js" inline=1></script>
-		{else}
-		<script type="text/javascript" inline=1>{readJs file="js/jquery.js"}</script>
+	
+        <script src="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}js/jquery-1.12.4.min.js" defer></script>
+		{if $device->version("IE") || $device->version("Opera Mini") || $device->version("baidubrowser") || $device->version("baiduboxapp") || $device->version("MQQBrowser")}
+			<script type="text/javascript" data-inline=1>{readJs file="js/snackys/intersectionObserver.js"}</script>
 		{/if}
 		
+		{if $device->version("IE")}<script data-inline="1">{readJs file="js/snackys/svg.min.js"}</script>{/if}
+		
+		{if !isset($Einstellungen.template.general.use_minify) || $Einstellungen.template.general.use_minify === 'N'}
+			{if isset($cPluginJsHead_arr)}{foreach from=$cPluginJsHead_arr item="cJS"}<script src="{$cJS}?v={$nTemplateVersion}" type="text/javascript" defer></script>{/foreach}{/if}
+			{foreach from=$cJS_arr item="cJS"}<script src="{$cJS}?v={$nTemplateVersion}" type="text/javascript" defer></script>{/foreach}
+			{if isset($cPluginJsBody_arr)}{foreach from=$cPluginJsBody_arr item="cJS"}<script src="{$cJS}?v={$nTemplateVersion}" type="text/javascript" defer></script>{/foreach}{/if}
+		{else}
+			{if isset($cPluginJsHead_arr) && $cPluginJsHead_arr|@count > 0}<script src="asset/plugin_js_head?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}
+			<script src="asset/jtl3.js?v={$nTemplateVersion}" type="text/javascript" defer></script>
+			{if isset($cPluginJsBody_arr) && $cPluginJsBody_arr|@count > 0}<script src="asset/plugin_js_body?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}
+		{/if}
+
+		{assign var="customJSPath" value=$currentTemplateDir|cat:'/js/custom.js'}
+		{if file_exists($customJSPath)}
+			<script src=""{$customJSPath}?v={$nTemplateVersion}" type="text/javascript" defer></script>
+		{/if}
     {/block}
-	{if $Einstellungen.template.trustedShops.showTrusted == 0 && !empty($Einstellungen.template.trustedShops.trustedID)}<link rel="dns-prefetch" href="//widgets.trustedshops.com">{/if}
+	{if $snackyConfig.showTrusted == 0 && !empty($snackyConfig.trustedID)}<link rel="dns-prefetch" href="//widgets.trustedshops.com">{/if}
     {block name="head-meta"}
         <meta http-equiv="content-type" content="text/html; charset={$smarty.const.JTL_CHARSET}">
         <meta name="description" itemprop="description" content={block name="head-meta-description"}"{$meta_description|truncate:1000:"":true}{/block}">
@@ -79,70 +86,128 @@
 		  Shop::Smarty()->assign("css3", array());
 		{/php}
     {block name="head-resources"}
-		{if $Einstellungen.template.header.headerType == 1 && $nSeitenTyp !== 11}
+		{if $snackyConfig.headerType == 1 && $nSeitenTyp !== 11}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-navcenter.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/search-toggle.css'}
 	
-		{else if $Einstellungen.template.header.headerType == 2 && $nSeitenTyp !== 11}
+		{else if $snackyConfig.headerType == 2 && $nSeitenTyp !== 11}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-light.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-light-mmenu.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/search-toggle.css'}
 	
-		{else if $Einstellungen.template.header.headerType == 3 && $nSeitenTyp !== 11}
+		{else if $snackyConfig.headerType == 3 && $nSeitenTyp !== 11}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-light.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/search-toggle.css'}
 	
-		{else if $Einstellungen.template.header.headerType == 4 && $nSeitenTyp !== 11}
-			{append var='css3' value='/templates/snackys/themes/base/css/header-light.css'}
-			{append var='css3' value='/templates/snackys/themes/base/css/header-fullscreen.css'}
-			{append var='css3' value='/templates/snackys/themes/base/css/search-toggle.css'}
-			{append var='css3' value='/templates/snackys/themes/base/css/megamenu-fullscreen.css'}
-	
-		{else if $Einstellungen.template.header.headerType == 4.5 && $nSeitenTyp !== 11}
+		{else if $snackyConfig.headerType == 4 && $nSeitenTyp !== 11}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-light.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-fullscreen.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/search-toggle.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/megamenu-fullscreen.css'}
 	
-		{else if $Einstellungen.template.header.headerType == 5 && $nSeitenTyp !== 11}
+		{else if $snackyConfig.headerType == 4.5 && $nSeitenTyp !== 11}
+			{append var='css3' value='/templates/snackys/themes/base/css/header-light.css'}
+			{append var='css3' value='/templates/snackys/themes/base/css/header-fullscreen.css'}
+			{append var='css3' value='/templates/snackys/themes/base/css/search-toggle.css'}
+			{append var='css3' value='/templates/snackys/themes/base/css/megamenu-fullscreen.css'}
+	
+		{else if $snackyConfig.headerType == 5 && $nSeitenTyp !== 11}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-fullscreen.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/search-toggle.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-navcenter.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-navcenter-fullscreen.css'}
 	
-		{else if $Einstellungen.template.header.headerType == 5.5 && $nSeitenTyp !== 11}
+		{else if $snackyConfig.headerType == 5.5 && $nSeitenTyp !== 11}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-fullscreen.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/search-toggle.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-navcenter.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-navcenter-fullscreen.css'}
 	
-		{else if $Einstellungen.template.header.headerType == 6 && $nSeitenTyp !== 11}
+		{else if $snackyConfig.headerType == 6 && $nSeitenTyp !== 11}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-light.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-fullscreen.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/search-toggle.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/megamenu-fullscreen.css'}
+	
+		{else if $snackyConfig.headerType == 7 && $nSeitenTyp !== 11}
+			{append var='css3' value='/templates/snackys/themes/base/css/header-navcenter.css'}
+			{append var='css3' value='/templates/snackys/themes/base/css/header-ultrathin.css'}
+			{append var='css3' value='/templates/snackys/themes/base/css/search-toggle.css'}
 	
 		{else}
 			{append var='css3' value='/templates/snackys/themes/base/css/header_default.css'}
 		{/if}
-		{if $Einstellungen.template.header.headerType == 4 || $Einstellungen.template.header.headerType == 5 || $Einstellungen.template.theme.theme_default == 'darkmode'}
+		{if $snackyConfig.headerType == 4 || $snackyConfig.headerType == 5 || $Einstellungen.template.theme.theme_default == 'darkmode'}
 			{append var='css3' value='/templates/snackys/themes/darkmode/css/header-darkmode.css'}
 		{/if}
 		{if $Einstellungen.template.theme.theme_default == 'darkmode'}
 			{append var='css3' value='/templates/snackys/themes/darkmode/css/footer-darkmode.css'}
 		{/if}
-		{if $Einstellungen.template.theme.designWidth == 1}
+		{if $snackyConfig.designWidth == 1}
 			{append var='css3' value='/templates/snackys/themes/base/css/boxed-layout.css'}
 		{/if}
-		{if $Einstellungen.template.header.headerUsps != 0}
+		{if $snackyConfig.headerUsps != 0}
 			{append var='css3' value='/templates/snackys/themes/base/css/usps-header.css'}
 		{/if}
-		{if $Einstellungen.template.trustedShops.posTrusted == 0}
+		{if $snackyConfig.headerPromo != 0 && !isset($smarty.session.km_promo)}
+			{append var='css3' value='/templates/snackys/themes/base/css/header-promo.css'}
+		{/if}
+		{if $snackyConfig.posTrusted == 0}
 			{append var='css3' value='/templates/snackys/themes/base/css/trusted-left.css'}
 		{/if}
-		{if $Einstellungen.template.footer.paymentWall != 0}
+		{if $snackyConfig.paymentWall != 0}
 			{append var='css3' value='/templates/snackys/themes/base/css/payment-wall.css'}
 		{/if}
+		{if $device->isMobile()}
+			{append var='css3' value='/templates/snackys/themes/base/css/mobile.css'}
+		 {else}
+			{append var='css3' value='/templates/snackys/themes/base/css/desktop.css'}
+		{/if}
+		 {if $device->version("IE") && $device->version("IE")|number_format:0 <= '9'}
+			{append var='css3' value='/templates/snackys/themes/base/css/oldbrowser.css'}
+		 {/if}
+		  {if $snackyConfig.manSlider == 0}
+			{append var='css3' value='/templates/snackys/themes/base/css/manuslider.css'}
+		  {/if}
+		  {if $snackyConfig.sidepanelEverywhere == 'Y'}
+			{append var='css3' value='/templates/snackys/themes/base/css/sidepanel.css'}
+		   {elseif $nSeitenTyp === 2}
+			{append var='css3' value='/templates/snackys/themes/base/css/sidepanel.css'}
+		  {/if}
+		   {if !empty($oUploadSchema_arr) && $nSeitenTyp === 3}
+			{append var='css3' value='/templates/snackys/themes/base/css/fileupload.css'}
+		   {/if}
+			{if isset($oImageMap)}
+			{append var='css3' value='/templates/snackys/themes/base/css/banner.css'}
+			{/if}
+		   {if $nSeitenTyp === 25}
+			{append var='css3' value='/templates/snackys/themes/base/css/404.css'}
+		  {/if}
+		   {getSliderPerDevice cAssign="oSliderDevice"}
+			{if isset($oSliderDevice) && count($oSliderDevice->oSlide_arr) > 0}	
+			{append var='css3' value='/templates/snackys/themes/base/css/slider.css'}
+		   {/if}
+			{if $snackyConfig.headerTopbar == 0 && !$device->isMobile()}
+			{append var='css3' value='/templates/snackys/themes/base/css/topbar.css'}
+			{/if}
+			{if $snackyConfig.hover_productlist === 'Y' && !$device->isMobile() && $nSeitenTyp == 2}
+			{append var='css3' value='/templates/snackys/themes/base/css/listing-jtl-hover.css'}
+			 {/if}
+			{if $snackyConfig.listShowCart != 1}
+			{append var='css3' value='/templates/snackys/themes/base/css/listing-km-hover.css'}
+			 {/if}
+			  {if !empty($oAuswahlAssistent->kAuswahlAssistentGruppe) || isset($AWA)}
+				{append var='css3' value='/templates/snackys/themes/base/css/selectionwizard.css'}
+			  {/if}
+			   {if $Einstellungen.artikeldetails.artikeldetails_navi_blaettern === 'Y' && isset($NavigationBlaettern) && $nSeitenTyp == 1}
+				{append var='css3' value='/templates/snackys/themes/base/css/prevnext.css'}
+			   {/if}
+				{if $Artikel->bHasKonfig && $nSeitenTyp == 1}
+				{append var='css3' value='/templates/snackys/themes/base/css/konfigurator.css'}
+				{/if}
+				 {if $snackyConfig.filterPos == 1 && $nSeitenTyp == 2}
+				{append var='css3' value='/templates/snackys/themes/base/css/filter-above.css'}
+				 {/if}
 		{loadCSS css1=$cCSS_arr css2=$cPluginCss_arr css3=$css3 cPageType=$nSeitenTyp}
         {* RSS *}
         {if isset($Einstellungen.rss.rss_nutzen) && $Einstellungen.rss.rss_nutzen === 'Y'}
@@ -151,97 +216,105 @@
         {* Languages *}
         {if !empty($smarty.session.Sprachen) && count($smarty.session.Sprachen) > 1}
             {foreach item=oSprache from=$smarty.session.Sprachen}
-                    <link rel="alternate" hreflang="{$oSprache->cISO639}" href="{$oSprache->cURL}">
+                    <link rel="alternate" hreflang="{if $oSprache->cStandard === "Y"}x-default{else}{$oSprache->cISO639}{/if}" href="{if $nSeitenTyp === 18 && $oSprache->cStandard === "Y"}{$cCanonicalURL}{else}{$oSprache->cURLFull}{/if}">
             {/foreach}
         {/if}
+
+
+
     {/block}
 
-    {* Pagination *}
-    {if isset($Suchergebnisse->Seitenzahlen->maxSeite) && $Suchergebnisse->Seitenzahlen->maxSeite > 1 && isset($oNaviSeite_arr) && $oNaviSeite_arr|@count > 0}
-        {if $Suchergebnisse->Seitenzahlen->AktuelleSeite>1}
-            <link rel="prev" href="{$oNaviSeite_arr.zurueck->cURL}">
-        {/if}
-        {if $Suchergebnisse->Seitenzahlen->AktuelleSeite < $Suchergebnisse->Seitenzahlen->maxSeite}
-            <link rel="next" href="{$oNaviSeite_arr.vor->cURL}">
-        {/if}
-    {/if}
-
-    {if !empty($Einstellungen.template.theme.backgroundcolor) && $Einstellungen.template.theme.backgroundcolor|strlen > 1}
+    {if !empty($snackyConfig.backgroundcolor) && $snackyConfig.backgroundcolor|strlen > 1}
         <style>
-            body { background-color: {$Einstellungen.template.theme.backgroundcolor}!important; }
+            body { background-color: {$snackyConfig.backgroundcolor}!important; }
         </style>
     {/if}
-	{* Config for JavaScript Functions, loaded into $.snackys.data.config.VARIABLENAME *}
-	<script id="snacky-config" type="application/json">
-	{strip}
-	{ldelim}
-		{* if $Einstellungen.template.theme.font_path == 'custom'}
-			"font": "{$currentTemplateDir}themes/{$Einstellungen.template.theme.theme_default}/fonts/fonts.css"
-		{else}
-			"font": "{$snackysTemplate}themes/{$Einstellungen.template.theme.theme_default}/fonts/fonts.css"
-		{/if *}
-		"a":"b"
-		{if $Einstellungen.template.theme.google_font != ''}
-			,"googlefont":"{$Einstellungen.template.theme.google_font|strip}"
-		{/if}
-		{if !empty($Einstellungen.global.global_google_analytics_id) && empty($Einstellungen.template.analytics.id1)},"analytics":"{$Einstellungen.global.global_google_analytics_id}"
-		{else if !empty($Einstellungen.template.analytics.id1)},"analytics":"{$Einstellungen.template.analytics.id1}"{/if}
-		{if !empty($Einstellungen.template.analytics.id2)},"analytics2":"{$Einstellungen.template.analytics.id2}"{/if}
-		{if !empty($Einstellungen.template.analytics.id3)},"analytics3":"{$Einstellungen.template.analytics.id3}"{/if}
-		{if !empty($Einstellungen.template.analytics.id4)},"analytics4":"{$Einstellungen.template.analytics.id4}"{/if}
-		{if !empty($Einstellungen.template.analytics.id5)},"analytics5":"{$Einstellungen.template.analytics.id5}"{/if}
-		{if !empty($Einstellungen.template.analytics.gtag)},"tagmanager":"{$Einstellungen.template.analytics.gtag}"{/if}
-		{if $Einstellungen.template.general.use_image_optimizer=='Y'},"imageOptimizer":1{/if}
-		{if $Einstellungen.template.trustedShops.showTrusted == 0 && !empty($Einstellungen.template.trustedShops.trustedID)}
-			,"trustedID":"{$Einstellungen.template.trustedShops.trustedID}"
-			,"mobileTrusted":{$Einstellungen.template.trustedShops.mobileTrusted}
-			,"variantTrusted":{$Einstellungen.template.trustedShops.varTrusted}
-		{/if}
-		,"listElmLg": {$Einstellungen.template.pdListing.listElmLg}
-		,"listElmMd": {$Einstellungen.template.pdListing.listElmMd}
-		,"listElmSm": {$Einstellungen.template.pdListing.listElmSm}
-		,"listElmXs": {$Einstellungen.template.pdListing.listElmXs}
-		,"listElmXl": {$Einstellungen.template.pdListing.listElmXl}
-		,"imageQuality": "{$Einstellungen.template.general.use_image_quality}"
-		{if $Einstellungen.template.general.use_image_webp=='Y'} {*  && $smarty.server.HTTP_ACCEPT|strpos:"image/webp" *}
-		,"webp":1
-		{/if}
-		{if $Einstellungen.template.general.mod_pagespeed=='Y'},"modPagespeed":1{/if}
-	{rdelim}
-	{/strip}
-	</script>
-{if !isset($Einstellungen.template.general.use_minify) || $Einstellungen.template.general.use_minify === 'N'}
-	{if isset($cPluginJsHead_arr)}{foreach from=$cPluginJsHead_arr item="cJS"}<script src="{$snackysTemplate}{$cJS}?v={$nTemplateVersion}" type="text/javascript"{if $Einstellungen.template.general.optimize_all_js == 'Y' || $Einstellungen.template.general.optimize_all_js == 'YD'} defer{/if}></script>{/foreach}{/if}
-{else}
-	{if isset($cPluginJsHead_arr) && $cPluginJsHead_arr|@count > 0}<script src="{$snackysTemplateAsset}asset/plugin_js_head?v={$nTemplateVersion}" type="text/javascript"{if $Einstellungen.template.general.optimize_all_js == 'Y' || $Einstellungen.template.general.optimize_all_js == 'YD'} defer{/if}></script>{/if}
-{/if}
-<!--[if IE]>
-<script src="{$snackysTemplate}js/svg.min.js"></script>
-<![endif]-->
+	
+	{* Trusted Shops without DOM manipulation! *}
+	{if $snackyConfig.showTrusted == 0 && !empty($snackyConfig.trustedID)}
+		<script data-inline="1">
+			var _tsConfig = { 
+				'yOffset': '0', /* offset from page bottom */
+				'customElementId': '', /* required for variants custom and custom_reviews */
+				'trustcardDirection': '', /* for custom variants: topRight, topLeft, bottomRight, bottomLeft */
+				'customBadgeWidth': '', /* for custom variants: 40 - 90 (in pixels) */
+				'customBadgeHeight': '', /* for custom variants: 40 - 90 (in pixels) */
+				'disableResponsive': 'false', /* deactivate responsive behaviour */
+				'disableTrustbadge': 'false', /* deactivate trustbadge */
+				'variant': {if $snackyConfig.varTrusted == 0}'reviews'{else}'default',{/if}
+			};
+			{if $snackyConfig.mobileTrusted == 1}
+				_tsConfig.responsive = {ldelim}'variant': 'floating'{rdelim}; 
+			{/if}
+		</script>
+		<script src="//widgets.trustedshops.com/js/{$snackyConfig.trustedID}.js" async data-inline="1"></script>
+	{/if}
+	
+	<meta name="theme-color" content="{$snackyConfig.css_brand}">
+	<link rel="apple-touch-icon" href="{if empty($snackyConfig.appleTouchIcon)}/templates/snackys/img/icons/apple-touch-icon.png{else}{$snackyConfig.appleTouchIcon}{/if}"/>
+	{if !empty($snackyConfig.pwa_icon192) && $snackyConfig.pwa == 'Y'}<link rel="icon" sizes="192x192" href="{$snackyConfig.pwa_icon192}">{/if}
+	{if !empty($snackyConfig.pwa_icon512) && $snackyConfig.pwa == 'Y'}<link rel="icon" sizes="512x512" href="{$snackyConfig.pwa_icon512}">{/if}
+
+	{if $isShopFive}
+        {if \JTL\Shop::isAdmin() && $opc->isEditMode() === false && $opc->isPreviewMode() === false}
+            <link type="text/css" href="{$ShopURL}/admin/opc/css/startmenu.css" rel="stylesheet">
+        {/if}
+        {foreach $opcPageService->getCurPage()->getCssList($opc->isEditMode()) as $cssFile => $cssTrue}
+            <link rel="stylesheet" href="{$cssFile}">
+        {/foreach}
+	{/if}
+
+	{snackys_content id="html_head_end" title="html_head_end"}
 </head>
 {/block}
 
 {assign var="isFluidContent" value=false}
-{if isset($Einstellungen.template.theme.pagelayout) && $Einstellungen.template.theme.pagelayout === 'fluid' && isset($Link) && $Link->bIsFluid}
+{if isset($snackyConfig.pagelayout) && $snackyConfig.pagelayout === 'fluid' && isset($Link) && $Link->bIsFluid}
     {assign var="isFluidContent" value=true}
 {/if}
 {has_boxes position='left' assign='hasLeftPanel'}
 {block name="body-tag"}
-<body data-headtype="{$Einstellungen.template.header.headerType}" data-page="{$nSeitenTyp}" class="body-offcanvas{if empty($Einstellungen.template.header.youtubeID) && $nSeitenTyp == 18} no-yt{/if}{if $Einstellungen.template.header.headerUsps != 0} usps-visible{/if}{if $Einstellungen.template.theme.theme_default == darkmode} darkmode{/if}{if $Einstellungen.template.theme.designWidth == 1} boxed-layout{/if}{if $Einstellungen.template.theme.boxedMargin == 1} boxed-nomargin{/if}{if $Einstellungen.template.theme.boxedBorder == 1} boxed-noborder{/if}{if $Einstellungen.template.homepage.fwSlider == 1 && $nSeitenTyp == 18} boxed-slider{/if}{if $Einstellungen.template.header.headerType == 4 || $Einstellungen.template.header.headerType == 4.5 || $Einstellungen.template.header.headerType == 5 || $Einstellungen.template.header.headerType == 5.5} full-head{/if}{if $Einstellungen.template.theme.productBorder == 1} product-border{/if}"{if isset($Link) && !empty($Link->cIdentifier)} id="{$Link->cIdentifier}"{/if}{if !empty($Einstellungen.template.theme.boxedImg) && $Einstellungen.template.theme.designWidth == 1} style="background: url({$Einstellungen.template.theme.boxedImg})no-repeat center center/cover; background-attachment: fixed"{/if}>
-    <!--[if IE]>
+{strip}
+<body data-headtype="{$snackyConfig.headerType}" data-page="{$nSeitenTyp}" class="
+body-offcanvas{if $bSeiteNichtGefunden} error404{/if}{if empty($snackyConfig.youtubeID) && $nSeitenTyp == 18} no-yt{/if}{if $snackyConfig.headerUsps != 0} usps-visible{/if}
+{if $Einstellungen.template.theme.theme_default == darkmode} darkmode{/if}{if $snackyConfig.designWidth == 1} boxed-layout{/if}
+{if $snackyConfig.boxedMargin == 1} boxed-nomargin{/if}{if $snackyConfig.boxedBorder == 1} boxed-noborder{/if}
+{if $snackyConfig.fwSlider == 1 && $nSeitenTyp == 18} boxed-slider{/if}
+{if $snackyConfig.headerType == 4 || $snackyConfig.headerType == 4.5 || $snackyConfig.headerType == 5 || $snackyConfig.headerType == 5.5} full-head{/if}
+{if $snackyConfig.productBorder == 1} product-border{/if}
+{if $device->isMobile()} mobile{/if}
+{if $device->isiOS()} ios{/if}
+{if $device->is("Edge")} edge
+{elseif $device->version("IE")} ie ie-{$device->version("IE")|number_format:0}{/if}
+{if !empty($hinweis)}{if isset($bWarenkorbHinzugefuegt) && $bWarenkorbHinzugefuegt} basked-added{/if}{/if}
+{if $isShopFive && isset($bWarenkorbHinzugefuegt) && $bWarenkorbHinzugefuegt} basked-added{/if}
+{if $snackyConfig.sidepanelEverywhere == 'Y'} sidebar-overall{/if}
+"
+
+
+
+{if isset($Link) && !empty($Link->cIdentifier)} id="{$Link->cIdentifier}"{/if}
+{if !empty($snackyConfig.boxedImg) && $snackyConfig.designWidth == 1} style="background: url({$snackyConfig.boxedImg})no-repeat center center/cover;{if !$device->isMobile()} background-attachment: fixed"{/if}{/if}
+>
+{/strip}
+	{if $isShopFive}
+        {include file=$opcDir|cat:'tpl/startmenu.tpl'}
+	{/if}
+	{snackys_content id="html_body_start" title="html_body_start"}
+    {if $device->version("IE") && $device->version("IE")|number_format:0 <= '9'}
     <div id="outdatedbrowser" class="text-center">
         {if isset($ShopLogoURL)}
             {image src=$ShopLogoURL alt=$Einstellungen.global.global_shopname class="img-responsive"}
         {else}
             <span class="h1">{$Einstellungen.global.global_shopname}</span>
-        {/if}
-        <span class="h2">Your browser is out-of-date</span>
-        <p>update your browser to view this website</p>
-        <a href="http://outdatedbrowser.com" class="btn btn-primary" target="_blank">update my browser now</a>
+        {/if}<br><br>
+        <h1 class="h3">{lang key="oldBrowserHeadline" section="custom"}</h1>
+        <p class="text-lg">{lang key="oldBrowserSubline" section="custom"}</p>
+        <a href="http://outdatedbrowser.com/de" class="btn btn-primary" target="_blank">{lang key="oldBrowserButton" section="custom"}</a>
     </div>
-    <![endif]-->
+    {/if}
 {/block}
-{if $Einstellungen.template.header.headerType == 4 || $Einstellungen.template.header.headerType == 5}
+{if $snackyConfig.headerType == 4 || $snackyConfig.headerType == 5}
 	{assign "darkHead" "true"}
 {else}
 	{assign "darkHead" "false"}
@@ -251,8 +324,8 @@
 {else}
 	{assign "darkMode" "false"}
 {/if}
-{if $Einstellungen.template.theme.designWidth == 1}
-<div id="boxed-layout-wrapper">
+{if $snackyConfig.designWidth == 1}
+<div id="bxt-w">
 {/if}
 {block name="main-wrapper-starttag"}
 {/block}
@@ -267,15 +340,19 @@
          </div>
     {/if}
 	
-	{if ($Einstellungen.template.header.headerType == 4 || $Einstellungen.template.header.headerType == 4.5 || $Einstellungen.template.header.headerType == 5 || $Einstellungen.template.header.headerType == 5.5) && $nSeitenTyp === 18}
+	{if ($snackyConfig.headerType == 4 || $snackyConfig.headerType == 4.5 || $snackyConfig.headerType == 5 || $snackyConfig.headerType == 5.5) && $nSeitenTyp === 18}
 	<div id="km-fullscreen-wrapper">
 	{/if}
 	
-	{if $Einstellungen.template.header.headerUsps != 0 && $nSeitenTyp !== 11}
+	{if $snackyConfig.headerPromo != 0 && $nSeitenTyp !== 11 && !isset($smarty.session.km_promo)}
+    {include file="layout/header_promo.tpl"}
+	{/if}
+	
+	{if $snackyConfig.headerUsps != 0 && $nSeitenTyp !== 11 && !$device->isMobile()}
     {include file="layout/header_usps.tpl"}
 	{/if}
 	{block name="header-branding-top-bar"}
-		{if $Einstellungen.template.header.headerTopbar == 0}
+		{if $snackyConfig.headerTopbar == 0 && !$device->isMobile()}
 			<div id="top-bar-wrapper" class="hidden-xs">
 				<div id="top-bar" class="dpflex-j-between dpflex-a-center small mw-container">
 					{include file="layout/header_top_bar.tpl"}
@@ -284,24 +361,26 @@
 		{/if}
 	{/block}
     {block name="header"}
-		{if $Einstellungen.template.header.headerType == 1  && $nSeitenTyp !== 11}
+		{if $snackyConfig.headerType == 1  && $nSeitenTyp !== 11}
             {include file="layout/header/1.tpl"}
-		{else if $Einstellungen.template.header.headerType == 2 || $Einstellungen.template.header.headerType == 3 && $nSeitenTyp !== 11}
+		{else if $snackyConfig.headerType == 2 || $snackyConfig.headerType == 3 && $nSeitenTyp !== 11}
             {include file="layout/header/2.tpl"}
-		{else if $Einstellungen.template.header.headerType == 4 || $Einstellungen.template.header.headerType == 4.5 || $Einstellungen.template.header.headerType == 6 && $nSeitenTyp !== 11}
+		{else if $snackyConfig.headerType == 4 || $snackyConfig.headerType == 4.5 || $snackyConfig.headerType == 6 && $nSeitenTyp !== 11}
             {include file="layout/header/4-5.tpl"}
-		{else if $Einstellungen.template.header.headerType == 5 || $Einstellungen.template.header.headerType == 5.5 && $nSeitenTyp !== 11}
+		{else if $snackyConfig.headerType == 5 || $snackyConfig.headerType == 5.5 && $nSeitenTyp !== 11}
+            {include file="layout/header/1.tpl"}
+		{else if $snackyConfig.headerType == 7  && $nSeitenTyp !== 11}
             {include file="layout/header/1.tpl"}
 		{else}
             {include file="layout/header/default.tpl"}
 		{/if}
     {/block}
 	
-	{if ($Einstellungen.template.header.headerType == 4 || $Einstellungen.template.header.headerType == 4.5 || $Einstellungen.template.header.headerType == 5 || $Einstellungen.template.header.headerType == 5.5) && $nSeitenTyp === 18}
+	{if ($snackyConfig.headerType == 4 || $snackyConfig.headerType == 4.5 || $snackyConfig.headerType == 5 || $snackyConfig.headerType == 5.5) && $nSeitenTyp === 18}
 		{include file="snippets/extension-fullscreen.tpl"}
 		</div>
 	{/if}
-	{if $nSeitenTyp === 18 && ((isset($oSlider) && count($oSlider->oSlide_arr) > 0) || isset($oImageMap) || !empty($Einstellungen.template.header.youtubeID))}
+	{if $nSeitenTyp === 18 && ((isset($oSlider) && count($oSlider->oSlide_arr) > 0) || isset($oImageMap) || !empty($snackyConfig.youtubeID))}
 		{include file="snippets/extension.tpl"}
 	{/if}
 {/if}
@@ -329,13 +408,14 @@
     {/block}
     
     {block name="content-row-starttag"}
-    <div class="row">
+    <div class="row{if $nSeitenTyp === 2} dpflex-j-between{/if}">
     {/block}
     
     {block name="content-starttag"}
-        <div id="content" class="col-xs-12{if (isset($boxes.left) && !$bExclusive && !empty($boxes.left) && $Einstellungen.template.pdListing.filterPos == 0) && $nSeitenTyp === 2} col-md-9 col-md-push-3 col-lg-9 col-lg-push-3 col-xl-10 col-xl-push-2{/if}">
+        <div id="content" class="col-xs-12{if (isset($boxes.left) && !$bExclusive && !empty($boxes.left) && !$device->isMobile()) && (($snackyConfig.filterPos == 0 && $nSeitenTyp === 2) || $snackyConfig.sidepanelEverywhere == 'Y')} col-md-9 col-md-push-3 col-lg-9 col-lg-push-3 col-xl-10 col-xl-push-2{/if}">
+		{include file="snippets/zonen.tpl" id="before_content" title="before_content"}
     {/block}
     
-    {block name="header-breadcrumb"}
+    {block name="header-bc"}
     {/block}
 {/block}{* /content-all-starttags *}

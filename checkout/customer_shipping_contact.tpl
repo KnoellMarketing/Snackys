@@ -19,7 +19,7 @@
                         id="{$prefix}-{$name}-email"
                         class="form-control"
                         placeholder="{lang key="email" section="account data"}"
-                        {if $Einstellungen.kunden.lieferadresse_abfragen_email === 'Y'}required{/if}
+                        {if $Einstellungen.kunden.lieferadresse_abfragen_email === 'Y'}required{/if} spellcheck="false"  autocorrect="off"
                 >
                 {if isset($fehlendeAngaben.email)}
                     <div class="form-error-msg text-danger">
@@ -50,7 +50,7 @@
                             id="{$prefix}-{$name}-mobile"
                             class="form-control"
                             placeholder="{lang key="mobile" section="account data"}"
-                            {if $Einstellungen.kunden.lieferadresse_abfragen_mobil === 'Y'} required{/if}
+                            {if $Einstellungen.kunden.lieferadresse_abfragen_mobil === 'Y'} required{/if} {if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternMobil)}pattern="{$snackyConfig.patternMobil}"{/if} spellcheck="false"  autocorrect="off"
                     />
                     {if isset($fehlendeAngaben.mobil)}
                         <div class="form-error-msg text-danger">
@@ -79,7 +79,7 @@
                             id="{$prefix}-{$name}-tel"
                             class="form-control"
                             placeholder="{lang key="tel" section="account data"}"
-                            {if $Einstellungen.kunden.lieferadresse_abfragen_tel === 'Y'} required{/if}
+                            {if $Einstellungen.kunden.lieferadresse_abfragen_tel === 'Y'} required{/if} {if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternTelefon)}pattern="{$snackyConfig.patternTelefon}"{/if} spellcheck="false"  autocorrect="off"
                     />
                     {if isset($fehlendeAngaben.tel)}
                         <div class="form-error-msg text-danger">
@@ -104,7 +104,7 @@
                             id="{$prefix}-{$name}-fax"
                             class="form-control"
                             placeholder="{lang key="fax" section="account data"}"
-                            {if $Einstellungen.kunden.lieferadresse_abfragen_fax === 'Y'} required{/if}
+                            {if $Einstellungen.kunden.lieferadresse_abfragen_fax === 'Y'} required{/if} {if $snackyConfig.formvalidActive === '0' && isset($snackyConfig.patternFax)}pattern="{$snackyConfig.patternFax}"{/if} spellcheck="false"  autocorrect="off"
                     />
                     {if isset($fehlendeAngaben.fax)}
                         <div class="form-error-msg text-danger">

@@ -1,15 +1,15 @@
-{* template to display products in product-lists *}
+{* template to display products in p-ls *}
 
-{if $Einstellungen.template.productlist.variation_select_productlist === 'N' || $Einstellungen.template.productlist.hover_productlist !== 'Y'}
+{if $snackyConfig.variation_select_productlist === 'N' || $snackyConfig.hover_productlist !== 'Y'}
     {assign var="hasOnlyListableVariations" value=0}
 {else}
-    {hasOnlyListableVariations artikel=$Artikel maxVariationCount=$Einstellungen.template.productlist.variation_select_productlist maxWerteCount=$Einstellungen.template.productlist.variation_max_werte_productlist assign="hasOnlyListableVariations"}
+    {hasOnlyListableVariations artikel=$Artikel maxVariationCount=$snackyConfig.variation_select_productlist maxWerteCount=$snackyConfig.variation_max_werte_productlist assign="hasOnlyListableVariations"}
 {/if}
-<div id="result-wrapper_buy_form_{$Artikel->kArtikel}" class="product-cell{if $Einstellungen.template.productlist.hover_productlist === 'Y'} hover-enabled{/if}{if isset($listStyle) && $listStyle === 'list'} active{/if}">
+<div id="result-wrapper_buy_form_{$Artikel->kArtikel}" class="p-c{if $snackyConfig.hover_productlist === 'Y'} hv-e{/if}{if isset($listStyle) && $listStyle === 'list'} active{/if}">
     <div class="product-body row {if $tplscope !== 'list'} text-center{/if}">
         <div class="col-xs-3 text-center">
-            {block name="image-wrapper"}
-                <a class="image-wrapper" href="{$Artikel->cURL}">
+            {block name="img-w"}
+                <a class="img-w" href="{$Artikel->cURL}">
                     {if isset($Artikel->Bilder[0]->cAltAttribut)}
                         {assign var="alt" value=$Artikel->Bilder[0]->cAltAttribut|strip_tags|truncate:60|escape:"html"}
                     {else}
@@ -19,20 +19,20 @@
                     {include file="snippets/image.tpl" src=$Artikel->Bilder[0]->cPfadNormal alt=$alt tplscope=$tplscope}
 
 					{if isset($Artikel->oSuchspecialBild->cSuchspecial)}
-						{if $Artikel->oSuchspecialBild->cSuchspecial == 'Sonderangebote' && $Einstellungen.template.general.saleprozent == 'Y'}
+						{if $Artikel->oSuchspecialBild->cSuchspecial == 'Sonderangebote' && $snackyConfig.saleprozent == 'Y'}
 							{assign var="rabatt" value=($Artikel->Preise->alterVKNetto-$Artikel->Preise->fVKNetto)/$Artikel->Preise->alterVKNetto*100}
-							<span class="overlay-text {$Artikel->oSuchspecialBild->cSuchspecial|lower|strip:''}">- {$rabatt|round:0}%</span>
+							<span class="ov-t {$Artikel->oSuchspecialBild->cSuchspecial|lower|strip:''}">- {$rabatt|round:0}%</span>
 						{elseif isset($oSuchspecial[$Artikel->oSuchspecialBild->cSuchspecial|replace:'ü':''])}
-							<span class="overlay-text {$Artikel->oSuchspecialBild->cSuchspecial|lower|strip:''}">{$oSuchspecial[$Artikel->oSuchspecialBild->cSuchspecial|replace:'ü':'']}</span>
+							<span class="ov-t {$Artikel->oSuchspecialBild->cSuchspecial|lower|strip:''}">{$oSuchspecial[$Artikel->oSuchspecialBild->cSuchspecial|replace:'ü':'']}</span>
 						{*Workaround for damn ü !*}
 						{elseif $Artikel->oSuchspecialBild->cSuchspecial|substr:0:4|lower == 'in k'}
-							<span class="overlay-text bald-verfuegbar">{$oSuchspecial['bald-verfuegbar']}</span>
+							<span class="ov-t bald-verfuegbar">{$oSuchspecial['bald-verfuegbar']}</span>
 						{else}
-							<span class="overlay-text {$Artikel->oSuchspecialBild->cSuchspecial|lower|strip:''}">#{$Artikel->oSuchspecialBild->cSuchspecial}</span>
+							<span class="ov-t {$Artikel->oSuchspecialBild->cSuchspecial|lower|strip:''}">#{$Artikel->oSuchspecialBild->cSuchspecial}</span>
 						{/if}
 					{/if}
 
-                    {if $Einstellungen.template.productlist.quickview_productlist === 'Y' && !$Artikel->bHasKonfig}
+                    {if $snackyConfig.quickview_productlist === 'Y' && !$Artikel->bHasKonfig}
                         <span class="quickview badge hidden-xs" data-src="{$Artikel->cURL}" data-target="buy_form_{$Artikel->kArtikel}" title="{$Artikel->cName}">{lang key="downloadPreview" section="productDownloads"}</span>
                     {/if}
                 </a>
@@ -201,7 +201,7 @@
                         </div>
                         <input type="hidden" name="a" value="{if !empty({$Artikel->kVariKindArtikel})}{$Artikel->kVariKindArtikel}{else}{$Artikel->kArtikel}{/if}" />
                     </form>
-                    <div class="expandable">
+                    <div class="exp">
                         <form id="buy_form_{$Artikel->kArtikel}" action="navi.php" method="post" class="form form-basket evo-validate" data-toggle="basket-add">
                             {block name="form-expandable"}
                             {if $hasOnlyListableVariations > 0 && !$Artikel->bHasKonfig && $Artikel->kEigenschaftKombi === 0}
@@ -295,7 +295,7 @@
             </div>
         </div>{* /col-md-3 *}
     </div>{* /product-body *}
-</div>{* /product-cell *}
+</div>{* /p-c *}
 
 {* popup-content *}
 {if $Artikel->verfuegbarkeitsBenachrichtigung === 3}

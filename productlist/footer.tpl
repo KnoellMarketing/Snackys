@@ -126,6 +126,6 @@
 
 {if isset($oNavigationsinfo->oKategorie->categoryAttributes.seo_longtext)}
 	<div class="item_desc custom_content">
-		{if $Einstellungen.template.general.optimize_kategorie == "Y"}{$oNavigationsinfo->oKategorie->categoryAttributes.seo_longtext->cWert|optimize}{else}{$oNavigationsinfo->oKategorie->categoryAttributes.seo_longtext->cWert}{/if}
+		{if $snackyConfig.optimize_kategorie == "Y"}{$oNavigationsinfo->oKategorie->categoryAttributes.seo_longtext->cWert|optimize}{else}{$oNavigationsinfo->oKategorie->categoryAttributes.seo_longtext->cWert}{/if}
 	</div>
 {/if}

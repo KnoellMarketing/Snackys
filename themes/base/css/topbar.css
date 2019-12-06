@@ -1,5 +1,6 @@
 #top-bar-wrapper{
     border-bottom: 1px solid @lightborder;
+	height: 2.53rem;
 }
 #top-bar{
     padding-top: 10px;

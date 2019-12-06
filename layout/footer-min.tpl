@@ -19,6 +19,7 @@
 {block name="main-wrapper-closingtag"}
 </div> {* /mainwrapper *}
 {* Checkout Sidebar Cart *}
+{if !$device->isMobile()}
 <div class="col-md-4 col-lg-3" id="checkout-cart">
     <div class="items-list">
     {include file="checkout/inc_order_items.tpl" isCheckout="1"}</div>
@@ -55,6 +56,7 @@
         </div>
     </div>
 </div>
+{/if}
 {block name="footer-language"}
 {/block}
 

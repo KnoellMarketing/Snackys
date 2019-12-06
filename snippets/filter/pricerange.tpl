@@ -1,5 +1,4 @@
-{snackysBasics}
-<ul class="{if isset($class)}{$class}{else}nav nav-list{/if}">
+<ul class="{if isset($class)}{$class}{else}nav nav-list blanklist{/if}">
     {if isset($NaviFilter->PreisspannenFilter) && $NaviFilter->PreisspannenFilter->cWert}
         {if $NaviFilter->PreisspannenFilter->fVon >= 0 && $NaviFilter->PreisspannenFilter->fBis > 0}
             <li>

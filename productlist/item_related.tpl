@@ -1,8 +1,8 @@
 {* template to display products in slider *}
 
-<div class="product-cell {if isset($class)} {$class}{/if} thumbnail preload row">
-    <a class="image-wrapper col-xs-2 col-md-3 col-lg-2" href="{$Artikel->cURL}">
-        <span class="image-content">
+<div class="p-c {if isset($class)} {$class}{/if} thumbnail pr row">
+    <a class="img-w col-xs-2 col-md-3 col-lg-2" href="{$Artikel->cURL}">
+        <span class="img-ct">
         {if isset($Artikel->Bilder[0]->cAltAttribut)}
             {assign var="alt" value=$Artikel->Bilder[0]->cAltAttribut|strip_tags|truncate:60|escape:"html"}
         {else}
@@ -10,7 +10,7 @@
         {/if}
 
         {*include file="snippets/image.tpl" src=$Artikel->Bilder[0]->cPfadKlein alt=$alt*}
-        <img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$Artikel->Bilder[0]->cPfadNormal}" alt="{$alt}" />
+        <img src="{$snackyConfig.preloadImage}" data-src="{$Artikel->Bilder[0]->cPfadNormal}" alt="{$alt}" />
         </span>
     </a>
     <div class="caption col-xs-10 col-md-9 col-lg-10">
@@ -29,4 +29,4 @@
             {include file="productdetails/price.tpl" Artikel=$Artikel price_image=null tplscope=$tplscope}
         {/if}
     </div>
-</div>{* /product-cell *}
+</div>{* /p-c *}

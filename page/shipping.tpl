@@ -10,6 +10,7 @@
 {/if}
 
 {if isset($Einstellungen.global.global_versandermittlung_anzeigen) && $Einstellungen.global.global_versandermittlung_anzeigen === 'Y' && isset($smarty.session.Warenkorb->PositionenArr) && $smarty.session.Warenkorb->PositionenArr|@count > 0}
+	{include file="snippets/zonen.tpl" id="before_shipping" title="before_shipping"}
     <form method="post" action="{if !empty($linkgroups->Link_Versandseite.$lang)}{$ShopURL}/{$linkgroups->Link_Versandseite.$lang}{else}navi.php{/if}{if $bExclusive}?exclusive_content=1{/if}" class="form form-inline evo-validate" id="shipping-calculator-form">
         {$jtl_token}
         <input type="hidden" name="s" value="{$Link->kLink}" />

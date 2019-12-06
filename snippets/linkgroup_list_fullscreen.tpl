@@ -14,11 +14,11 @@
             {assign var=checkLinkParents value=true}
         {/if}
         {foreach $links as $li}
-            <li class="{if !empty($li->oSub_arr) && isset($dropdownSupport)}megamenu-fw{/if}{if $li->bIsActive || ($checkLinkParents === true && isset($activeParents) && in_array($li->kLink, $activeParents))} active{/if}{if $tplscope === 'megamenu' && !empty($li->oSub_arr)} bs-hover-enabled{/if}">
+            <li class="{if !empty($li->oSub_arr) && isset($dropdownSupport)}mgm-fw{/if}{if $li->bIsActive || ($checkLinkParents === true && isset($activeParents) && in_array($li->kLink, $activeParents))} active{/if}{if $tplscope === 'megamenu' && !empty($li->oSub_arr)} bs-hover-enabled{/if}">
                 {if isset($li->cLocalizedName[$smarty.session.cISOSprache])}
                     <a href="{$li->cURLFull}"{if $li->cNoFollow === 'Y'} rel="nofollow"{/if}{if !empty($li->cTitle)} title="{$li->cTitle}"{/if} class="dropdown-toggle-mmenu" data-toggle="dropdown" data-hover="dropdown">
                         {$li->cLocalizedName|trans}
-                        {if !empty($li->oSub_arr) && isset($dropdownSupport)} <span class="css-arrow css-arrow-right"></span><span class="fa-caret-down visible-xs"></span>{/if}
+                        {if !empty($li->oSub_arr) && isset($dropdownSupport)} <span class="ar ar-r"></span><span class="fa-caret-down visible-xs"></span>{/if}
                     </a>
                     {if !empty($li->oSub_arr)}
                         <ul class="mm-fullscreen">

@@ -1,12 +1,7 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
-<div>
-    {*<canvas id="priceHistoryChart" width="400" height="150"></canvas>*}
+<div id="priceFlowContainer">
+    <canvas id="priceHistoryChart" width="400" height="150"></canvas>
     
-    {assign var="maxPreis" value=0}
+    {* assign var="maxPreis" value=0}
     {foreach from=$preisverlaufData|array_reverse item=pv}
         {if $pv->fPreis>$maxPreis}{assign var="maxPreis" value=$pv->fPreis}
         {/if}
@@ -18,7 +13,7 @@
         Datum: {$pv->date}<br>
         Preis: {$pv->fPreis}<br>
         Währung: {$pv->currency}<br><br>
-    {/foreach}
+    {/foreach *}
 </div>
 
 <script>
@@ -45,7 +40,7 @@
     chartData.datasets[0].data.push('{$pv->fPreis}');
     chartDataCurrency = '{$pv->currency}';
     {/foreach}
-    {if $Einstellungen.artikeldetails.artikeldetails_tabs_nutzen === 'N'}
+    {* if $Einstellungen.artikeldetails.artikeldetails_tabs_nutzen === 'N' *}
         $(function() {ldelim}
             window.priceHistoryChart = new Chart(window.ctx).Bar(window.chartData, {ldelim}
                 responsive:      true,
@@ -53,5 +48,5 @@
                 tooltipTemplate: "<%if (label){ldelim}%><%=label%> - <%{rdelim}%><%= parseFloat(value).toFixed(2).replace('.', ',') %> " + window.chartDataCurrency
             {rdelim});
         {rdelim});
-    {/if}
+    {* /if *}
 </script>

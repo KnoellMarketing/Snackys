@@ -1,0 +1,21 @@
+#header-promo{
+	background: black;
+	color: white;
+	padding: .5rem 3rem;
+	font-weight: 600;
+	position: relative;
+	font-size: .95rem;
+	min-height: 2.315rem;
+	background: @brand;
+	background: @headerPromoStyle;
+}
+#header-promo-close{
+	position: absolute;
+	right: 1rem;
+	top: 0;
+	font-size: 1.3rem;
+	bottom: 0;
+	width: 1.5rem;
+	cursor: pointer;
+	font-family:  "Courier New", Courier, 'Arial';
+}

@@ -1,7 +1,4 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
+{include file="snippets/zonen.tpl" id="before_newsletter" title="before_newsletter"}
 
 <div id="toptags">{lang key="newsletterhistory" section="global"}</div>
 

@@ -1,16 +1,16 @@
-/*.preload .image-content.loaded{
+/*.pr .img-ct.loaded{
     background: #C3E0D8 !important
 }
-.preload .image-content.loaded img{
+.pr .img-ct.loaded img{
     mix-blend-mode: multiply;
 }*/
 
 /* Category – Product Box */
 /* Aspect Ratio 1:1 */
-#product-list.gallery .image-content:before,
-.panel-slider .image-content:before,
-.product-gallery .image-content:before,
-.preload .image-content:before{
+#p-l.gallery .img-ct:before,
+.panel-slider .img-ct:before,
+.product-gallery .img-ct:before,
+.pr .img-ct:before{
     content: '';
    padding-top: 100%;
     display: block;    
@@ -18,24 +18,24 @@
 
 /* Article Images */
 /* Aspect Ratio 1:1 */
-#product-list.gallery .image-content:before,
-.panel-slider .image-content:before,
-#gallery .image-content:before{
+#p-l.gallery .img-ct:before,
+.panel-slider .img-ct:before,
+#gallery .img-ct:before{
     padding-top: 100%;
 }
 
 /* News Preview */
 /* Aspect Ratio 4:3 */
-#newslist .image-content:before,
-#newsContent .image-content:before{
+#newslist .img-ct:before,
+#news-c .img-ct:before{
     padding-top: 75%;
     display: block;   
 }
 
 /* Language Flags & Start Boxes */
 /* Aspect Ratio 3:2 */
-.language-dropdown .image-content:before,
-#start-boxes .start-box .image-content:before,
-.payship-option .image-content:before{
+.language-dropdown .img-ct:before,
+#start-boxes .start-box .img-ct:before,
+.payship-option .img-ct:before{
     padding-top: 66.66%;
 }

@@ -1,4 +1,5 @@
 {if !empty($cKuponfehler_arr.ungueltig)}
+
     {if $cKuponfehler_arr.ungueltig == 1}
         <div class="alert alert-danger">{lang key="couponErr1" section="global"}</div>{/if}
     {if $cKuponfehler_arr.ungueltig == 2}
@@ -26,9 +27,9 @@
         <input type="hidden" name="pruefekupon" value="1" />
         <fieldset>
             <div class="input-group">
-                <input type="text" name="Kuponcode"  maxlength="32" value="{if !empty($Kuponcode)}{$Kuponcode}{/if}" id="kupon" class="form-control" placeholder="{lang key="couponCode" section="account data"}" aria-label="{lang key="couponCode" section="account data"}" />
+                <input type="text" name="Kuponcode"  maxlength="32" value="{if !empty($Kuponcode)}{$Kuponcode}{/if}" id="kupon" class="form-control" placeholder="{lang key="couponCode" section="account data"}" aria-label="{lang key="couponCode" section="account data"}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
                 <div class="input-group-btn">
-                    <input type="submit" value="{lang key="useCoupon" section="checkout"}" class="submit btn btn-default" />
+                    <input type="submit" value="&rsaquo;" class="submit btn btn-default" />
                 </div>
             </div>
         </fieldset>

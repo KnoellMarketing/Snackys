@@ -11,9 +11,9 @@
 					{assign var=cVariBox value=$cVariBox|cat:$variation->kEigenschaft|cat:':'|cat:$variation->kEigenschaftWert}
 				{/foreach}
 				<div class="row">
-					<div class="hidden-xs hidden-sm hidden-md col-xs-1 preload">
-						<span class="image-content">							 
-							<img class="img-responsive" src="{$snackysTemplate}img/preload/1x1.png" data-src="{$child->Bilder[0]->cPfadMini}" alt="{$child->Bilder[0]->cAltAttribut}">
+					<div class="hidden-xs hidden-sm hidden-md col-xs-1 pr">
+						<span class="img-ct">							 
+							<img class="img-responsive" src="{$snackyConfig.preloadImage}" data-src="{$child->Bilder[0]->cPfadMini}" alt="{$child->Bilder[0]->cAltAttribut}">
 						</span>
 					</div>
 					<div class="col-xs-6">

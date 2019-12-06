@@ -1,30 +1,41 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
 {if $smarty.session.Kundengruppe->darfPreiseSehen}
     <div class="price_wrapper">
     {block name="price-wrapper"}
     {* --- Preis auf Anfrage? --- *}
     {if $Artikel->Preise->fVKNetto == 0 && $Artikel->bHasKonfig}
-        <span class="price_label price_as_configured">{lang key="priceAsConfigured" section="productDetails"}</span>
+        <span class="price_label price_as_configured small">{lang key="priceAsConfigured" section="productDetails"}</span>
     {elseif $Artikel->Preise->fVKNetto == 0 && $Einstellungen.global.global_preis0 === 'N'}
-        <span class="price_label price_on_application">{lang key="priceOnApplication" section="global"}</span>
+        <span class="price_label price_on_application small">{lang key="priceOnApplication" section="global"}</span>
     {else}
+		<div class="price-row">
         {if ($Artikel->nVariationsAufpreisVorhanden == 1 || $Artikel->bHasKonfig) && $Artikel->kVaterArtikel == 0}
-            <span class="price_label pricestarting">{lang key="priceStarting" section="global"} </span>
+            <span class="price_label pricestarting small">{lang key="priceStarting" section="global"} </span>
         {elseif $Artikel->Preise->rabatt>0}
-            <span class="price_label nowonly">{lang key="nowOnly" section="global"} </span>
+            <span class="price_label nowonly small">{lang key="nowOnly" section="global"} </span>
         {else}
-            {*<span class="price_label only">{lang key="only" section="global"} </span>*}
+            {*<span class="price_label only small">{lang key="only" section="global"} </span>*}
         {/if}
         {if !empty($price_image)}
             <span class="price_img">{$price_image}</span>
         {else}
             <strong class="price text-nowrap{if isset($Artikel->Preise->Sonderpreis_aktiv) && $Artikel->Preise->Sonderpreis_aktiv} special-price{/if}">
+				{if $snackyConfig.oldPricePlace === '1'}
+					{if $Artikel->Preise->Sonderpreis_aktiv && isset($Einstellungen.artikeluebersicht) && $Einstellungen.artikeluebersicht.artikeluebersicht_sonderpreisanzeige == 2}
+						<span class="instead-of old-price">
+							<del class="value">{$Artikel->Preise->alterVKLocalized[$NettoPreise]}</del>
+						</span>
+					{elseif !$Artikel->Preise->Sonderpreis_aktiv && $Artikel->Preise->rabatt > 0 && isset($Einstellungen.artikeluebersicht)}
+						{if $Einstellungen.artikeluebersicht.artikeluebersicht_rabattanzeige == 3 || $Einstellungen.artikeluebersicht.artikeluebersicht_rabattanzeige == 4}
+							<span class="old-price">
+								<del class="value text-nowrap">{$Artikel->Preise->alterVKLocalized[$NettoPreise]}</del>
+							</span>
+						{/if}
+					{/if}
+				{/if}
                 <span>{$Artikel->Preise->cVKLocalized[$NettoPreise]}</span>{if $tplscope !== 'detail'} <span class="footnote-reference">*</span>{/if}
             </strong>
         {/if}
+		</div>
         {if $tplscope === 'detail'}
             {block name="price-snippets"}
                 <meta itemprop="price" content="{if $NettoPreise==1}{$Artikel->Preise->fVKNetto}{else}{$Artikel->Preise->fVKBrutto}{/if}">
@@ -59,12 +70,12 @@
                     </div>
                 {/if}
                 
-                {if $Artikel->Preise->Sonderpreis_aktiv && $Einstellungen.artikeldetails.artikeldetails_sonderpreisanzeige == 2}
+                {if $Artikel->Preise->Sonderpreis_aktiv && $Einstellungen.artikeldetails.artikeldetails_sonderpreisanzeige == 2 && $snackyConfig.oldPricePlace !== '1'}
                     <div class="instead_of old_price">{lang key="oldPrice" section="global"}:
                         <del class="value">{$Artikel->Preise->alterVKLocalized[$NettoPreise]}</del>
                     </div>
                 {elseif !$Artikel->Preise->Sonderpreis_aktiv && $Artikel->Preise->rabatt > 0}
-                    {if $Einstellungen.artikeldetails.artikeldetails_rabattanzeige == 3 || $Einstellungen.artikeldetails.artikeldetails_rabattanzeige == 4}
+                    {if $Einstellungen.artikeldetails.artikeldetails_rabattanzeige == 3 || $Einstellungen.artikeldetails.artikeldetails_rabattanzeige == 4 && $snackyConfig.oldPricePlace !== '1'}
                         <div class="old_price">{lang key="oldPrice" section="global"}:
                             <del class="value text-nowrap">{$Artikel->Preise->alterVKLocalized[$NettoPreise]}</del>
                         </div>
@@ -130,14 +141,16 @@
                 {/if}
                 
                 {if $Artikel->Preise->Sonderpreis_aktiv && isset($Einstellungen.artikeluebersicht) && $Einstellungen.artikeluebersicht.artikeluebersicht_sonderpreisanzeige == 2}
+					{if $snackyConfig.oldPricePlace !== '1'}
                     <div class="instead-of old-price">
                         <small class="text-muted">
                             {lang key="oldPrice" section="global"}: 
                             <del class="value">{$Artikel->Preise->alterVKLocalized[$NettoPreise]}</del>
                         </small>
                     </div>
+					{/if}
                 {elseif !$Artikel->Preise->Sonderpreis_aktiv && $Artikel->Preise->rabatt > 0 && isset($Einstellungen.artikeluebersicht)}
-                    {if $Einstellungen.artikeluebersicht.artikeluebersicht_rabattanzeige == 3 || $Einstellungen.artikeluebersicht.artikeluebersicht_rabattanzeige == 4}
+                    {if $Einstellungen.artikeluebersicht.artikeluebersicht_rabattanzeige == 3 || $Einstellungen.artikeluebersicht.artikeluebersicht_rabattanzeige == 4 && $snackyConfig.oldPricePlace !== '1'}
                         <div class="old-price">
                             <small class="text-muted">
                                 {lang key="oldPrice" section="global"}: 

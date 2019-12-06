@@ -1,19 +1,15 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-{snackysBasics}
 {block name="header"}
     {include file='layout/header.tpl'}
 {/block}
 
 {block name="content"}
+{include file="snippets/extension.tpl"}
     {if isset($smarty.get.reg)}
-        <div class="alert alert-success">{lang key="accountCreated" section="global"}</div>
+        <div class="alert alert-success mb-spacer mb-small">{lang key="accountCreated" section="global"}</div>
     {elseif !isset($hinweis)}
-        <div class="alert alert-info">{lang key="myAccountDesc" section="login"}</div>
+        <div class="alert alert-info mb-spacer mb-small">{lang key="myAccountDesc" section="login"}</div>
     {elseif !empty($hinweis)}
-        <div class="alert alert-info">{$hinweis}</div>
+        <div class="alert alert-info mb-spacer mb-small">{$hinweis}</div>
     {/if}
 	
     {if (isset($nWarenkorb2PersMerge) && $nWarenkorb2PersMerge === 1)}
@@ -27,36 +23,51 @@
 			</section>
 		</div>
 	</div>
-        <script type="text/javascript">
-		$('.x').on('click',function(e){ldelim}e.preventDefault();$(this).closest('.modal-dialog').remove();{rdelim});
-        </script>
     {/if}
     
     {$showLoginPanel = true}
     {if $step === 'login' || (isset($editRechnungsadresse) && $editRechnungsadresse)}
         {$showLoginPanel = false}
     {/if}
-    
-    <div id="account" class="row">
+    {include file="snippets/zonen.tpl" id="before_account" title="before_account"}
+    <div id="account" class="row dpflex-j-between">
         {if $showLoginPanel}
             <div class="col-xs-12 col-md-3 col-lg-2 ">
-                <div class="list-group" id="account-list">
-                    <h4>{lang key="myAccount" section="global"}</h4>
-                    <a href="{get_static_route id='jtl.php'}" class="list-group-item{if $step === 'mein Konto'} active{/if}">
-                        {lang key="accountOverview" section="account data"}
-                    </a>
-                    <a href="{get_static_route id='jtl.php' params=['bestellungen' => 1]}" class="list-group-item{if $step === 'bestellung' || $step === 'bestellungen'} active{/if}">
+                <ul class="styled-list img-brd blanklist border-box" id="account-list">
+					<li class="list-entry">
+						<h4>{lang key="myAccount" section="global"}</h4>
+					</li>
+                    <li class="list-entry">
+						<a href="{get_static_route id='jtl.php'}" class="defaultlink block{if $step === 'mein Konto'} active{/if}">
+						{if $step === 'mein Konto'}<strong>{/if}
+                        	{lang key="accountOverview" section="account data"}
+						{if $step === 'mein Konto'}</strong>{/if}
+						</a>
+					</li>
+                    <li class="list-entry">
+						<a href="{get_static_route id='jtl.php' params=['bestellungen' => 1]}" class="defaultlink block{if $step === 'bestellung' || $step === 'bestellungen'} active{/if}">
+						{if $step === 'bestellung' || $step === 'bestellungen'}<strong>{/if}
                         {lang key="orders" section="account data"}
-                    </a>
-                    <a href="{get_static_route id='jtl.php' params=['editRechnungsadresse' => 1]}" class="list-group-item{if $step === 'rechnungsdaten'} active{/if}">
+						{if $step === 'bestellung' || $step === 'bestellungen'}</strong>{/if}
+						</a>
+					</li>
+                    <li class="list-entry">
+						<a href="{get_static_route id='jtl.php' params=['editRechnungsadresse' => 1]}" class="defaultlink block{if $step === 'rechnungsdaten'} active{/if}">
+						{if $step === 'rechnungsdaten'}<strong>{/if}
                         {lang key="addresses" section="account data"}
-                    </a>
+						{if $step === 'rechnungsdaten'}</strong>{/if}
+						</a>
+					</li>
                     {if $Einstellungen.global.global_wunschliste_anzeigen === 'Y'}
-                        <a href="{get_static_route id='jtl.php' params=['wllist' => 1]}" class="list-group-item{if $step|substr:0:11 === 'wunschliste'} active{/if}">
+                        <li class="list-entry">
+							<a href="{get_static_route id='jtl.php' params=['wllist' => 1]}" class="defaultlink block{if $step|substr:0:11 === 'wunschliste'} active{/if}">
+							{if $step|substr:0:11 === 'wunschliste'}<strong>{/if}
                             {lang key="wishlists" section="account data"}
-                        </a>
+							{if $step|substr:0:11 === 'wunschliste'}</strong>{/if}
+							</a>
+						</li>
                     {/if}					
-                </div>
+                </ul>
             </div>
         {/if}
     

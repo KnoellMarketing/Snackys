@@ -1,5 +1,4 @@
-{snackysBasics}
-<ul class="{if isset($class)}{$class}{else}nav nav-list{/if}">
+<ul class="{if isset($class)}{$class} blanklist{else}nav nav-list blanklist{/if}">
     {foreach name=bewertungen from=$Suchergebnisse->Bewertung item=oBewertung}
         {if isset($NaviFilter->BewertungFilter) && $NaviFilter->BewertungFilter->nSterne == $oBewertung->nStern}
             <li>

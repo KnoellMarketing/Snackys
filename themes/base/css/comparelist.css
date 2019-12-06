@@ -4,11 +4,11 @@
 .comparelist table td:nth-child(even){
     background: #f6f6f6;
 }
-.comparelist .remove .image-content{
+.comparelist .remove .img-ct{
     width: 1.5rem;
     margin: auto;
 }
-.comparelist .remove .image-content img{
+.comparelist .remove .img-ct img{
     opacity: .6;
 }
 table th, table td{

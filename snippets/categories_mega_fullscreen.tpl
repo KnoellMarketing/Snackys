@@ -1,26 +1,26 @@
 {strip}
 {assign var=max_subsub_items value=5}
-{if $Einstellungen.template.megamenu.megaHome == 0}
-<li{if $nSeitenTyp == 18} class="active"{/if}>
+{if $snackyConfig.megaHome == 0}
+<li class="is-lth{if $nSeitenTyp == 18} active{/if}">
 	<a href="{$ShopURL}" title="{$Einstellungen.global.global_shopname}" class="home-icon">
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 26.25"><path d="M3.75 26.25h9.37v-7.5h3.76v7.5h9.37V15H30L15 0 0 15h3.75z"/></svg>
 	</a>
 </li>
-{else if $Einstellungen.template.megamenu.megaHome == 1}
-<li{if $nSeitenTyp == 18} class="active"{/if}>
+{else if $snackyConfig.megaHome == 1}
+<li class="is-lth{if $nSeitenTyp == 18} active{/if}">
 	<a href="{$ShopURL}" title="{$Einstellungen.global.global_shopname}">
 		{lang key="linkHome" section="custom"}
 	</a>
 </li>
 {/if}
-{if isset($Einstellungen.template.megamenu.show_pages) && $Einstellungen.template.megamenu.show_pages !== 'N'}
+{if isset($snackyConfig.show_pages) && $snackyConfig.show_pages !== 'N'}
     {include file='snippets/linkgroup_list_fullscreen.tpl' linkgroupIdentifier='megamenu_start' dropdownSupport=true tplscope='megamenu_start'}
 {/if}
 
 {block name="megamenu-categories"}
-{if isset($Einstellungen.template.megamenu.show_categories) && $Einstellungen.template.megamenu.show_categories !== 'N' && isset($Einstellungen.global.global_sichtbarkeit) && ($Einstellungen.global.global_sichtbarkeit != 3 || isset($smarty.session.Kunde->kKunde) && $smarty.session.Kunde->kKunde != 0)}
+{if isset($snackyConfig.show_categories) && $snackyConfig.show_categories !== 'N' && isset($Einstellungen.global.global_sichtbarkeit) && ($Einstellungen.global.global_sichtbarkeit != 3 || isset($smarty.session.Kunde->kKunde) && $smarty.session.Kunde->kKunde != 0)}
     {assign var='show_subcategories' value=false}
-    {if isset($Einstellungen.template.megamenu.show_subcategories) && $Einstellungen.template.megamenu.show_subcategories !== 'N'}
+    {if isset($snackyConfig.show_subcategories) && $snackyConfig.show_subcategories !== 'N'}
         {assign var='show_subcategories' value=true}
     {/if}
 
@@ -45,10 +45,10 @@
             {if isset($category->bUnterKategorien) && $category->bUnterKategorien}
                 {assign var='isDropdown' value=true}
             {/if}
-            <li class="{if $isDropdown}megamenu-fw{/if}{if $category->kKategorie == $activeId || (isset($activeParents[0]) && $activeParents[0]->kKategorie == $category->kKategorie)} active{/if}">
-                <a href="{$category->cURL}"{if $isDropdown} data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-hover-delay="100" data-close-others="true"{/if}>
+            <li class="{if $isDropdown}mgm-fw{/if}{if $category->kKategorie == $activeId || (isset($activeParents[0]) && $activeParents[0]->kKategorie == $category->kKategorie)} active{/if}">
+                <a href="{$category->cURL}">
                     {$category->cKurzbezeichnung}
-                    {if $isDropdown}<span class="css-arrow css-arrow-right"></span><span class="fa-caret-down visible-xs"></span>{/if}
+                    {if $isDropdown}<span class="ar ar-r"></span><span class="fa-caret-down visible-xs"></span>{/if}
                 </a>
                 {if $isDropdown}
                     <ul class="mm-fullscreen">
@@ -57,12 +57,12 @@
 									{$category->cName}
 								</a>
                                     {assign var=hasInfoColumn value=false}
-                                    {if isset($Einstellungen.template.megamenu.show_maincategory_info) && $Einstellungen.template.megamenu.show_maincategory_info !== 'N' && ($category->cBildURL !== 'gfx/keinBild.gif' || !empty($category->cBeschreibung))}
+                                    {if isset($snackyConfig.show_maincategory_info) && $snackyConfig.show_maincategory_info !== 'N' && ($category->cBildURL !== 'gfx/keinBild.gif' || !empty($category->cBeschreibung))}
                                         {assign var=hasInfoColumn value=true}
-                                        <div class="visible-lg mega-info-lg top15 preload hiden-xs">
-                                                {if $category->cBildURL !== 'gfx/keinBild.gif'}
-                                                    <a class="image-content" href="{$category->cURL}">
-                                                        <img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$category->cBildURL}" class="img-responsive"
+                                        <div class="visible-lg mega-info-lg top15 pr hiden-xs">
+                                                {if $category->cBildURL !== 'gfx/keinBild.gif' && !$device->isMobile()}
+                                                    <a class="img-ct" href="{$category->cURL}">
+                                                        <img src="{$snackyConfig.preloadImage}" data-src="{$category->cBildURL}" class="img-responsive"
                                                              alt="{$category->cKurzbezeichnung|escape:'html'}">
                                                     </a>
                                                     <div class="clearall top15"></div>
@@ -79,15 +79,15 @@
                                                 {/if}
                                                 {foreach name='sub_categories' from=$sub_categories item='sub'}
                                                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 category-wrapper top15{if $sub->kKategorie == $activeId || (isset($activeParents[1]) && $activeParents[1]->kKategorie == $sub->kKategorie)} active{/if}">
-                                                            {if isset($Einstellungen.template.megamenu.show_category_images) && $Einstellungen.template.megamenu.show_category_images !== 'N'}
-                                                                    <a class="img text-center preload block hidden-xs" href="{$sub->cURL}">
-                                                                        <span class="image-content">
-                                                                        <img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$sub->cBildURL}" class="image"
+                                                            {if isset($snackyConfig.show_category_images) && $snackyConfig.show_category_images !== 'N' && !$device->isMobile()}
+                                                                    <a class="img text-center pr block hidden-xs" href="{$sub->cURL}">
+                                                                        <span class="img-ct">
+                                                                        <img src="{$snackyConfig.preloadImage}" data-src="{$sub->cBildURL}" class="image"
                                                                              alt="{$category->cKurzbezeichnung|escape:'html'}">
                                                                         </span>
                                                                     </a>
                                                             {/if}
-                                                                    <a class="h5 title caption{if isset($Einstellungen.template.megamenu.show_category_images) && $Einstellungen.template.megamenu.show_category_images !== 'N'} text-center{/if}" href="{$sub->cURL}">
+                                                                    <a class="h5 title caption{if isset($snackyConfig.show_category_images) && $snackyConfig.show_category_images !== 'N'} text-center{/if}" href="{$sub->cURL}">
                                                                             {$sub->cKurzbezeichnung}
 																		{if $show_subcategories && $sub->bUnterKategorien}
 																		<span class="fa-caret-down visible-xs"></span>
@@ -121,7 +121,7 @@
                                         </div>{* /row *}
                                     {* /mega-categories *}
                                 {* /row *}
-                            {* /megamenu-content *}
+                            {* /mgm-c *}
                         </li>
                     </ul>
                 {/if}
@@ -132,27 +132,27 @@
 {/block}{* /megamenu-categories*}
 
 {block name="megamenu-pages"}
-{if isset($Einstellungen.template.megamenu.show_pages) && $Einstellungen.template.megamenu.show_pages !== 'N'}
+{if isset($snackyConfig.show_pages) && $snackyConfig.show_pages !== 'N'}
     {include file='snippets/linkgroup_list_fullscreen.tpl' linkgroupIdentifier='megamenu' dropdownSupport=true tplscope='megamenu'}
 {/if}
 {/block}{* megamenu-pages *}
 
 {block name="megamenu-manufacturers"}
-{if isset($Einstellungen.template.megamenu.show_manufacturers) && $Einstellungen.template.megamenu.show_manufacturers !== 'N' && isset($Einstellungen.global.global_sichtbarkeit) && ($Einstellungen.global.global_sichtbarkeit != 3 || isset($smarty.session.Kunde->kKunde) && $smarty.session.Kunde->kKunde != 0)}
+{if isset($snackyConfig.show_manufacturers) && $snackyConfig.show_manufacturers !== 'N' && isset($Einstellungen.global.global_sichtbarkeit) && ($Einstellungen.global.global_sichtbarkeit != 3 || isset($smarty.session.Kunde->kKunde) && $smarty.session.Kunde->kKunde != 0)}
     {get_manufacturers assign='manufacturers'}
     {if !empty($manufacturers)}
-        <li class="megamenu-fw{if (isset($NaviFilter->Hersteller) && !empty($NaviFilter->Hersteller->kHersteller)) || $nSeitenTyp == PAGE_HERSTELLER} active{/if}">
+        <li class="mgm-fw mm-manu{if (isset($NaviFilter->Hersteller) && !empty($NaviFilter->Hersteller->kHersteller)) || $nSeitenTyp == PAGE_HERSTELLER} active{/if}">
             {assign var="linkKeyHersteller" value=LinkHelper::getInstance()->getSpecialPageLinkKey(LINKTYP_HERSTELLER)}
             {if !empty($linkKeyHersteller)}{assign var="linkSEOHersteller" value=LinkHelper::getInstance()->getPageLinkLanguage($linkKeyHersteller)}{/if}
             {if isset($linkSEOHersteller)}
-                <a href="{$linkSEOHersteller->cSeo}" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-hover-delay="100" data-close-others="true">
+                <a href="{$linkSEOHersteller->cSeo}">
                     {$linkSEOHersteller->cName}
                     <span class="caret"></span>
                 </a>
             {else}
-                <a class="no-link" data-toggle="dropdown" data-hover="dropdown" data-delay="300" data-hover-delay="100" data-close-others="true">
+                <a class="no-link">
                     {lang key="manufacturers" section="global"}
-                    <span class="css-arrow css-arrow-right"></span><span class="fa-caret-down visible-xs"></span>
+                    <span class="ar ar-r"></span><span class="fa-caret-down visible-xs"></span>
                 </a>
             {/if}
             <ul class="mm-fullscreen">
@@ -167,11 +167,11 @@
 						<div class="row row-eq-height row-eq-img-height hasInfoColumn subcat-list">
 							{foreach name=hersteller from=$manufacturers item=hst}
 								<div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 category-wrapper manufacturer top15{if isset($NaviFilter->Hersteller) && $NaviFilter->Hersteller->kHersteller == $hst->kHersteller} active{/if}">
-										{if isset($Einstellungen.template.megamenu.show_category_images) && $Einstellungen.template.megamenu.show_category_images !== 'N'}
+										{if isset($snackyConfig.show_category_images) && $snackyConfig.show_category_images !== 'N' && !$device->isMobile()}
 									
-												<a class="img text-center preload block hidden-xs" href="{$hst->cSeo}"><span class="image-content"><img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$hst->cBildpfadNormal}" class=image alt="{$hst->cName|escape:'html'}"></span></a>
+												<a class="img text-center pr block hidden-xs" href="{$hst->cSeo}"><span class="img-ct"><img src="{$snackyConfig.preloadImage}" data-src="{$hst->cBildpfadNormal}" class=image alt="{$hst->cName|escape:'html'}"></span></a>
 										{/if}
-											<a class="title h5 caption{if isset($Einstellungen.template.megamenu.show_category_images) && $Einstellungen.template.megamenu.show_category_images !== 'N'} text-center{/if}" href="{$hst->cSeo}"><span>{$hst->cName}</span></a>
+											<a class="title h5 caption{if isset($snackyConfig.show_category_images) && $snackyConfig.show_category_images !== 'N'} text-center{/if}" href="{$hst->cSeo}"><span>{$hst->cName}</span></a>
 								</div>
 							{/foreach}
 						</div>{* /row *}
@@ -185,7 +185,7 @@
 
 {block name="megamenu-global-characteristics"}
 {*
-{if isset($Einstellungen.template.megamenu.show_global_characteristics) && $Einstellungen.template.megamenu.show_global_characteristics !== 'N'}
+{if isset($snackyConfig.show_global_characteristics) && $snackyConfig.show_global_characteristics !== 'N'}
     {get_global_characteristics assign='characteristics'}
     {if !empty($characteristics)}
 

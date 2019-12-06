@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 <table class="table table-striped order-items layout-fixed hyphens" id="customerorder">
     <thead>
     <tr>

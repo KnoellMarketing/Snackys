@@ -1,17 +1,12 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-{snackysBasics}
 {block name="header"}
     {include file='layout/header.tpl'}
 {/block}
 
 {block name="content"}
     {if !empty($Spezialcontent->titel)}
-        <div class="title text-center">
-            <h2>{$Spezialcontent->titel}</h2>
-        </div>
+		<h1>{$Spezialcontent->titel}</h1>
+	{else}
+		<h1>{lang key="contact" section="breadcrumb"}</h1>
     {/if}
     
     {include file="snippets/extension.tpl"}

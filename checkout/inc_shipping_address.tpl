@@ -1,7 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
 {if isset($fehlendeAngaben.shipping_address)}
     {assign var="fehlendeAngabenShipping" value=$fehlendeAngaben.shipping_address}
 {else}
@@ -18,7 +14,7 @@
     </label>
 </div>
 {block name="checkout-enter-shipping-address"}
-<div id="select_shipping_address" class="collapse collapse-non-validate" {if $showShippingAddress} style="display:block;"{/if}>
+<div id="select_shipping_address" class="collapse collapse-non-validate" {if $showShippingAddress || $smarty.get.editLieferadresse} style="display:block;"{/if}>
     {block name="checkout-enter-shipping-address-body"}
     {if !empty($smarty.session.Kunde->kKunde) && isset($Lieferadressen) && $Lieferadressen|count > 0}
         <fieldset>

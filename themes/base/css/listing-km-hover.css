@@ -1,0 +1,39 @@
+.exp.flo-bt input.quantity,
+.exp.hide-qty input.quantity{
+	display: none;
+}
+.exp.flo-bt{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding-top: 100%;
+	pointer-events: none;
+}
+.exp.flo-bt .quantity-wrapper{
+	position: absolute;
+	right: 1rem;
+	bottom: 1rem;
+	pointer-events: all;
+}
+.exp.flo-bt button[type="submit"]{ 
+	padding: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.exp.flo-bt .img-ct.icon{
+	opacity: 1;
+}
+.exp input.quantity{
+	min-width: 4rem;
+	width: 4rem;
+	padding-right: .2rem;
+}
+.exp:not(.flo-bt) .input-group-btn,
+.exp:not(.flo-bt) .input-group-btn .btn{
+	width: 100%;
+	justify-content: center;
+}

@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 <h1>{lang key="umfrage" section="umfrage"}</h1>
 
 {if !empty($hinweis)}

@@ -1,5 +1,4 @@
-{snackysBasics}
-<ul class="{if isset($class)}{$class}{else}nav nav-list{/if}">
+<ul class="{if isset($class)}{$class}{else}nav nav-list blanklist{/if}">
     {foreach  name=kategorieauswahl from=$Suchergebnisse->Kategorieauswahl item=Kategorie}
         {if $Kategorie->nAnzahl >= 1}
             <li>

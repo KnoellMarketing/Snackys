@@ -1,0 +1,117 @@
+
+/* Wartungsmodus Hinweis Admin */
+
+
+html,
+body,
+#main-wrapper{
+	height: 100%;
+	padding: 0;
+}
+body.body-offcanvas{
+	background: @lightbg;
+}
+#main-wrapper{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+#logo-wrapper #logo{
+    text-align: left;
+    justify-content: flex-start;
+	display: flex;
+	height: 50px;
+}
+#logo-wrapper{
+	margin-bottom: 1.5rem;
+	border-bottom: 1px solid @lightborder;
+	padding-bottom: 1.5rem;
+}
+#logo img{
+	margin: 0;
+    width: auto;
+    height: auto;
+    max-height: 100%;
+}
+#logo-wrapper #logo a{
+	display: flex;
+	height: 100%;
+	max-width: none;
+}
+#maintenance-notice{
+	padding: 2rem;
+	padding-top: 4.5rem;
+	border-radius: .5rem;
+	box-shadow: 0px 0px 10px 0 rgba(0,0,0,.2);
+	width: 50rem;
+	max-width: 90vw;
+	position: relative;
+	background: white;
+}
+#maintenance-notice .topbar{
+	background: @info;
+	color: white;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	border-top-left-radius: .5rem;
+	border-top-right-radius: .5rem;
+	padding: 0 1.5rem;
+	height: 2.5rem;
+	font-weight: 600; 
+}
+body #bxt-w{
+	height: 100%;
+	background: none;
+	margin: 0 auto;
+	border: 0;
+}
+#maintenance-notice h1{
+	margin-bottom: 0;
+}
+#maintenance-notice p{
+	margin-bottom: 0;
+	font-size: 1.1rem;
+	margin-top: .5rem;
+}
+#maintenance-notice .icon{
+	width: 100%
+}
+#maintenance-notice svg{
+	fill: #bbb;
+}
+#maintenance-notice .icon-container{
+	background: @lightbg;
+	border-radius: 50%;
+	padding: 3rem;
+}
+#maintenance-notice .text-col{
+	padding-left: 3rem;
+}
+#logo-wrapper #logo .visible-xs{
+	display: none;
+}
+/* Hide Elements */
+#footer,
+#header-promo,
+#h-us,
+#pay-f{
+	display: none;
+}
+@media screen and (max-width: 767px){
+	#maintenance-notice{
+		text-align: center;
+	}
+	#maintenance-notice #logo a{
+		justify-content: center;
+		text-align: center;
+	}
+	#maintenance-notice .icon-container{
+		background: none;
+		padding: 0
+	}
+	#maintenance-notice .text-col{
+		padding: 0;
+	}
+}

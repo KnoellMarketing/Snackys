@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 <form method="post" action="{get_static_route id='jtl.php'}" name="Wunschliste">
     {$jtl_token}
     {block name="wishlist"}
@@ -16,16 +11,16 @@
 
     <div id="edit-wishlist-name">
         <div class="">
-            <span class="input-group-addon preload">
-                <strong>{lang key="name" section="global"}</strong>
-            </span>
-            <div class="input-group preload">
+            <label class="input-group-addon pr" for="wishlist-name">
+                {lang key="name" section="global"}
+            </label>
+            <div class="input-group pr">
             <input id="wishlist-name" type="text" class="form-control" placeholder="name" name="WunschlisteName" value="{$CWunschliste->cName}" autofocus />
                 <div class="input-group-btn">
             <button type="submit" class="btn">
-			<span class="image-content icon">
+			<span class="img-ct icon">
 				<svg>
-				  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-save"></use>
+				  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-save"></use>
 				</svg>
 			</span></button></div></div>
         </div>
@@ -47,7 +42,9 @@
                 <tr>
                     <td class="img-col hidden-xs hidden-sm">
                         <a href="{$CWunschlistePos->Artikel->cURL}">
-                            <img alt="{$CWunschlistePos->Artikel->cName}" src="{$CWunschlistePos->Artikel->cVorschaubild}" class="img-responsive">
+							<span class="img-ct">
+                            	<img alt="{$CWunschlistePos->Artikel->cName}" src="{$snackyConfig.preloadImage}" data-src="{$CWunschlistePos->Artikel->cVorschaubild}" class="img-responsive">
+							</span>
                         </a>
                     </td>
                     <td>
@@ -95,7 +92,7 @@
                             <input name="Anzahl_{$CWunschlistePos->kWunschlistePos}" class="wunschliste_anzahl form-control" type="text" size="1" value="{$CWunschlistePos->fAnzahl|replace_delim}"><br />{$CWunschlistePos->Artikel->cEinheit}
                         </td>
                         <td class="text-right">
-                            <div class="btn-group-vertical preload">
+                            <div class="btn-group-vertical pr">
                                 {* @todo: button href? *}
                                 {if $CWunschlistePos->Artikel->bHasKonfig}
                                     <a href="{$CWunschlistePos->Artikel->cURL}" class="btn btn-default" title="{lang key="product" section="global"} {lang key="configure" section="global"}">
@@ -103,17 +100,17 @@
                                     </a>
                                 {else}
                                     <a href="{get_static_route id='jtl.php'}?wl={$CWunschliste->kWunschliste}&wlph={$CWunschlistePos->kWunschlistePos}{if isset($wlsearch)}&wlsearch=1&cSuche={$wlsearch}{/if}" class="btn btn-primary" title="{lang key="wishlistaddToCart" section="login"}">
-                                        <span class="image-content icon">
+                                        <span class="img-ct icon">
 											<svg>
-											  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-cart-simple-w"></use>
+											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-cart-simple-w"></use>
 											</svg>
 										</span>
                                     </a>
                                 {/if}
                                 <a href="{get_static_route id='jtl.php'}?wl={$CWunschliste->kWunschliste}&wlplo={$CWunschlistePos->kWunschlistePos}{if isset($wlsearch)}&wlsearch=1&cSuche={$wlsearch}{/if}" class="btn btn-default" title="{lang key="wishlistremoveItem" section="login"}">
-                                    <span class="image-content icon">
+                                    <span class="img-ct icon">
 										<svg>
-										  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-bin"></use>
+										  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-bin"></use>
 										</svg>
 									</span>
                                 </a>
@@ -125,27 +122,27 @@
             </tbody>
         </table>
         <div class="row">
-            <div class="col-xs-12 send-wishlist preload">
+            <div class="col-xs-12 send-wishlist mb-spacer mb-small">
                 {block name="wishlist-body"}
                     {if $CWunschliste->nOeffentlich == 1}
                         <div class="input-group input-group">
                             <input type="text" name="wishlist-url" readonly="readonly" value="{$ShopURL}/index.php?wlid={$CWunschliste->cURLID}" class="form-control">
                                 {if $Einstellungen.global.global_wunschliste_freunde_aktiv === 'Y'}
-                                <span class="input-group-btn preload">
+                                <span class="input-group-btn pr">
                                     <button type="submit" name="wlvm" value="1" class="btn btn-default" title="{lang key="wishlistViaEmail" section="login"}">
-                                      <span class="image-content icon">
+                                      <span class="img-ct icon">
 										<svg">
-										  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-mail"></use>
+										  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-mail"></use>
 										</svg>
 									  </span>
                                    </button>
                                 </span>
                                 {/if}
-                                <span class="input-group-btn preload">
+                                <span class="input-group-btn pr">
                                 <button type="submit" name="wlAction" value="setPrivate" class="btn btn-default" title="{lang key="wishlistSetPrivate" section="login"}">
-                                    <span class="image-content icon">
+                                    <span class="img-ct icon">
 										<svg>
-										  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-hide"></use>
+										  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-hide"></use>
 										</svg>
 									</span> <span class="hidden-xs">{lang key="wishlistSetPrivate" section="login"}</span>
                                 </button>
@@ -153,9 +150,9 @@
                         </div>
                     {else}
                         <button type="submit" name="wlAction" value="setPublic" class="btn btn-default">
-                             <span class="image-content icon">
+                             <span class="img-ct icon">
 								<svg>
-								  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-show"></use>
+								  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-show"></use>
 								</svg>
 							 </span> <span class="hidden-xs">{lang key="wishlistSetPublic" section="login"}</span>
                         </button>
@@ -174,14 +171,6 @@
         </div>
     {/if}
 
-    <script>
-        $(function() {
-            $('input[name="wishlist-url"]').on('focus', function() {
-                $(this).select();
-            });
-
-        });
-    </script>
 
     {/block}
 </form>

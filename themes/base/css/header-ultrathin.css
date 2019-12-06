@@ -1,0 +1,118 @@
+body:not([data-page="18"]) #content-wrapper{
+	margin-top: 1.5rem;
+}
+@media screen and (min-width: 768px){
+	.hdr-nav .img-ct.icon.icon-xl{
+		width: 1.5rem;
+	}
+	.hdr-nav .badge {
+		top: -.425rem;
+		right: -.425rem;
+		line-height: 1.15rem;
+		font-size: .75rem;
+		min-width: 1.15rem;
+		padding: 0 .05rem;
+	}
+	body #shop-nav #search.header-shop-menu{
+		padding: 0 1.25rem;
+	}
+	body #shop-nav #logo{
+		height: 34px;
+		max-width: 5rem;
+		width: auto;
+	}
+	#logo a{
+		height: 100%;
+		max-width: 100%;
+		display: flex;
+	}
+	#logo img{
+		max-height: 34px;
+		max-width: 100%;
+		margin: auto;
+	}
+	#shop-nav > .mw-container{
+		flex-wrap: nowrap;
+	}
+	#shop-nav > .mw-container > div:last-child{
+		width: auto;
+	}
+	#shop-nav #search.header-shop-menu{
+		flex-grow: 1;
+		width: auto;
+		order: 0;
+	}
+	#cat-w .blanklist{
+		justify-content: flex-start;
+	}
+	#cat-w .mm-mainlink{
+		padding: 1rem .5rem;
+		font-size: 1rem;
+		font-weight: 400;
+		height: 3.475rem;
+	}
+	#cat-w li.is-lth{
+		display: none;
+	}
+	#shop-nav{
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0;
+		z-index: 10;
+		background: white;
+	}
+	.mgm .caret{
+		margin-left: .25rem;
+		border-width: 3px;
+	}
+	.mgm .home-icon svg{
+		width: 1rem;
+		height: 1rem;
+	}
+	#search input{
+		padding: .5rem 3.125rem .5rem 1rem;
+	}
+	#bc-w.small{
+		padding-top: .6rem;
+		padding-bottom: .6rem;
+		font-size: .85rem;
+		margin-bottom: 1.5rem;
+	}
+	[data-page="1"] #bc-w.small{
+		margin-bottom: 2rem;
+	}
+	[data-page="2"] #bc-w.small{
+		margin-bottom: 1rem;
+	}
+	#bc-w.small .ar{
+		padding: 2px;
+	}
+	#logo span.h2{
+		font-size: 1rem;
+		display: flex;
+		align-items: center;
+		height: 100%;
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 1199px){
+	#shop-nav #logo{
+		height: auto;
+		padding: .5rem 0;
+	}
+	#cat-w .mm-mainlink{
+		padding: .75rem .5rem;
+		height: 2.83rem;
+		font-size: .9rem;
+	}
+}
+@media screen and (min-width: 768px) and (max-width: 1600px){
+	#shop-nav .hdr-nav .img-ct.icon.icon-xl{
+		width: 1.5rem;
+	}
+}
+@media screen and (max-width: 1199px) and (min-width: 768px){
+	#shop-nav #search>.inside {
+		left: 1rem;
+		right: 1rem;
+	}
+}

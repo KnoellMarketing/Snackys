@@ -1,9 +1,4 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-{snackysBasics}
-{checkShowMatrix kundengruppen=$Einstellungen.template.artikel.matrix_kundengruppe}
+{checkShowMatrix kundengruppen=$snackyConfig.matrix_kundengruppe}
 {block name="header"}
     {if !isset($bAjaxRequest) || !$bAjaxRequest}
         {include file='layout/header.tpl'}

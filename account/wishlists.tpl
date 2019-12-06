@@ -1,8 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
-
 <h1 class="menu-title">{block name="account-wishlist-title"}{lang key="yourWishlist" section="login"}{/block}</h1>
 {if $Einstellungen.global.global_wunschliste_anzeigen === 'Y'}
     {block name="account-wishlist"}
@@ -25,38 +20,38 @@
                                 <form method="post" action="{get_static_route id='jtl.php'}?wllist=1">
                                     <input type="hidden" name="wl" value="{$Wunschliste->kWunschliste}"/>
                                     {$jtl_token}
-                                    <span class="btn-group btn-group-sm preload">
+                                    <span class="btn-group btn-group-sm pr">
                                         {if $Wunschliste->nStandard != 1}
-                                            <button class="btn btn-default" name="wls" value="{$Wunschliste->kWunschliste}" title="{lang key="wishlistStandard" section="login"}">
-                                                <span class="image-content icon">
+                                            <button class="btn btn-default dpflex-a-center" name="wls" value="{$Wunschliste->kWunschliste}" title="{lang key="wishlistStandard" section="login"}">
+                                                <span class="img-ct icon icon-wt">
 													<svg>
-													  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-check"></use>
+													  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-check"></use>
 													</svg>
 												</span> {lang key="wishlistStandard" section="login"}
                                             </button>
                                         {/if}
                                         {if $Wunschliste->nOeffentlich == 1}
-                                            <button type="submit" class="btn btn-default" name="wlAction" value="setPrivate" title="{lang key="wishlistPrivat" section="login"}">
-                                                <span class="image-content icon">
+                                            <button type="submit" class="btn btn-default dpflex-a-center" name="wlAction" value="setPrivate" title="{lang key="wishlistPrivat" section="login"}">
+                                                <span class="img-ct icon icon-wt">
 													<svg>
-													  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-hide"></use>
+													  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-hide"></use>
 													</svg>
 												</span> <span class="hidden-xs"> {lang key="wishlistSetPrivate" section="login"}</span>
                                             </button>
                                         {/if}
                                         {if $Wunschliste->nOeffentlich == 0}
-                                            <button type="submit" class="btn btn-default" name="wlAction" value="setPublic" title="{lang key="wishlistNotPrivat" section="login"}">
-                                                <span class="image-content icon">
+                                            <button type="submit" class="btn btn-default dpflex-a-center" name="wlAction" value="setPublic" title="{lang key="wishlistNotPrivat" section="login"}">
+                                                <span class="img-ct icon icon-wt">
 													<svg>
-													  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-show"></use>
+													  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-show"></use>
 													</svg>
 												</span> <span class="hidden-xs"> {lang key="wishlistNotPrivat" section="login"}</span>
                                             </button>
                                         {/if}
-                                        <button type="submit" class="btn btn-danger" name="wllo" value="{$Wunschliste->kWunschliste}" title="{lang key='wishlisteDelete' section='login'}">
-                                            <span class="image-content icon">
+                                        <button type="submit" class="btn btn-danger dpflex-a-center" name="wllo" value="{$Wunschliste->kWunschliste}" title="{lang key='wishlisteDelete' section='login'}">
+                                            <span class="img-ct icon icon-wt">
 												<svg>
-												  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-bin-w"></use>
+												  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-bin-w"></use>
 												</svg>
                                             </span>
                                         </button>

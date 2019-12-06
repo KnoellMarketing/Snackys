@@ -1,8 +1,12 @@
+{if ($oBox->ePosition == 'left' && !$device->isMobile()) || $oBox->ePosition != 'left'}
 {if isset($oBox->anzeigen) && $oBox->anzeigen === 'Y'}
     <section class="panel panel-default box box-trustedshops-reviews" id="sidebox{$oBox->kBox}">
         {if $oBox->ePosition != 'bottom'}
             <div class="panel-heading">
-                <h5 class="panel-title">{lang key="trustedshopsRating" section="global"}</h5>
+                <span class="panel-title h5 m0 dpflex-a-center dpflex-j-between">
+					{lang key="trustedshopsRating" section="global"}
+					{include file="snippets/careticon.tpl"}
+				</span>
             </div>
         {/if}
         <div class="sidebox_content text-center">
@@ -23,7 +27,10 @@
     <section class="panel panel-default box box-trustedshops-reviews" id="sidebox{$oBox->kBox}">
         {if $oBox->ePosition != 'bottom'}
             <div class="panel-heading">
-                <h5 class="panel-title">{lang key="trustedshopsRating" section="global"}</h5>
+                <span class="panel-title h5 m0 dpflex-a-center dpflex-j-between">
+					{lang key="trustedshopsRating" section="global"}
+					{include file="snippets/careticon.tpl"}
+				</span>
             </div>
         {/if}
         <div class="sidebox_content text-center">
@@ -38,4 +45,5 @@
             <a href="{$Boxen.TrustedShopsKundenbewertung->cBildPfadURL}" title="Bewertungen von {$Einstellungen.global.global_shopname}">Bewertungen
                 von {$Einstellungen.global.global_shopname}</a></span>
     </section>
+{/if}
 {/if}

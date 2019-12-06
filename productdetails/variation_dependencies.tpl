@@ -2,7 +2,7 @@
  * @copyright (c) JTL-Software-GmbH
  * @license http://jtl-url.de/jtlshoplicense
  *}
-{* not in use in snackys template ?
+
 function checkAbhaengigkeiten(givenElement,givenSelectedIndex)
 {ldelim}
    //alle formular felder enablen
@@ -97,4 +97,3 @@ function checkAbhaengigkeiten(givenElement,givenSelectedIndex)
    {/foreach}
    return false;
 {rdelim}
-*}

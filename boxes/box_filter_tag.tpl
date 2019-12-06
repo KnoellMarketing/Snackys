@@ -2,9 +2,13 @@
     {if !empty($Suchergebnisse->Tags)}
         <section class="panel panel-default box box-filter-tag" id="sidebox{$oBox->kBox}">
             <div class="panel-heading">
-                <h5 class="panel-title">{lang key="tagFilter" section="global"}</h5></div>
+                <span class="panel-title h5 m0 dpflex-a-center dpflex-j-between">
+					{lang key="tagFilter" section="global"}
+					{include file="snippets/careticon.tpl"}
+				</span>
+			</div>
             <div class="box-body">
-                <ul class="nav nav-list">
+                <ul class="nav nav-list blanklist">
                  {foreach name=tagfilter from=$Suchergebnisse->Tags item=oTag}
                      {if isset($NaviFilter->TagFilter[0]->kTag) && $NaviFilter->TagFilter[0]->kTag == $oTag->kTag}
                          <li>

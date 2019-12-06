@@ -1,6 +1,10 @@
+{if ($oBox->ePosition == 'left' && !$device->isMobile()) || $oBox->ePosition != 'left'}
 <section class="panel panel-default box autoscroll box-config hidden" id="sidebox{$oBox->kBox}">
     <div class="panel-heading">
-        <h5 class="panel-title">{lang key="yourConfiguration"}</h5>
+        <span class="panel-title h5 m0 dpflex-a-center dpflex-j-between">
+			{lang key="yourConfiguration"}
+			{include file="snippets/careticon.tpl"}
+		</span>
     </div>
     <div class="panel-body">
         <div id="box_config_list">
@@ -19,3 +23,4 @@
         </div>
     </div>
 </section>
+{/if}

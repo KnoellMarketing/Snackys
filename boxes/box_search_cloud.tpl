@@ -1,7 +1,11 @@
+{if ($oBox->ePosition == 'left' && !$device->isMobile()) || $oBox->ePosition != 'left'}
 {if (isset($Boxen) && isset($Boxen.Suchwolke) && $Boxen.Suchwolke->Suchbegriffe|@count > 0) || (isset($oBox->Suchbegriffe) && $oBox->Suchbegriffe|@count > 0)}
     <section class="panel panel-default box box-searchcloud" id="sidebox{$oBox->kBox}">
         <div class="panel-heading">
-            <h5 class="panel-title">{lang key="searchcloud" section="global"}</h5>
+            <span class="panel-title h5 m0 dpflex-a-center dpflex-j-between">
+				{lang key="searchcloud" section="global"}
+				{include file="snippets/careticon.tpl"}
+			</span>
         </div>
         <div class="panel-body">
             <div class="tagbox">
@@ -16,4 +20,5 @@
             </div>
         </div>
     </section>
+{/if}
 {/if}

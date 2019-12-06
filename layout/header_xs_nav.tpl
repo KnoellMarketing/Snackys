@@ -6,13 +6,13 @@
             <div class="container-fluid">
                 {block name="megamenu-xs-nav"}
                 <div class="navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right force-float action-nav preload">
+                    <ul class="nav navbar-nav navbar-right force-float action-nav pr">
                         {if isset($smarty.session.Kunde) && isset($smarty.session.Kunde->kKunde) && $smarty.session.Kunde->kKunde > 0}
                             <li class="order-last">
                                 <a href="{get_static_route id='jtl.php'}?logout=1" title="{lang key='logOut'}">
-                                    <span class="image-content icon">
+                                    <span class="img-ct icon">
 										<svg>
-										  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-logout"></use>
+										  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-logout"></use>
 										</svg>
 									</span>
                                 </a>
@@ -20,20 +20,20 @@
                         {/if}
                         <li>
                             <a href="{get_static_route id='jtl.php'}" title="{lang key='myAccount'}">
-                                <span class="image-content icon">
+                                <span class="img-ct icon">
 									<svg>
-									  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-user"></use>
+									  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-user"></use>
 									</svg>
 								</span>
                             </a>
                         </li>
                         {*  WISH LIST *}
                         {if isset($smarty.session.Wunschliste->kWunschliste) && $smarty.session.Wunschliste->CWunschlistePos_arr|count > 0}
-                        <li class="wish-list-menu preload visible-xxs">
+                        <li class="wish-list-menu pr visible-xxs">
                             <a href="{get_static_route id='wunschliste.php'}" title="{lang key="goToWishlist" sektion="global"}" class="link_to_wishlist">
-                                    <span class="image-content icon">
+                                    <span class="img-ct icon">
 										<svg>
-										  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-heart"></use>
+										  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-heart"></use>
 										</svg>
                                     </span>
                                {* <sup class="badge"><em>{$smarty.session.Wunschliste->CWunschlistePos_arr|count}</em></sup> *}
@@ -43,9 +43,9 @@
                         {*  WISH LIST *}
                         <li>
                             <a href="{get_static_route id='warenkorb.php'}" title="{lang key='basket'}">
-                                <span class="image-content icon">
+                                <span class="img-ct icon">
 									<svg>
-									  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-cart"></use>
+									  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-cart"></use>
 									</svg>
 								</span>
                                {* {if $WarenkorbArtikelPositionenanzahl >= 1}
@@ -76,7 +76,7 @@
             <div class="container-fluid">
                 <div class="sidebar-offcanvas">
                     {$firstelement = false}
-					{if isset($Einstellungen.template.megamenu.show_pages) && $Einstellungen.template.megamenu.show_pages !== 'N'}
+					{if isset($snackyConfig.show_pages) && $snackyConfig.show_pages !== 'N'}
 						{if $firstelement}
 							<hr>
 						{/if}
@@ -96,7 +96,7 @@
                             </ul>
                         </div>
                         {block name="megamenu-manufacturers"}
-                            {if isset($Einstellungen.template.megamenu.show_manufacturers) && $Einstellungen.template.megamenu.show_manufacturers !== 'N'}
+                            {if isset($snackyConfig.show_manufacturers) && $snackyConfig.show_manufacturers !== 'N'}
                                 {get_manufacturers assign='manufacturers'}
                                 {if !empty($manufacturers)}
                                     <hr>
@@ -124,7 +124,7 @@
                         {/block}{* megamenu-manufacturers *}
                     {/if}
                     {block name="megamenu-pages"}
-                        {if isset($Einstellungen.template.megamenu.show_pages) && $Einstellungen.template.megamenu.show_pages !== 'N'}
+                        {if isset($snackyConfig.show_pages) && $snackyConfig.show_pages !== 'N'}
                             {$firstelement = true}
                             <ul class="nav navbar-nav">
                                 {include file='snippets/linkgroup_list-sidebar.tpl' linkgroupIdentifier='megamenu' dropdownSupport=true tplscope='megamenu' caret="fa fa-caret-down pull-right"}

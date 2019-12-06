@@ -1,7 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
 <h1>{lang key="umfrage" section="umfrage"}</h1>
 
 {if !empty($hinweis)}
@@ -12,6 +8,7 @@
 {/if}
 
 {if $oUmfrage->oUmfrageFrage_arr|@count > 0 && $oUmfrage->oUmfrageFrage_arr}
+	{include file="snippets/zonen.tpl" id="before_questions" title="before_questions"}
     <form method="post" action="{get_static_route id='umfrage.php'}" class="evo-validate">
         {$jtl_token}
         <input name="u" type="hidden" value="{$oUmfrage->kUmfrage}" />

@@ -1,0 +1,60 @@
+#fileupload-wrapper .upload_title{
+    font-weight: 600;
+}
+#fileupload-wrapper .hide{
+    display: none;
+}
+#fileupload-wrapper .input-group-btn{
+    display: flex;
+    align-items: center;
+}
+#fileupload-wrapper .input-group-btn > a,
+#fileupload-wrapper .input-group-btn > button{
+    order: 1;
+    border-radius: .3rem;
+}
+#fileupload-wrapper .btn-primary{
+    background: none;
+    padding-left: 0;
+    color: @defaulttext;
+}
+#fileupload-wrapper .input-group{
+    flex-wrap: wrap;
+}
+#fileupload-wrapper .file-caption{
+    width: 100%;
+    text-align: left;
+}
+.file-error-message ul{
+    margin: 0;
+    list-style: none;
+    text-align: left;
+}
+.kv-error-close{
+    position: absolute;
+    color: white;
+    left: 2rem;
+}
+#fileupload-wrapper .btn-file{
+	box-shadow: none;
+}
+@media screen and (max-width: 767px){
+    #fileupload-wrapper .text-right{
+        text-align: left;
+    }
+    #fileupload-wrapper .input-group-btn > a .hidden-xs{
+        display: block;
+    }
+    #fileupload-wrapper .input-group,
+    #fileupload-wrapper .input-group .input-group-btn,
+    #fileupload-wrapper .input-group .input-group-btn a{
+        display: block;
+    }
+    #fileupload-wrapper .input-group-btn > button:not(.hide){
+        display: block;
+        width: 100%;
+    }
+    #fileupload-wrapper .input-group-btn > button > .hidden-xs{
+        display: block;
+    }
+}

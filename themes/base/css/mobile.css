@@ -1,0 +1,9 @@
+.p-sl,
+.fw-sl{
+	scroll-snap-type: x mandatory;
+	pointer-events: auto;
+}
+.panel-slider .sl-ar.inactive,
+.panel-slider .sl-ar{
+	opacity: .65;
+}

@@ -1,7 +1,3 @@
-{**
- * @copyright (c) JTL-Software-GmbH
- * @license http://jtl-url.de/jtlshoplicense
- *}
 {foreach name=paymentmethod from=$Zahlungsarten item=zahlungsart}
     <div id="{$zahlungsart->cModulId}" class="payship-option col-xs-12">
 		<label for="payment{$zahlungsart->kZahlungsart}" class="dpflex-a-center m0 stc-radio">
@@ -11,8 +7,8 @@
 			</span>
 			{if $zahlungsart->cBild}
 			<span class="payship-img">
-				<span class="image-content icon">
-					<img src="{$snackysTemplate}img/preload/1x1.png" data-src="{$zahlungsart->cBild}" alt="{$zahlungsart->angezeigterName|trans}" >
+				<span class="img-ct icon">
+					<img src="{$snackyConfig.preloadImage}" data-src="{$zahlungsart->cBild}" alt="{$zahlungsart->angezeigterName|trans}" >
 				</span
 			</span>
 			{/if}

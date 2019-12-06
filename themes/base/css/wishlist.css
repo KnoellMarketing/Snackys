@@ -10,3 +10,6 @@ body[data-page="16"] #content .input-group{
 .table-striped .img-col img{
     max-width: 10rem;
 }
+#cat-w + #content-wrapper{
+	margin-top: 3rem;
+}

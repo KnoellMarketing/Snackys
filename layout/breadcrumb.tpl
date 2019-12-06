@@ -1,16 +1,16 @@
 {strip}
 {has_boxes position='left' assign='hasLeftBox'}
 {if !empty($Brotnavi) && !$bExclusive && !$bAjaxRequest && $nSeitenTyp != 18 && $nSeitenTyp != 11 && $nSeitenTyp != 38}
-<div id="breadcrumb-wrapper" class="hidden-xs">
-	<ol id="breadcrumb" class="breadcrumb mw-container dpflex-a-center" itemprop="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+<div id="bc-w" class="hidden-xs{if $snackyConfig.headerType == 7} small{/if}">
+	<ol id="bc" class="bc mw-container dpflex-a-center" itemprop="bc" itemscope itemtype="http://schema.org/bcList">
 		{foreach name=navi from=$Brotnavi item=oItem}
 			{if $smarty.foreach.navi.first}
-				{block name="breadcrumb-first-item"}
-				   <li class="breadcrumb-item first preload" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+				{block name="bc-first-item"}
+				   <li class="bc-item first pr" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 						<a itemprop="item" href="{$oItem->urlFull}" title="{$oItem->name|escape:'html'}">
-							<span class="image-content icon">
+							<span class="img-ct icon">
 								<svg>
-								  <use xlink:href="{$snackysTemplate}img/icons/icons.svg#icon-home"></use>
+								  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-home"></use>
 								</svg>
 							</span>
 							<span itemprop="name" class="hidden">{$oItem->name|escape:'html'}</span>
@@ -20,12 +20,12 @@
 					</li>
 				{/block}
 			{elseif $smarty.foreach.navi.last}
-				{block name="breadcrumb-last-item"}
+				{block name="bc-last-item"}
 					<li class="separator">
-						<span class="css-arrow css-arrow-right"></span>
+						<span class="ar ar-r"></span>
 					</li>
 							{if $oItem->name !== null}
-								<li class="breadcrumb-item last" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+								<li class="bc-item last" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 									<a itemprop="item" href="{$oItem->urlFull}" title="{$oItem->name|escape:'html'}">
 										<span itemprop="name">{$oItem->name}</span>
 									</a>
@@ -33,18 +33,18 @@
 									<meta itemprop="position" content="{$smarty.foreach.navi.iteration}" />
 								</li>
 							{elseif isset($Suchergebnisse->SuchausdruckWrite)}
-								<li class="breadcrumb-item last">
+								<li class="bc-item last">
 									{$Suchergebnisse->SuchausdruckWrite}
 								</li>
 							{/if}
 					</li>
 				{/block}
 			{else}
-				{block name="breadcrumb-item"}              
+				{block name="bc-item"}              
 					<li class="separator">
-						<span class="css-arrow css-arrow-right"></span>
+						<span class="ar ar-r"></span>
 					</li>
-					<li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+					<li class="bc-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
 						<a itemprop="item" href="{$oItem->urlFull}" title="{$oItem->name|escape:'html'}">
 							<span itemprop="name">{$oItem->name}</span>
 						</a>
