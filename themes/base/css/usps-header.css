@@ -1,0 +1,25 @@
+#usps-header{
+	position: relative;
+	z-index: 1;
+	font-weight: 600;
+}
+#usps-header:not(.theme-light){
+	background: @lightbg;
+}
+#usps-header.theme-dark{
+	background: @blackbg;
+	color: white;
+}
+#usps-header .row{
+	padding-top: 0.6rem;
+	padding-bottom: .6rem;	
+}
+#usps-header.theme-light{
+	border-bottom: 1px solid @lightborder;
+}
+#usps-header .row > div:first-child{
+	padding-left: 0;
+}
+#usps-header .row > div:last-child{
+	padding-right: 0;
+}

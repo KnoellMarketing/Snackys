@@ -1,0 +1,66 @@
+#km-fullscreen-wrapper{
+	height: 100vh;
+	position: relative;
+}
+#km-fullscreen-wrapper #usps-header,
+#km-fullscreen-wrapper #top-bar-wrapper,
+#km-fullscreen-wrapper #shop-nav{
+	z-index: 2;
+	position: relative;
+}
+#km-fullscreen-wrapper #usps-header,
+#km-fullscreen-wrapper #top-bar-wrapper{
+	background: white;
+}
+#km-fullscreen-wrapper #usps-header.theme-dark{
+	background: @blackbg;
+}
+/* Fullscreen Slider */
+#km-fullscreen-wrapper{
+	margin-bottom: 5rem;
+}
+#km-fullscreen-wrapper .slider-wrapper,
+#km-fullscreen-wrapper .video-background{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1;
+	margin: 0;
+	overflow: hidden;
+}
+#km-fullscreen-wrapper .video-foreground{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+#km-fullscreen-wrapper .full-width-slider,
+#km-fullscreen-wrapper .slide,
+#km-fullscreen-wrapper .slick-list,
+#km-fullscreen-wrapper .slick-track,
+#km-fullscreen-wrapper .image-content{
+	height: 100%;
+}
+#km-fullscreen-wrapper .slick-list{
+	height: 100% !important;
+}
+#km-fullscreen-wrapper .slider-wrapper .image-content:before{
+	display: none;
+}
+#km-fullscreen-wrapper .dots-wrapper{
+	bottom: 1.5rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+@media screen and (min-width: 768px){
+	.show-sidebar-nav #mobile-nav-toggle{
+		display: none;
+	}
+}
+@media screen and (max-width: 767px){
+	#km-fullscreen-wrapper #shop-nav{
+		position: relative;
+	}
+}

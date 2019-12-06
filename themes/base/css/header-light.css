@@ -1,0 +1,33 @@
+@media screen and (min-width: 768px){
+	body.show-desktop-search #logo{
+		display: none;
+	}
+	body:not(.show-desktop-search) #search{
+		visibility: hidden;
+		opacity: 0;
+		pointer-events: none;
+		width: 0;
+		padding: 0;
+	}
+	#search{
+		height: 60px;
+	}
+	#shop-nav .social-icons{
+		font-size: 50%;
+	}
+	#shop-nav .social-icons .image-content{
+		width: 1.5rem;
+	}
+	/* Megamenü */
+	#category-nav-wrapper{
+		box-shadow: none;
+	}
+	#category-nav-wrapper .mm-mainlink{
+		font-size: 1rem;
+		padding: 1rem 1.25rem;
+	}
+	#category-nav-wrapper svg{
+		width: 1rem;
+		height: 1rem;
+	}
+}

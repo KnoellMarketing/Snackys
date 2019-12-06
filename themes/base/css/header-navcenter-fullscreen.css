@@ -1,0 +1,13 @@
+#category-nav-wrapper li:hover .mm-mainlink,
+#category-nav-wrapper li.active .mm-mainlink{
+	background: none;
+}
+[data-page="18"] #shop-nav{
+	border-color: transparent;
+}
+[data-headtype="5"] #category-nav-wrapper li:not(:hover):not(.active) .mm-mainlink,
+#category-nav-wrapper a > svg, 
+#category-nav-wrapper li:not(.active) > a:not(:hover) svg{
+	color: white;
+	fill: white;
+}

@@ -1,0 +1,23 @@
+#breadcrumb-wrapper{
+    overflow: hidden;
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+    background: @lightbg;
+	margin-bottom: 3rem;
+}
+#breadcrumb{
+    font-weight: 600;
+	margin-top: 0;
+	margin-bottom: 0;
+	list-style: none;
+}
+#breadcrumb .fa-home{
+    opacity: .8;
+    width: 1rem;
+}
+#breadcrumb .separator{
+    margin: 0 .75rem;
+    opacity: .6;
+    position: relative;
+    top: -.05rem;
+}

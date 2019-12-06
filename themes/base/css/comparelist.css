@@ -1,0 +1,26 @@
+.comparelist table td:first-child{
+    width: 12rem;
+}
+.comparelist table td:nth-child(even){
+    background: #f6f6f6;
+}
+.comparelist .remove .image-content{
+    width: 1.5rem;
+    margin: auto;
+}
+.comparelist .remove .image-content img{
+    opacity: .6;
+}
+table th, table td{
+    padding: 2rem 3rem;
+}
+@media screen and (max-width: 991px){
+    table th, table td{
+        padding: 1rem 2rem;
+    }
+}
+@media screen and (max-width: 767px){
+    table th, table td{
+        padding: .75rem 1rem;
+    }
+}

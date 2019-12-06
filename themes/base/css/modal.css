@@ -1,0 +1,59 @@
+/* Modal Popup */
+.modal[tabindex]{
+	display:none;
+}
+.modal-dialog{
+    background: rgba(0,0,0,.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    z-index: 11;
+	display: flex;
+}
+.modal-dialog[style*="block"]{
+	display: flex !important;
+}
+.modal-dialog .modal-content{
+    background: white;
+    padding: 2rem;
+    border-radius: .3rem;
+    max-width: 40rem;
+    max-height: 90vh;
+    overflow: auto;
+	min-width: 25rem;
+}
+.modal-dialog .modal-header{
+    display: flex;
+    align-items: flex-start;
+	justify-content: space-between;
+    border-bottom: 1px solid @lightborder;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+}
+.modal-dialog .modal-header .modal-title{
+    margin: 0;
+	width: calc(100% - 3rem);
+}
+.modal-dialog .modal-content .modal-body .answer{
+    text-align: center;
+    max-width: 11rem;
+    margin-top: 1rem;
+}
+.modal-dialog .modal-body > *:only-child{
+    margin: 0;
+}
+#main-wrapper .modal-dialog.modal-lg,
+#content-wrapper .modal-dialog.modal-lg{
+    width: 100%;
+}
+@media screen and (max-width: 767px){
+    .modal-dialog .modal-content{
+        max-width: 90vw;
+		width: 100%;
+		min-width: 0;
+    }
+}

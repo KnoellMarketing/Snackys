@@ -1,0 +1,1 @@
+<div class="panel-strap">{if $Einstellungen.template.general.optimize_content == "Y"}{eval var=$oBox->cInhalt|optimize}{else}{eval var=$oBox->cInhalt}{/if}</div>

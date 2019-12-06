@@ -1,0 +1,15 @@
+#content form.evo-validate .form-group input[value="-1"],
+#content form.evo-validate .form-group input.form-control:not([required]){
+	display: none;
+}
+#content form.evo-validate > div{
+	margin-bottom: 3rem;
+}
+#content form.evo-validate table{
+	margin-bottom: 0;
+}
+@media screen and (max-width: 767px){
+	#content form.evo-validate > div{
+		margin-bottom: 1.5rem;
+	}	
+}

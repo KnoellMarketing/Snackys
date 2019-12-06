@@ -1,0 +1,26 @@
+/* Dark Background */
+#footer{
+	background: @blackbg;
+}
+
+/* Dark Border */
+#footer-boxes{
+	border-color: #444;
+}
+
+/* White Color */
+#footer,
+#footer .panel-title,
+#footer .panel-title h5,
+#footer-boxes a:not(.btn){
+	color: #f2f2f2;
+}
+
+/* Others */
+[data-page="11"] #footer{
+	margin-left: -15px;
+	padding-left: 15px;
+	margin-right: -15px; 
+	padding-right: 15px;
+	padding-top: 2rem;
+}

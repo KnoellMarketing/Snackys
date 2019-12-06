@@ -1,0 +1,31 @@
+@media screen and (min-width: 768px){
+	#category-nav-wrapper{
+		background: white;
+		border-bottom: 1px solid @lightborder;
+	}
+	#category-nav-wrapper .mm-mainlink{
+		color: @defaulttext;
+	}
+	#category-nav-wrapper .mm-mainlink:hover, 
+	#category-nav-wrapper .active > .mm-mainlink{
+		background: none;
+		color: @brand;
+	}
+	#category-nav-wrapper svg{
+		fill: @defaulttext;
+	}
+	#category-nav-wrapper li.active > .home-icon svg,
+	#category-nav-wrapper li:hover svg{
+		fill: @brand;
+	}
+	#category-nav-wrapper{
+		border-top: 1px solid @lightborder;
+	}
+	#category-nav-wrapper .megamenu-content,
+	#category-nav-wrapper .dropdown-style > .dropdown-menu{
+		border-top: 2px solid @brand;
+	}
+	li.dropdown-style > .dropdown-menu .dropdown-menu{
+		top: calc(-1rem - 2px);
+	}
+}

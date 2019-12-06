@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Template isFullResponsive="true">
+    <Name>Snackys</Name>
+    <Author>Knoell Marketing</Author>
+    <URL>https://www.knoell-marketing.de</URL>
+    <Version>2.07</Version>
+    <ShopVersion>406</ShopVersion>
+    <Preview>preview.png</Preview>
+    <Description>Ultraschnelles responsive JTL Template von Knoell Marketing</Description>
+    
+	<Settings>
+		<Section Name="Allgemein" Key="general">
+            <Setting Description="Komprimierung von JavaScript- und CSS-Dateien" Key="use_minify" Type="select" Value="Y">
+                <Option Value="Y">Ja (empfohlen)</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+            <Setting Description="JQuery laden" Key="optimize_jquery" Type="select" Value="E">
+                <Option Value="I">Inline (Schnell)</Option>
+                <Option Value="E">Extern (sofern http2push aktiv ist: schneller)</Option>
+            </Setting>
+            <Setting Description="JavaScripts optimieren" Key="optimize_all_js" Type="select" Value="N">
+                <Option Value="Y">Ja, alle (schneller, Plugins die auf OnLoads reagieren haben ggf. Probleme)</Option>
+                <Option Value="YD">Ja, nur bekannte Skripte (am Besten, aber z.B. mit PayPal Payment Wall nicht moeglich)</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+            <Setting Description="Plugin CSS inline laden" Key="optimize_all_css" Type="select" Value="Y">
+                <Option Value="Y">Ja (empfohlen)</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+            <Setting Description="Komprimierung von HTML" Key="minify_html" Type="select" Value="Y">
+                <Option Value="Y">Ja (Empfohlen)</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+            <Setting Description="Aufgabenplaner-Blindgrafik aktivieren?" Key="use_cron" Type="select" Value="N">
+                <Option Value="N">Nein</Option>
+                <Option Value="Y">Ja (Nicht empfohlen, besser Cronjobs)</Option>
+            </Setting>
+            <Setting Description="Sale Badge oder Rabatt in Prozent" Key="saleprozent" Type="select" Value="Y">
+                <Option Value="Y">Sale als Prozentzahl ausgeben</Option>
+                <Option Value="N">Sale als Begriff (z.B. Angebot) ausgeben</Option>
+            </Setting>
+            <Setting Description="Bildoptimierung aktivieren" Key="use_image_optimizer" Type="select" Value="Y">
+                <Option Value="Y">Ja</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+            <Setting Description="Bilder in Webp ausgeben" Key="use_image_webp" Type="select" Value="Y">
+                <Option Value="Y">Ja</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+			<Setting Description="Qualität der Bilder" Key="use_image_quality" Type="text" Value="85"/>
+            <Setting Description="Ist Mod Pagespeed aktiv?" Key="mod_pagespeed" Type="select" Value="N">
+                <Option Value="Y">Ja</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+            <Setting Description="Cookie Hinweis aktivieren" Key="use_cookie_hint" Type="select" Value="Y">
+                <Option Value="Y">Ja (empfohlen)</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+            <Setting Description="Artikeltexte optimieren" Key="optimize_artikel" Type="select" Value="Y">
+                <Option Value="Y">Ja (empfohlen)</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+            <Setting Description="Kategorietexte optimieren" Key="optimize_kategorie" Type="select" Value="Y">
+                <Option Value="Y">Ja (empfohlen)</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+            <Setting Description="Seiteninhalte optimieren" Key="optimize_content" Type="select" Value="Y">
+                <Option Value="Y">Ja (empfohlen)</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+            <Setting Description="News optimieren" Key="optimize_news" Type="select" Value="Y">
+                <Option Value="Y">Ja (empfohlen)</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+			<Setting Description="Subdomain für JavaScript Ressourcen" Key="cdnDomain" Type="text" Value=""/>
+			<Setting Description="Http2 Push Cache Time (Sekunden)" Key="pushCacheTime" Type="text" Value="31536000"/>
+			<Setting Description="Templatecopyright entfernen" Key="noCopyright" Type="text" Value=""/>
+		</Section>
+		<Section Name="gTag: G-Analytics/AdWords/Analytics 360 und Google Tag Manager" Key="analytics">
+			<Setting Description="Global Site Tag Tracking-ID 1" Key="id1" Type="text" Value=""/>
+			<Setting Description="Global Site Tag Tracking-ID 2" Key="id2" Type="text" Value=""/>
+			<Setting Description="Global Site Tag Tracking-ID 3" Key="id3" Type="text" Value=""/>
+			<Setting Description="Global Site Tag Tracking-ID 4" Key="id4" Type="text" Value=""/>
+			<Setting Description="Global Site Tag Tracking-ID 5" Key="id5" Type="text" Value=""/>
+			<Setting Description="Google Tag Manager ID" Key="gtag" Type="text" Value=""/>
+            <Setting Description="Artikel ID" Key="artnr" Type="select" Value="artnr">
+                <Option Value="artnr">Artikelnummer (cArtNr)</Option>
+                <Option Value="id">Interne Artikel id (kArtikel) - Empfohlen wenn die Artikelnummer Sonderzeichen beinhaltet</Option>
+            </Setting>
+		</Section>
+		<Section Name="Theme" Key="theme">
+			<Setting Description="Theme" Key="theme_default" Type="select" Value="snackys" override="true">
+				<Option Value="snackys">Snackys - with <![CDATA[&hearts;]]> by Knoell Marketing</Option>
+				<Option Value="darkmode">Snackys Darkmode - with <![CDATA[&hearts;]]> by Knoell Marketing</Option>
+				<Option Value="custom">Custom - eigenes Theme</Option>
+			</Setting>
+            <Setting Description="Favicon" Key="favicon" Type="upload" Value="favicon.ico" maxFileSize="123456" showPreview="false" allowedFileExtensions="['ico','png']" accept="image/*" target="themes/base/images/" targetFileName="favicon.ico">
+			</Setting>
+            <Setting Description="Boxed Layout?" Key="designWidth" Type="select" Value="0">
+                <Option Value="0">Nein</Option>
+                <Option Value="1">Ja</Option>
+            </Setting>
+            <Setting Description="Boxed Layout: Abstand oben unten" Key="boxedMargin" Type="select" Value="0">
+                <Option Value="0">Ja</Option>
+                <Option Value="1">Nein</Option>
+            </Setting>
+            <Setting Description="Boxed Layout: Rahmen anzeigen" Key="boxedBorder" Type="select" Value="0">
+                <Option Value="0">Ja</Option>
+                <Option Value="1">Nein</Option>
+            </Setting>
+            <Setting Description="Boxed Layout: Hintergrundbild" Key="boxedImg" Type="text" Value=""/>
+            <Setting Description="Zur-Kasse-Button im Sidebar-Warenkorb anzeigen?" Key="shopBButton" Type="select" Value="0">
+                <Option Value="0">Ja</Option>
+                <Option Value="1">Nein</Option>
+            </Setting>
+            <Setting Description="Rahmen um Produktbilder? (Listing, Slider, Subkategorien)" Key="productBorder" Type="select" Value="0">
+                <Option Value="0">Nein</Option>
+                <Option Value="1">Ja</Option>
+            </Setting>
+			<!--
+            <Setting Description="CSS Schriftart PFad" Key="font_path" Type="select" Value="Y">
+                <Option Value="Y">Snackys (Standard)</Option>
+                <Option Value="custom">Eigenes Theme, Pfad: templates/(child)/themes/(theme)/fonts/fonts.css</Option>
+            </Setting>
+			-->
+            <Setting Description="Schriftart via Google Font laden - z.B.: Source+Sans+Pro:400,600" Key="google_font" Type="text" Value="Source+Sans+Pro:400,600" />
+		</Section>
+		<Section Name="Startseite" Key="homepage">
+            <Setting Description="Slider über ganze Breite darstellen?" Key="fwSlider" Type="select" Value="0">
+                <Option Value="0">Ja</Option>
+                <Option Value="1">Nein</Option>
+            </Setting>
+            <Setting Description="Hersteller-Slider anzeigen?" Key="manSlider" Type="select" Value="0">
+                <Option Value="0">Ja</Option>
+                <Option Value="1">Nein</Option>
+            </Setting>
+		</Section>
+		<Section Name="Artikelliste" Key="pdListing">
+            <Setting Description="Positionierung Filter" Key="filterPos" Type="select" Value="0">
+                <Option Value="0">In Seitenleiste</Option>
+                <Option Value="1">Oberhalb vom Listing</Option>
+            </Setting>
+            <Setting Description="Artikel pro Reihe XL (ab 1600px)" Key="listElmXl" Type="select" Value="5">
+                <Option Value="1">1</Option>
+                <Option Value="2">2</Option>
+                <Option Value="3">3</Option>
+                <Option Value="4">4</Option>
+                <Option Value="5">5</Option>
+                <Option Value="6">6</Option>
+                <Option Value="7">7</Option>
+                <Option Value="8">8</Option>
+                <Option Value="9">9</Option>
+                <Option Value="10">10</Option>
+            </Setting>
+            <Setting Description="Artikel pro Reihe LG (1200px - 1599px)" Key="listElmLg" Type="select" Value="4">
+                <Option Value="1">1</Option>
+                <Option Value="2">2</Option>
+                <Option Value="3">3</Option>
+                <Option Value="4">4</Option>
+                <Option Value="5">5</Option>
+                <Option Value="6">6</Option>
+                <Option Value="7">7</Option>
+                <Option Value="8">8</Option>
+                <Option Value="9">9</Option>
+                <Option Value="10">10</Option>
+            </Setting>
+            <Setting Description="Artikel pro Reihe MD (992px - 1199px)" Key="listElmMd" Type="select" Value="3">
+                <Option Value="1">1</Option>
+                <Option Value="2">2</Option>
+                <Option Value="3">3</Option>
+                <Option Value="4">4</Option>
+                <Option Value="5">5</Option>
+                <Option Value="6">6</Option>
+                <Option Value="7">7</Option>
+                <Option Value="8">8</Option>
+                <Option Value="9">9</Option>
+                <Option Value="10">10</Option>
+            </Setting>
+            <Setting Description="Artikel pro Reihe SM (768px - 991px)" Key="listElmSm" Type="select" Value="3">
+                <Option Value="1">1</Option>
+                <Option Value="2">2</Option>
+                <Option Value="3">3</Option>
+                <Option Value="4">4</Option>
+                <Option Value="5">5</Option>
+                <Option Value="6">6</Option>
+                <Option Value="7">7</Option>
+                <Option Value="8">8</Option>
+                <Option Value="9">9</Option>
+                <Option Value="10">10</Option>
+            </Setting>
+            <Setting Description="Artikel pro Reihe XS (bis 767px)" Key="listElmXs" Type="select" Value="2">
+                <Option Value="1">1</Option>
+                <Option Value="2">2</Option>
+                <Option Value="3">3</Option>
+                <Option Value="4">4</Option>
+                <Option Value="5">5</Option>
+                <Option Value="6">6</Option>
+                <Option Value="7">7</Option>
+                <Option Value="8">8</Option>
+                <Option Value="9">9</Option>
+                <Option Value="10">10</Option>
+            </Setting>
+            <Setting Description="Warenkorb-Button anzeigen?" Key="listShowCart" Type="select" Value="1">
+                <Option Value="1">Nein</Option>
+                <Option Value="2">Ja, auf dem Produktbild</Option>
+                <Option Value="3">Ja, unter der Beschreibung</Option>
+            </Setting>
+            <Setting Description="Wie viele Artikel sollen in den Warenkorb gelegt werden?" Key="listAmountCart" Type="number" Value="1">
+            </Setting>
+            <Setting Description="Mengen-Eingabe anzeigen? (Nur unter der Beschreibung)" Key="listShowAmountCart" Type="select" Value="1">
+                <Option Value="1">Nein</Option>
+                <Option Value="2">Ja</Option>
+            </Setting>
+		</Section>
+		<Section Name="Artikeldetail" Key="artikel">
+            <Setting Description="Warenkorbmatrix fuer Kundengruppe aktivieren (kommagetrennt die kKundengruppe)" Key="matrix_kundengruppe" Type="text" Value="" />
+		</Section>
+		<Section Name="Header" Key="header"> 
+			<Setting Description="SVG-Logo Pfad" Key="svgLogo" Type="text" Value=""/>
+			<Setting Description="Mobiles-Logo Pfad (ab 767px)" Key="mobileLogo" Type="text" Value=""/>
+            <Setting Description="Header-Version" Key="headerType" Type="select" Value="0">
+                <Option Value="0">Standard Snackys</Option>
+                <Option Value="1">Navigation mittig</Option>
+                <Option Value="2">Light</Option>
+                <Option Value="3">Light mit Brandcolor</Option>
+                <Option Value="4">Fullscreen Simple</Option>
+                <Option Value="4.5">Fullscreen Simple Light</Option>
+                <Option Value="5">Fullscreen Navigation</Option>
+                <Option Value="5.5">Fullscreen Navigation Light</Option>
+                <Option Value="6">Simple</Option>
+            </Setting>
+            <Setting Description="Fullscreen Element" Key="fullscreenElement" Type="select" Value="0">
+                <Option Value="0">Video</Option>
+                <Option Value="1">Slider</Option>
+                <Option Value="2">Banner</Option>
+            </Setting>
+			<Setting Description="Pfad Hintergrund-Video (im mp4 Format)" Key="youtubeID" Type="text" Value=""/>
+			<Setting Description="Pfad Video-Placeholder-Bild" Key="videoPhURL" Type="text" Value=""/>
+            <Setting Description="Social-Media-Buttons im Header" Key="headerSocial" Type="select" Value="0">
+                <Option Value="0">Ja</Option>
+                <Option Value="1">Nein</Option>
+            </Setting>
+            <Setting Description="Topbar anzeigen?" Key="headerTopbar" Type="select" Value="0">
+                <Option Value="0">Ja</Option>
+                <Option Value="1">Nein</Option>
+            </Setting>
+            <Setting Description="Vorteile im Header anzeigen" Key="headerUsps" Type="select" Value="0">
+                <Option Value="0">Nein</Option>
+                <Option Value="1">Ja, 1 Vorteil</Option>
+                <Option Value="2">Ja, 2 Vorteile</Option>
+                <Option Value="3">Ja, 3 Vorteile</Option>
+                <Option Value="4">Ja, 4 Vorteile</Option>
+            </Setting>
+            <Setting Description="Style Vorteilsleiste" Key="uspsStyle" Type="select" Value="0">
+                <Option Value="0">Default</Option>
+                <Option Value="1">Light</Option>
+                <Option Value="2">Dark</Option>
+            </Setting>
+		</Section>
+		<Section Name="Trusted Shops" Key="trustedShops"> 
+            <Setting Description="Trusted Shops Badge anzeigen" Key="showTrusted" Type="select" Value="0">
+                <Option Value="0">Ja</Option>
+                <Option Value="1">Nein</Option>
+            </Setting>
+			<Setting Description="Trusted Shops ID" Key="trustedID" Type="text" Value=""/>
+            <Setting Description="Variante" Key="varTrusted" Type="select" Value="0">
+                <Option Value="0">Bewertungen</Option>
+                <Option Value="1">Standard</Option>
+            </Setting>
+            <Setting Description="Positionierung Trusted Shops Badge (Desktop)" Key="posTrusted" Type="select" Value="0">
+                <Option Value="0">Links</Option>
+                <Option Value="1">Rechts</Option>
+            </Setting>
+            <Setting Description="Mobile Variante" Key="mobileTrusted" Type="select" Value="0">
+                <Option Value="0">Standard Responsive</Option>
+                <Option Value="1">Floating-Variante</Option>
+            </Setting>
+		</Section>
+        <Section Name="Megamenu" Key="megamenu">
+            <Setting Description="Link zur Startseite" Key="megaHome" Type="select" Value="0">
+                <Option Value="0">Icon</Option>
+                <Option Value="1">Text</Option>
+                <Option Value="2">Inaktiv</Option>
+            </Setting>
+            <Setting Description="Darstellung Megamenu" Key="megaStyle" Type="select" Value="0">
+                <Option Value="0">Megamenu</Option>
+                <Option Value="1">Dropdown</Option>
+            </Setting>
+            <Setting Description="Kategorien in Oberpunkt zusammenfassen (Nur Dropdown)" Key="drodownMaincat" Type="select" Value="0">
+                <Option Value="0">Nein</Option>
+                <Option Value="1">Ja</Option>
+            </Setting>
+            <Setting Description="Kategorien" Key="show_categories" Type="select" Value="Y">
+                <Option Value="Y">Aktiv</Option>
+                <Option Value="N">Inaktiv</Option>
+            </Setting>
+            <Setting Description="Hauptkategorie Infobereich" Key="show_maincategory_info" Type="select" Value="Y">
+                <Option Value="Y">Aktiv</Option>
+                <Option Value="N">Inaktiv</Option>
+            </Setting>
+            <Setting Description="Kategoriebilder" Key="show_category_images" Type="select" Value="Y">
+                <Option Value="Y">Aktiv</Option>
+                <Option Value="N">Inaktiv</Option>
+            </Setting>
+            <Setting Description="Unterkategorien" Key="show_subcategories" Type="select" Value="Y">
+                <Option Value="Y">Aktiv</Option>
+                <Option Value="N">Inaktiv</Option>
+            </Setting>
+            <Setting Description="Seiten der Linkgruppe 'megamenu'" Key="show_pages" Type="select" Value="Y">
+                <Option Value="Y">Aktiv</Option>
+                <Option Value="N">Inaktiv</Option>
+            </Setting>
+            <Setting Description="Hersteller-Dropdown" Key="show_manufacturers" Type="select" Value="N">
+                <Option Value="Y">Aktiv</Option>
+                <Option Value="N">Inaktiv</Option>
+            </Setting>
+        </Section>
+        <Section Name="Footer-Einstellungen" Key="footer">
+            <Setting Description="Newsletter-Anmeldung im Footer" Key="newsletter_footer" Type="select" Value="N">
+                <Option Value="Y">Ja</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+            <Setting Description="Shoplogo im Footer" Key="logoFooter" Type="select" Value="0">
+                <Option Value="0">Ja</Option>
+                <Option Value="1">Nein</Option>
+            </Setting>
+            <Setting Description="Zahlungsarten im Footer" Key="paymentWall" Type="select" Value="0">
+                <Option Value="0">Nein</Option>
+                <Option Value="1">Ja</Option>
+                <Option Value="2">Ja, nur Bilder</Option>
+                <Option Value="3">Ja, nur Text</Option>
+            </Setting>
+            <Setting Description="Sprach- und Wahrungswechsler im Footer" Key="lgcu_footer" Type="select" Value="N">
+                <Option Value="Y">Ja</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+            <Setting Description="Social-Media-Buttons im Footer" Key="socialmedia_footer" Type="select" Value="N">
+                <Option Value="Y">Ja</Option>
+                <Option Value="N">Nein</Option>
+            </Setting>
+            <Setting Description="Facebook-Link" Key="facebook" Type="text" Value=""/>
+            <Setting Description="Twitter-Link" Key="twitter" Type="text" Value=""/>
+            <Setting Description="GooglePlus-Link" Key="googleplus" Type="text" Value=""/>
+            <Setting Description="YouTube-Link" Key="youtube" Type="text" Value=""/>
+            <Setting Description="Xing-Link" Key="xing" Type="text" Value=""/>
+            <Setting Description="LinkedIn-Link" Key="linkedin" Type="text" Value=""/>
+            <Setting Description="Vimeo-Link" Key="vimeo" Type="text" Value=""/>
+            <Setting Description="Instagram-Link" Key="instagram" Type="text" Value=""/>
+            <Setting Description="Pinterest-Link" Key="pinterest" Type="text" Value=""/>
+            <Setting Description="Skype-Link" Key="skype" Type="text" Value=""/>
+        </Section>
+		<Section Name="CSS Feintuning" Key="css">
+            <Setting Description="Textfarbe" Key="defaulttext" Type="text" Value="#555"/>
+            <Setting Description="Textfarbe dunkel" Key="darktext" Type="text" Value="#333"/>
+            <Setting Description="Textfarbe hell" Key="lighttext" Type="text" Value="#888"/>
+            <Setting Description="Textfarbe auf Hintergrund" Key="backgroundtext" Type="text" Value="white"/>
+            <Setting Description="Hintergrund hell" Key="lightbg" Type="text" Value="#eee"/>
+            <Setting Description="Hintergrund grau" Key="lightfocusbg" Type="text" Value="#ddd"/>
+            <Setting Description="Hintergrund dunkel" Key="darkbg" Type="text" Value="#666"/>
+            <Setting Description="Hintergrund schwarz" Key="blackbg" Type="text" Value="#333"/>
+            <Setting Description="Rahmenfarbe hell" Key="lightborder" Type="text" Value="#eee"/>
+            <Setting Description="Rahmenfarbe standard" Key="defaultborder" Type="text" Value="#ddd"/>
+            <Setting Description="Rahmenfarbe dunkel" Key="strongborder" Type="text" Value="#aaa"/>
+            <Setting Description="Farbe Erfolg" Key="success" Type="text" Value="#04D06C"/>
+            <Setting Description="Farbe Achtung" Key="danger" Type="text" Value="#FF5042"/>
+            <Setting Description="Farbe Warnung" Key="warning" Type="text" Value="#FFC041"/>
+            <Setting Description="Farbe Info" Key="info" Type="text" Value="#6FA6FF"/>
+            <Setting Description="Firmenfarbe" Key="brand" Type="text" Value="#f96058"/>
+            <Setting Description="Verlauf-Hintergrund" Key="gradientbrand" Type="text" Value="background: linear-gradient( 90deg, rgb(255,94,77) 0%, rgb(255,131,77) 0%, rgb(255,154,86) 0%, rgb(248,85,88) 100%);"/> 
+            <Setting Description="Seitenhintergrund Boxed-Layout" Key="bgBoxed" Type="text" Value="#eee"/>
+            <Setting Description="Maximale Content-Breite (in px)" Key="maxPageWidth" Type="text" Value="2000"/>
+            <!-- <Setting Description="Schwarz/Weiß" Key="blackNwhite" Type="select" Value="0">
+                <Option Value="0">Nein</Option>
+                <Option Value="1">Ja</Option>
+            </Setting> -->
+		</Section>
+	</Settings>
+	 <Minify>
+			<CSS Name="snackys.css">
+				<File Path="themes/base/css/bootstrap_snackys.css"/>
+				<File Path="themes/base/css/main.css"/>
+				<File Path="themes/base/css/header.css"/>
+				<File Path="themes/base/css/footer.css"/>
+				<File Path="themes/base/css/sidebar-cart.css"/>
+				<File Path="themes/base/css/slick.css"/>
+                <File Path="themes/base/css/imagepreload.css"/>
+                <File Path="themes/base/css/topbar.css"/>
+                <File Path="themes/base/css/modal.css"/>
+                <File Path="themes/base/css/megamenu.css"/>
+                <File Path="themes/base/css/breadcrumb.css"/>
+                <File Path="themes/snackys/css/aspectratios.css"/>
+			</CSS>
+			<CSS Name="darkmode.css">
+				<File Path="themes/base/css/bootstrap_snackys.css"/>
+				<File Path="themes/base/css/main.css"/>
+				<File Path="themes/base/css/header.css"/>
+				<File Path="themes/base/css/footer.css"/>
+				<File Path="themes/base/css/sidebar-cart.css"/>
+				<File Path="themes/base/css/slick.css"/>
+                <File Path="themes/base/css/imagepreload.css"/>
+                <File Path="themes/base/css/topbar.css"/>
+                <File Path="themes/base/css/modal.css"/>
+                <File Path="themes/base/css/megamenu.css"/>
+                <File Path="themes/base/css/breadcrumb.css"/>
+                <File Path="themes/darkmode/css/aspectratios.css"/>
+			</CSS>
+			<CSS Name="custom.css">
+				<File Path="themes/base/css/bootstrap_snackys.css"/>
+				<File Path="themes/base/css/main.css"/>
+				<File Path="themes/base/css/header.css"/>
+				<File Path="themes/base/css/footer.css"/>
+				<File Path="themes/base/css/sidebar-cart.css"/>
+				<File Path="themes/base/css/slick.css"/>
+                <File Path="themes/base/css/imagepreload.css"/>
+                <File Path="themes/base/css/topbar.css"/>
+                <File Path="themes/base/css/modal.css"/>
+                <File Path="themes/base/css/megamenu.css"/>
+                <File Path="themes/base/css/breadcrumb.css"/>
+                <File Path="themes/custom/css/aspectratios.css"/>
+			</CSS>
+			<JS Name="jtl3.js">			
+				<!--
+				<File Path="js/main.min.js"/>
+				<File Path="js/jtl.io.js"/>
+				<File Path="js/mustache.min.js"/>
+				-->
+			</JS>
+		</Minify>
+    <Boxes>
+        <Container Position="left" Available="1"></Container>
+        <Container Position="right" Available="0"></Container>
+        <Container Position="top" Available="1"></Container>
+        <Container Position="bottom" Available="1"></Container>
+    </Boxes>
+	<CSSPageTypes>
+			<File Path="/templates/snackys/themes/base/css/details.css" PageType="1"/>
+			<File Path="/templates/snackys/themes/base/css/selectric.css" PageType="1"/>
+			<File Path="/templates/snackys/themes/base/css/listing.css" PageType="2"/>
+			<File Path="/templates/snackys/themes/base/css/sidepanel.css" PageType="2"/>
+			<File Path="/templates/snackys/themes/base/css/basket.css" PageType="3"/>
+			<File Path="/templates/snackys/themes/base/css/account.css" PageType="4"/>
+			<File Path="/templates/snackys/themes/base/css/contact.css" PageType="5"/>
+			<File Path="/templates/snackys/themes/base/css/umfrage.css" PageType="6"/>
+			<File Path="/templates/snackys/themes/base/css/news.css" PageType="7"/>
+			<File Path="/templates/snackys/themes/base/css/newsletter.css" PageType="8"/>
+			<File Path="/templates/snackys/themes/base/css/checkout.css" PageType="11"/>
+			<File Path="/templates/snackys/themes/base/css/wishlist.css" PageType="16"/>
+			<File Path="/templates/snackys/themes/base/css/comparelist.css" PageType="17"/>
+			<File Path="/templates/snackys/themes/base/css/startseite.css" PageType="18"/>
+			<File Path="/templates/snackys/themes/base/css/sitemap.css" PageType="25"/>
+            <File Path="/templates/snackys/themes/##theme##/css/custom.css" PageType="all"/>
+	</CSSPageTypes>
+</Template>

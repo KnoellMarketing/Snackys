@@ -1,0 +1,15 @@
+body{margin:0;padding:0; font-family: Verdana, Helvetica, sans-serif; font-size: 11px; }
+
+#sum_02 { font-weight: bold; }
+
+input, select {font-family:Verdana, Helvetica, sans-serif; font-size:11px; color:#333333;width:180px;}
+
+#accowner, #accnumber, #bankcode, input.next { font-weight: bold; margin-top: 5px; }
+
+input.prev { margin-top: 10px; width: auto; }
+
+a{font-family:Verdana, Helvetica, sans-serif; font-size:11px; text-decoration:underline; color:#666666;}
+a:hover{text-decoration:none;}
+
+.error {border:2px solid #cc0000; }
+.errormsg {color:#cc0000; font-weight:bold;}

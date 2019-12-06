@@ -1,0 +1,38 @@
+@media screen and (min-width: 768px){
+	#search form{
+		max-width: 40rem;
+		width: 100%;
+	}
+	#shop-nav #search.header-shop-menu{
+		align-self: stretch;
+		padding: 0 2rem;
+	}
+	.show-desktop-search #shop-nav #search.header-shop-menu{
+		position: relative;
+	}
+	#search > .inside{
+		position: absolute;
+		top: 0;
+		left: 2rem;
+		right: 2rem;
+		bottom: 0;
+	}
+	body:not(.show-desktop-search) #search > .inside{
+		visibility: hidden;
+		pointer-events: none;
+		opacity: 0;		
+	}
+	.show-desktop-search #search > .inside{
+		display: flex;
+		z-index: 10;
+	}
+	#shop-nav .search-toggle{
+		cursor: pointer;
+	}
+	body:not(.show-desktop-search) .search-toggle > span:last-child{
+		display: none;
+	}
+	body.show-desktop-search .search-toggle > span:first-child{
+		display: none;
+	}
+}

@@ -1,0 +1,38 @@
+#payment-wall-footer{
+	margin: 3rem 0;
+	border-top: 1px solid @lightborder;
+	padding-top: 3rem;
+}
+#payment-wall-footer .mw-container{
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: center;
+	list-style: none;
+}
+#payment-wall-footer li{
+	margin: .5rem;
+}
+#payment-wall-footer li.text{
+	padding: 0.4rem 0.8rem;
+	border-radius: .3rem;
+	border: 1px solid @defaultborder;
+	font-size: 0.95rem;
+	color: @lighttext;
+}
+#payment-wall-footer li:empty{
+	display: none;
+}
+#payment-wall-footer li.img img{
+	max-width: 150px;
+}
+@media screen and (max-width: 1199px){
+	#payment-wall-footer {
+		margin: 1.5rem 0;
+		padding-top: 1.5rem;
+	}
+}

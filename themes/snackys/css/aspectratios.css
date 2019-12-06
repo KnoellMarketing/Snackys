@@ -1,0 +1,41 @@
+/*.preload .image-content.loaded{
+    background: #C3E0D8 !important
+}
+.preload .image-content.loaded img{
+    mix-blend-mode: multiply;
+}*/
+
+/* Category – Product Box */
+/* Aspect Ratio 1:1 */
+#product-list.gallery .image-content:before,
+.panel-slider .image-content:before,
+.product-gallery .image-content:before,
+.preload .image-content:before{
+    content: '';
+   padding-top: 100%;
+    display: block;    
+}
+
+/* Article Images */
+/* Aspect Ratio 1:1 */
+#product-list.gallery .image-content:before,
+.panel-slider .image-content:before,
+#gallery .image-content:before{
+    padding-top: 100%;
+}
+
+/* News Preview */
+/* Aspect Ratio 4:3 */
+#newslist .image-content:before,
+#newsContent .image-content:before{
+    padding-top: 75%;
+    display: block;   
+}
+
+/* Language Flags & Start Boxes */
+/* Aspect Ratio 3:2 */
+.language-dropdown .image-content:before,
+#start-boxes .start-box .image-content:before,
+.payship-option .image-content:before{
+    padding-top: 66.66%;
+}

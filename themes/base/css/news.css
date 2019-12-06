@@ -1,0 +1,154 @@
+#frm_filter{
+    flex-wrap: wrap;
+    margin: 0 -.5rem;
+}
+#frm_filter > *{
+    width: auto;
+    flex-grow: 1;
+    margin: .5rem;
+}
+#newsContent{
+    margin: 4rem 0;
+}
+#newsContent .image-wrapper{
+    margin-bottom: 1rem;
+    overflow: hidden;
+    border-radius: .5rem;
+    transition: .3s ease;
+}
+#newsContent .image-wrapper:hover{
+    box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.2);
+}
+#newsContent .image-wrapper img{
+    display: block;
+}
+#newsContent .more-link-container{
+    margin-top: .75rem;
+    display: block;
+}
+#newsContent a.news-more-link{
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+    padding-bottom: .2rem;
+}
+#newsContent a.news-more-link:after{
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+}
+#newsContent .panel-title .text-muted em{
+    font-style: normal;
+}
+#newsContent .panel-title{
+    margin-bottom: .75rem;
+}
+#newsContent > .panel-heading h2{
+    margin: 0;
+}
+#newsContent div[itemprop="description"] a:after{
+    background: @brand;
+    @gradientbrand;
+}
+.btn-xs.badge{
+    margin: 0.2rem 0.2rem 0.2rem 0;
+    border-radius: .3rem;
+}
+#comments{
+    margin-top: 4rem;
+}
+#comments p:last-child{
+    margin-bottom: .5rem;
+}
+#newsContent > h2 + .row + hr{
+    margin: 4rem 0;
+}
+.news-categorylist{
+    margin-top: 1rem;
+}
+#newsContent .v-box.preload{
+	white-space: nowrap;
+	display: flex;
+}
+#newsContent a.v-box{
+	display: flex;
+	align-items: center;
+}
+#newsContent .panel-title{
+	align-items: flex-start;
+	display: flex;
+	justify-content: space-between;
+}
+#newsContent .separator{
+	display: inline-block;
+	margin: 0 .2rem;
+}
+#newsContent h4{
+	line-height: normal;
+}
+#newsContent h4,
+#newsContent .v-box{
+	line-height: 1.5rem;
+}
+#newsContent div[itemprop="blogPost"]{
+	margin-bottom: 2.5rem;
+}
+article[itemprop="mainEntity"]{
+	max-width: 750px;
+	padding: 0 3rem;
+	margin: auto;
+}
+article[itemprop="mainEntity"] h1{
+	text-align: center;
+}
+article[itemprop="mainEntity"] blockquote{
+	margin: 3rem 0;
+	border-left: .2rem solid #ddd;
+	padding: 1rem 2rem;
+	font-style: italic;
+}
+article[itemprop="mainEntity"] div[itemprop="articleBody"]{
+	font-size: 1.3rem;
+}
+article[itemprop="mainEntity"] > .v-box{
+	display: block;
+	text-align: center;
+	padding-bottom: 2rem;
+	margin-bottom: 2rem;
+	border-bottom: 1px solid @lightborder;
+}
+article[itemprop="mainEntity"] div[itemprop="articleBody"] a{
+	text-decoration: underline;
+	transition: .3s ease;
+}
+article[itemprop="mainEntity"] div[itemprop="articleBody"] a:hover{
+	background: @lightbg;
+}
+article[itemprop="mainEntity"] div[itemprop="articleBody"] img{
+	border-radius: .3rem;
+	max-width: 100%;
+}
+article[itemprop="mainEntity"] div[itemprop="articleBody"] img:not([style*="float"]){
+	margin: 1rem -3rem;
+	max-width: calc(100% + 6rem);
+}
+article[itemprop="mainEntity"] div[itemprop="articleBody"] img[style*="left"]{
+	margin-right: 1.5rem;
+}
+article[itemprop="mainEntity"] div[itemprop="articleBody"] img[style*="right"]{
+	margin-left: 1.5rem;
+}
+article[itemprop="mainEntity"] div[itemprop="articleBody"] p:first-child img{
+	margin-top: 0;
+}
+#comments blockquote > p:first-child{
+	margin-top: 0;
+}
+#comments blockquote{
+	font-size: 1.2rem;
+	font-style: normal;
+}

@@ -1,0 +1,12 @@
+#wishlist{
+    margin-top: 4rem;
+}
+body[data-page="16"] #content .input-group{
+    width: 100%;
+}
+#edit-wishlist-name{
+    margin: 2rem 0;
+}
+.table-striped .img-col img{
+    max-width: 10rem;
+}

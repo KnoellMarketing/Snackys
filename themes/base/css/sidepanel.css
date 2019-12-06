@@ -1,0 +1,289 @@
+/* Sidepanel */
+#sidepanel_left{
+    max-width: 18rem;
+    padding-right: 2.5rem;
+}
+#sidepanel_left .dark-bg{
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+    opacity: .75;
+    z-index: 10;
+}
+#sidepanel_left a{
+    transition: .3s ease;
+}
+#sidepanel_left a:not(.btn):hover{
+    color: @brand;
+}
+#sidepanel_left ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+#sidepanel_left .box-body::-webkit-scrollbar-thumb{
+	background-color: rgba(0,0,0,.1);
+}
+#sidepanel_left .box-body::-webkit-scrollbar{
+	width: 2px;
+}
+#sidepanel_left .box-body{
+	max-height: 70vh;
+	overflow: auto;
+}
+#sidepanel_left ul li{
+    margin: .3rem 0;
+    position: relative;
+}
+#sidepanel_left .panel-heading{
+    border-bottom: 1px solid @lightborder;
+    margin-bottom: .75rem;
+}
+#sidepanel_left .panel-title{
+    margin-bottom: .75rem;
+}
+#sidepanel_left section:not(:last-child),
+#sidepanel_left > .inside > .panel-strap:not(:last-child){
+    margin-bottom: 2.5rem;
+}
+#sidepanel_left .nav a{
+    display: flex;
+    width: 100%;
+}
+#sidepanel_left .nav a .value{
+    display: flex;
+    width: calc(100% - 3.875rem);
+	align-items: flex-start;
+}
+#sidepanel_left .nav a .value .badge{
+    margin-left: auto;
+}
+#sidepanel_left .nav-panel .nav  li.active > a{
+    font-weight: 600;
+    color: @brand;
+}
+#sidepanel_left .nav-list a:before,
+#sidepanel_left .nav-list a:after{
+    content: '';
+    width: 1.125rem;
+    min-width: 1.125rem;
+    height: 1.125rem;
+    display: block;
+    border: 1px solid @defaultborder;
+    border-radius: .125rem;
+    margin-right: .75rem;
+    transform: translateY(2px);
+    transition: .3s ease;
+}
+#sidepanel_left .nav-list a.active:before,
+#sidepanel_left .box-filter-characteristics li.active > a:before{
+    border: 0;
+    background: @brand;
+}
+#sidepanel_left .nav-list a:after{
+    width: 5px;
+    height: 10px;
+    border: solid @backgroundtext;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    left: 7px;
+    position: absolute;
+    min-width: 0;
+    border-radius: 0;
+    top: 5px;
+}
+#sidepanel_left .nav .nav{
+    margin-left: 1.875rem;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+#sidepanel_left li:not(.open) ul{
+    display: none;
+}
+#sidepanel_left .nav-list .badge{
+    order: 1;
+    margin-left: auto;
+}
+#sidepanel_left .badge{
+    font-weight: 600;
+    color: @brand;
+}
+#sidepanel_left .fa-caret-down{
+    margin-left: auto;
+}
+#sidepanel_left .box-filter-reviews em{
+    font-size: .8rem;
+    font-style: normal;
+    opacity: .7;
+    display: none;
+}
+#sidepanel_left .price{
+    font-size: 1.1rem;
+}
+#sidepanel_left .item-related:first-child{
+    border-top: 0;
+}
+#sidepanel_left .item-related{
+    padding: .5rem 0;
+}
+#sidepanel_left .item-related .product-wrapper{
+    padding: 0;
+}
+#sidepanel_left .item-related .product-cell{
+    display: flex;
+    align-items: center;
+}
+#sidepanel_left .item-related .product-cell .image-wrapper{
+    min-width: 2.25rem;
+    box-sizing: content-box;
+    padding-right: 0;
+    margin: 0;
+}
+#sidepanel_left .box-login .btn{
+    border-radius: .3rem;
+}
+#sidepanel_left .box-login .btn:not(:last-child){
+    margin-bottom: .25rem;
+}
+.box-direct-purchase .form-group{
+    margin: 0;
+}
+.product-slider.sidebar .product-wrapper{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.product-slider.sidebar{
+    position: static;
+}
+.product-slider.sidebar .slick-arrow{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 3;
+    transform: translateY(-50%);
+    padding: .5rem .8rem;
+    opacity: .8;
+}
+#sidepanel_left .panel-slider .panel-body{
+    position: relative;
+}
+.product-slider.sidebar .slick-next{
+    right: 0;
+    left: auto;
+}
+#sidepanel_left .panel-title{
+    display: flex;
+	align-items: center;
+}
+#sidepanel_left .panel-slider .btn:not(.slick-arrow){
+    border-radius: .3rem;
+    margin-top: .25rem;
+}
+#sidepanel_left .panel-slider .right{
+    display: none;
+}
+#sidepanel_left .panel-slider .panel-heading{
+    border: 0;
+}
+.box-tagcloud .btn{
+    font-size: .8rem;
+    border-radius: .3rem;
+    margin: .2rem .2rem .2rem 0;
+}
+.box-login .pull-left{
+    float: none;
+}
+section[class*="box-filter"] img{
+    margin-right: .5rem;
+}
+section[class*="box-filter"] .image-content > img{
+	margin: 0;
+}
+.box-filter-characteristics .box-body.dropdown > a{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: .75rem;
+}
+.box-filter-characteristics .box-body.dropdown:not(.open) .nav-list{
+	display: none;
+}
+
+#sidepanel_left .box-filter-characteristics .image-content.icon{
+	width: 1.5rem;
+	min-width: 1.5rem;
+	margin-right: .5rem;
+}
+
+.panel-default .fa-caret-down{
+	transition: .3s ease;
+}
+.panel-default .open > a > .fa-caret-down{
+	transform: rotate(180deg);
+}
+#sidepanel_left>.inside > *{
+	width: 100%;
+}
+#sidepanel_left .word-break{
+	word-break: break-all;
+	word-break: break-word;
+}
+@supports (hyphens: auto){
+	#sidepanel_left .word-break{
+		hyphens: auto;
+	}
+}
+@supports (-webkit-hyphens: auto){
+	#sidepanel_left .word-break{
+		-webkit-hyphens: auto;
+	}
+}
+/* Herstller Load more */
+input[id*="more-manufacturers"]{
+	display: none;
+}
+label[for*="more-manufacturers"]{
+	width: 100%;
+	text-align: center;
+	margin: 1rem 0;
+	cursor: pointer;
+}
+input[id*="more-manufacturers"]:not(:checked) ~ li{
+	display: none;
+}
+input[id*="more-manufacturers"]:checked + label{
+	display: none;
+}
+@media screen and (max-width: 991px){
+    body:not(.show-sidebar) #sidepanel_left .inside {
+        transform: translateX(110%);
+        transition: .4s ease;
+    }
+    body.show-sidebar #content-wrapper{
+        z-index: 11;
+    }
+    #sidepanel_left .inside{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        background: white;
+        padding: 2rem;
+        font-size: .9rem;
+        overflow: auto;
+        z-index: 111;
+        max-width: 18rem;
+        transform: translateX(0);
+        transition: .4s ease;
+    }
+    #sidepanel_left section:not(:last-child), 
+    #sidepanel_left>.inside>.panel-strap:not(:last-child){
+        margin-bottom: 2rem;
+    }
+    .op0{
+        opacity: 0;
+    }
+}
