@@ -279,7 +279,7 @@
 		right: 0;
 		bottom: 0;
 		height: 100%;
-		width: 2rem;
+		width: 2.5rem;
 		display: block;
 		display: flex;
 		align-items: center;
@@ -408,6 +408,10 @@
 	}
 	#cat-w .ar{
 		display: inline-block;
+		margin-left: .75rem;
+	}
+	#cat-w .open > .mm-mainlink > .fa-caret-down > .ar{
+		margin-left: 0;
 	}
 	.mgm .dropdown-menu{
 		overflow: visible;

@@ -25,6 +25,9 @@
 	opacity: 0;
 	box-shadow: 0 17px 17px 0 rgba(0,0,0,0.2);
 }
+.p-c.hv-e .exp .btn-primary{
+	white-space: normal;
+}
 .p-c.hv-e .img-w:hover .img-ct{
 	box-shadow: none;
 }

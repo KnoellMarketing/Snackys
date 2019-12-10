@@ -106,10 +106,9 @@
         },
 
         pushedToBasket: function(response) {
-            /*$.evo.extended().showNotify({
-                text: response.cPopup,
-                title: response.cNotification
-            });*/
+			if (typeof mainEventListener !== 'undefined' && typeof mainEventListener === 'function') { 
+				window.setTimeout(mainEventListener,500);
+			}
         },
 
         updateCart: function(type) {

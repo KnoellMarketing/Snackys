@@ -94,6 +94,13 @@
 #quantity-grp > input{
     max-width: 100px;
     margin-right: 1rem;
+	min-width: 60px;
+    padding-left: 5px;
+    padding-right: 5px;
+	width: auto;
+}
+#quantity-grp button{
+	white-space: normal;
 }
 #quantity-grp .input-group-btn{
     width: 100%;

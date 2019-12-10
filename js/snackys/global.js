@@ -286,12 +286,6 @@ function snackys()
 {
 	var tElem,i,t,e,tElemList;
 
-	$('.cart-menu, .cart-menu>a, .cart-menu>a *').click(function(e)
-	{
-		if(e.target !== e.currentTarget) return;
-		e.preventDefault();
-		$('.cart-menu').addClass('open');
-	});
 
 	$("a[href='#top']").click(function() {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -346,17 +340,20 @@ function snackys()
 	
 	//touch/mobile megamenu klick = 1ter klick open sub, 2ter klick = zur URL
 	if(($('body').hasClass('mobile') || 'ontouchstart' in window)) {
-		$('.mgm-fw > a').on('click',function(e) {
-			e.preventDefault();
-			var link = $(this);
-			if(link.hasClass('tapped') || window.screen.width <= 767)
-				window.location = link.attr('href');
-			else
-			{
-				link.addClass('tapped');
-				link.parent().mouseleave(function(){link.removeClass('tapped')});
-			}
-		});
+		if(window.screen.width > 767)
+		{
+			$('.mgm-fw > a').on('click',function(e) {
+				e.preventDefault();
+				var link = $(this);
+				if(link.hasClass('tapped'))
+					window.location = link.attr('href');
+				else
+				{
+					link.addClass('tapped');
+					link.parent().mouseleave(function(){link.removeClass('tapped')});
+				}
+			});
+		}
 	}
 	
 	// per burgerbutton moviles menu öffnen 
@@ -395,20 +392,6 @@ function snackys()
 					e.target.parentNode.parentNode.classList.add('open-show')
 			});
 	
-	// hintergrund bei sidebasket wieder schließen 
-	tElem = document.querySelectorAll('.c-dp .overlay-bg,.cart-menu .overlay-bg, .c-dp .close-sidebar');
-	for(i=0;i<tElem.length;i++)
-	{
-		tElem[i].addEventListener('click',function(e)
-		{
-			$('.cart-menu').removeClass('open');
-			if(!e) e = window.event;
-			e.preventDefault();
-			e.target.parentNode.parentNode.classList.remove('open');
-			document.body.classList.remove('sidecart-open');
-			
-		});
-	}
 
 	// wenn n alert button n schließen button hat 
 	tElem = document.querySelectorAll('.alert button.close');
@@ -452,6 +435,29 @@ function snackys()
 
 function mainEventListener()
 {
+	
+	$('.cart-menu, .cart-menu>a, .cart-menu>a *').click(function(e)
+	{
+		if(e.target !== e.currentTarget) return;
+		e.preventDefault();
+		$('.cart-menu').addClass('open');
+	});
+	
+
+	// hintergrund bei sidebasket wieder schließen 
+	tElem = document.querySelectorAll('.c-dp .overlay-bg,.cart-menu .overlay-bg, .c-dp .close-sidebar');
+	for(i=0;i<tElem.length;i++)
+	{
+		tElem[i].addEventListener('click',function(e)
+		{
+			$('.cart-menu').removeClass('open');
+			if(!e) e = window.event;
+			e.preventDefault();
+			e.target.parentNode.parentNode.classList.remove('open');
+			document.body.classList.remove('sidecart-open');
+			
+		});
+	}
 						$('.tab-content.notabs .panel-heading').click(function(){
 							$(this).closest('.panel-default').toggleClass('open-show');
 						});
