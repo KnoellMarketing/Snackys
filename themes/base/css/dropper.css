@@ -1,0 +1,100 @@
+/* Tabs */
+.kk-tabs .nav-tabs{
+	padding: 0;
+	display: flex;
+	align-items: flex-end;
+	list-style: none;
+	margin: 0;
+	padding: 1rem 0 1rem 0;
+	margin-bottom: 2rem;
+	overflow: auto;
+	position: relative;
+	z-index: 9;
+}
+.kk-tabs .nav-tabs a{
+	font-size: 1.3rem;
+	font-weight: 700;
+	padding: .65rem 1.25rem;
+	display: block;
+	position: relative;
+	opacity: .7;
+	transition: opacity .3s ease;
+	cursor: pointer;
+}
+.kk-tabs .nav-tabs li:hover a,
+.kk-tabs .nav-tabs li.active a{
+	opacity: 1;
+}
+.kk-tabs .nav-tabs li.active a{
+	color: white;
+}
+.kk-tabs .nav-tabs a:after{
+	content: '';
+	position: absolute;
+	top: calc(100% - .18rem);
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: @defaultborder;	
+	z-index: -1;
+	transition: .3s ease;
+}
+.kk-tabs .nav-tabs li.active a:after,
+.kk-tabs .nav-tabs li:hover a:after{
+	top: 0;
+	border-top-left-radius: .3rem;
+	border-top-right-radius: .3rem;
+}
+.kk-tabs .nav-tabs li.active a:after{
+	background: @brand;	
+	color: white;
+}
+.kk-tabs .nav-tabs li{
+	margin: 0 .75rem;
+	white-space: nowrap;
+}
+.kk-tabs .nav-tabs li:first-child{
+	margin-left: 0;
+}
+.kk-tabs .nav-tabs li:last-child{
+	margin-right: 0;
+}
+.kk-tabs .tab-content > div[role="tabpanel"]{
+	display: block;
+	height: auto;
+	opacity: 1;
+	transition: .3s ease;
+}
+.kk-tabs .tab-content > div[role="tabpanel"]:not(.active){
+	opacity: 0;
+	height: 0;
+	overflow: hidden;
+}
+@media screen and (max-width: 991px){
+	.kk-tabs .nav-tabs a{
+		font-size: 1rem;
+		padding: .5rem .8rem;
+	}
+}
+@media screen and (max-width: 767px){
+	.kk-tabs .nav-tabs{
+		margin-bottom: 1rem;
+		flex-wrap: wrap;
+	}
+	.kk-tabs .nav-tabs li{
+		margin: 0;
+		width: 100%;
+	}
+	.kk-tabs .nav-tabs li a:after,
+	.kk-tabs .nav-tabs li.active a:after, 
+	.kk-tabs .nav-tabs li:hover a:after {
+		border-radius: 0;
+		top: auto;
+		height: .125rem;
+		opacity: .7;
+	}
+	.kk-tabs .nav-tabs li.active a, 
+	.kk-tabs .nav-tabs li:hover a {
+		color: @brand;
+	}
+}

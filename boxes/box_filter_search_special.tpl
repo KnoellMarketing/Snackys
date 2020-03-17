@@ -1,4 +1,4 @@
-{if $bBoxenFilterNach && $Einstellungen.navigationsfilter.allgemein_suchspecialfilter_benutzen === 'Y'}
+{* if $bBoxenFilterNach && $Einstellungen.navigationsfilter.allgemein_suchspecialfilter_benutzen === 'Y'}
     {if !empty($Suchergebnisse->Suchspecialauswahl) || !empty($NaviFilter->SuchspecialFilter)}
         <section class="panel panel-default box box-filter-special" id="sidebox{$oBox->kBox}">
             <div class="panel-heading">
@@ -23,4 +23,4 @@
             </div>
         </section>
     {/if}
-{/if}
+{/if *}

@@ -176,7 +176,7 @@
 			});
 			
 				
-			if(!$('body').hasClass('mobile'))
+			if(!$('body').hasClass('mobile') || $('body').hasClass('tablet'))
 			{
 				//mouseover des hauptbildes
 				$('#gallery a').each(function(){

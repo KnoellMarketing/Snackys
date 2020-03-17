@@ -3,7 +3,7 @@
     <Name>Snackys</Name>
     <Author>Knoell Marketing</Author>
     <URL>https://www.knoell-marketing.de</URL>
-    <Version>3.00</Version>
+    <Version>3.02</Version>
     <ShopVersion>406</ShopVersion>
     <Preview>preview-snackys.png</Preview>
     <Description>Ultraschnelles responsive JTL Template von Knoell Marketing</Description>
@@ -119,6 +119,7 @@
 			<File Path="/templates/snackys/themes/base/css/variations.css" PageType="1"/>
 			<File Path="/templates/snackys/themes/base/css/details-gallery.css" PageType="1"/>
 			<File Path="/templates/snackys/themes/base/css/manu-site.css" PageType="24"/>
+			<File Path="/templates/snackys/themes/base/css/dropper.css" PageType="all"/>
             <File Path="themes/##theme##/css/custom.css" PageType="all"/>
 	</CSSPageTypes>
 </Template>

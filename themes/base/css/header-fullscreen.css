@@ -59,6 +59,10 @@
     left: 0;
     right: 0;
 }
+/* Abstand, wenn kein mobiler Slider aktiv ist */
+[data-page="18"].no-mb-sl #shop-nav{
+	margin-bottom: 3.5rem;
+}
 @media screen and (min-width: 768px){
 	.shw-sb #mobile-nav-toggle{
 		display: none;

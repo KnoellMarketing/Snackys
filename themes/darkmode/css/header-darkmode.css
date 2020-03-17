@@ -57,20 +57,22 @@
 [id*="mm-dropdown"] li >.dropdown-link,
 [data-headtype="1"] #cat-w li:not(.active) > .mm-mainlink,
 [data-headtype="2"] #cat-w li:not(.active) > .mm-mainlink,
-[data-headtype="5.5"] #cat-w li:not(.active) > .mm-mainlink{
+[data-headtype="5.5"] #cat-w li:not(.active) > .mm-mainlink,
+[data-headtype="7"] #cat-w li:not(.active) > .mm-mainlink{
 	color: #f2f2f2;
 }
 
 /* White Fill */
-.mgm .home-icon svg{
+.mgm .home-icon svg,
+#cat-w .mgm .icon-wt svg{
 	fill: white;
 }
 
 /* No background */
-[data-headtype="4.5"][data-page="18"] #shop-nav,
-[data-headtype="4"][data-page="18"] #shop-nav,
-[data-headtype="5"][data-page="18"] #shop-nav,
-[data-headtype="5.5"][data-page="18"] #shop-nav{
+[data-headtype="4.5"][data-page="18"]:not(.no-mb-sl) #shop-nav,
+[data-headtype="4"][data-page="18"]:not(.no-mb-sl)  #shop-nav,
+[data-headtype="5"][data-page="18"]:not(.no-mb-sl)  #shop-nav,
+[data-headtype="5.5"][data-page="18"]:not(.no-mb-sl)  #shop-nav{
 	background: none;
 }
 
@@ -125,5 +127,11 @@
 	}
 	#cat-w .subsub{
 		background: @blackbg;
+	}
+	#sr-tg-m .close-btn{
+		color: white;
+	}
+	#cat-w li.active .mm-mainlink{
+		background: none;
 	}
 }

@@ -6,7 +6,7 @@
 {/if}
 {extends file="{$tDir}/layout/header.tpl"}
 {block name="main-wrapper-starttag"}
-<div id="main-wrapper" class="col-md-8 col-lg-9 main-wrapper{if $bExclusive} exclusive{/if}{if isset($snackyConfig.pagelayout) && $snackyConfig.pagelayout === 'boxed'} boxed{else} fluid{/if}{if $hasLeftPanel} aside-active{/if}">
+<div id="main-wrapper" class="{if !$device->isMobile()}col-xs-12 col-md-8 col-lg-9{else} col-xs-12{/if} main-wrapper{if $bExclusive} exclusive{/if}{if isset($snackyConfig.pagelayout) && $snackyConfig.pagelayout === 'boxed'} boxed{else} fluid{/if}{if $hasLeftPanel} aside-active{/if}">
 {/block}
 
 {block name="header-branding-top-bar"}

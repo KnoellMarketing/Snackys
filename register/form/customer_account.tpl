@@ -7,7 +7,7 @@
             <label class="btn-block" for="checkout_create_account_unreg" data-toggle="collapse"
                 data-target="#create_account_data">
                 <input id="checkout_create_account_unreg" class="radio-checkbox" type="checkbox" name="unreg_form"
-                    value="0" {if $regClass == 'first'}checked="checked"{/if} />
+                    value="0" {if $activeClass == 'reg'}checked="checked"{/if} />
                 <span class="control-label label-default">
                     {lang key="createNewAccount" section="account data"}
                 </span>
@@ -17,7 +17,7 @@
         <input type="hidden" name="unreg_form" value="0">
     {/if}
 
-    <div id="create_account_data" class="row collapse in collapse-non-validate" aria-expanded="true"{if isset($checkout) && $regClass != 'first'} style="display: none"{/if}>
+    <div id="create_account_data" class="row collapse in collapse-non-validate" aria-expanded="true"{if isset($checkout) && $activeClass != 'reg'} style="display: none"{/if}>
         <div class="col-md-6 col-xs-12">
             <div class="form-group float-label-control{if isset($fehlendeAngaben.pass_zu_kurz) || isset($fehlendeAngaben.pass_ungleich)} has-error{/if} required">
                 <label for="password" class="control-label">{lang key="password" section="account data"}</label>

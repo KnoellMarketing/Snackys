@@ -7,13 +7,12 @@
             {block name="productdetails-bundle"}{* for additional hidden inputs use block prepend *}
 			<hr class="invisible">
             <div class="panel-heading">
-				<div class="panel-title">
+				<div class="panel-title mb-spacer mb-small">
                 	<h5 class="h2">{lang key="buyProductBundle" section="productDetails"}</h5>
 				</div>
             </div>
 			<div class="panel-body">
-				<div class="ar-ct-box"></div>
-				<div class="row p-sl">
+				<div id="p-l" class="row row-multi gallery">
 					{foreach name=bundles from=$Products item=Product}
 						<div class="col-lg-2 p-w">
 							<div class="p-c">
@@ -35,7 +34,7 @@
                                 		<a href="{$Product->cURL}">{$Product->cName}</a>
 									</span>
 									<div class="price_wrapper">
-										<strong class="price text-nowrap"><span>{$Product->Preise->cVKLocalized[0]}</span></strong>
+										<strong class="price text-nowrap"><span>{$Product->Preise->cVKLocalized[0]}</span> *</strong>
 									</div>
 								</div>
 							</div>
@@ -48,7 +47,7 @@
 				<div class="dpflex-a-center">
 					<div class="bundle-price h4">
 						<span class="price-sum">{lang key="priceForAll" section="productDetails"}:
-						<strong class="price price-sm">{$ProduktBundle->cPriceLocalized[$NettoPreise]}</strong>
+						<strong class="price price-sm">{$ProduktBundle->cPriceLocalized[$NettoPreise]} *</strong>
 						</span>
 						{if $ProduktBundle->fPriceDiff > 0}
 							<br />

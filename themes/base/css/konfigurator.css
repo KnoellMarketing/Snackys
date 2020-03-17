@@ -31,11 +31,13 @@
 	height: 0;
 	padding: 0;
 	opacity: 0;
+	overflow: hidden;
 }
 #product-configurator .collapse.in{
 	padding: 1rem;
 	height: auto !important;
 	opacity: 1;
+	overflow: inherit;
 }
 #product-configurator .panel-title{
 	padding-bottom: 1rem;

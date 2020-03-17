@@ -77,6 +77,12 @@
 					$.evo.article().register();
 					addValidationListener();
 				}
+				
+
+				//click on link from itemliste and add anchor for browser back function!
+				$('#p-l .exp a, #p-l a.img-w').off('click').on('click', function(e) {
+					window.history.pushState('endless', window.title, window.location.href  + '#'+$(this).closest('.p-c').attr('id'));
+				});
             }).fail(function(e) {
                 console.log("error while loading articles")
             })

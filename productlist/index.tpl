@@ -4,6 +4,68 @@
     {/if}
 {/block}
 
+{assign var="hasFilters" value=false}
+{if $Einstellungen.navigationsfilter.allgemein_kategoriefilter_benutzen === 'Y' && (!empty($Suchergebnisse->Kategorieauswahl) && $Suchergebnisse->Kategorieauswahl|@count > 1)}
+	{assign var="hasFilters" value=true}	
+{/if}
+{if $Einstellungen.navigationsfilter.allgemein_herstellerfilter_benutzen === 'Y' &&
+	!isset($oExtendedJTLSearchResponse) &&
+	(!empty($Suchergebnisse->Herstellerauswahl) && $Suchergebnisse->Herstellerauswahl|@count > 1)}
+	{assign var="hasFilters" value=true}		
+{/if}
+{if $Einstellungen.navigationsfilter.merkmalfilter_verwenden === 'content' && $Suchergebnisse->MerkmalFilter|@count > 0 && $Suchergebnisse->Artikel->elemente|@count > 0}
+	{assign var="hasFilters" value=true}	
+	{if !isset($boxes.left) && ($snackyConfig.filterPos == 0 || $snackyConfig.sidepanelEverywhere == 'Y')}
+		{assign var="hasFilters" value=false}	
+	{/if}	
+{/if}{* /merkmalfilter *}
+{if !empty($Suchergebnisse->Suchspecialauswahl)}
+	{assign var="hasFilters" value=true}	
+	{if !isset($boxes.left) && ($snackyConfig.filterPos == 0 || $snackyConfig.sidepanelEverywhere == 'Y')}
+		{assign var="hasFilters" value=false}	
+	{/if}	
+{/if}{* /suchspecials *}
+
+{if $Einstellungen.navigationsfilter.preisspannenfilter_benutzen === 'content' && (empty($NaviFilter->PreisspannenFilter) && !empty($Suchergebnisse->Preisspanne))}
+	{assign var="hasFilters" value=true}	
+	{if !isset($boxes.left) && ($snackyConfig.filterPos == 0 || $snackyConfig.sidepanelEverywhere == 'Y')}
+		{assign var="hasFilters" value=false}	
+	{/if}	
+{elseif isset($NaviFilter->PreisspannenFilter) && $NaviFilter->PreisspannenFilter->fBis > 0}
+	{assign var="hasFilters" value=true}	
+	{if !isset($boxes.left) && ($snackyConfig.filterPos == 0 || $snackyConfig.sidepanelEverywhere == 'Y')}
+		{assign var="hasFilters" value=false}	
+	{/if}	
+{/if}{* /preisspannenfilter *}
+
+{if $Einstellungen.navigationsfilter.bewertungsfilter_benutzen === 'content' && (empty($NaviFilter->BewertungFilter) && !empty($Suchergebnisse->Bewertung))}
+	{assign var="hasFilters" value="true"}	
+	{if !isset($boxes.left) && ($snackyConfig.filterPos == 0 || $snackyConfig.sidepanelEverywhere == 'Y')}
+		{assign var="hasFilters" value="false"}	
+	{/if}
+{elseif isset($NaviFilter->BewertungFilter) && $NaviFilter->BewertungFilter->nSterne > 0}
+	{assign var="hasFilters" value="true"}	
+	{if !isset($boxes.left) && ($snackyConfig.filterPos == 0 || $snackyConfig.sidepanelEverywhere == 'Y')}
+		{assign var="hasFilters" value="false"}	
+	{/if}
+{/if}
+
+{has_boxes position='left' assign='hasLeftBox'}
+{if isset($boxes.left) && !$bExclusive && !empty($boxes.left)}
+	{if $bBoxenFilterNach && ($BoxenEinstellungen.navigationsfilter.bewertungsfilter_benutzen === 'box') && $Suchergebnisse->Bewertung|@count > 0}
+		{assign var="hasFilters" value="true"}	
+	{/if}
+	{if $BoxenEinstellungen.navigationsfilter.merkmalfilter_verwenden === 'box' && isset($Suchergebnisse) && $Suchergebnisse->MerkmalFilter|@count > 0}
+		{assign var="hasFilters" value="true"}	
+	{/if}
+	{if $bBoxenFilterNach && $BoxenEinstellungen.navigationsfilter.preisspannenfilter_benutzen === 'box' && $Suchergebnisse->Preisspanne|@count > 0}
+		{assign var="hasFilters" value="true"}	
+	{/if}
+	{if $bBoxenFilterNach && $NaviFilter->SuchFilter|@count > 0 && !$NaviFilter->Suche->kSuchanfrage}
+		{assign var="hasFilters" value="true"}	
+	{/if}
+{/if}
+
 {if !isset($smarty.get.sidebar)}
 {block name="content"}
 	{assign var="viewportImages" value=0 scope="global"}
@@ -17,7 +79,7 @@
 	>
         
         {block name="productlist-header"}
-        {include file='productlist/header.tpl'}
+        {include file='productlist/header.tpl' hasFilters=$hasFilters}
         {/block}
     
         {assign var='style' value='gallery'}
@@ -57,21 +119,9 @@
 		{if $snackyConfig.filterPos == 1}
 		{block name="aside"}
 		{has_boxes position='left' assign='hasLeftBox'}
-		{if !$bExclusive && $hasLeftBox && isset($boxes) && !empty($boxes.left) && $snackyConfig.sidepanelEverywhere == 'N'}
+		{if $hasFilters == true && $snackyConfig.sidepanelEverywhere == 'N'}
 			{block name="footer-sidepanel-left"}
-				<aside id="sp-l" class="hidden-print col-xs-12 show-above{if $snackyConfig.scrollSidebox == 'Y'} scrollBoxes{/if}">
-					<div class="inside">
-						<div class="visible-xs visible-sm">
-							<h3>{lang key="filterBy" setion="global"}</h3>
-							<hr class="op0">
-						</div>
-						{block name="footer-sidepanel-left-content"}
-						{$boxes.left}
-						{/block}
-					</div>
-					<div class="visible-xs visible-sm overlay-bg"></div>
-					<div class="visible-xs visible-sm close-sidebar close-btn"></div>
-				</aside>
+				{include file="layout/sidebar.tpl"}
 			{/block}
 		{/if}
 		{/block}

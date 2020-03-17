@@ -14,7 +14,7 @@
     </label>
 </div>
 {block name="checkout-enter-shipping-address"}
-<div id="select_shipping_address" class="collapse collapse-non-validate" {if $showShippingAddress || $smarty.get.editLieferadresse} style="display:block;"{/if}>
+<div id="select_shipping_address" class="" {if $showShippingAddress || $smarty.get.editLieferadresse} style="display:block;"{/if}>
     {block name="checkout-enter-shipping-address-body"}
     {if !empty($smarty.session.Kunde->kKunde) && isset($Lieferadressen) && $Lieferadressen|count > 0}
         <fieldset>
@@ -58,10 +58,10 @@
     {/block}
 </div>
 {/block}
-{if isset($smarty.get.editLieferadresse)}
+{if isset($smarty.get.editLieferadresse) || $step === 'Lieferadresse'}
 {literal}
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(window).on('load', function () {
             $('#checkout_register_shipping_address').prop('checked', false);
             $('#select_shipping_address').addClass('in');
             $.evo.extended().smoothScrollToAnchor('#checkout_register_shipping_address');

@@ -1,5 +1,4 @@
 <?php
-
 //Special Functions of Snackys
 include("snackys.php");
 

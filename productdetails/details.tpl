@@ -328,7 +328,7 @@ data-track-type="start" data-track-event="view_item" data-track-p-items='[{ldeli
             <div class="partslist">
 				<hr class="invisible">
                 {lang key='listOfItems' section='global' assign='slidertitle'}
-                {include file='snippets/product_slider.tpl' id='slider-partslist' productlist=$Artikel->oStueckliste_arr title=$slidertitle showPartsList=true}
+                {include file='productdetails/stueckliste.tpl' id='slider-partslist' productlist=$Artikel->oStueckliste_arr title=$slidertitle showPartsList=true}
             </div>
         {/if}
 

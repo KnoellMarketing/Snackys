@@ -7,3 +7,16 @@
 .panel-slider .sl-ar{
 	opacity: .65;
 }
+/* Trusted bei Sidebar-Open ausblenden */
+.shw-sb .etrusted-badge-container.etrusted-badge-container--left{
+	display: none;
+}
+/* Mobile-Link nicht Klickbar */
+@media screen and (max-width: 768px){
+	.mmlca-n #cat-w li:not(.open) > .mm-mainlink .fa-caret-down.visible-xs{
+		left: 0;
+		width: 100%;
+		justify-content: flex-end;
+		padding-right: 1.3rem;
+	}
+}

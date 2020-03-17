@@ -24,7 +24,16 @@
                     {if $Variation->cTyp === 'SELECTBOX'}
                         {block name="productdetails-info-variation-select"}
                         <select class="form-control" title="{if isset($smallView) && $smallView}{$Variation->cName} - {/if}{lang key="pleaseChooseVariation" section="productDetails"}" name="eigenschaftwert[{$Variation->kEigenschaft}]"{if !$showMatrix} required{/if}>
-                            <option disabled selected hidden value>{lang key="pleaseChoose" section="global"}</option>
+                            {assign var="bSelected" value=false}
+							{foreach name=Variationswerte from=$Variation->Werte key=y item=Variationswert}
+                                {if isset($oVariationKombi_arr[$Variationswert->kEigenschaft])}
+                                    {assign var="bSelected" value=in_array($Variationswert->kEigenschaftWert, $oVariationKombi_arr[$Variationswert->kEigenschaft])}
+                                {/if}
+                                {if isset($oEigenschaftWertEdit_arr[$Variationswert->kEigenschaft])}
+                                    {assign var="bSelected" value=$Variationswert->kEigenschaftWert == $oEigenschaftWertEdit_arr[$Variationswert->kEigenschaft]->kEigenschaftWert}
+                                {/if}
+							{/foreach}
+                            <option disabled {if !bSelected}selected {/if}hidden value>{lang key="pleaseChoose" section="global"}</option>
 							{foreach name=Variationswerte from=$Variation->Werte key=y item=Variationswert}
                                 {assign var="bSelected" value=false}
                                 {if isset($oVariationKombi_arr[$Variationswert->kEigenschaft])}
@@ -53,7 +62,7 @@
                                             {if isset($Variationswert->oVariationsKombi)}
                                                 data-ref="{$Variationswert->oVariationsKombi->kArtikel}"
                                             {/if}
-											{if $Variationswert->notExists} disabled{/if}
+											{* if $Variationswert->notExists} disabled{/if *}
                                             {if $bSelected} selected="selected"{/if}>
                                         {$cVariationsWert|trim}
                                     </option>

@@ -1,4 +1,4 @@
-{if $bBoxenFilterNach && ($BoxenEinstellungen.navigationsfilter.bewertungsfilter_benutzen === 'box' || $BoxenEinstellungen.navigationsfilter.bewertungsfilter_benutzen === 'content')}
+{if $bBoxenFilterNach && ($BoxenEinstellungen.navigationsfilter.bewertungsfilter_benutzen === 'box')}
     {if $Suchergebnisse->Bewertung|@count > 0}
         <section class="panel panel-default box box-filter-reviews" id="sidebox{$oBox->kBox}">
             <div class="panel-heading">

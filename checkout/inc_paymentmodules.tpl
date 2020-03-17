@@ -104,7 +104,9 @@
             {$safetypay_form}
             <br />
         {elseif !empty($oPlugin->oPluginZahlungsmethodeAssoc_arr[$cModulId]->cModulId) && $Bestellung->Zahlungsart->cModulId == $oPlugin->oPluginZahlungsmethodeAssoc_arr[$cModulId]->cModulId}
-            {include file=$oPlugin->oPluginZahlungsmethodeAssoc_arr[$cModulId]->cTemplateFileURL}
+			{if file_exists($oPlugin->oPluginZahlungsmethodeAssoc_arr[$cModulId]->cTemplateFileURL)}
+					{include file=$oPlugin->oPluginZahlungsmethodeAssoc_arr[$cModulId]->cTemplateFileURL}
+			{/if}
         {/if}
         <br />
         {include file='checkout/inc_trustedshops_excellence.tpl'}

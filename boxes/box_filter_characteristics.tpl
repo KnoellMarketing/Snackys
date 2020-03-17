@@ -1,4 +1,4 @@
-{if $BoxenEinstellungen.navigationsfilter.merkmalfilter_verwenden === 'box' || $BoxenEinstellungen.navigationsfilter.merkmalfilter_verwenden === 'content'}
+{if $BoxenEinstellungen.navigationsfilter.merkmalfilter_verwenden === 'box'}
     {if isset($Suchergebnisse) && $Suchergebnisse->MerkmalFilter|@count > 0}
         {foreach name=merkmalfilter from=$Suchergebnisse->MerkmalFilter item=Merkmal}
             {assign var=kMerkmal value=$Merkmal->kMerkmal}

@@ -98,8 +98,7 @@
                     {include file='productlist/result_options.tpl'}
                 </form>
             {/if}
-		{has_boxes position='left' assign='hasLeftBox'}
-		{if $NaviFilter->nAnzahlFilter > 0 || !empty($boxes.left)}
+		{if $hasFilters == "true"}
         <div class="visible-xs visible-sm pr" id="ftr-tg">
 			<div class="img-ct icon">
 				<svg class="{if $darkHead == 'true' || $darkMode == 'true'}icon-darkmode{/if}">
@@ -110,6 +109,7 @@
 		{/if}
         </div>
     </div>
+
     {if $NaviFilter->nAnzahlFilter > 0}
         <div class="clearfix top10"></div>
         <div class="ftr-a panel panel-default">
@@ -195,7 +195,7 @@
 		</div>
         {/if}
 		{if !empty($oNavigationsinfo->cBildURL) && $oNavigationsinfo->cBildURL !== 'gfx/keinBild.gif' && $oNavigationsinfo->cBildURL !== 'gfx/keinBild_kl.gif'}
-		<div class="col-xs-6 col-sm-9 col-md-8 col-lg-10">
+		<div class="col-xs-12 col-sm-9 col-md-8 col-lg-10">
 		{/if}
         {if $Einstellungen.navigationsfilter.kategorie_beschreibung_anzeigen === 'Y'
             && isset($oNavigationsinfo->oKategorie) && $oNavigationsinfo->oKategorie->cBeschreibung|strlen > 0

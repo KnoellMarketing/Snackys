@@ -10,6 +10,16 @@ $('body').on('click', '.option li', function (e) {
     $('#' + i + ' .selected').attr('id', o).text(v);
 });
 */
+
+function sanitizeOutput(val) {
+    return val.replace(/\&/g, '&amp;')
+        .replace(/\</g, '&lt;')
+        .replace(/\>/g, '&gt;')
+        .replace(/\"/g, '&quot;')
+        .replace(/\'/g, '&#x27;')
+        .replace(/\//g, '&#x2F;');
+}
+
 /**
  *  Format file size
  */
@@ -188,7 +198,7 @@ function addValidationListener() {
         forms[i].addEventListener('invalid', function (event) {
             event.preventDefault();
             $(event.target).closest('.form-group').find('div.form-error-msg').remove();
-            $(event.target).closest('.form-group').addClass('has-error').append('<div class="form-error-msg text-danger"><i class="fa fa-warning"></i> ' + event.target.validationMessage + '</div>');
+            $(event.target).closest('.form-group').addClass('has-error').append('<div class="form-error-msg text-danger"><i class="fa fa-warning"></i> ' + sanitizeOutput(event.target.validationMessage) + '</div>');
 
             if (!$body.data('doScrolling')) {
                 var $firstError = $(event.target).closest('.form-group.has-error');
@@ -239,14 +249,7 @@ function addValidationListener() {
 	});
 	
 
-			$('#article-tab-nav span').on('click',function(e){
-				var tabSelector = $(this).attr('aria-controls')
-				$('#article-tab-nav li').removeClass('active');
-				$(this).parent().addClass('active');
-				$('#article-tabs > div').removeClass('active');
-				$('#article-tabs > div#' + tabSelector).addClass('active');
-				
-			});
+			
 }
 
 function checkInputError(event)
@@ -260,7 +263,7 @@ function checkInputError(event)
 		if ($equalsTo.length === 1) {
 			var theOther = $equalsTo[0];
 			if (theOther.value !== '' && theOther.value !== event.target.value && event.target.value !== '') {
-				event.target.setCustomValidity($target.data('custom-message') !== undefined ? $target.data('custom-message') : event.target.validationMessage);
+				event.target.setCustomValidity($target.data('custom-message') !== undefined ? $target.data('custom-message') : sanitizeOutput(event.target.validationMessage));
 			} else {
 				event.target.setCustomValidity('');
 			}
@@ -270,7 +273,7 @@ function checkInputError(event)
 	if (event.target.validity.valid) {
 		$target.closest('.form-group').removeClass('has-error');
 	} else {
-		$target.closest('.form-group').addClass('has-error').append('<div class="form-error-msg text-danger"><i class="fa fa-exclamation-triangle"></i> ' + event.target.validationMessage + '</div>');
+		$target.closest('.form-group').addClass('has-error').append('<div class="form-error-msg text-danger"><i class="fa fa-exclamation-triangle"></i> ' + sanitizeOutput(event.target.validationMessage) + '</div>');
 	}
 }
 

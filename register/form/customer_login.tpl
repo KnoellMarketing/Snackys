@@ -16,6 +16,7 @@
 
 <div class="form-group">
     <input type="hidden" name="login" value="1" />
+	<input type="hidden" name="wk" value="{if isset($one_step_wk)}{$one_step_wk}{else}0{/if}" />
     {if !empty($oRedirect->cURL)}
         {foreach name=parameter from=$oRedirect->oParameter_arr item=oParameter}
             <input type="hidden" name="{$oParameter->Name}" value="{$oParameter->Wert}" />

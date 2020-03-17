@@ -95,7 +95,21 @@
             this.registerImageSwitch($wrapper);
             this.registerArticleOverlay($wrapper);
             this.registerFinish($wrapper);
+			
+			this.snackys($wrapper);
         },
+
+		snackys: function($wrapper){
+
+			$('#article-tab-nav span',$wrapper).on('click',function(e){
+				var tabSelector = $(this).attr('aria-controls')
+				$('#article-tab-nav li').removeClass('active');
+				$(this).parent().addClass('active');
+				$('#article-tabs > div').removeClass('active');
+				$('#article-tabs > div#' + tabSelector).addClass('active');
+				
+			});
+		},
 
         registerGallery: function() {
             var $gallery = $('#gallery');
@@ -976,8 +990,7 @@
 
             $('.variation[data-value] input:checked', $wrapper).prop('checked', false);
             $('.variations select option', $wrapper).prop('selected', false);
-            //$('.variations select', $wrapper).selectpicker('refresh');
-            $('.variations select', $wrapper).selectric('refresh');
+            $('.variations select', $wrapper).val([]);
         },
 
         variationDisableAll: function(wrapper) {

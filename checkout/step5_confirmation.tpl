@@ -230,7 +230,7 @@
                         <div class="panel-body">
                             <input type="hidden" name="abschluss" value="1" />
                             <input type="hidden" id="comment-hidden" name="kommentar" value="" />
-                            <div class="visible-sm visible-xs">
+                            <div class="{if !$device->isMobile()}visible-sm visible-xs{/if}">
                             {include file="checkout/inc_order_items.tpl" tplscope="confirmation"}
 								<hR>
 							<div class="cart-sum mb-spacer">

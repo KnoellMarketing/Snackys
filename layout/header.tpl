@@ -4,6 +4,10 @@
       {else}itemtype="http://schema.org/WebPage"{/if}{/block} id="snackys-tpl">
 {block name="head"}
 <head>
+    {block name="head-base"}
+        <base href="{$ShopURL}/">
+    {/block}
+
 	{snackys_content id="html_head_start" title="html_head_start"}
 	{if $snackyConfig.pwa == 'Y'}<link rel="manifest" href="manifest.json">{/if}
 	{if !empty($snackyConfig.gtag)}<link rel="dns-prefetch preconnect" href="https://www.googletagmanager.com">{/if}
@@ -59,10 +63,6 @@
         <link rel="canonical" href="{$cCanonicalURL}">
     {/if}
 
-    {block name="head-base"}
-        <base href="{$ShopURL}/">
-    {/block}
-
     {block name="head-icons"}
         {if !empty($Einstellungen.template.theme.favicon)}
             {if file_exists("{$currentTemplateDir}{$Einstellungen.template.theme.favicon}")}
@@ -86,6 +86,15 @@
 		  Shop::Smarty()->assign("css3", array());
 		{/php}
     {block name="head-resources"}
+		
+		{assign var='hasMobileSlider' value='false'}
+		 {getSliderPerDevice cAssign="oSliderDevice"}
+		{if $snackyConfig.fullscreenElement == 1 && $device->isMobile()}
+			{if isset($oSliderDevice) && count($oSliderDevice->oSlide_arr) > 0}
+				{assign var='hasMobileSlider' value='true'}
+			{/if}
+		{/if}
+		 
 		{if $snackyConfig.headerType == 1 && $nSeitenTyp !== 11}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-navcenter.css'}
 			{append var='css3' value='/templates/snackys/themes/base/css/search-toggle.css'}
@@ -137,7 +146,7 @@
 		{else}
 			{append var='css3' value='/templates/snackys/themes/base/css/header_default.css'}
 		{/if}
-		{if $snackyConfig.headerType == 4 || $snackyConfig.headerType == 5 || $Einstellungen.template.theme.theme_default == 'darkmode'}
+		{if $snackyConfig.headerType == 4 || $snackyConfig.headerType == 5 || $Einstellungen.template.theme.theme_default == 'darkmode' || ($device->isMobile() && $snackyConfig.fullscreenElement == 1 && $hasMobileSlider == 'false' && ($snackyConfig.headerType == 4 || $snackyConfig.headerType == 5))}
 			{append var='css3' value='/templates/snackys/themes/darkmode/css/header-darkmode.css'}
 		{/if}
 		{if $Einstellungen.template.theme.theme_default == 'darkmode'}
@@ -247,7 +256,7 @@
 				_tsConfig.responsive = {ldelim}'variant': 'floating'{rdelim}; 
 			{/if}
 		</script>
-		<script src="//widgets.trustedshops.com/js/{$snackyConfig.trustedID}.js" async data-inline="1"></script>
+		<script src="//widgets.trustedshops.com/js/{$snackyConfig.trustedID}.js" charset="utf-8" async data-inline="1"></script>
 	{/if}
 	
 	<meta name="theme-color" content="{$snackyConfig.css_brand}">
@@ -283,12 +292,15 @@ body-offcanvas{if $bSeiteNichtGefunden} error404{/if}{if empty($snackyConfig.you
 {if $snackyConfig.headerType == 4 || $snackyConfig.headerType == 4.5 || $snackyConfig.headerType == 5 || $snackyConfig.headerType == 5.5} full-head{/if}
 {if $snackyConfig.productBorder == 1} product-border{/if}
 {if $device->isMobile()} mobile{/if}
+{if $device->isTablet()} tablet{/if}
 {if $device->isiOS()} ios{/if}
 {if $device->is("Edge")} edge
 {elseif $device->version("IE")} ie ie-{$device->version("IE")|number_format:0}{/if}
 {if !empty($hinweis)}{if isset($bWarenkorbHinzugefuegt) && $bWarenkorbHinzugefuegt} basked-added{/if}{/if}
 {if $isShopFive && isset($bWarenkorbHinzugefuegt) && $bWarenkorbHinzugefuegt} basked-added{/if}
 {if $snackyConfig.sidepanelEverywhere == 'Y'} sidebar-overall{/if}
+{if $device->isMobile() && $snackyConfig.fullscreenElement == 1 && $hasMobileSlider == 'false'} no-mb-sl{/if}
+{if $snackyConfig.mmenu_link_clickable == 'N'} mmlca-n{/if}
 "
 
 
@@ -297,6 +309,8 @@ body-offcanvas{if $bSeiteNichtGefunden} error404{/if}{if empty($snackyConfig.you
 {if !empty($snackyConfig.boxedImg) && $snackyConfig.designWidth == 1} style="background: url({$snackyConfig.boxedImg})no-repeat center center/cover;{if !$device->isMobile()} background-attachment: fixed"{/if}{/if}
 >
 {/strip}
+	
+	
 	{if $isShopFive}
         {include file=$opcDir|cat:'tpl/startmenu.tpl'}
 	{/if}
@@ -341,7 +355,9 @@ body-offcanvas{if $bSeiteNichtGefunden} error404{/if}{if empty($snackyConfig.you
     {/if}
 	
 	{if ($snackyConfig.headerType == 4 || $snackyConfig.headerType == 4.5 || $snackyConfig.headerType == 5 || $snackyConfig.headerType == 5.5) && $nSeitenTyp === 18}
-	<div id="km-fullscreen-wrapper">
+		{if !$device->isMobile() || ($device->isMobile() && $snackyConfig.fullscreenElement != 1) || ($device->isMobile() && $snackyConfig.fullscreenElement == 1 && $hasMobileSlider == 'true')}
+			<div id="km-fullscreen-wrapper">
+		{/if}
 	{/if}
 	
 	{if $snackyConfig.headerPromo != 0 && $nSeitenTyp !== 11 && !isset($smarty.session.km_promo)}
@@ -377,8 +393,10 @@ body-offcanvas{if $bSeiteNichtGefunden} error404{/if}{if empty($snackyConfig.you
     {/block}
 	
 	{if ($snackyConfig.headerType == 4 || $snackyConfig.headerType == 4.5 || $snackyConfig.headerType == 5 || $snackyConfig.headerType == 5.5) && $nSeitenTyp === 18}
-		{include file="snippets/extension-fullscreen.tpl"}
-		</div>
+		{if !$device->isMobile() || ($device->isMobile() && $snackyConfig.fullscreenElement != 1) || ($device->isMobile() && $snackyConfig.fullscreenElement == 1 && $hasMobileSlider == 'true')}
+				{include file="snippets/extension-fullscreen.tpl"}
+			</div>
+		{/if}
 	{/if}
 	{if $nSeitenTyp === 18 && ((isset($oSlider) && count($oSlider->oSlide_arr) > 0) || isset($oImageMap) || !empty($snackyConfig.youtubeID))}
 		{include file="snippets/extension.tpl"}

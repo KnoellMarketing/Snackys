@@ -89,3 +89,6 @@
 #man-sl .img-ct{
 	box-shadow: none;
 }
+#man-sl img{
+	object-fit: contain;
+}

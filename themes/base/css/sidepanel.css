@@ -282,6 +282,23 @@ body.show-sidebar #sp-l .close-sidebar{
 #sp-l.collapse .panel.box .icon-caret{
 	display: flex;
 }
+.box-jtl-search ul.filter_state,
+.box-jtl-search .panel-title{
+	margin: 0;
+	padding: 0;
+}
+.box-body.dropdown > a.dropdown-toggle:after{
+	content: '';
+	display: inline-block;
+    margin-left: .25rem;
+    vertical-align: middle;
+    border-top: 4px dashed;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+}
+.box-body.dropdown.open > a.dropdown-toggle:after{
+	transform: scaleY(-1);
+}
 @media screen and (max-width: 991px){
     body:not(.show-sidebar) #sp-l .inside {
         transform: translateX(110%);

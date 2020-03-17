@@ -15,8 +15,10 @@
 			{/if}
 			{if !$device->isMobile() && ($snackyConfig.megaStyle == 0 || $snackyConfig.headerType == 4 || $snackyConfig.headerType == 4.5 || $snackyConfig.headerType == 6)} 
 				{include file='snippets/categories_mega.tpl'}
-			{elseif $snackyConfig.megaStyle == 1 || $device->isMobile()}
+			{elseif $snackyConfig.megaStyle == 1 && !$device->isMobile()}
 				{include file='snippets/categories_dropdown.tpl'}
+			{elseif $device->isMobile()}
+				{include file='snippets/categories_mobile.tpl'}
 			{/if}
 		</ul>
 	{/block}

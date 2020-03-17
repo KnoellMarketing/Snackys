@@ -28,3 +28,9 @@
 	padding-right: 15px;
 	padding-top: 2rem;
 }
+
+@media screen and (max-width: 768px){
+	#footer-boxes .icon-caret svg{
+		fill: white;
+	}
+}

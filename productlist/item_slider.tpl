@@ -77,11 +77,11 @@
                 {elseif $anzeige === 'ampel'}
                     <div class="signal_image status-{$Artikel->Lageranzeige->nStatus}"><small>{$Artikel->Lageranzeige->AmpelText}</small></div>
                 {/if}
-                {if $Artikel->cEstimatedDelivery}
+                {* if $Artikel->cEstimatedDelivery}
                     <div class="estimated_delivery hidden-xs">
                         <small>{lang key="shippingTime" section="global"}: {$Artikel->cEstimatedDelivery}</small>
                     </div>
-                {/if}
+                {/if *}
             </div>
         {/block}
 		{if $snackyConfig.listShowCart != 1}
