@@ -3,7 +3,7 @@
     <div class="alert alert-info">{lang key="loginDesc" section="login"} {if isset($oRedirect) && $oRedirect->cName}{lang key="redirectDesc1" section="global"} {$oRedirect->cName} {lang key="redirectDesc2" section="global"}.{/if}</div>
 {/if}
 
-{include file="snippets/extension.tpl"}
+{* include file="snippets/extension.tpl" *}
 
 <div class="">
     <div class="">

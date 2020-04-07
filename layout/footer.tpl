@@ -175,6 +175,10 @@
 							{/if}
                         </div>
                     </div>
+                {/if}
+            {/block}
+
+            {block name="footer-additional"}
                     {if $snackyConfig.socialmedia_footer === 'Y'}
                         <div id="footer-social" class="mw-container">
                             <div class="footer-additional-wrapper dpflex-a-center dpflex-j-center dpflex-wrap">
@@ -253,10 +257,6 @@
                             </div>
                         </div>
                     {/if}
-                {/if}
-            {/block}
-
-            {block name="footer-additional"}
             {/block}{* /footer-additional *}
 			
         <div id="copyright" class="mw-container text-center small">

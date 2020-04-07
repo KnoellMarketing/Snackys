@@ -20,7 +20,7 @@ body .modal .modal-dialog{
     background: white;
     padding: 0 2rem 2rem 2rem;
     border-radius: .3rem;
-    max-width: 40rem;
+    max-width: 60rem;
     max-height: 90vh;
     overflow: auto;
 	min-width: 25rem;
@@ -37,6 +37,7 @@ body .modal .modal-dialog{
 	top: 0;
 	background: white;
 	padding-top: 2rem;
+	z-index: 2;
 }
 .modal-dialog .modal-header .modal-title{
     margin: 0;

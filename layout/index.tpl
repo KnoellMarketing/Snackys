@@ -17,6 +17,10 @@
 				<h1>{if !empty($Link->Sprache->cMetaTitle)}{$Link->Sprache->cMetaTitle}{else}{$Link->Sprache->cName}{/if}</h1>
 			{/if}
 
+			{if $nSeitenTyp !== 18 && $nSeitenTyp !== 1 && $nSeitenTyp !== 2}
+				{include file="snippets/extension.tpl"}
+			{/if}
+
 			{if !empty($Link->Sprache->cContent) && $Link->nLinkart != $smarty.const.LINKTYP_STARTSEITE}
 				{if $snackyConfig.optimize_content == "Y"}{$Link->Sprache->cContent|optimize}{else}{$Link->Sprache->cContent}{/if}
 			{/if}

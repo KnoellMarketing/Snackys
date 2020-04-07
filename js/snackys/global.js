@@ -550,7 +550,10 @@ function mainEventListener()
         }
     });
 	
-
+	//Modal Lazy Loading!
+	$('body').on('shown.bs.modal', function (e) {
+	  sImages.rewatch();
+	});
 }
 
 $(document).ready(function () {

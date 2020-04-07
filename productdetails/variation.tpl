@@ -33,7 +33,7 @@
                                     {assign var="bSelected" value=$Variationswert->kEigenschaftWert == $oEigenschaftWertEdit_arr[$Variationswert->kEigenschaft]->kEigenschaftWert}
                                 {/if}
 							{/foreach}
-                            <option disabled {if !bSelected}selected {/if}hidden value>{lang key="pleaseChoose" section="global"}</option>
+                            <option disabled {if !$bSelected}selected {/if}hidden value>{lang key="pleaseChoose" section="global"}</option>
 							{foreach name=Variationswerte from=$Variation->Werte key=y item=Variationswert}
                                 {assign var="bSelected" value=false}
                                 {if isset($oVariationKombi_arr[$Variationswert->kEigenschaft])}
