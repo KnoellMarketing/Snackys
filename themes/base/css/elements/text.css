@@ -1,0 +1,6 @@
+#snackys-tpl a.title{
+    color: @darktext;
+}
+#snackys-tpl a.title:hover{
+    text-decoration: underline;
+}

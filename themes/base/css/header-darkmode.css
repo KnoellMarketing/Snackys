@@ -65,6 +65,9 @@ body:not([data-page="18"]) #shop-nav,
 	#cat-w li:hover > .mm-mainlink{
 		color: @brand;
 	}
+    #cat-w .mgm > ul.blanklist > li{
+        background: @blackbg;
+    }
 }
 
 /* Mobile Shop-Nav */

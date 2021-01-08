@@ -24,7 +24,6 @@
 #top-bar-wrapper,
 [data-page="11"] #shop-nav,
 .mgm .mgm-c,
-#cat-w .mgm.fullscreen-menu > ul.blanklist,
 [id*="mm-dropdown"] .dropdown-menu,
 [data-headtype="6"] #shop-nav,
 [data-headtype="2"] #cat-w{
@@ -87,6 +86,11 @@
 	#cat-w li:hover > .mm-mainlink{
 		color: @brand;
 	}
+    #cat-w .mgm > ul.blanklist > li,
+    .fullscreen-title,
+    .fullscreen-title:before{
+        background: @blackbg;
+    }
 }
 
 /* Mobile Shop-Nav */

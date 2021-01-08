@@ -82,7 +82,7 @@
 						{/if}
 						{$firstelement = true}
 						<ul class="nav navbar-nav">
-							{include file='snippets/linkgroup_list-sidebar.tpl' linkgroupIdentifier='megamenu_start' dropdownSupport=true tplscope='megamenu_start' caret="fa fa-caret-down pull-right"}
+							{include file='snippets/linkgroup_list-sidebar.tpl' linkgroupIdentifier='megamenu_start' dropdownSupport=true tplscope='megamenu_start' caret="fa fa-caret-down"}
 						</ul>
 					{/if}
 					{if $firstelement}
@@ -127,7 +127,7 @@
                         {if isset($snackyConfig.show_pages) && $snackyConfig.show_pages !== 'N'}
                             {$firstelement = true}
                             <ul class="nav navbar-nav">
-                                {include file='snippets/linkgroup_list-sidebar.tpl' linkgroupIdentifier='megamenu' dropdownSupport=true tplscope='megamenu' caret="fa fa-caret-down pull-right"}
+                                {include file='snippets/linkgroup_list-sidebar.tpl' linkgroupIdentifier='megamenu' dropdownSupport=true tplscope='megamenu' caret="fa fa-caret-down"}
                             </ul>
                         {/if}
                     {/block}{* megamenu-pages *}

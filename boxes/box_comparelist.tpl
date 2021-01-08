@@ -31,7 +31,7 @@
 									<a href="{$oArtikel->cURL}" class="name">{$oArtikel->cName|truncate:25:"..."}</a>
 								</td>
 								<td class="text-right">
-									<a href="{$oArtikel->cURLDEL}" class="remove pull-right pr" data-name="Vergleichsliste.remove" data-toggle="product-actions" data-value='{ldelim}"a":{$oArtikel->kArtikel}{rdelim}'>
+									<a href="{$oArtikel->cURLDEL}" class="remove" data-name="Vergleichsliste.remove" data-toggle="product-actions" data-value='{ldelim}"a":{$oArtikel->kArtikel}{rdelim}'>
 									<div class="img-ct icon">
 										<svg>
 										  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-bin"></use>

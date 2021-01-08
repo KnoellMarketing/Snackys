@@ -93,6 +93,7 @@
 				container, image, i, item;
 				
             this.ident = scope || this.ident;
+			console.log(self.getStack());
 			
 			//Show different imagestack!			
             $(this.element).empty();
@@ -143,7 +144,7 @@
 							$('<img />').attr('src', item.md.src).attr('alt', item.md.alt)
 						)
 					);
-					container.append(image)
+					//container.append(image)
 				}
 				
 			}

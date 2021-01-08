@@ -216,13 +216,53 @@ hr {
     width: 8.33333333%
 }
 }
+
+@media (min-width:1600px) {
+.col-xl-12 {
+    width: 100%
+}
+.col-xl-11 {
+    width: 91.66666667%
+}
+.col-xl-10 {
+    width: 83.33333333%
+}
+.col-xl-9 {
+    width: 75%
+}
+.col-xl-8 {
+    width: 66.66666667%
+}
+.col-xl-7 {
+    width: 58.33333333%
+}
+.col-xl-6 {
+    width: 50%
+}
+.col-xl-5 {
+    width: 41.66666667%
+}
+.col-xl-4 {
+    width: 33.33333333%
+}
+.col-xl-3 {
+    width: 25%
+}
+.col-xl-2 {
+    width: 16.66666667%
+}
+.col-xl-1 {
+    width: 8.33333333%
+}
+}
 .caret {
     display: inline-block;
     margin-left: .25rem;
     vertical-align: middle;
     border-top: 4px dashed;
     border-right: 4px solid transparent;
-    border-left: 4px solid transparent
+    border-left: 4px solid transparent;
+    border-radius: .2rem;
 }
 .dropup, .dropdown {
     position: relative
@@ -235,43 +275,32 @@ hr {
     top: 100%;
     left: 0;
     display: none;
-    float: left;
-    min-width: 160px;
-    padding: 5px 0;
-    margin: 2px 0 0;
+    padding: .5rem 0;
     list-style: none;
-    background-color: #fff;
-    border: 1px solid @defaultborder;
-    border-radius: 4px;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.175);
-    background-clip: padding-box;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: .3rem;
+    box-shadow: 0 0.25rem 0.5625rem -0.0625rem rgba(0,0,0,0.03), 0 0.275rem 1.25rem -0.0625rem rgba(0,0,0,0.05);
     z-index: 11;
     margin-top: .5rem;
+}
+.dropdown-menu > li{
+    display: block;
 }
 .dropdown-menu.pull-right,
 .dropdown-menu-right{
     right: 0;
     left: auto
 }
-.dropdown-menu>li>a {
+.dropdown-menu > li > a {
     display: block;
-    padding: 3px 20px;
-    color: #333;
-    white-space: nowrap
+    padding: .4rem 1.3rem;
+    color: @defaulttext;
+    white-space: nowrap;
 }
-.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
-    text-decoration: none;
-    color: #262626;
-    background-color: #f5f5f5
-}
-.dropdown-menu>.disabled>a, .dropdown-menu>.disabled>a:hover, .dropdown-menu>.disabled>a:focus {
-    color: #777
-}
-.dropdown-menu>.disabled>a:hover, .dropdown-menu>.disabled>a:focus {
-    text-decoration: none;
-    background-color: transparent;
-    background-image: none;
-    cursor: not-allowed
+.dropdown-menu > li > a:hover, 
+.dropdown-menu > li > a:focus {
+    color: @brand;
 }
 .open>.dropdown-menu {
     display: block
@@ -522,4 +551,44 @@ th.visible-lg, td.visible-lg {
 .hidden-lg {
     display: none  
 }
+}
+
+/* Collapse for Accordeon */
+
+.collapse {
+  display: none;
+}
+.collapse.in {
+  display: block;
+}
+tr.collapse.in {
+  display: table-row;
+}
+tbody.collapse.in {
+  display: table-row-group;
+}
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition-property: height, visibility;
+  -o-transition-property: height, visibility;
+  transition-property: height, visibility;
+  -webkit-transition-duration: 0.35s;
+  -o-transition-duration: 0.35s;
+  transition-duration: 0.35s;
+  -webkit-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+  transition-timing-function: ease;
+}
+
+/* Panel */
+.panel:not(.panel-slider){
+    padding: 1rem;
+    border-radius: .5rem;
+    background: #f6f6f6;
+    box-shadow: 0 0 0 0.5rem #f6f6f6;
+}
+.panel-heading{
+    margin-bottom: .7rem;
 }

@@ -1,0 +1,77 @@
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="search"],
+input.quantity,
+select,
+textarea{
+    width: 100%;
+    border: 1px solid @defaultborder;
+    padding: .75rem 1rem;
+    display: block;
+    transition: .3s ease;   
+    border-radius: .3rem;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+	margin: 0;
+}
+select:focus,
+select:hover,
+input:focus,
+input:hover
+textarea:focus,
+textarea:hover{
+    outline: none;
+    border: 1px solid @strongborder;
+}
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #F1F8FF inset;
+    background: #F1F8FF;
+}
+textarea{
+	max-width: 100%;
+	min-height: 6rem;
+	resize: vertical;
+}
+.form-group{
+    position: relative;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+}
+.form-group label{
+    display: block;
+    margin-bottom: .15rem;
+    font-size: .85rem;
+    font-weight: 700;
+}
+.form-group.has-error input,
+.form-group.has-error select,
+.form-group.has-error textarea{
+    border-color: @danger;
+}
+.form-group .form-error-msg{
+    position: absolute;
+    right: 0.7rem;
+    top: 100%;
+    transform: translateY(-50%);
+    padding: 0 .3rem;
+    background: white;
+    margin: 0;
+    font-size: .75rem;
+	color: @danger;
+}
+.form-group.required label:after,
+dt span.required:after{
+    content: '*';
+    font-weight: 400;
+    margin-left: .1rem;
+    color: @danger;
+}

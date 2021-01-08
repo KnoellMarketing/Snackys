@@ -23,24 +23,28 @@
 		bottom: 4rem;
 	}
 	#cat-w .mgm > ul.blanklist{
-		width: 25%;
+        width: 100%;
 		align-items: center;
 		align-content: flex-start;
 		height: 100%;
-		background: white;
-		padding-top: 6rem;
+        background: none;
+        padding-top: 0;
+        position: static;
+        display: block;
+        overflow: auto;
 	}
 	#cat-w .mgm > ul.blanklist > li{
-		width: 100%;
+        width: 25%;
+        background: white;
 		position: static;
 	}
 	#cat-w .dropdown-menu{
-		left: 100%;
-		right: auto;
+        left: calc(25% + 40px);
+        right: 100px;
 		top: 0;
 		bottom: 0;
 		padding: 0;
-		width: 300%;
+        width: auto;
 		box-shadow: 0 0 20px 0 rgba(0,0,0,.15);
 		border-radius: 0;
 	}
@@ -107,12 +111,22 @@
 		width: 50%;
 	}
 	.fullscreen-title{
-		position: absolute;
-		top: 0;
-		left: 0;
-		right: 0;
+        position: relative;
+        width: 25%;
 		padding: 2rem;
+        background: white;
 	}
+    .fullscreen-title:before{
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 100vh;
+        background: white;
+        z-index: -1;
+        pointer-events: none;
+    }
 	#cat-w li:hover > .mm-mainlink,
 	[id*="mm-dropdown"] .active>.dropdown-link, 
 	[id*="mm-dropdown"] li:hover>.dropdown-link{
@@ -138,6 +152,11 @@
 	#cat-w .row-multi.hasInfoColumn > .col-lg-3{
 		width: 33.33%;
 	}	
+    #cat-w .dropdown-menu{
+        left: calc(25% + 20px);
+        width: auto;
+        right: 50px;
+    }    
 }
 @media screen and (min-width: 768px) and (max-width: 1200px){
 	#cat-w .info-col{

@@ -1,0 +1,124 @@
+.banner{
+	position: relative;
+}
+.banner img{
+	width: 100%;
+}
+body:not([data-page="18"]) .banner img,
+body[data-page="18"] .sl-w + .banner img,
+body[data-page="18"].boxed-slider:not(.full-width) .banner img{
+	border-radius: .8rem;
+}
+.banner a[style]{
+	position: absolute;
+	border: .35rem solid rgba(255,255,255,.6);
+	border-radius: .3rem;
+	transition: .3s ease;
+	opacity: 0;
+}
+.banner:hover a[style]{
+	opacity: 1;
+}
+.banner a[style]:hover{
+	background: rgba(255,255,255,.3);
+}
+.banner .area-desc{
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	min-width: 20rem;
+	flex-wrap: wrap;
+	justify-content: center;
+	z-index: 100;
+}
+.banner a[style]:hover .area-desc{
+	display: flex;
+}
+.banner .top .area-desc{
+	top: auto;
+	bottom: 100%;
+}
+.banner .right .area-desc{
+	left: 100%;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.banner .left .area-desc{
+	right: 100%;
+	left: auto;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.banner .area-desc > div:not(.header){
+	width: 100%;
+}
+.banner .area-desc .inside{
+	background: #fff;
+	border-radius: .3rem;
+	padding: 1rem;
+	box-shadow: 0 0 20px 0 rgba(0,0,0,.25);
+}
+.banner .h4{
+	margin-bottom: .5rem;
+}
+.banner p{
+	margin: .5rem 0;
+}
+.banner .header{
+	height: 1.6rem;
+	width: 2rem;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+}
+.banner .header span{
+	width: 1rem;
+	height: 1rem;
+	background: #fff;
+	transform: rotate(45deg);
+	display: block;
+	position: relative;
+	top: .5rem;
+}
+.banner .top .header,
+.banner .left .header{
+	order: 1;
+	align-items: flex-start;
+}
+.banner .top .header span{
+	top: auto;
+	bottom: .5rem;
+}
+.banner .right .area-desc,
+.banner .left .area-desc{
+	flex-wrap: nowrap;
+	align-items: center;
+}
+.banner .right .header{
+	align-items: center;
+	justify-content: flex-end;
+}
+.banner .right .header span{
+	top: auto;
+	left: .5rem;
+}
+.banner .left .header span{
+	top: auto;
+	right: .5rem;
+}
+.banner .left .header{
+	align-items: center;
+	justify-content: flex-start;
+}
+.banner p:first-child{
+	margin-top: 0;
+}
+.banner p:last-child{
+	margin-bottom: 0;
+}
+.banner .img-ct{
+	margin: .75rem auto;
+	max-width: 10rem;
+}

@@ -106,8 +106,14 @@
         },
 
         pushedToBasket: function(response) {
+			console.log('ja los gehts');
 			if (typeof mainEventListener !== 'undefined' && typeof mainEventListener === 'function') { 
-				window.setTimeout(mainEventListener,500);
+			console.log('ja alles klar');
+				window.setTimeout(function(){
+					mainEventListener();
+					if(sImages)
+						sImages.rewatch();
+				},500);
 			}
         },
 
@@ -125,8 +131,11 @@
                 $(that.options.selector.cart.container)
                     .empty()
                     .append(tpl);
-				document.getElementsByClassName('cart-menu')[0].classList.add('open');
-				document.body.classList.add('sidecart-open');
+				if(!$('.lpa-checkout-wrapper').length )
+				{
+					document.getElementsByClassName('cart-menu')[0].classList.add('open');
+					document.body.classList.add('sidecart-open');
+				}
             });
         }
     };

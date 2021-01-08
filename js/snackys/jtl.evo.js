@@ -301,7 +301,7 @@
 
             if (target.length > 0) {
                 // scroll below the static megamenu
-                var nav         = $('#evo-main-nav-wrapper.do-affix');
+                var nav         = $('#cat-w');
                 var fixedOffset = nav.length > 0 ? nav.outerHeight() : 0;
 
                 targetOffset = target.offset().top - fixedOffset - parseInt(target.css('margin-top'));
@@ -361,7 +361,6 @@
 
                 $form.find('fieldset, input[type="submit"]')
                     .attr('disabled', true);
-
                 var url = 'bestellvorgang.php?kVersandart=' + id;
                 $.evo.loadContent(url, function() {
                     $.evo.checkout();
@@ -404,6 +403,12 @@
                 if (animation) {
                     $data.addClass('loading');
                 }
+				if($data.find('#checkout-cart-ajaxversand').length > 0)
+				{
+					var $sidebasket = $data.find('#checkout-cart-ajaxversand').html();
+					$('#checkout-cart').html($sidebasket);
+					$data.find('#checkout-cart-ajaxversand').html('');
+				}
                 $wrapper.replaceWith($data);
                 $wrapper = $data;
                 if (typeof callback === 'function') {
@@ -475,27 +480,28 @@
 			});
 		},
 		slideNext: function(btn) {
-			$(btn).closest('.panel').find('.no-scrollbar').animate({
-				scrollLeft: ($(btn).closest('.panel').find('.no-scrollbar').scrollLeft()+$(btn).closest('.panel').find('.no-scrollbar').width())
+			$(btn).closest('.panel-slider').find('.no-scrollbar').animate({
+				scrollLeft: ($(btn).closest('.panel-slider').find('.no-scrollbar').scrollLeft()+$(btn).closest('.panel-slider').find('.no-scrollbar').width())
 			},300,'swing',function(){$.evo.sliderButtonsAdjust(btn)});
 		},
 		slidePrev: function(btn) {
-			$(btn).closest('.panel').find('.no-scrollbar').animate({
-				scrollLeft: ($(btn).closest('.panel').find('.no-scrollbar').scrollLeft()-$(btn).closest('.panel').find('.no-scrollbar').width())
+			$(btn).closest('.panel-slider').find('.no-scrollbar').animate({
+				scrollLeft: ($(btn).closest('.panel-slider').find('.no-scrollbar').scrollLeft()-$(btn).closest('.panel-slider').find('.no-scrollbar').width())
 			},300,'swing',function(){$.evo.sliderButtonsAdjust(btn)});
 		},
 		sliderButtonsAdjust: function(btn){
-			$(btn).closest('.panel').find('.sl-ar').removeClass('inactive');
-			if($(btn).closest('.panel').find('.no-scrollbar').scrollLeft() <= 1)
-				$(btn).closest('.panel').find('.sl-pr').addClass('inactive');
-			if($(btn).closest('.panel').find('.no-scrollbar').scrollLeft() >= $(btn).closest('.panel').find('.no-scrollbar')[0].scrollWidth-$(btn).closest('.panel').find('.no-scrollbar').width())
-				$(btn).closest('.panel').find('.sl-nx').addClass('inactive');
+			$(btn).closest('.panel-slider').find('.sl-ar').removeClass('inactive');
+			if($(btn).closest('.panel-slider').find('.no-scrollbar').scrollLeft() <= 1)
+				$(btn).closest('.panel-slider').find('.sl-pr').addClass('inactive');
+			if($(btn).closest('.panel-slider').find('.no-scrollbar').scrollLeft() >= $(btn).closest('.panel-slider').find('.no-scrollbar')[0].scrollWidth-$(btn).closest('.panel-slider').find('.no-scrollbar').width())
+				$(btn).closest('.panel-slider').find('.sl-nx').addClass('inactive');
 			
 		},
 		autoSlide: function(elem)
 		{
-			if($(elem).closest('.panel').find('.no-scrollbar').scrollLeft() >= $(elem).closest('.panel').find('.no-scrollbar')[0].scrollWidth-$(elem).closest('.panel').find('.no-scrollbar').width())
-				$(elem).closest('.panel').find('.no-scrollbar').animate({
+			if($(elem).is(':hover')) return ;
+			if($(elem).closest('.panel-slider').find('.no-scrollbar').scrollLeft() >= $(elem).closest('.panel-slider').find('.no-scrollbar')[0].scrollWidth-$(elem).closest('.panel-slider').find('.no-scrollbar').width())
+				$(elem).closest('.panel-slider').find('.no-scrollbar').animate({
 					scrollLeft: 0
 				},300,'swing',function(){$.evo.sliderButtonsAdjust(elem)});
 			else
@@ -504,6 +510,7 @@
 		
 		mobileMenu: function()
 		{
+			$('#cat-w .fa-caret-down').unbind();
 			$('#cat-w .fa-caret-down').click(function(e){
 				e.preventDefault();
 				if($(this).closest('li').hasClass('open'))

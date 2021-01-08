@@ -2,6 +2,8 @@
 #sp-l{
     max-width: 18rem;
     padding-right: 2.5rem;
+    font-size: .92rem;
+    line-height: 1.1;
 }
 #sp-l .dark-bg{
     position: fixed;
@@ -22,13 +24,8 @@
 	overflow-x: hidden;
 }
 #sp-l ul li{
-    margin: .3rem 0;
+    margin: .4rem 0;
     position: relative;
-}
-#sp-l .panel-heading{
-    border-bottom: 1px solid @lightborder;
-    margin-bottom: .75rem;
-	padding: .7rem 0;
 }
 #sp-l section:not(:last-child),
 #sp-l > .inside > .panel-strap:not(:last-child){
@@ -36,11 +33,12 @@
 }
 #sp-l .nav a{
     display: flex;
+    align-items: center;
     width: 100%;
 }
 #sp-l .nav a .value{
     display: flex;
-    width: calc(100% - 3.875rem);
+    flex-grow: 1;
 	align-items: flex-start;
 }
 #sp-l .nav a .value .badge{
@@ -58,9 +56,8 @@
     height: 1.125rem;
     display: block;
     border: 1px solid @defaultborder;
-    border-radius: .125rem;
+    border-radius: .3rem;
     margin-right: .75rem;
-    transform: translateY(2px);
     transition: .3s ease;
 }
 #sp-l .nav-list a.active:before,
@@ -69,9 +66,9 @@
     background: @brand;
 }
 #sp-l .nav-list a:after{
-    width: 5px;
-    height: 10px;
-    border: solid @backgroundtext;
+    width: 4px;
+    height: 8px;
+    border: solid #f6f6f6;
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
     left: 6px;
@@ -90,13 +87,11 @@
 #sp-l li:not(.open) ul{
     display: none;
 }
-#sp-l .nav-list .badge{
+#sp-l .badge{
+    font-size: .8rem;
+    color: @brand;
     order: 1;
     margin-left: auto;
-}
-#sp-l .badge{
-    font-weight: 600;
-    color: @brand;
 }
 #sp-l .fa-caret-down{
     margin-left: auto;

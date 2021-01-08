@@ -1,0 +1,32 @@
+/* Alerts */
+.alert{
+    padding: .75rem 1.25rem;
+    border-radius: .5rem;
+    color: @backgroundtext;
+    background: @darkbg;
+}
+.alert:not(:first-child){
+    margin-top: 1rem;
+}
+.alert:not(:last-child){
+    margin-bottom: 1rem;
+}
+.alert a:not(.btn){
+    text-decoration: underline;
+}
+.alert-info{
+    background: @info;
+}
+.alert-warning{
+    background: @warning;
+}
+.alert-danger{
+    background: @danger;
+}
+.alert-success{
+    background: @success;
+}
+#snackys-tpl .alert a:not(.btn),
+#snackys-tpl .alert *{
+    color: @backgroundtext;
+}

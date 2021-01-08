@@ -1,7 +1,7 @@
 <div class="row">
-	<span id="close-lightbox" class="close-btn"></span>
+	<span id="close-lightbox" class="close-btn dpflex-j-center"></span>
     {if $Artikel->Bilder|@count > 1 && !$device->isMobile()}
-    <div id="gallery-thumbs" class="col-md-2 col-lg-2{if $Artikel->Bilder|@count > 5} two-cols{/if}"> 
+    <div id="gallery-thumbs" class="col-xs-12 col-md-2 col-lg-2{if $Artikel->Bilder|@count > 5} two-cols dpflex-j-between dpflex-wrap{/if}"> 
         {block name="product-image"}
         {foreach $Artikel->Bilder as $image name="thumbnails"}
             {strip}

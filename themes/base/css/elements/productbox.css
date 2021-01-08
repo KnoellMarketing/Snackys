@@ -1,0 +1,87 @@
+.p-c,
+.p-c .form-basket{
+	position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.p-c .form-basket{
+    position: static;
+}
+.p-c .img-ct{
+    transition: box-shadow .3s ease, transform .3s ease;
+}
+.p-c .price{
+    font-size: 1.5rem;
+    color: @brand;
+}
+.p-c .footnote-reference{
+    font-weight: 400;
+    font-size: 0.75em;
+    position: relative;
+    top: -0.35em;
+    left: -0.2em;
+}
+.p-c strong.price .old-price{
+	color: @defaulttext;
+	font-weight: 400;
+}
+.p-c .img-w:hover .img-ct{
+    box-shadow: 0 16px 16px rgba(0,0,0,.1);
+    transform: translateY(-4px);
+}
+.p-c .rating{
+    margin: .3rem 0;
+}
+.p-c br{
+    display: none;
+}
+.product-border .p-c .img-w .img-ct, 
+.product-border .sc-w .img-ct{
+	border: 1px solid #eee;
+	overflow: hidden;
+}
+.ov-t{
+    position: absolute;
+    left: 0;
+    bottom: 2rem;
+    background: #eee;
+    padding: .4rem .6rem;
+    font-size: .85rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: .5px;
+    color: @backgroundtext;
+    background: @darkbg;
+}
+.ov-t.lagerbestand0,
+.ov-t.sonderangebote{
+    background: @danger;
+}
+.ov-t.topangebote{
+    background: @success;
+}
+.ov-t.bestseller{
+	background: @info;
+}
+.ov-t.neuimsortiment{
+	background: @warning;
+}
+#product-offer .price_label,
+.p-c .price_label{
+    padding: .2rem 0.5rem;
+    font-size: .72rem;
+    background: @darkbg;
+    color: white;
+    border-radius: 1rem;
+    display: inline-flex;
+    margin-right: .3rem;
+}
+.p-c .price-row{
+    display: flex;
+    align-items: center;
+}
+.p-c .delivery-status{
+    margin-top: .2rem;
+    z-index: 3;
+}

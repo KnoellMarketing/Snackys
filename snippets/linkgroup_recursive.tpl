@@ -34,7 +34,7 @@
                 {if isset($li->cLocalizedName[$smarty.session.cISOSprache])}
                     <a href="{$li->cURLFull}"{if $li->cNoFollow === 'Y'} rel="nofollow"{/if}{if !empty($li->cTitle)} title="{$li->cTitle}"{/if}{if !empty($li->oSub_arr) && isset($dropdownSupport)} class="nav-sub"{/if} data-ref="{$li->kLink}">
                         {$li->cLocalizedName[$smarty.session.cISOSprache]}
-                        {if !empty($li->oSub_arr) && isset($dropdownSupport)}<i class="fa fa-caret-down nav-toggle pull-right"></i>{/if}
+                        {if !empty($li->oSub_arr) && isset($dropdownSupport)}<i class="fa fa-caret-down nav-toggle"></i>{/if}
                     </a>
                     {if $hasItems}
                         <ul class="nav">

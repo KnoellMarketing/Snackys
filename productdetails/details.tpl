@@ -37,11 +37,11 @@
 
 {block name="product-pagination"}
 	{if $Einstellungen.artikeldetails.artikeldetails_navi_blaettern === 'Y' && isset($NavigationBlaettern)}
-		<div id="prevNextRow" class="pr hidden-xs">
-			<div class="visible-lg product-pagination previous">
+		<div id="prevNextRow" class="dpflex-a-center dpflex-j-between dpflex-wrap mb-spacer mb-small hidden-xs">
+			<div class="visible-lg visible-md product-pagination previous">
 				{if isset($NavigationBlaettern->vorherigerArtikel) && $NavigationBlaettern->vorherigerArtikel->kArtikel}
-					<a href="{$NavigationBlaettern->vorherigerArtikel->cURL}" title="{$NavigationBlaettern->vorherigerArtikel->cName}">
-						<span class="button">
+					<a href="{$NavigationBlaettern->vorherigerArtikel->cURL}" title="{$NavigationBlaettern->vorherigerArtikel->cName}" class="dpflex">
+						<span class="button dpflex-a-center dpflex-j-center">
 							<span class="ar ar-l"></span>
 						</span>
 						<span class="img-ct">
@@ -51,13 +51,13 @@
 				{/if}
 			</div>
 			<h1 class="fn product-title text-center" itemprop="name">{$Artikel->cName}</h1>
-			<div class="visible-lg product-pagination next">
+			<div class="visible-lg visible-md product-pagination next">
 				{if isset($NavigationBlaettern->naechsterArtikel) && $NavigationBlaettern->naechsterArtikel->kArtikel}
-					<a href="{$NavigationBlaettern->naechsterArtikel->cURL}" title="{$NavigationBlaettern->naechsterArtikel->cName}">
+					<a href="{$NavigationBlaettern->naechsterArtikel->cURL}" title="{$NavigationBlaettern->naechsterArtikel->cName}" class="dpflex">
 						<span class="img-ct">
 							<img src="{$snackyConfig.preloadImage}" data-src="{$NavigationBlaettern->naechsterArtikel->Bilder[0]->cPfadNormal}" alt="{$NavigationBlaettern->naechsterArtikel->cName}">
 						</span>
-						<span class="button">
+						<span class="button dpflex-a-center dpflex-j-center">
 							<span class="ar ar-r"></span>
 						</span>
 					</a>
@@ -232,8 +232,24 @@ data-track-type="start" data-track-event="view_item" data-track-p-items='[{ldeli
                             {/block}
                             </div>
                         </div>
-                        <div class="col-xs-12 col-lg-6">
                         {/block}
+                        <div class="col-xs-12 col-lg-6">
+						
+                        {assign var="configRequired" value=false}
+                        {if $Artikel->bHasKonfig}
+                            {block name="productdetails-config"}
+                            <div id="product-configurator">
+                                <div class="product-config top10">
+                                    {*KONFIGURATOR*}
+                                    {if isset($Artikel->FunktionsAttribute[$FKT_ATTRIBUT_ARTIKELKONFIG_TPL]) && file_exists("tpl_inc/{$Artikel->FunktionsAttribute[$FKT_ATTRIBUT_ARTIKELKONFIG_TPL]}")}
+                                        {include file='tpl_inc/'|cat:$Artikel->FunktionsAttribute[$FKT_ATTRIBUT_ARTIKELKONFIG_TPL]}
+                                    {else}
+                                        {include file="productdetails/config.tpl"}
+                                    {/if}
+                                </div>
+                            </div>
+                            {/block}
+                        {/if}
                             {*WARENKORB anzeigen wenn keine variationen mehr auf lager sind?!*}
                             {include file="productdetails/basket.tpl"}
                         </div>
@@ -255,20 +271,6 @@ data-track-type="start" data-track-event="view_item" data-track-p-items='[{ldeli
 			{include file="productdetails/matrix.tpl"}
 			{/block}
         </div>{* /col *}
-        {if $Artikel->bHasKonfig}
-            {block name="productdetails-config"}
-            <div id="product-configurator" class="col-sm-12">
-                <div class="product-config top10">
-                    {*KONFIGURATOR*}
-                    {if isset($Artikel->FunktionsAttribute[$FKT_ATTRIBUT_ARTIKELKONFIG_TPL]) && file_exists("tpl_inc/{$Artikel->FunktionsAttribute[$FKT_ATTRIBUT_ARTIKELKONFIG_TPL]}")}
-                        {include file='tpl_inc/'|cat:$Artikel->FunktionsAttribute[$FKT_ATTRIBUT_ARTIKELKONFIG_TPL]}
-                    {else}
-                        {include file="productdetails/config.tpl"}
-                    {/if}
-                </div>
-            </div>
-            {/block}
-        {/if}
     </div>{* /row *}
 </form>
 	{if $Einstellungen.artikeldetails.artikeldetails_fragezumprodukt_anzeigen === 'P'}
@@ -344,13 +346,13 @@ data-track-type="start" data-track-event="view_item" data-track-p-items='[{ldeli
             {block name="productdetails-recommendations"}
             {if isset($Xselling->Standard->XSellGruppen) && count($Xselling->Standard->XSellGruppen) > 0}
                 {foreach name=Xsell_gruppen from=$Xselling->Standard->XSellGruppen item=Gruppe}
-                    {include file='snippets/product_slider.tpl' class='x-supplies' id='slider-xsell-group-'|cat:$smarty.foreach.Xsell_gruppen.iteration productlist=$Gruppe->Artikel title=$Gruppe->Name}
+                    {include file='snippets/product_slider.tpl' class='x-supplies' id='slider-xsell-group-'|cat:$smarty.foreach.Xsell_gruppen.iteration productlist=$Gruppe->Artikel title=$Gruppe->Name desc=$Gruppe->Beschreibung}
                 {/foreach}
             {/if}
 
             {if isset($Xselling->Kauf->Artikel) && count($Xselling->Kauf->Artikel) > 0}
                 {lang key='customerWhoBoughtXBoughtAlsoY' section='productDetails' assign='slidertitle'}
-                {include file='snippets/product_slider.tpl' class='x-sell' id='slider-xsell' productlist=$Xselling->Kauf->Artikel title=$slidertitle}
+                {include file='snippets/product_slider.tpl' class='x-sell' id='slider-xsell' productlist=$Xselling->Kauf->Artikel title=$slidertitle desc=$Gruppe->Beschreibung}
             {/if}
             {/block}
             </div>

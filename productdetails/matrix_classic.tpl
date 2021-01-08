@@ -475,4 +475,4 @@
     </table>
 </div>
 <input type="hidden" name="variBox" value="1" />
-<button name="inWarenkorb" type="submit" value="{lang key="addToCart" section="global"}" class="sn-addBasket submit btn btn-primary pull-right">{lang key="addToCart" section="global"}</button>
+<button name="inWarenkorb" type="submit" value="{lang key="addToCart" section="global"}" class="sn-addBasket submit btn btn-primary">{lang key="addToCart" section="global"}</button>

@@ -70,7 +70,7 @@
         {/if}
                         {*
     {else}
-        <div class="form-group pull-left">
+        <div class="form-group">
             <span class="text-muted">
                 {lang key='paginationTotalEntries' section='global'}
             </span>

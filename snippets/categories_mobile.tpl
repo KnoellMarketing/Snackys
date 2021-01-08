@@ -18,7 +18,7 @@
 {/if}
 
 {block name="megamenu-categories"}
-{include file='snippets/categories_recursive_mobile.tpl' i=0 categoryId=0 limit=20 caret='right'}
+{include file='snippets/categories_recursive_mobile.tpl' i=0 categoryId=0 limit={$snackyConfig.mmenu_subcats} caret='right'}
 {/block}{* /megamenu-categories*}
 
 {block name="megamenu-pages"}

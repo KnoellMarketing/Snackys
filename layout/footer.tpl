@@ -5,9 +5,12 @@
     {/block}
     
     {block name="aside"}
-    {has_boxes position='left' assign='hasLeftBox'}
-    {* if $nSeitenTyp === 2 && ((!$bExclusive && $hasLeftBox && isset($boxes) && !empty($boxes.left) && $snackyConfig.filterPos == 0 ) || (isset($smarty.get.sidebar))) *}
-	{if (isset($boxes.left) && !$bExclusive && !empty($boxes.left)) && (($snackyConfig.filterPos == 0 && $nSeitenTyp === 2) || ($snackyConfig.sidepanelEverywhere == 'Y' && !$device->isMobile()) || isset($smarty.get.sidebar))}
+	{if isset($boxes.left) && !$bExclusive && !empty($boxes.left) && $nSeitenTyp == 2}
+		{assign var="hasFilters" value="true"}	
+	{else}
+		{assign var="hasFilters" value=false}	
+	{/if}
+	{if $hasFilters == true && (($snackyConfig.filterPos == 0 && $nSeitenTyp === 2) || $snackyConfig.sidepanelEverywhere == 'Y' || isset($smarty.get.sidebar))}
 		{include file="layout/sidebar.tpl"}
     {/if}
     {/block}
@@ -50,14 +53,10 @@
     <footer id="footer"{if isset($snackyConfig.pagelayout) && $snackyConfig.pagelayout === 'fluid'} class="container-block"{/if}>
 
             {block name="footer-boxes"}
-				{if $isShopFive}
-					{getBoxesByPosition position='bottom' assign='arrBoxBottom'}
-				{else}
-					{load_boxes_raw type='bottom' assign='arrBoxBottom' array=true}
-				{/if}
+				{load_boxes_raw type='bottom' assign='arrBoxBottom' array=true}
                 {if isset($arrBoxBottom) && count($arrBoxBottom) > 0}
-                    <div id="footer-boxes" class="mw-container{if $snackyConfig.footerBoxesOpen === '0'} collapse{/if}">
-                        <div class="row row-multi dpflex-j-center">
+                    <div id="footer-boxes" class="mw-container{if $snackyConfig.footerBoxesOpen === '0'} collapsable{/if}">
+                        <div class="row row-multi">
 							 {if $snackyConfig.logoFooter == 0}
                              {if isset($ShopLogoURL) || !empty($snackyConfig.svgLogo)}
                                 <div class="col-xs-12 col-sm-6 col-md-3 col-lg-2" id="logo-footer">  
@@ -71,22 +70,16 @@
                             {/if}
 							{/if}
                             {foreach name=bottomBoxes from=$arrBoxBottom item=box}
-								{if $isShopFive}
-									<div class="{block name='footer-boxes-class'}col-xs-12 col-sm-6 col-md-3{/block}">
-										{$box->getRenderedContent()}
-									</div>
-								{else}
-									{if ($box.obj->kBoxvorlage != 0 && $box.obj->anzeigen === 'Y' ) ||
-									($box.obj->kBoxvorlage == 0 && !empty($box.obj->oContainer_arr))}
-										<div class="{block name="footer-boxes-class"}col-xs-12 col-sm-6 col-md-3 col-lg-2{/block}">
-											{if isset($box.obj) && isset($box.tpl)}
-												{if $smarty.foreach.bottomBoxes.iteration < 10}
-													{assign var=oBox value=$box.obj}
-													{include file=$box.tpl}
-												{/if}
+								{if (isset($box.obj->kBoxvorlage) && isset($box.obj->anzeigen) && $box.obj->kBoxvorlage != 0 && $box.obj->anzeigen === 'Y' ) ||
+								($box.obj->kBoxvorlage == 0 && !empty($box.obj->oContainer_arr))}
+										{if isset($box.obj) && isset($box.tpl)}
+											{if $smarty.foreach.bottomBoxes.iteration < 10}
+									           <div class="{block name="footer-boxes-class"}col-xs-12 col-sm-6 col-md-3 col-lg-2{/block}">
+												{assign var=oBox value=$box.obj}
+												{include file=$box.tpl}
+									           </div>
 											{/if}
-										</div>
-									{/if}
+										{/if}
 								{/if}
                             {/foreach}
 							{if $snackyConfig.newsletter_footer === 'Y'}
@@ -177,6 +170,7 @@
                     </div>
                 {/if}
             {/block}
+		  {include file="snippets/zonen.tpl" id="after_footerboxes" title="after_footerboxes"}
 
             {block name="footer-additional"}
                     {if $snackyConfig.socialmedia_footer === 'Y'}
@@ -299,6 +293,7 @@
 				</ul>
             {/block}
         </div>
+      {include file="snippets/zonen.tpl" id="after_footer" title="after_footer"}
     </footer>
 {/if}
 {/block}
@@ -314,7 +309,9 @@
 	{include file="js/snackys/lazyImages.js"}
 	</script>
 	{if $nSeitenTyp==11}<script src="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}js/snackys/checkout.min.js?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}
-	{if $nSeitenTyp==2}<script src="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}js/snackys/listing.min.js?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}
+	{*
+		{if $nSeitenTyp==2}<script src="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}js/snackys/listing.min.js?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}
+	*}
 
 	{if !empty($snackyConfig.gtag) || !empty($snackyConfig.matomo)}
 		<script data-inline=1>{if !empty($snackyConfig.gtag)}var gtagId="{$snackyConfig.gtag}";{/if}{if !empty($snackyConfig.matomo)}var matomoUrl="{$snackyConfig.matomo}";var matomoSiteId="{$snackyConfig.matomoSiteId}";{/if}</script>
@@ -343,5 +340,6 @@
 		</script>
 	{/if}
 	{snackys_content id="html_body_end" title="html_body_end"}
+
 </body>
 </html>

@@ -10,7 +10,7 @@
                     {/if}
                 </div>
             {/if}
-            {if $Artikel->nIstVater && $Artikel->kVaterArtikel == 0}
+            {if $Artikel->nIstVater && $Artikel->kVaterArtikel == 0 && !$showMatrix}
                 <p class="alert alert-info choose-variations">{lang key="chooseVariations" section="messages"}</p>
             {elseif $Artikel->inWarenkorbLegbar == 1 && !$Artikel->oKonfig_arr}
                 {if !$showMatrix}

@@ -118,7 +118,7 @@
                     {if $Artikel->oVariationKombiVorschau_arr|@count > 0 && $Artikel->oVariationKombiVorschau_arr && $Einstellungen.artikeluebersicht.artikeluebersicht_varikombi_anzahl > 0}
                         <div class="varikombis-thumbs hidden-md hidden-sm">
                             {foreach name=varikombis from=$Artikel->oVariationKombiVorschau_arr item=oVariationKombiVorschau}
-                                <a href="{$oVariationKombiVorschau->cURL}" class="thumbnail pull-left"><img src="{$oVariationKombiVorschau->cBildMini}" alt="" /></a>
+                                <a href="{$oVariationKombiVorschau->cURL}" class="thumbnail"><img src="{$oVariationKombiVorschau->cBildMini}" alt="" /></a>
                             {/foreach}
                         </div>
                     {/if}

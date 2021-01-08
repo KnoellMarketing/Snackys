@@ -5,7 +5,7 @@
     {block name="account-billing-address"}
         <div class="panel panel-default" id="panel-billing-address">
             <div class="panel-heading">
-                <h3 class="panel-title">{block name="account-billing-address-title"}<span class="fa fa-home"></span> {lang key="billingAdress" section="account data"}{/block}</h3>
+                <h3 class="panel-title">{block name="account-billing-address-title"} {lang key="billingAdress" section="account data"}{/block}</h3>
             </div>
             <div class="panel-body">
                 {block name="account-billing-address-body"}

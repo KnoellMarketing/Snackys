@@ -10,7 +10,15 @@
 {/block}
 
 {block name="footer-boxes"}
-   
+	{getLink nLinkart=12 cAssign="linkdatenschutz"}
+	{getLink nLinkart=27 cAssign="linkimpressum"}
+	{if $linkimpressum || $linkdatenschutz}
+		<div class="mw-container text-center small">
+			{if $linkdatenschutz}<a href="{$linkdatenschutz->Sprache->cSeo}" rel="nofollow">{$linkdatenschutz->Sprache->cName}</a>{/if}
+			{if $linkimpressum && $linkdatenschutz} - {/if}
+			{if $linkimpressum}<a href="{$linkimpressum->Sprache->cSeo}" rel="nofollow">{$linkimpressum->Sprache->cName}</a>{/if}
+		</div>
+	{/if}
 {/block}
 
 {block name="footer-additional"}
@@ -21,7 +29,7 @@
 {* Checkout Sidebar Cart *}
 {if !$device->isMobile()}
 <div class="col-md-4 col-lg-3" id="checkout-cart">
-    <div class="items-list">
+    {*<div class="items-list">
     {include file="checkout/inc_order_items.tpl" isCheckout="1"}</div>
     <div id="checkout-total-sum">
         {if $NettoPreise}
@@ -54,7 +62,8 @@
             <span class="price_label"><strong>{lang key="totalSum" section="global"}:</strong></span>
             <strong class="price total-sum">{$WarensummeLocalized[0]}</strong>
         </div>
-    </div>
+    </div>*}
+    {include file="basket/cart_dropdown_checkout.tpl"}
 </div>
 {/if}
 {block name="footer-language"}

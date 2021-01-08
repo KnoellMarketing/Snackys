@@ -74,10 +74,6 @@
 #add-to-cart .alert:only-child{
     margin: 0;
 }
-.buy-wrapper{
-    display: flex;
-    align-items: center;
-}
 .boxed-layout .buy-wrapper > div{
 	width: 100%;
 }
@@ -643,33 +639,4 @@ span[itemprop="reviewRating"] .review-helpful .img-ct{
     #product-offer > .product-info{
         padding-left: 8px;
     }
-}
-@media all and (orientation:portrait) {
-	.lightbox-shown #gallery-thumbs{
-		top: auto;
-		right: 0;
-		width: 100%;
-		column-count: 1;
-		display: flex;
-		border-top: 1px solid @lightborder;
-		border-right: 0;
-		padding: 1rem;
-		overflow: auto;
-		scrollbar-width: none;
-		-ms-overflow-style: none;
-	}
-	.lightbox-shown #gallery-thumbs::-webkit-scrollbar { 
-		display: none; 
-	}
-	.lightbox-shown #gallery-thumbs .img-w{
-		width: 3rem;
-		min-width: 3rem;
-		margin-bottom: 0;
-		margin-right: .25rem;
-	}
-	.lightbox-shown .product-gallery>.row #gallery{
-		width: 100%;
-		height: calc(100% - 80px);
-	 	margin: 0 auto;
-	}
 }

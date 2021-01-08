@@ -1,0 +1,7 @@
+#snackys-tpl body > [id|="trustbadge"],
+#snackys-tpl [id|="minimized-trustbadge"],
+#snackys-tpl [id|="maximized-trustbadge"]{
+    right: 20px !important; /*  Fallback bis Variable gesetzt ist */
+    right: @ts_os_spx !important;
+    left: auto !important;    
+}

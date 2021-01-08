@@ -13,7 +13,7 @@
                     <li>
                         <a href="{$oNewsKategorie->cURL}" title="{$oNewsKategorie->cName}">
                             <span class="value dpflex-j-between w100">
-                                {$oNewsKategorie->cName} <span class="badge pull-right">{$oNewsKategorie->nAnzahlNews}</span>
+                                {$oNewsKategorie->cName} <span class="badge">{$oNewsKategorie->nAnzahlNews}</span>
                             </span>
                         </a>
                     </li>

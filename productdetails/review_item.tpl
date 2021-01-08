@@ -4,7 +4,7 @@
         <span itemprop="name" class="hidden">{$oBewertung->cTitel}</span>
 
         <span itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
-            <span class="pull-right">
+            <span class="">
                 {include file='productdetails/rating.tpl' stars=$oBewertung->nSterne}
                 <small class="hide">
                     <span itemprop="ratingValue">{$oBewertung->nSterne}</span> {lang key="from" section="global"}

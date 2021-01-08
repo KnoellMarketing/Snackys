@@ -1,0 +1,134 @@
+/* Konfigurator */
+#product-configuration-sidebar{
+    position: static !important;
+    width: 100% !important;
+    margin: 1rem 0;
+}
+#product-configuration-sidebar table,
+#product-configuration-sidebar tbody,
+#product-configuration-sidebar tfoot{
+    display: block;
+}
+#product-configuration-sidebar tr{
+    display: flex;
+}
+#product-configuration-sidebar td{
+    padding: .5rem .3rem .5rem 0;
+}
+#product-configuration-sidebar td.text-right{
+    padding-right: 0;
+    margin-left: auto;
+}
+#product-configuration-sidebar .highlighted{
+    font-weight: bold;
+}
+#product-configuration-sidebar table{
+    padding: 0 1rem;
+    border-radius: .8rem .8rem 0 0;
+    background: #f6f6f6;
+    font-size: .95rem;
+}
+#product-configuration-sidebar tfoot tr:last-child{
+    border-bottom: 0;
+}
+
+#config-popup .modal-content{
+    width: 60rem;
+}
+#product-configurator .cfg-group{
+	margin-bottom: 2rem;
+    font-size: .95rem;
+}
+
+.cfg-group .highlighted{
+    background: rgba(46, 148, 232, 0.15);
+    box-shadow: 0 0 0 .5rem rgba(46, 148, 232, 0.15);
+    border-radius: 0.1rem;
+}
+.cfg-group .list-group-item:not(:last-child){
+    margin-bottom: .7rem;
+}
+.cfg-group .form-group{
+    margin-top: 0;
+}
+#quantity-grp .btn.submit .config-required-info{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: @darkbg;
+    color: white;
+    padding: .4rem .5rem;
+    border-radius: 3rem;
+    margin-top: .2rem;
+    font-size: .8rem;
+    display: none;
+}
+#quantity-grp .btn.submit[disabled]:hover .config-required-info{
+    display: block;
+}
+#quantity-grp .btn.submit .config-required-info:before{
+    content: '';
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: @darkbg;
+    position: absolute;
+    left: 50%;
+    transform: rotate(45deg);
+    z-index: 0;
+    margin-top: -0.25rem;
+    margin-left: -.25rem;
+    top: 0;
+}
+
+/*
+#product-configurator #quantity-grp>input{
+	margin-right: 0;
+}
+#product-configurator .collapse{
+	margin: 1rem 0;
+	background: #eee;
+	border-radius: .3rem;
+	color: @defaulttext;
+	height: 0;
+	padding: 0;
+	opacity: 0;
+	overflow: hidden;
+}
+#product-configurator .collapse.in{
+	padding: 1rem;
+	height: auto !important;
+	opacity: 1;
+	overflow: inherit;
+}
+#product-configurator .panel-title{
+	padding-bottom: 1rem;
+	border-bottom: 1px solid @lightborder;
+}
+#cfg-container .row{
+	align-items: center;
+}
+#cfg-container .filter-collapsible-control,
+#cfg-container .badge{
+	margin-left: auto;
+}
+#cfg-container .badge ~ .filter-collapsible-control{
+	margin-left: .5rem;
+}
+#cfg-container .badge{
+	display: inline-block;
+	padding: 3px 5px;
+	border-radius: .3rem;
+	background: @brand;
+	color: white;
+}
+@media screen and (max-width: 767px){
+	#product-configurator {
+		margin-top: 2rem;
+	}
+	#product-configurator .cfg-group{
+		margin-bottom: 1rem;
+	}
+}
+*/

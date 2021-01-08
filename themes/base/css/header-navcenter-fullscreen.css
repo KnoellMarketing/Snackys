@@ -11,3 +11,6 @@
 	color: white;
 	fill: white;
 }
+#snackys-tpl #cat-w .mgm>ul.blanklist>li{
+    background: none;
+}

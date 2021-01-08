@@ -1,13 +1,23 @@
 {if isset($Artikel->oKonfig_arr) && $Artikel->oKonfig_arr|@count > 0}
-    <div class="product-configuration top10 row">
-        <div class="col-xs-12 col-md-6 col-lg-7">
+	{assign var="configRequired" value=false}
+    <div class="product-configuration top10">
+        <div class="modal modal-dialog blanklist in" tabindex="-1" id="config-popup">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="modal-title block h5">
+                        {lang key="yourConfiguration" section="global"}
+                    </span>
+                    <button type="button" class="close-btn" data-dismiss="modal" aria-label="Close" id="close-configmodal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="">
             <div id="cfg-container">
                 {foreach from=$Artikel->oKonfig_arr item=oGruppe}
                     {if $oGruppe->getItemCount() > 0}
                         {assign var=oSprache value=$oGruppe->getSprache()}
                         {assign var=cBildPfad value=$oGruppe->getBildPfad()}
                         {assign var=kKonfiggruppe value=$oGruppe->getKonfiggruppe()}
-                        <div class="cfg-group panel panel-default{if $oGruppe->getMin() > 0} required{/if}" data-id="{$kKonfiggruppe}">
+                        <div class="cfg-group panel panel-default{if $oGruppe->getMin() > 0} required{assign var="configRequired" value=true}{/if}" data-id="{$kKonfiggruppe}">
                             <div class="panel-heading">
                                 <h5 class="panel-title">{$oSprache->getName()}</h5>
                             </div>
@@ -25,13 +35,15 @@
                                 <div class="row">
                                     {if !empty($cBildPfad)}
                                         <div class="col-md-2 visible-md-block visible-lg-block group-image">
-                                            <img src="{$cBildPfad}" alt="{$oSprache->getName()}" id="img{$kKonfiggruppe}" class="img-responsive" />
+                                            <span class="img-ct">
+                                                <img src="{$snackyConfig.preloadImage}" data-src="{$cBildPfad}" alt="{$oSprache->getName()}" id="img{$kKonfiggruppe}" class="img-responsive" />
+                                            </span>
                                         </div>
                                     {/if}
                                     <div class="col-md-{if empty($cBildPfad)}12{else}10{/if} group-items">
-                                        <ul class="list-group">
+                                        <ul class="list-group blanklist">
                                             {foreach from=$oGruppe->oItem_arr item=oItem name=konfigitem}
-                                                <li class="list-group-item {if $oItem->getEmpfohlen()}alert-info{/if}" data-id="{$oItem->getKonfigitem()}">
+                                                <li class="list-group-item {if $oItem->getEmpfohlen()}highlighted{/if}" data-id="{$oItem->getKonfigitem()}">
                                                     {assign var=kKonfigitem value=$oItem->getKonfigitem()}
                                                     {assign var=cKurzBeschreibung value=$oItem->getKurzBeschreibung()}
                                                     {if !empty($cKurzBeschreibung)}
@@ -43,7 +55,7 @@
                                                         {if $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_DROPDOWN || $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_DROPDOWN_MULTI}
                                                         <div class="item clearfix form-group{if isset($aKonfigitemerror_arr[$kKonfigitem]) && $aKonfigitemerror_arr[$kKonfigitem]} error{/if}">
                                                             <select class="form-control" name="item[{$kKonfiggruppe}][]"
-                                                                {if $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_DROPDOWN_MULTI} multiple="multiple" size="4"{/if} ref="{$kKonfiggruppe}"{if $oGruppe->getMin() > 0} required{/if}>
+                                                                {if $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_DROPDOWN_MULTI} multiple="multiple" size="4"{/if} ref="{$kKonfiggruppe}"{if $oGruppe->getMin() > 0} required{assign var="configRequired" value=true}{/if}>
                                                                 {if $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_DROPDOWN}
                                                                     <option value="">{lang key="pleaseChoose"}</option>
                                                                 {/if}
@@ -61,7 +73,7 @@
                                                                 {if $oGruppe->getAnzeigeTyp() == $KONFIG_ANZEIGE_TYP_CHECKBOX}{$oItem->getInitial()}x {/if}
                                                                 {$oItem->getName()}
                                                                 {if $smarty.session.Kundengruppe->darfPreiseSehen}
-                                                                    <span class="badge pull-right">{if $oItem->hasRabatt() && $oItem->showRabatt()}
+                                                                    <span class="badge">{if $oItem->hasRabatt() && $oItem->showRabatt()}
                                                                     <span class="discount">{$oItem->getRabattLocalized()} {lang key="discount"}</span>{elseif $oItem->hasZuschlag() && $oItem->showZuschlag()}
                                                                     <span class="additional">{$oItem->getZuschlagLocalized()} {lang key="additionalCharge"}</span>{/if}{$oItem->getPreisLocalized()}</span>
                                                                 {/if}
@@ -150,15 +162,19 @@
                         </div>
                     {/if}
                 {/foreach}
+                <label for="close-configmodal" class="btn btn-primary btn-lg w100 text-center pointer">{lang key="configSet" section="custom"}</label>
             </div>
         </div>
-        <div class="col-xs-12 col-md-5 col-md-push-1 col-lg-4 col-lg-push-1">
+                </div>
+            </div>
+        </div>
+        
             <div id="product-configuration-sidebar">
                 <div class="panel panel-primary no-margin">
-                    <div class="panel-heading">
+                    {*<div class="panel-heading">
                         <h5 class="panel-title">{lang key="yourConfiguration" section="global"}</h5>
-                    </div>
-                    <table class="table table-striped">
+                    </div>*}
+                    <table class="table table-striped m0">
                         <tbody class="summary"></tbody>
                         <tfoot>
                         <tr>
@@ -168,22 +184,30 @@
                         </tr>
                         </tfoot>
                     </table>
-                    <div class="panel-footer">
+                    <div class="panel-footer">         
+        <a href="#" data-toggle="modal" data-target="#config-popup" title="Anmelden" class="btn btn-block btn-info btn-lg btn-config">
+            {lang key="configButton" section="custom" printf=$Artikel->oKonfig_arr|@count}
+        </a>
+          <hr class="hr-sm invisible">
+                        
                         {if $Artikel->inWarenkorbLegbar == 1}
-                            <div id="quantity-grp" class="choose_quantity input-group">
-                                <input type="number"{if $Artikel->fAbnahmeintervall > 0} required step="{$Artikel->fAbnahmeintervall}"{/if} id="quantity"
+                            <div id="quantity-grp" class="choose_quantity">
+                                <input type="number"{if $Artikel->fAbnahmeintervall > 0} required step="{$Artikel->fAbnahmeintervall}"{assign var="configRequired" value=true}{/if} id="quantity"
                                        class="quantity form-control text-right" name="anzahl"
                                        value="{if $Artikel->fAbnahmeintervall > 0}{if $Artikel->fMindestbestellmenge > $Artikel->fAbnahmeintervall}{$Artikel->fMindestbestellmenge}{else}{$Artikel->fAbnahmeintervall}{/if}{elseif isset($fAnzahl)}{$fAnzahl}{else}1{/if}" />
-                                <span class="input-group-btn">
+                                
                                     <button name="inWarenkorb" type="submit" value="{lang key="addToCart" section="global"}"
-                                            class="submit btn btn-primary">
+                                            class="submit btn btn-primary btn-block{if $configRequired} config-required{/if}"
+											{if $configRequired} disabled{/if}>
                                         {if isset($kEditKonfig)}
                                             {lang key="applyChanges" section="global"}
                                         {else}
                                             {lang key="addToCart" section="global"}
                                         {/if}
+										{if $configRequired}
+											<span class="config-required-info">{lang key="configRequiredInfo" section="custom"}</span>
+										{/if}
                                     </button>
-                                </span>
                             </div>
                             {if $Artikel->kVariKindArtikel > 0}
                                 <input type="hidden" name="a2" value="{$Artikel->kVariKindArtikel}"/>
@@ -195,6 +219,5 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 {/if}

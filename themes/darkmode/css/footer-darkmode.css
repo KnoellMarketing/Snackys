@@ -16,8 +16,14 @@
 #footer,
 #footer .panel-title,
 #footer .panel-title h5,
-#footer-boxes a:not(.btn){
+#footer-boxes a:not(.btn),
+#footer-boxes label{
 	color: #f2f2f2;
+}
+
+/* Dropdowns im Footer */
+#footer-boxes .dropdown-menu a:not(.btn):not(:hover){
+    color: @defaulttext;
 }
 
 /* Others */

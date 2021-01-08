@@ -1,0 +1,112 @@
+/* Buttons */
+.btn,
+.modal-dialog .answer > a,
+#amazonpayments .lpa-cancel a{
+    display: inline-flex;
+	align-items: center;
+    padding: .7rem 1.2rem;
+    border-radius: 3rem;
+    line-height: 1.2;
+    font-weight: 600;
+    background: @lightfocusbg;
+    position: relative;
+    transition: .3s ease;
+    color: @darktext;
+    border: 0;
+    cursor: pointer;
+}
+.btn-blank{
+    padding: 0;
+    border-radius: 0;
+}
+.btn-default:hover,
+.modal-dialog .answer > a:hover{
+    background: @strongborder;
+}
+.btn-danger,
+.btn.warning,
+.btn-warning,
+.btn-success,
+.btn-info{
+    color: @backgroundtext;
+}
+.btn-block{
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+label.btn-block,
+.radio .btn-block{
+    text-align: left;
+}
+.btn.btn-primary,
+.btn.active,
+.btn-social{
+    background: @brand;
+    @gradientbrand;
+    color: @backgroundtext;
+}
+.btn-lg{
+    padding: .75rem 1.2rem;   
+    font-size: 1rem;
+}
+
+.btn-info{
+    background: @info;
+}
+.btn-warning{
+    background: @warning;
+}
+.btn-danger{
+    background: @danger;
+}
+.btn-success{
+    background: @success;
+}
+
+.btn-group,
+.modal-dialog .answer{
+    display: flex;
+    margin: .5rem 0;
+}
+.btn-group-full .btn{
+    flex-grow: 1;
+}
+.text-right .btn-group,
+.btn-group.text-right{
+    justify-content: flex-end;
+}
+.btn-group .btn,
+.modal-dialog .answer > a{
+    border-radius: 0;
+}
+.btn-group .btn:first-child,
+.modal-dialog .answer > a:first-child{
+    border-top-left-radius: .3rem;
+    border-bottom-left-radius: .3rem;
+}
+.btn-group .btn:last-child,
+.modal-dialog .answer > a:last-child{
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+}
+.btn-group .btn:not(:first-child),
+.modal-dialog .answer > a:not(:first-child){
+    margin-left: -1px;
+}
+.btn-sm,
+.btn-xs{
+    padding: .3rem 1rem;
+    font-size: .9rem;
+	text-align: center;
+}
+.btn.text-center, #frm_filter > button{
+    justify-content: center
+}
+.btn:not(.btn-default):hover,
+.btn:not(.btn-default):focus{
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+}
+.btn-primary .img-ct.icon{
+	opacity: 1;
+}

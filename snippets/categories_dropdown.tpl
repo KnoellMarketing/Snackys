@@ -6,7 +6,7 @@
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 26.25"><path d="M3.75 26.25h9.37v-7.5h3.76v7.5h9.37V15H30L15 0 0 15h3.75z"/></svg>
 	</a>
 </li>
-{else if $snackyConfig.megaHome == 1}
+{elseif $snackyConfig.megaHome == 1}
 <li class="is-lth{if $nSeitenTyp == 18} active{/if}">
 	<a href="{$ShopURL}" title="{$Einstellungen.global.global_shopname}" class="mm-mainlink">
 		{lang key="linkHome" section="custom"}
@@ -53,7 +53,7 @@
             {if isset($category->bUnterKategorien) && !empty($category->Unterkategorien)}
                 {assign var='isDropdown' value=true}
             {/if}
-            <li class="{if $isDropdown && $category->Unterkategorien|@count gt 0}mgm-fw dropdown-style{/if}{if $category->kKategorie == $activeId || (isset($activeParents[0]) && $activeParents[0]->kKategorie == $category->kKategorie)} active{/if}">
+            <li class="{if $isDropdown && $category->Unterkategorien|@count gt 0}mgm-fw dropdown-style{/if}{if $category->kKategorie == $activeId || (isset($activeParents[0]) && $activeParents[0]->kKategorie == $category->kKategorie)} active{/if}{if is_array($category->KategorieAttribute) && !empty($category->KategorieAttribute["css_klasse"])} {$category->KategorieAttribute["css_klasse"]}{/if}">
                 <a href="{$category->cURL}" class="{if $snackyConfig.drodownMaincat == 0}mm-mainlink{else}dropdown-link defaultlink{/if}">
                     <span class="notextov">{$category->cKurzbezeichnung}</span>
                     {if $isDropdown && $category->Unterkategorien|@count gt 0}
@@ -73,7 +73,7 @@
 								{get_category_array categoryId=$category->kKategorie assign='sub_categories'}
 							{/if}
 							{foreach name='sub_categories' from=$sub_categories item='sub'}
-								<li class="title{if $show_subcategories && $sub->bUnterKategorien} mgm-fw keepopen{/if}{if $sub->kKategorie == $activeId || (isset($activeParents[1]) && $activeParents[1]->kKategorie == $sub->kKategorie)} active{/if}">
+								<li class="title{if $show_subcategories && $sub->bUnterKategorien} mgm-fw keepopen{/if}{if $sub->kKategorie == $activeId || (isset($activeParents[1]) && $activeParents[1]->kKategorie == $sub->kKategorie)} active{/if}{if is_array($sub->KategorieAttribute) && !empty($sub->KategorieAttribute["css_klasse"])} {$sub->KategorieAttribute["css_klasse"]}{/if}">
 									{if !empty($sub->Unterkategorien)}
 										{assign var=subsub_categories value=$sub->Unterkategorien}
 									{else}
@@ -90,7 +90,7 @@
 									{if $show_subcategories && $sub->bUnterKategorien && count($subsub_categories)  > 0}
 										<ul class="dropdown-menu keepopen">
 											{foreach name='subsub_categories' from=$subsub_categories item='subsub'}
-													<li{if $subsub->kKategorie == $activeId || (isset($activeParents[2]) && $activeParents[2]->kKategorie == $subsub->kKategorie)} class="active"{/if}>
+													<li class="{if $subsub->kKategorie == $activeId || (isset($activeParents[2]) && $activeParents[2]->kKategorie == $subsub->kKategorie)} active{/if}{if is_array($subsub->KategorieAttribute) && !empty($subsub->KategorieAttribute["css_klasse"])} {$subsub->KategorieAttribute["css_klasse"]}{/if}">
 														<a href="{$subsub->cURL}" class="dropdown-link defaultlink notextov">
 															{$subsub->cKurzbezeichnung}
 														</a>

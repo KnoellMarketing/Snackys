@@ -38,12 +38,12 @@
                 </div>
                 <ul class="register-or-resetpw nav blanklist">
                     <li>
-                        <a class="resetpw pull-left btn-block" href="{get_static_route id='pass.php' secure=true}">
+                        <a class="resetpw btn-block" href="{get_static_route id='pass.php' secure=true}">
                             {lang key='forgotPassword'}
                         </a>
                     </li>
                     <li>
-                        <a class="register pull-left btn-block" href="{get_static_route id='registrieren.php'}">
+                        <a class="register btn-block" href="{get_static_route id='registrieren.php'}">
                             {lang key='newHere'} {lang key='registerNow'}
                         </a>
                     </li>

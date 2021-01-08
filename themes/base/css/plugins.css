@@ -75,3 +75,29 @@
 /* PayPal Sidebarbasket Button */
 .items-list .btn-ppe-cart-container {text-align:center}
 .paypalexpress.btn-ppe-cart {float: none !important;display:block;}
+
+
+/* Amazon Checkout */
+.lpa-checkout-wrapper .row{
+    margin-bottom: 2rem;
+}
+#snackys-tpl .lpa-checkout-wrapper .custom-control-label{
+    display: flex;
+}
+.lpa-checkout-wrapper .custom-control-label > *{
+    margin-right: .5rem;
+}
+.lpa-checkout-wrapper .custom-control-label [class*="col-"]{
+    width: auto;
+}
+.lpa-checkout-wrapper .c-it .row,
+.lpa-checkout-wrapper .custom-control-label .row{
+    margin: 0;
+}
+.lpa-checkout-wrapper .custom-control-label .btn-block{
+    width: auto;
+}
+.lpa-checkout-wrapper .custom-control-label .pull-right{
+    order: 1;
+    margin-left: auto;
+}

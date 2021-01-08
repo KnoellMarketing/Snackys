@@ -1,3 +1,8 @@
+{**
+ * @copyright (c) JTL-Software-GmbH
+ * @license http://jtl-url.de/jtlshoplicense
+ *}
+
 {if !empty($oUploadSchema_arr)}
     <script type="text/javascript" src="{$currentTemplateDir}js/fileinput.min.js"></script>
     {assign var=availableLocale value=array('ar', 'bg', 'cr', 'cz', 'da', 'de', 'el', 'es', 'fa', 'fr', 'hu', 'lt', 'nl', 'pl', 'pt', 'sk', 'uk')}
@@ -14,7 +19,7 @@
     {foreach from=$oUploadSchema_arr item=oUploadSchema name=schema}
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h5 class="panel-title">
+                <div class="panel-title">
                     {$oUploadSchema->cName}
                     {if !empty($oUploadSchema->WarenkorbPosEigenschaftArr)}
                         <small>
@@ -23,26 +28,26 @@
                             {/foreach}
                         </small>
                     {/if}
-                </h5>
+                </div>
             </div>
             <div class="panel-body">
                 {foreach from=$oUploadSchema->oUpload_arr item=oUpload name=upload}
                     <div class="row">
                         {if !empty($oUpload->cName) || !empty($oUpload->cBeschreibung)}
-                            <div class="col-xs-12 col-sm-6">
+                            <div class="col-xs-6">
                                 {if !empty($oUpload->cName)}
-                                    <p class="upload_title m0">{$oUpload->cName}</p>
+                                    <p class="upload_title">{$oUpload->cName}</p>
                                 {/if}
                                 {if !empty($oUpload->cBeschreibung)}
-                                    <p class="upload_desc m0">{$oUpload->cBeschreibung}</p>
+                                    <p class="upload_desc">{$oUpload->cBeschreibung}</p>
                                 {/if}
                             </div>
                         {/if}
-                        <div class="col-xs-12 col-sm-6 word-break text-right">
+                        <div class="col-xs-6 word-break text-right">
                             <div id="queue{$smarty.foreach.schema.index}{$smarty.foreach.upload.index}" style="margin-bottom: 15px;" class="uploadifyMsg">
                                 <span class="current-upload small text-success">
                                     {if $oUpload->bVorhanden}
-                                        
+                                        <i class="fa fa-check" aria-hidden="true"></i>
                                         {$oUpload->cDateiname} ({$oUpload->cDateigroesse})
                                     {/if}
                                 </span>
@@ -89,7 +94,7 @@
                                             msgField = $('#queue{$smarty.foreach.schema.index}{$smarty.foreach.upload.index} .current-upload'),
                                             uploadMsgField = $('.uploadifyMsg');
                                         if (typeof data.response !== 'undefined' && typeof data.response.cName !== 'undefined') {
-                                            msgField.html('<i></i>' + data.response.cName + ' (' + data.response.cKB + ' KB)');
+                                            msgField.html('<i class="fa fa-check" aria-hidden="true"></i>' + data.response.cName + ' (' + data.response.cKB + ' KB)');
                                         } else {
                                             msgField.html('{lang key="uploadError"}');
                                         }

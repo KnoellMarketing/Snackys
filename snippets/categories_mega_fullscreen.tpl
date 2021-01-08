@@ -109,7 +109,7 @@
                                                                                 </a>
                                                                             </li>
                                                                         {else}
-                                                                            <li class="more"><a href="{$sub->cURL}"><i class="fa fa-chevron-circle-right"></i> {lang key="more" section="global"} <span class="remaining">({math equation='total - max' total=$subsub_categories|count max=$max_subsub_items})</span></a></li>
+                                                                            <li class="more"><a href="{$sub->cURL}">{lang key="more" section="global"} <span class="remaining">({math equation='total - max' total=$subsub_categories|count max=$max_subsub_items})</span></a></li>
                                                                             {break}
                                                                         {/if}
                                                                     {/foreach}

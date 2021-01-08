@@ -31,14 +31,14 @@
         </span>
     </a>
     <div class="caption">
-        <span class="title word-break block h4 m0">
+        <a href="{$Artikel->cURL}" class="title word-break block h4 m0">
             {if isset($showPartsList) && $showPartsList === true && isset($Artikel->fAnzahl_stueckliste)}
                 <span class="article-bundle-info">
                     <span class="bundle-amount">{$Artikel->fAnzahl_stueckliste}</span> <span class="bundle-times">x</span>
                 </span>
             {/if}
-            <a href="{$Artikel->cURL}">{$Artikel->cKurzbezeichnung}</a>
-        </span>
+            {$Artikel->cKurzbezeichnung}
+        </a>
         {* if $Einstellungen.bewertung.bewertung_anzeigen === 'Y' && $Artikel->fDurchschnittsBewertung > 0}<small>{include file='productdetails/rating.tpl' stars=$Artikel->fDurchschnittsBewertung}</small>{/if *}
         {if isset($Artikel->Preise->strPreisGrafik_Suche)}
             {include file="productdetails/price.tpl" Artikel=$Artikel price_image=$Artikel->Preise->strPreisGrafik_Suche tplscope=$tplscope}
@@ -48,42 +48,6 @@
     </div>
 	<form action="navi.php" method="post" class="buy_form_{$Artikel->kArtikel} form form-basket evo-validate" data-toggle="basket-add">
         {$jtl_token}
-        {block name="productlist-delivery-status"}
-            <div class="delivery-status hidden">
-                {assign var=anzeige value=$Einstellungen.artikeluebersicht.artikeluebersicht_lagerbestandsanzeige}
-                {if $Artikel->nErscheinendesProdukt}
-                    <div class="availablefrom">
-                        <small>{lang key="productAvailable" section="global"}: {$Artikel->Erscheinungsdatum_de}</small>
-                    </div>
-                    {if $Einstellungen.global.global_erscheinende_kaeuflich === 'Y' && $Artikel->inWarenkorbLegbar === 1}
-                        <div class="attr attr-preorder"><small class="value">{lang key="preorderPossible" section="global"}</small></div>
-                    {/if}
-                {elseif $anzeige !== 'nichts' &&
-                    $Einstellungen.artikeluebersicht.artikeluebersicht_lagerbestandanzeige_anzeigen !== 'N' &&
-                    $Artikel->cLagerBeachten === 'Y' && ($Artikel->cLagerKleinerNull === 'N' ||
-                    $Einstellungen.artikeluebersicht.artikeluebersicht_lagerbestandanzeige_anzeigen === 'U') &&
-                    $Artikel->fLagerbestand <= 0 && $Artikel->fZulauf > 0 && isset($Artikel->dZulaufDatum_de)}
-                    {assign var=cZulauf value=$Artikel->fZulauf|cat:':::'|cat:$Artikel->dZulaufDatum_de}
-                    <div class="signal_image status-1"><small>{lang key="productInflowing" section="productDetails" printf=$cZulauf}</small></div>
-                {elseif $anzeige !== 'nichts' &&
-                    $Einstellungen.artikeluebersicht.artikeluebersicht_lagerbestandanzeige_anzeigen !== 'N' &&
-                    $Artikel->cLagerBeachten === 'Y' && $Artikel->fLagerbestand <= 0 &&
-                    $Artikel->fLieferantenlagerbestand > 0 && $Artikel->fLieferzeit > 0 &&
-                    ($Artikel->cLagerKleinerNull === 'N' ||
-                    $Einstellungen.artikeluebersicht.artikeluebersicht_lagerbestandanzeige_anzeigen === 'U')}
-                    <div class="signal_image status-1"><small>{lang key="supplierStockNotice" section="global" printf=$Artikel->fLieferzeit}</small></div>
-                {elseif $anzeige === 'verfuegbarkeit' || $anzeige === 'genau'}
-                    <div class="signal_image status-{$Artikel->Lageranzeige->nStatus}"><small>{$Artikel->Lageranzeige->cLagerhinweis[$anzeige]}</small></div>
-                {elseif $anzeige === 'ampel'}
-                    <div class="signal_image status-{$Artikel->Lageranzeige->nStatus}"><small>{$Artikel->Lageranzeige->AmpelText}</small></div>
-                {/if}
-                {* if $Artikel->cEstimatedDelivery}
-                    <div class="estimated_delivery hidden-xs">
-                        <small>{lang key="shippingTime" section="global"}: {$Artikel->cEstimatedDelivery}</small>
-                    </div>
-                {/if *}
-            </div>
-        {/block}
 		{if $snackyConfig.listShowCart != 1}
         <div class="exp{if $snackyConfig.listShowCart == 2} flo-bt pr{/if}{if $snackyConfig.listShowAmountCart == 1} hide-qty{/if}">
             {block name="form-expandable"}

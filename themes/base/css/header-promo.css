@@ -1,12 +1,9 @@
 #header-promo{
-	background: black;
 	color: white;
 	padding: .5rem 3rem;
-	font-weight: 600;
+	font-weight: 400;
 	position: relative;
-	font-size: .95rem;
-	min-height: 2.315rem;
-	background: @brand;
+	font-size: .9rem;
 	background: @headerPromoStyle;
 }
 #header-promo-close{

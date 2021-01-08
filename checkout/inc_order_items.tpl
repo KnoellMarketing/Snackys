@@ -28,21 +28,19 @@
         <div class="type-{$oPosition->nPosTyp} c-it{if isset($isSidebar)} sb-it{/if}{if isset($isCheckout)} sb-it{/if}">
             <div class="row">
                 {* if $Einstellungen.kaufabwicklung.warenkorb_produktbilder_anzeigen === 'Y' *}
-                    <div class="img-col col-xs-3 col-md-2 pr">
+                    <div class="img-col col-xs-3 col-md-2 col-xl-1">
                         {if !empty($oPosition->Artikel->cVorschaubild)}
-                        <a href="{$oPosition->Artikel->cURL}" title="{$oPosition->cName|trans}">
-                            <div class="img-ct">
-								{if isset($nSeitenTyp) && $nSeitenTyp == 37}
-                                <img src="{$oPosition->Artikel->cVorschaubild}" alt="{$oPosition->cName|trans}" class="img-responsive-width" />
-                                {else}
-								<img src="{$snackyConfig.preloadImage}" data-src="{$oPosition->Artikel->cVorschaubild}" alt="{$oPosition->cName|trans}" class="img-responsive-width" />
-								{/if}
-                            </div>
+                        <a href="{$oPosition->Artikel->cURL}" title="{$oPosition->cName|trans}" class="img-ct">
+                            {if isset($nSeitenTyp) && $nSeitenTyp == 37}
+                            <img src="{$oPosition->Artikel->cVorschaubild}" alt="{$oPosition->cName|trans}" class="img-responsive-width" />
+                            {else}
+                            <img src="{$snackyConfig.preloadImage}" data-src="{$oPosition->Artikel->cVorschaubild}" alt="{$oPosition->cName|trans}" class="img-responsive-width" />
+                            {/if}
                         </a>
                         {/if}
                     </div>
                 {* /if *}
-                <div class="col-xs-9 col-md-10">
+                <div class="col-xs-9 col-md-10 col-xl-11">
                     <div class="row first">
                         <div class="col-xs-9 col-lg-9">
                              {if $oPosition->nPosTyp == 1}
@@ -113,11 +111,20 @@
                                     {/if}
                                     {/if}
 
-                                    {if isset($oPosition->Artikel->cGewicht) && $Einstellungen.artikeldetails.artikeldetails_gewicht_anzeigen === 'Y' && $oPosition->Artikel->fGewicht > 0}
-                                        <li class="weight">
-                                            <strong>{lang key="shippingWeight" section="global"}: </strong>
-                                            <span class="value">{$oPosition->Artikel->cGewicht} {lang key="weightUnit" section="global"}</span>
-                                        </li>
+                                    {if $oPosition->istKonfigVater()}
+										{if isset($oPosition->getTotalConfigWeight()) && $Einstellungen.artikeldetails.artikeldetails_gewicht_anzeigen === 'Y' && $oPosition->getTotalConfigWeight() > 0}
+											<li class="weight">
+												<strong>{lang key="shippingWeight" section="global"}: </strong>
+												<span class="value">{$oPosition->getTotalConfigWeight()} {lang key="weightUnit" section="global"}</span>
+											</li>
+										{/if}
+									{else}
+										{if isset($oPosition->Artikel->cGewicht) && $Einstellungen.artikeldetails.artikeldetails_gewicht_anzeigen === 'Y' && $oPosition->Artikel->fGewicht > 0}
+											<li class="weight">
+												<strong>{lang key="shippingWeight" section="global"}: </strong>
+												<span class="value">{$oPosition->Artikel->cGewicht} {lang key="weightUnit" section="global"}</span>
+											</li>
+										{/if}
                                     {/if}
                                 </ul>
                                 {/if}

@@ -119,18 +119,27 @@
 		versand: function()
 		{
 			var that = this;
-			var payments;
+			var payments,sidebasket;
+				alert("intitialisiere");
 			$('input[name=Versandart]').on('change',function()
 			{
+				alert("nun aendere");
 				$('body').addClass('loading');
 
 				$.ajax({
 					url: 'bestellvorgang.php?isAjax&kVersandart='+$(this).val()
 				}).done(function(data) {
+					alert("geladen");
 					$('body').removeClass('loading');
 					var e = $.parseHTML(data, document, true);
 					payments = $(e).find('#fieldset-payment').html();
 					$('#fieldset-payment').html(payments);
+					if($(e).find('#checkout-cart-ajaxversand').length > 0)
+					{
+						sidebasket = $(e).find('#checkout-cart').html();
+						$('#checkout-cart').html(sidebasket);
+					}
+					alert("ist das so");
 					that.checkPayPalPlus();
 				}).fail(function(){
 					$('body').removeClass('loading');

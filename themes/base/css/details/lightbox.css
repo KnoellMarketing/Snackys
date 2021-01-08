@@ -1,0 +1,127 @@
+/* Lightbox */
+.lightbox-shown .product-gallery{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100000;
+    background: white;
+    width: 100%;
+    padding: 0;
+    display: flex;
+    max-width: none;
+}
+.lightbox-shown .product-gallery > .row{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+/* Thumbs */
+.lightbox-shown #gallery-thumbs{
+    padding: 1.8rem;
+    width: 10rem;
+    max-height: 100%;
+    background: @blackbg;
+    z-index: 5;
+    position: static;
+    border: 0;
+    align-content: flex-start;
+    height: 100%;
+}
+.lightbox-shown #gallery-thumbs.two-cols{
+    width: 14rem;    
+}
+.lightbox-shown #gallery-thumbs .img-w:before{
+    content: '';
+    width: calc((100% - 100vh - 10rem) / 2);
+    left: 10rem;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+.lightbox-shown #gallery-thumbs.two-cols .img-w:before{
+    width: calc((100% - 100vh - 14rem) / 2);
+    left: 14rem;
+}
+.lightbox-shown #gallery-thumbs .img-w.active:before,
+.lightbox-shown #gallery-thumbs .img-w.active + .img-w ~ .img-w:before{
+    display: none;
+}
+.lightbox-shown #gallery-thumbs .img-w.active + .img-w:before{
+    left: auto;
+    right: 0;
+}
+
+/* Gallery */
+.lightbox-shown #gallery{
+    width: 100vh;
+	padding: 0;
+	height: 100%;
+    margin: auto;
+    padding: 2rem;
+    max-width: calc(100% - 10rem);
+}
+.lightbox-shown #gallery-thumbs.two-cols + #gallery{
+    max-width: calc(100% - 14rem);    
+}
+.lightbox-shown #gallery .inner{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-start;
+}
+.lightbox-shown #gallery a{
+    width: 100%;
+    min-width: 100%;
+    display: block;
+    transition: margin .4s ease;
+    border: 2rem solid transparent;
+    height: auto;
+    background: white;
+}
+.lightbox-shown #gallery a:not(.active){
+    margin-left: -100%;
+    pointer-events: none;
+}
+.lightbox-shown #gallery a.active ~ a{
+    margin-left: 0%;
+}
+.lightbox-shown #gallery .active + a:not([href*="~"]),
+.lightbox-shown #gallery .active + a:not([href*="~"]) ~ a{
+    display: none;
+}
+
+/* Close Button */
+body:not(.lightbox-shown) #close-lightbox{
+    display: none;
+}
+.lightbox-shown #close-lightbox{
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 11;
+}
+
+@media all and (orientation:portrait) {
+    #snackys-tpl .lightbox-shown #gallery-thumbs{
+        top: auto;
+        width: auto;
+        right: 0;
+        position: fixed;
+        left: 0;
+        height: 8rem;
+        bottom: 0;
+        flex-wrap: nowrap;
+        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+    #snackys-tpl .lightbox-shown #gallery-thumbs .img-w{
+        width: 6rem;
+        margin: 0 .5rem;
+    }
+}

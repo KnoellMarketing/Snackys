@@ -15,7 +15,7 @@
                              <a rel="nofollow" href="{$NaviFilter->URL->cAlleTags}" class="active">
                                  <span class="value">
                                      {$oTag->cName}
-                                     <span class="badge pull-right">{$oTag->nAnzahl}</span>
+                                     <span class="badge">{$oTag->nAnzahl}</span>
                                  </span>
                              </a>
                          </li>
@@ -24,7 +24,7 @@
                              <a rel="nofollow" href="{$oTag->cURL}" >
                                  <span class="value">
                                      {$oTag->cName}
-                                     <span class="badge pull-right">{$oTag->nAnzahl}</span>
+                                     <span class="badge">{$oTag->nAnzahl}</span>
                                  </span>
                              </a>
                          </li>

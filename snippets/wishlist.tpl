@@ -206,7 +206,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <div class="pull-right btn-group">
+                            <div class="btn-group">
                                 <button class="btn btn-primary submit" name="action" value="addAllToCart">
                                     <span class="-xs">{lang key="wishlistAddAllToCart" section="login"}</span>
                                 </button>

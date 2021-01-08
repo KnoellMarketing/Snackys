@@ -29,7 +29,7 @@
                                 {/if}
                                 {$oWunschlistePos->fAnzahl|replace_delim} &times; {$oWunschlistePos->cArtikelName|truncate:25:"..."}
                             </a>
-                            <a class="remove pull-right button" href="{$oWunschlistePos->cURL}">
+                            <a class="remove button" href="{$oWunschlistePos->cURL}">
 							<div class="img-ct icon">
 								<svg>
 								  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-bin"></use>

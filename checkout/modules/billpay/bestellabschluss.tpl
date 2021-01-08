@@ -51,7 +51,7 @@
                                 <div class="panel-body">
                                     {$oPaymentEx->cCampaignText}
                                     <p>Sehen Sie hier die angepassten <a href="{$oPaymentEx->cRateUrl}">Zahlungsdetails</a> nach erfolgreicher Anzahlung.</p>
-                                    <a href="{$oPaymentEx->cRedirectUrl}" class="btn btn-primary btn-lg pull-right submit submit_once">Weiter zu giropay</a>
+                                    <a href="{$oPaymentEx->cRedirectUrl}" class="btn btn-primary btn-lg submit submit_once">Weiter zu giropay</a>
                                 </div>
                             </div>
                         </div>

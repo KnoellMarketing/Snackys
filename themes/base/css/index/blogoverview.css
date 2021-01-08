@@ -1,0 +1,32 @@
+#newslist .panel{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#newslist .panel > a.block{
+    margin-top: auto;
+}
+#newslist .panel-body{
+    margin: .5rem 0;
+}
+#start-boxes img{
+    max-width: 100%;
+    height: auto !important;
+    border-radius: .3rem;
+}
+#newslist .v-box{
+	white-space: nowrap;
+	display: flex;
+}
+#news-overview .separator{
+	display: inline-block;
+	margin: 0 .2rem;
+}
+#news-overview .v-box{
+	line-height: 1.5rem;
+}
+@media screen and (max-width: 767px){
+	#extension-container{
+		margin-top: -1.5rem;
+	}
+}

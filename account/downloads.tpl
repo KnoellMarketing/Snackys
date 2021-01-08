@@ -76,7 +76,7 @@
                             <input name="kKunde" type="hidden" value="{$smarty.session.Kunde->kKunde}" />
                             {if $cStatus == $BESTELLUNG_STATUS_BEZAHLT || $cStatus == $BESTELLUNG_STATUS_VERSANDT || $cStatus == $BESTELLUNG_STATUS_TEILVERSANDT}
                                 <input name="dl" type="hidden" value="{$oDownload->getDownload()}" />
-                                <button class="btn btn-default btn-xs"><i class="fa fa-download"></i> {lang key="download" sektion="global"}</button>
+                                <button class="btn btn-default btn-xs">{lang key="download" sektion="global"}</button>
                             {else}
                                 {lang key="downloadPending"}
                             {/if}

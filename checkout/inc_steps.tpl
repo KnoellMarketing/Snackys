@@ -4,7 +4,7 @@
 {assign var="coupon" value=""}
 {if $bestellschritt[1] != 3}
 	{strip}
-    <ul class="nav nav-wizard first pr"
+    <ul class="nav nav-wizard first blanklist"
 	data-track-type="start"
 	{if $step1_active}data-track-event="begin_checkout"{/if}
 	{if $step2_active}data-track-event="checkout_progress" data-track-p-checkout_step="1"{/if}
@@ -22,9 +22,9 @@
         {if $bestellschritt[1] < 3 || $bestellschritt[2] < 3}
         <li class="{if $step1_active}active{/if}">
                 <a href="{get_static_route id='bestellvorgang.php'}?editRechnungsadresse=1" title="{lang section='account data' key='billingAndDeliveryAddress'}">
-                    <h2 class="h3"><i class="badge">1.</i> {lang section='account data' key='billingAndDeliveryAddress'}</h2>
+                    <h2 class="h3 m0"><span class="badge">1.</span> {lang section='account data' key='billingAndDeliveryAddress'}</h2>
                     {if !($step1_active)}
-						<div class="img-ct icon">
+						<div class="img-ct icon icon-wt">
 							<svg>
 							  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-edit"></use>
 							</svg>
@@ -36,9 +36,9 @@
         {if $bestellschritt[3] < 3 || $bestellschritt[4] < 3}
         <li class="{if $step2_active}active{/if}">
                 <a href="{get_static_route id='bestellvorgang.php'}?editVersandart=1" title="{lang section='account data' key='shippingAndPaymentOptions'}">
-                    <h2 class="h3"><i class="badge">2.</i> {lang section='account data' key='shippingAndPaymentOptions'}</h2>
+                    <h2 class="h3 m0"><span class="badge">2.</span> {lang section='account data' key='shippingAndPaymentOptions'}</h2>
                     {if !($step2_active)}
-						<div class="img-ct icon">
+						<div class="img-ct icon icon-wt">
 							<svg>
 							  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-edit"></use>
 							</svg>
@@ -50,7 +50,7 @@
         {if $step3_active}
         <li class="active">
             <span class="nav-badge">
-                <h2 class="h3"><i class="badge">3.</i> {lang section='checkout' key='summary'}</h2>
+                <h2 class="h3 m0"><span class="badge">3.</span> {lang section='checkout' key='summary'}</h2>
             </span>
         </li>
         {/if} 

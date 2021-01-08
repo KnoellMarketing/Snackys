@@ -1,0 +1,14 @@
+#bc-w{
+    margin-bottom: 0;
+}
+.pl-heading{
+    padding: 2rem 0 1px 0;
+    background: #f6f6f6;
+    margin-bottom: 4rem;
+}
+.pl-heading .desc .img-ct{
+    border: 1px solid @lightborder;
+}
+.pl-heading .img-ct:before{
+    padding-top: 75%;
+}

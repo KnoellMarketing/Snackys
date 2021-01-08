@@ -55,5 +55,5 @@
 	</div>
     <input type="hidden" name="variBox" value="1" />
     <input type="hidden" name="varimatrix" value="1" />
-    <button name="inWarenkorb" type="submit" value="{lang key="addToCart" section="global"}" class="sn-addBasket submit btn btn-primary pull-right btn-lg">{lang key="addToCart" section="global"}</button>
+    <button name="inWarenkorb" type="submit" value="{lang key="addToCart" section="global"}" class="sn-addBasket submit btn btn-primary btn-lg">{lang key="addToCart" section="global"}</button>
 {/if}

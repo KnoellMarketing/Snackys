@@ -195,6 +195,7 @@ function addValidationListener() {
         $body  = $('body');
 
     for (var i = 0; i < forms.length; i++) {
+		console.log(forms[i]);
         forms[i].addEventListener('invalid', function (event) {
             event.preventDefault();
             $(event.target).closest('.form-group').find('div.form-error-msg').remove();
@@ -204,7 +205,7 @@ function addValidationListener() {
                 var $firstError = $(event.target).closest('.form-group.has-error');
                 if ($firstError.length > 0) {
                     $body.data('doScrolling', true);
-                    var $nav        = $('#evo-main-nav-wrapper.do-affix'),
+                    var $nav        = $('#cat-w'),
                         fixedOffset = $nav.length > 0 ? $nav.outerHeight() : 0,
                         vpHeight    = $(window).height(),
                         scrollTop   = $(window).scrollTop();
@@ -224,6 +225,18 @@ function addValidationListener() {
             }
         }, true);
     }
+	
+	//Modal Configuratror
+	$('#cfg-container select, #cfg-container input').on('change',function(){
+		var cfg = $(this).closest('#cfg-container');
+		var elements = $(cfg).find('select[required],input[required]');
+		var errors = false;
+		for (var i = 0; i < elements.length; i++) {
+			if(!elements[i].checkValidity()) errors = true;
+		}
+		
+		$(cfg).closest('form').find('input[type=submit],button[type=submit]').prop('disabled', errors);
+	});
 
     for (var i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener('blur', function (event) {
@@ -336,7 +349,7 @@ function snackys()
 		window.setTimeout(function ()
 		{
 			document.querySelector('input[name=qs]').focus();
-		}, 0);
+		}, 150);
 		
 		e.preventDefault();
 	});
@@ -385,15 +398,16 @@ function snackys()
 	tElem = document.getElementById('footer');
 	if(tElem)
 	tElem = tElem.getElementsByClassName('panel-heading');
-		for(i=0;i<tElem.length;i++)
-			tElem[i].addEventListener('click',function(e){
-				if(!e) e = window.event;
-				e.preventDefault();
-				if(e.target.parentNode.parentNode.classList.contains('open-show'))
-					e.target.parentNode.parentNode.classList.remove('open-show')
-				else
-					e.target.parentNode.parentNode.classList.add('open-show')
-			});
+		if(tElem)
+			for(i=0;i<tElem.length;i++)
+				tElem[i].addEventListener('click',function(e){
+					if(!e) e = window.event;
+					e.preventDefault();
+					if(e.target.parentNode.parentNode.classList.contains('open-show'))
+						e.target.parentNode.parentNode.classList.remove('open-show')
+					else
+						e.target.parentNode.parentNode.classList.add('open-show')
+				});
 	
 
 	// wenn n alert button n schließen button hat 
@@ -419,7 +433,7 @@ function snackys()
 				window.setTimeout(function ()
 				{
 					document.querySelector('input[name=qs]').focus();
-				}, 0);
+				}, 150);
 			}
 		});
 	
@@ -438,12 +452,14 @@ function snackys()
 
 function mainEventListener()
 {
+	var tElem,i;
 	
 	$('.cart-menu, .cart-menu>a, .cart-menu>a *').click(function(e)
 	{
 		if(e.target !== e.currentTarget) return;
 		e.preventDefault();
 		$('.cart-menu').addClass('open');
+		$('body').addClass('sidebasket-open');
 	});
 	
 
@@ -454,6 +470,7 @@ function mainEventListener()
 		tElem[i].addEventListener('click',function(e)
 		{
 			$('.cart-menu').removeClass('open');
+			$('body').removeClass('sidebasket-open');
 			if(!e) e = window.event;
 			e.preventDefault();
 			e.target.parentNode.parentNode.classList.remove('open');
@@ -552,7 +569,9 @@ function mainEventListener()
 	
 	//Modal Lazy Loading!
 	$('body').on('shown.bs.modal', function (e) {
-	  sImages.rewatch();
+		window.setTimeout(function(){
+			sImages.rewatch();
+		},500);
 	});
 }
 

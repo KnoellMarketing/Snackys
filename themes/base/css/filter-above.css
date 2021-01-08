@@ -12,6 +12,11 @@
     #ftr-tg{
         display: none;
     }
+    #sp-l.show-above .panel{
+        padding: 0;
+        background: none;
+        box-shadow: none;
+    }
 	/* Filter Above */
 	#sp-l.show-above > .inside{
 		display: flex;

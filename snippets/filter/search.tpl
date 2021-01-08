@@ -3,7 +3,7 @@
         {assign var=kSuchanfrage value=$oSuchFilter->kSuchanfrage}
         <li>
             <a rel="nofollow" href="{$NaviFilter->URL->cAlleSuchFilter[$kSuchanfrage]}" class="active">
-                <span class="badge pull-right">{$oSuchFilter->nAnzahl}</span>
+                <span class="badge">{$oSuchFilter->nAnzahl}</span>
                 <span class="value">
                     {$oSuchFilter->cSuche}
                 </span>

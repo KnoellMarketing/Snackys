@@ -230,7 +230,7 @@
                         <div class="panel-body">
                             <input type="hidden" name="abschluss" value="1" />
                             <input type="hidden" id="comment-hidden" name="kommentar" value="" />
-                            <div class="{if !$device->isMobile()}visible-sm visible-xs{/if}">
+                            <div class="">
                             {include file="checkout/inc_order_items.tpl" tplscope="confirmation"}
 								<hR>
 							<div class="cart-sum mb-spacer">
@@ -263,7 +263,7 @@
 								</div>
 							</div>
                             </div>
-                            <input type="submit" value="{lang key="orderLiableToPay" section="checkout"}" id="complete-order-button" class="btn btn-primary btn-lg pull-right submit submit_once" />
+                            <input type="submit" value="{lang key="orderLiableToPay" section="checkout"}" id="complete-order-button" class="btn btn-primary btn-lg submit submit_once" />
                             <a href="{get_static_route id='warenkorb.php'}" class="btn btn-link btn-lg hidden-xxs">{lang key="modifyBasket" section="checkout"}</a>
                         </div>
                     </div>

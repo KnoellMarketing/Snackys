@@ -3,7 +3,7 @@
     <Name>Snackys</Name>
     <Author>Knoell Marketing</Author>
     <URL>https://www.knoell-marketing.de</URL>
-    <Version>3.03</Version>
+    <Version>3.04</Version>
     <ShopVersion>406</ShopVersion>
     <Preview>preview-snackys.png</Preview>
     <Description>Ultraschnelles responsive JTL Template von Knoell Marketing</Description>
@@ -39,12 +39,19 @@
 				<File Path="themes/base/css/main.css"/>
 				<File Path="themes/base/css/header.css"/>
 				<File Path="themes/base/css/footer.css"/>
-				<File Path="themes/base/css/sidebar-cart.css"/>
-                <File Path="themes/base/css/imagepreload.css"/>
-                <File Path="themes/base/css/modal.css"/>
-                <File Path="themes/base/css/megamenu.css"/>
-                <File Path="themes/base/css/breadcrumb.css"/>
-                <File Path="themes/base/css/productslider.css"/>
+                <File Path="themes/base/css/imagepreload.css"/>              
+                <File Path="themes/base/css/header/shopnav.css"/>
+                <File Path="themes/base/css/header/megamenu.css"/>
+                <File Path="themes/base/css/header/breadcrumb.css"/>              
+                <File Path="themes/base/css/elements/alerts.css"/> 
+                <File Path="themes/base/css/elements/text.css"/>
+                <File Path="themes/base/css/elements/buttons.css"/>
+                <File Path="themes/base/css/elements/forms.css"/>
+                <File Path="themes/base/css/elements/modals.css"/>
+                <File Path="themes/base/css/elements/productbox.css"/>
+                <File Path="themes/base/css/elements/productslider.css"/>
+                <File Path="themes/base/css/elements/accordeon.css"/>               
+				<File Path="themes/base/css/basket/sidebasket.css"/>
                 <File Path="themes/snackys/css/aspectratios.css"/>
 			</CSS>
 			<CSS Name="darkmode.css">
@@ -52,12 +59,19 @@
 				<File Path="themes/base/css/main.css"/>
 				<File Path="themes/base/css/header.css"/>
 				<File Path="themes/base/css/footer.css"/>
-				<File Path="themes/base/css/sidebar-cart.css"/>
-                <File Path="themes/base/css/imagepreload.css"/>
-                <File Path="themes/base/css/modal.css"/>
-                <File Path="themes/base/css/megamenu.css"/>
-                <File Path="themes/base/css/breadcrumb.css"/>
-                <File Path="themes/base/css/productslider.css"/>
+                <File Path="themes/base/css/imagepreload.css"/>              
+                <File Path="themes/base/css/header/shopnav.css"/>
+                <File Path="themes/base/css/header/megamenu.css"/>
+                <File Path="themes/base/css/header/breadcrumb.css"/>              
+                <File Path="themes/base/css/elements/alerts.css"/> 
+                <File Path="themes/base/css/elements/text.css"/>
+                <File Path="themes/base/css/elements/buttons.css"/>
+                <File Path="themes/base/css/elements/forms.css"/>
+                <File Path="themes/base/css/elements/modals.css"/>
+                <File Path="themes/base/css/elements/productbox.css"/>
+                <File Path="themes/base/css/elements/productslider.css"/>
+                <File Path="themes/base/css/elements/accordeon.css"/>               
+				<File Path="themes/base/css/basket/sidebasket.css"/>
                 <File Path="themes/darkmode/css/aspectratios.css"/>
 			</CSS>
 			<CSS Name="custom.css">
@@ -65,12 +79,19 @@
 				<File Path="themes/base/css/main.css"/>
 				<File Path="themes/base/css/header.css"/>
 				<File Path="themes/base/css/footer.css"/>
-				<File Path="themes/base/css/sidebar-cart.css"/>
-                <File Path="themes/base/css/imagepreload.css"/>
-                <File Path="themes/base/css/modal.css"/>
-                <File Path="themes/base/css/megamenu.css"/>
-                <File Path="themes/base/css/breadcrumb.css"/>
-                <File Path="themes/base/css/productslider.css"/>
+                <File Path="themes/base/css/imagepreload.css"/>              
+                <File Path="themes/base/css/header/shopnav.css"/>
+                <File Path="themes/base/css/header/megamenu.css"/>
+                <File Path="themes/base/css/header/breadcrumb.css"/>              
+                <File Path="themes/base/css/elements/alerts.css"/> 
+                <File Path="themes/base/css/elements/text.css"/>
+                <File Path="themes/base/css/elements/buttons.css"/>
+                <File Path="themes/base/css/elements/forms.css"/>
+                <File Path="themes/base/css/elements/modals.css"/>
+                <File Path="themes/base/css/elements/productbox.css"/>
+                <File Path="themes/base/css/elements/productslider.css"/>
+                <File Path="themes/base/css/elements/accordeon.css"/>               
+				<File Path="themes/base/css/basket/sidebasket.css"/>
                 <File Path="themes/custom/css/aspectratios.css"/>
 			</CSS>
 			<JS Name="jtl3.js">
@@ -78,6 +99,7 @@
 				<File Path="js/bootstrap.min.js"/>
 				<File Path="js/bootstrap-modal.js"/>
 				<File Path="js/bootstrap-toolkit.js"/>
+				<File Path="js/bootstrap-collapse.js"/>
 				<File Path="js/snackys/swipe.js"/>
 				<File Path="js/snackys/jtl.evo.js"/>
 				<File Path="js/snackys/jtl.article.js"/>
@@ -89,6 +111,9 @@
 				<File Path="js/snackys/spin.js"/>
 				<File Path="js/snackys/global.js"/>
 				<File Path="js/snackys/classList.js" />
+				<File Path="js/snackys/listing.js" />
+				<File Path="js/snackys/checkout.js" />
+				<File Path="js/snackys/consent.js" />
 				<File Path="js/Chart.js" DependsOnSettingGroup="CONF_PREISVERLAUF" DependsOnSetting="preisverlauf.preisverlauf_anzeigen" DependsOnSettingValue="Y"/>
 			</JS>
 		</Minify>
@@ -100,24 +125,26 @@
     </Boxes>
 	<CSSPageTypes>
 			<File Path="/templates/snackys/themes/base/css/details.css" PageType="1"/>
+			<File Path="/templates/snackys/themes/base/css/details/gallery.css" PageType="1"/>
+			<File Path="/templates/snackys/themes/base/css/details/lightbox.css" PageType="1"/>
 			<File Path="/templates/snackys/themes/base/css/listing.css" PageType="2"/>
-			<File Path="/templates/snackys/themes/base/css/basket.css" PageType="3"/>
+			<File Path="/templates/snackys/themes/base/css/listing/header.css" PageType="2"/>
+			<File Path="/templates/snackys/themes/base/css/basket/basket.css" PageType="3"/>
 			<File Path="/templates/snackys/themes/base/css/account.css" PageType="4"/>
 			<File Path="/templates/snackys/themes/base/css/contact.css" PageType="5"/>
 			<File Path="/templates/snackys/themes/base/css/umfrage.css" PageType="6"/>
 			<File Path="/templates/snackys/themes/base/css/news.css" PageType="7"/>
 			<File Path="/templates/snackys/themes/base/css/newsletter.css" PageType="8"/>
-			<File Path="/templates/snackys/themes/base/css/checkout.css" PageType="11"/>
+			<File Path="/templates/snackys/themes/base/css/checkout/checkout.css" PageType="11"/>
 			<File Path="/templates/snackys/themes/base/css/wishlist.css" PageType="16"/>
 			<File Path="/templates/snackys/themes/base/css/comparelist.css" PageType="17"/>
-			<File Path="/templates/snackys/themes/base/css/startseite.css" PageType="18"/>
+			<File Path="/templates/snackys/themes/base/css/index/blogoverview.css" PageType="18"/>
 			<File Path="/templates/snackys/themes/base/css/sitemap.css" PageType="25"/>
 			<File Path="/templates/snackys/themes/base/css/plugins.css" PageType="31"/>
 			<File Path="/templates/snackys/themes/base/css/maintainance.css" PageType="15"/>
 			<File Path="/templates/snackys/themes/base/css/selectric.css" PageType="1"/>
 			<File Path="/templates/snackys/themes/base/css/selectric.css" PageType="2"/>
 			<File Path="/templates/snackys/themes/base/css/variations.css" PageType="1"/>
-			<File Path="/templates/snackys/themes/base/css/details-gallery.css" PageType="1"/>
 			<File Path="/templates/snackys/themes/base/css/manu-site.css" PageType="24"/>
 			<File Path="/templates/snackys/themes/base/css/dropper.css" PageType="all"/>
             <File Path="themes/##theme##/css/custom.css" PageType="all"/>

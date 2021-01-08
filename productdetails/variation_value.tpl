@@ -8,14 +8,14 @@
         {assign var=kEigenschaftWert value=$Variationswert->kEigenschaftWert}
         {if $Einstellungen.artikeldetails.artikel_variationspreisanzeige == 1}
             {if isset($Artikel->oVariationDetailPreis_arr[$kEigenschaftWert]->Preise->cAufpreisLocalized[$NettoPreise])}
-                <span class="label label-info label-surcharge">{$Artikel->oVariationDetailPreis_arr[$kEigenschaftWert]->Preise->cAufpreisLocalized[$NettoPreise]}
+                <span class="label label-info label-surcharge"><span class="hidden">&nbsp;|&nbsp;</span>{$Artikel->oVariationDetailPreis_arr[$kEigenschaftWert]->Preise->cAufpreisLocalized[$NettoPreise]}
                 {if !empty($Artikel->oVariationDetailPreis_arr[$kEigenschaftWert]->Preise->PreisecPreisVPEWertInklAufpreis[$NettoPreise])}
                     , {$Artikel->oVariationDetailPreis_arr[$kEigenschaftWert]->Preise->PreisecPreisVPEWertInklAufpreis[$NettoPreise]}
                 {/if}
                 </span>
             {/if}
         {elseif $Einstellungen.artikeldetails.artikel_variationspreisanzeige == 2}
-            <span class="label label-info label-surcharge">{$Artikel->oVariationDetailPreis_arr[$kEigenschaftWert]->Preise->cVKLocalized[$NettoPreise]}
+            <span class="label label-info label-surcharge"><span class="hidden">&nbsp;|&nbsp;</span>{$Artikel->oVariationDetailPreis_arr[$kEigenschaftWert]->Preise->cVKLocalized[$NettoPreise]}
             {if !empty($Artikel->oVariationDetailPreis_arr[$kEigenschaftWert]->Preise->PreisecPreisVPEWertInklAufpreis[$NettoPreise])}
                 , {$Artikel->oVariationDetailPreis_arr[$kEigenschaftWert]->Preise->PreisecPreisVPEWertInklAufpreis[$NettoPreise]}
             {/if}
@@ -26,21 +26,21 @@
 {* einfache kombination oder variationskombination mit mindestens 2 nicht-freifeld positionen *}
 {if ($Artikel->kVaterArtikel == 0 && $Artikel->nIstVater == 0) && isset($Variationswert->fAufpreisNetto)}
     {if $Einstellungen.artikeldetails.artikel_variationspreisanzeige == 1 && $Variationswert->fAufpreisNetto!=0}
-        <span class="label label-info label-surcharge">{$Variationswert->cAufpreisLocalized[$NettoPreise]}</span>
+        <span class="label label-info label-surcharge"><span class="hidden">&nbsp;|&nbsp;</span>{$Variationswert->cAufpreisLocalized[$NettoPreise]}</span>
     {elseif $Einstellungen.artikeldetails.artikel_variationspreisanzeige == 2 && $Variationswert->fAufpreisNetto!=0}
-        <span class="label label-info label-surcharge">{$Variationswert->cPreisInklAufpreis[$NettoPreise]}</span>
+        <span class="label label-info label-surcharge"><span class="hidden">&nbsp;|&nbsp;</span>{$Variationswert->cPreisInklAufpreis[$NettoPreise]}</span>
     {/if}
 {/if}
 {* variationskombination mit mindestens 2 nicht-freifeld positionen *}
 {if ($Artikel->kVaterArtikel > 0 || $Artikel->nIstVater == 1) && $Artikel->nVariationOhneFreifeldAnzahl > 1 && isset($Variationswert->fAufpreisNetto)}
     {if $Einstellungen.artikeldetails.artikel_variationspreisanzeige == 1 && $Variationswert->fAufpreisNetto!=0}
-        <span class="label label-info label-surcharge">{$Variationswert->cAufpreisLocalized[$NettoPreise]}
+        <span class="label label-info label-surcharge"><span class="hidden">&nbsp;|&nbsp;</span>{$Variationswert->cAufpreisLocalized[$NettoPreise]}
         {if !empty($Variationswert->cPreisVPEWertAufpreis[$NettoPreise]) && $Artikel->nVariationOhneFreifeldAnzahl == 1}
             ({$Variationswert->cPreisVPEWertAufpreis[$NettoPreise]})
         {/if}
         </span>
     {elseif $Einstellungen.artikeldetails.artikel_variationspreisanzeige == 2 && $Variationswert->fAufpreisNetto!=0}
-        <span class="label label-info label-surcharge">{$Variationswert->cPreisInklAufpreis[$NettoPreise]}
+        <span class="label label-info label-surcharge"><span class="hidden">&nbsp;|&nbsp;</span>{$Variationswert->cPreisInklAufpreis[$NettoPreise]}
         {if !empty($Variationswert->cPreisVPEWertInklAufpreis[$NettoPreise]) && $Artikel->nVariationOhneFreifeldAnzahl == 1}
             ({$Variationswert->cPreisVPEWertInklAufpreis[$NettoPreise]})
         {/if}

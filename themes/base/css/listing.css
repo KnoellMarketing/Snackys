@@ -1,15 +1,9 @@
-body[data-page="2"] #content-wrapper{
-    padding-top: 1.5rem;
-}
 #content{
 	order: 1;
 }
 /* Produktliste */
 .p-w .img-w{
     position: relative;
-}
-.sc-w .item_desc{
-    margin: .2rem 0;
 }
 #result-options{
     width: 100%;
@@ -22,13 +16,34 @@ body[data-page="2"] #content-wrapper{
 }
 .ftr-a a{
     margin: .25rem;
+    text-align: left;
+    padding: 0;
+    background: none;
+    margin: .3rem 0;
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    color: @defaulttext;
+}
+#snackys-tpl .ftr-a a:hover{
+    box-shadow: none;
+    text-decoration: line-through;
 }
 .ftr-a .delete{
-	font-family: "Courier New",Courier,'Arial';
-	margin-right: .25rem;
-	display: inline-block;
-	position: relative;
-	top: 1px;
+    font-family: "Courier New",Courier,'Arial';
+    margin-right: .75rem;
+    display: inline-block;
+    position: relative;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: .3rem;
+    min-width: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: @brand;
+    color: white;
+    font-weight: bold;
 }
 #result-wrapper > .desc{
     margin-bottom: 2rem;
@@ -67,74 +82,28 @@ body[data-page="2"] #content-wrapper{
 #ftr-tg .img-ct{
     width: 1.8rem
 }
-#slider-top-products {
-    margin-bottom: 1rem;
-}
-/* Endless To Top */
 
-#nfity-scroll{
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	display: none;
-}
-#nfity-scroll .nfy-placeholder{
-	width: 100%;
-	height: 200vh;
-	max-height: calc(100% - 5rem);
-}
-#nfity-scroll .nfy-scroller{
-	position: -webkit-sticky;
-	position: sticky;
-	top: calc(100% - 6rem);
-	z-index: 12;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-#nfity-scroll .nfy-scroller a{
-	width: 3.4rem;
-	height: 3.4rem;
-	background: #222;
-	border-radius: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 0 20px 0 rgba(0,0,0,.25);
-}
-#nfity-scroll .nfy-scroller .ar{
-	border-color: #fff;
-	padding: .3rem;
-	border-width: 0 3px 3px 0;
-}
 [data-page="2"] #content-wrapper > .row{
 	align-items: flex-start;
 }
 #p-l .endless-scrolling:last-child{
     opacity: 1;
     height: 3.4rem;
-    z-index: 900;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 11;
+    position: relative;
 }
 #p-l .endless-scrolling:last-child button{
 	position: absolute;
-	bottom: .6rem;
-    font-size: 0;
-    color: transparent;
+	bottom: 0;
     width: 2.1rem;
     height: 2.1rem;
-    border: 3px solid white;
+    border: 5px solid @darkbg;
     border-radius: 50%;
     padding: 0;
-    background: #222;
     border-top-color: @brand;
 	animation: 1.2s ease-in-out 0s infinite both spin;
+    box-shadow: none;
+    background: none;
 }
 .sidecart-open .dropdown.open .c-dp>.inside{
 	animation: .4s ease .1s 1 both slide-in;
@@ -155,28 +124,32 @@ body[data-page="2"] #content-wrapper{
 		transform: rotate(360deg)
 	}
 }
-@supports (position: sticky){
-	#p-l{
-		position: relative;
-		padding-bottom: 5rem;
-	}
-	#nfity-scroll{
-		display: block;
-	}
-}
-@supports (position: -webkit-sticky){
-	#p-l{
-		position: relative;
-		padding-bottom: 5rem;
-	}
-	#nfity-scroll{
-		display: block;
-	}
+
+#suche2 .btn{
+    margin-left: .5rem;
+    border-radius: .5rem;
 }
 /* Amazon-Pay-Button */
 .p-c .lpa-pay-button.lpa-pay-button-express{
 	display: block;
 	margin: .5rem 0 0 0;
+}
+
+#nfity-scroll{
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    background: @blackbg;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 4;
+}
+#nfity-scroll .ar{
+    border-color: white;
 }
 @media screen and (max-width: 767px){
 	#nfity-scroll .nfy-scroller{
@@ -205,6 +178,9 @@ body[data-page="2"] #content-wrapper{
     }
 }
 @media screen and (max-width: 767px){
+    #shop-nav{
+        margin-bottom: 0
+    }
     #improve_search{
         margin-bottom: .75rem;
     }

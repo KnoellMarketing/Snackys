@@ -1,0 +1,94 @@
+.sl-w{
+	position: relative;
+}
+.fw-sl{
+	display: flex;
+	overflow: auto;
+	position: relative;
+	pointer-events: none;
+}
+.fw-sl .slide{
+	width: 100%;
+	min-width: 100%;
+	scroll-snap-align: start;
+	position: relative;
+	pointer-events: auto;
+}
+.fw-sl .htmlcaption{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.65);
+    color: white;
+    padding: 1rem 2rem 1rem 2rem;
+	text-align: center;
+	border-bottom-left-radius: .3rem;
+	border-bottom-right-radius: .3rem;
+}
+.fw-sl .title{
+    font-weight: 700;
+    color: white;
+}
+.fw-sl .desc{
+	margin: 0;
+}
+.fw-sl .desc:not(:empty){
+    margin: .15rem 0 0 0;
+}
+.fw-sl .img-ct,
+.fw-sl .img-ct img{
+	border-radius: 0;
+}
+.sl-w .sl-ar{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 1;
+	cursor: pointer;
+	background: rgba(255,255,255,.7);
+	border: 0;
+	padding: 1.5rem .8rem;
+	border-radius: .3rem;
+	opacity: 1;
+}
+.sl-w .sl-nx{
+	right: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+.sl-w .sl-pr{
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+.sl-w .ar{
+	padding: 6px;
+	position: relative;
+	top: 2px;
+	left: 2px;
+}
+.sl-w .sl-nx .ar{
+	left: -2px;
+}
+.sl-w:not(:hover) .sl-ar{
+	opacity: .5;
+}
+@media screen and (max-width: 991px){
+    .fw-sl .sl-ar{
+        height: 4rem;
+        width: 2.25rem;
+    }
+    .fw-sl .ar {
+        padding: 5px;
+        border-width: 0 2px 2px 0;
+	}
+}
+@media screen and (max-width: 767px){
+	.fw-sl .htmlcaption{
+		display: none;
+	}
+    .fw-sl .sl-ar{
+        width: 1.8rem;
+        height: 3.5rem;
+    }
+}

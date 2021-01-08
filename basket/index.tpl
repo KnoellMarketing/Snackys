@@ -117,44 +117,47 @@
     </div>
     {if ($Warenkorb->PositionenArr|@count > 0)}
     <div class="col-xs-12 col-md-5 col-lg-4 right-boxes img-brd">
-        <div class="cart-sum border-box mb-spacer mb-xs">
-        <h2 class="h3">{lang key="accountOverview" section="account data"}</h2>
-            {if $NettoPreise}
-                <div class="total-net dpflex-j-between">
-                    <span class="price_label"><strong>{lang key="totalSum" section="global"} ({lang key="net" section="global"}):</strong></span>
-                    <strong class="price total-sum">{$WarensummeLocalized[$NettoPreise]}</strong>
-                </div>
-            {/if}
-
-            {if $Einstellungen.global.global_steuerpos_anzeigen !== 'N' && $Steuerpositionen|@count > 0}
-                {foreach name=steuerpositionen from=$Steuerpositionen item=Steuerposition}
-                    <div class="tax dpflex-j-between">
-                        {if $Einstellungen.kaufabwicklung.warenkorb_produktbilder_anzeigen === 'Y'}
-                            <td class="hidden-xs"></td>
-                        {/if}
-                        <span class="tax_label">{$Steuerposition->cName}:</span>
-                        <span class="tax_label">{$Steuerposition->cPreisLocalized}</span>
-                    </div>
-                {/foreach}
-            {/if}
-
-            {if isset($smarty.session.Bestellung->GuthabenNutzen) && $smarty.session.Bestellung->GuthabenNutzen == 1}
-                 <div class="customer-credit dpflex-j-between">
-                     <span>{lang key="useCredit" section="account data"}</span>
-                      <span>{$smarty.session.Bestellung->GutscheinLocalized}</span>
-                 </div>
-            {/if}
-
-            <div class="total info dpflex-j-between mb-spacer mb-xs">
-                <span class="price_label"><strong>{lang key="totalSum" section="global"}:</strong></span>
-                <strong class="price total-sum">{$WarensummeLocalized[0]}</strong>
+        <div class="cart-sum panel mb-spacer mb-small">
+            <div class="panel-heading">
+                <h2 class="h3 panel-title">{lang key="accountOverview" section="account data"}</h2>
             </div>
-            <a href="{get_static_route id='bestellvorgang.php'}?wk=1" class="submit btn btn-primary btn-block">{lang key='nextStepCheckout' section='checkout'}</a>
+            <div class="panel-body">
+                {if $NettoPreise}
+                    <div class="total-net dpflex-j-between">
+                        <span class="price_label"><strong>{lang key="totalSum" section="global"} ({lang key="net" section="global"}):</strong></span>
+                        <strong class="price total-sum">{$WarensummeLocalized[$NettoPreise]}</strong>
+                    </div>
+                {/if}
+                {if $Einstellungen.global.global_steuerpos_anzeigen !== 'N' && $Steuerpositionen|@count > 0}
+                    {foreach name=steuerpositionen from=$Steuerpositionen item=Steuerposition}
+                        <div class="tax dpflex-j-between">
+                            {if $Einstellungen.kaufabwicklung.warenkorb_produktbilder_anzeigen === 'Y'}
+                                <td class="hidden-xs"></td>
+                            {/if}
+                            <span class="tax_label">{$Steuerposition->cName}:</span>
+                            <span class="tax_label">{$Steuerposition->cPreisLocalized}</span>
+                        </div>
+                    {/foreach}
+                {/if}
+                {if isset($smarty.session.Bestellung->GuthabenNutzen) && $smarty.session.Bestellung->GuthabenNutzen == 1}
+                     <div class="customer-credit dpflex-j-between">
+                         <span>{lang key="useCredit" section="account data"}</span>
+                          <span>{$smarty.session.Bestellung->GutscheinLocalized}</span>
+                     </div>
+                {/if}
+                <div class="total info dpflex-j-between mb-spacer mb-xs">
+                    <span class="price_label"><strong>{lang key="totalSum" section="global"}:</strong></span>
+                    <strong class="price total-sum">{$WarensummeLocalized[0]}</strong>
+                </div>
+                <a href="{get_static_route id='bestellvorgang.php'}?wk=1" class="submit btn btn-primary btn-block">{lang key='nextStepCheckout' section='checkout'}</a>
+            </div>
         </div>
         {if $oArtikelGeschenk_arr|@count > 0}
             {block name="basket-freegift"}
-                <div id="freegift" class="panel panel-info border-box img-brd mb-spacer mb-xs">
-                    <div class="panel-heading"><h2 class="panel-title h4">{block name="basket-freegift-title"}{lang key='freeGiftFromOrderValueBasket'}{/block}</h2></div>
+                <div id="freegift" class="panel mb-spacer mb-small">
+                    <div class="panel-heading">
+                        <h2 class="panel-title h4">{block name="basket-freegift-title"}{lang key='freeGiftFromOrderValueBasket'}{/block}</h2>
+                    </div>
                     <div class="panel-body">
                         {block name="basket-freegift-body"}
                             <form method="post" name="freegift" action="{get_static_route id='warenkorb.php'}">
@@ -190,26 +193,30 @@
         {assign var="showCoupon" value=false}
         {if $Einstellungen.kaufabwicklung.warenkorb_kupon_anzeigen === 'Y' && $KuponMoeglich == 1}
             {assign var="showCoupon" value=true}
-            <div class="apply-coupon border-box img-brd mb-spacer mb-xs">
-				<h2 class="h4">{lang key="useCoupon" section="checkout"}</h2>
-                <form class="form-inline evo-validate" id="basket-coupon-form" method="post" action="{get_static_route id='warenkorb.php'}">
-                    {$jtl_token}
-                    {block name="basket-coupon"}
-                        <div class="form-group m0 w100{if !empty($invalidCouponCode) || !empty($cKuponfehler)} has-error{/if}">
-                            <div class="input-group">
-                                <input aria-label="{lang key='couponCode' section='account data'}" class="form-control" type="text" name="Kuponcode" id="couponCode" maxlength="32" placeholder="{lang key='couponCode' section='account data'}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required/>
-                                <span class="input-group-btn">
-                                    <input class="btn btn-default" type="submit" value="&rsaquo;" />
-                                </span>
+            <div class="apply-coupon panel mb-spacer mb-small">
+                <div class="panel-heading">
+				    <h2 class="h4 panel-title">{lang key="useCoupon" section="checkout"}</h2>
+                </div>
+                <div class="panel-body">
+                    <form class="form-inline evo-validate" id="basket-coupon-form" method="post" action="{get_static_route id='warenkorb.php'}">
+                        {$jtl_token}
+                        {block name="basket-coupon"}
+                            <div class="form-group m0 w100{if !empty($invalidCouponCode) || !empty($cKuponfehler)} has-error{/if}">
+                                <div class="input-group">
+                                    <input aria-label="{lang key='couponCode' section='account data'}" class="form-control" type="text" name="Kuponcode" id="couponCode" maxlength="32" placeholder="{lang key='couponCode' section='account data'}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" required/>
+                                    <span class="input-group-btn">
+                                        <input class="btn btn-default" type="submit" value="&rsaquo;" />
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    {/block}
-                </form>
+                        {/block}
+                    </form>
+                </div>
             </div>
         {/if}
         
         {if $Einstellungen.kaufabwicklung.warenkorb_versandermittlung_anzeigen === 'Y'}
-        <div class="basket-shipping-estimate-form border-box img-brd">
+        <div class="basket-shipping-estimate-form">
 			{include file="snippets/zonen.tpl" id="before_shipping_calculator" title="before_shipping_calculator"}
             <form id="basket-shipping-estimate-form" method="post" action="{get_static_route id='warenkorb.php'}">
                 {$jtl_token}

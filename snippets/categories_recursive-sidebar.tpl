@@ -40,7 +40,7 @@
                 {if isset($activeParents) && is_array($activeParents) && isset($activeParents[$i])}
                     {assign var='activeParent' value=$activeParents[$i]}
                 {/if}
-                <li{if $category->kKategorie == $activeId || ((isset($activeParent) && isset($activeParent->kKategorie)) && $activeParent->kKategorie == $category->kKategorie)} class="active{if (isset($activeParent)) && isset($activeParent->kKategorie)} open{/if}"{/if}>
+                <li class="{if $category->kKategorie == $activeId || ((isset($activeParent) && isset($activeParent->kKategorie)) && $activeParent->kKategorie == $category->kKategorie)} active{if (isset($activeParent)) && isset($activeParent->kKategorie)} open{/if}{/if}{if is_array($category->KategorieAttribute) && !empty($category->KategorieAttribute["css_klasse"])} {$category->KategorieAttribute["css_klasse"]}{/if}">
                         <span class="">
                             <a href="{$category->cURL}"{if $hasItems} class="nav-sub"{/if} data-ref="{$category->kKategorie}">
                                 {$category->cKurzbezeichnung}

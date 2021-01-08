@@ -1,0 +1,59 @@
+.p-c .exp{
+    margin-top: auto;
+    padding-top: .7rem;
+}
+.p-c .exp .btn{
+    border-radius: .5rem;
+    margin: 0;
+    font-size: .95rem;
+}
+.exp:not(.hide-qty) .btn-primary{
+    border-radius: 0 .5rem .5rem 0;
+}
+.exp.flo-bt input.quantity,
+.exp.hide-qty input.quantity{
+	display: none;
+}
+.p-c .exp .hidden-xs{
+    padding-left: .4rem;
+}
+.p-c .exp svg{
+    fill: white;
+}
+.exp.flo-bt{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	padding-top: 100%;
+	pointer-events: none;
+}
+.exp.flo-bt .img-ct{
+    width: 1.4rem;
+}
+.exp.flo-bt button[type="submit"]{ 
+	padding: 0;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	position: absolute;
+	right: 1.2rem;
+	bottom: 1.2rem;
+	pointer-events: all;
+    border-radius: 50%;
+}
+.exp input.quantity{
+	min-width: 4rem;
+	width: 4rem;
+	padding-right: .2rem;
+}
+.exp:not(.flo-bt) .input-group-btn,
+.exp:not(.flo-bt) .input-group-btn .btn{
+	width: 100%;
+	justify-content: center;
+}
+.exp .btn-primary{
+	white-space: nowrap;
+}

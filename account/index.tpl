@@ -71,7 +71,7 @@
             </div>
         {/if}
     
-        <div class="col-xs-12 {if !$showLoginPanel}col-md-12{else}col-md-9 col-lg-push-1{/if}">
+        <div class="col-xs-12 {if !$showLoginPanel}col-md-12{else}col-md-9{/if}">
             {if $step === 'login'}
                 {include file='account/login.tpl'}
             {elseif $step === 'mein Konto'}

@@ -1,0 +1,515 @@
+#select_shipping_address,
+#ppp-modal{
+    display: none;
+}
+body{
+    padding-right: 28rem;
+}
+.mw-container{
+    max-width: 1500px;
+}
+#content-wrapper{
+    margin-bottom: 3rem;
+}
+#shop-nav{
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+}
+#checkout-cart{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 2rem;
+    max-height: 100%;
+    overflow: auto;
+    background: #f6f6f6;
+    max-width: 28rem;
+}
+#checkout .nav-wizard li {
+    border-top: 1px solid @lightborder;
+}
+#checkout .nav-wizard:not(.first) li:last-child{
+    border-bottom: 1px solid @lightborder;
+}
+#checkout .nav-wizard li > a,
+#checkout .nav-wizard li > span{
+    transition: opacity .2s ease;
+    opacity: .4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 0;
+}
+#checkout .nav-wizard li.active a,
+#checkout .nav-wizard li.active span,
+#checkout .nav-wizard.first li a:hover{
+    opacity: 1;
+}
+#checkout .nav-wizard.first{
+    margin-bottom: 1.5rem;
+}
+#checkout .nav-wizard.last{
+    margin-top: 3rem;
+}
+#checkout .nav-wizard li.active a{
+    pointer-events: none;
+}
+#checkout .nav-wizard .img-ct{
+    width: 1.25rem;
+}
+#checkout form > .panel-wrap{
+    margin-bottom: 2rem;
+}
+.form-group > div:last-child > div{
+    border-bottom: 1px solid @lightborder;
+}
+.form-group > div img{
+    max-width: 4rem;
+    max-height: 3rem;
+}
+#fieldset-payment label{
+    cursor: pointer;
+}
+#checkout .btn.hidden{
+	display: none;
+}
+.form-group label .control-label.flex{
+    display: flex;
+    align-items: center;
+}
+.form-group label .control-label.flex .btn-block{
+    margin: 0 1rem;
+}
+#select_shipping_address{
+    margin-top: 3rem;
+}
+#select_shipping_address ul{
+    padding: 0;
+    list-style: none;
+}
+#vcard-upload{
+    position: absolute;
+    right: 0;
+}
+#order-confirm > .row{
+    margin-bottom: 3rem;
+}
+#panel-edit-coupon fieldset{
+    width: 100%;
+}
+.edit.pr{
+    display: flex;
+}
+.edit.pr .img-ct{
+    margin-right: .5rem;
+}
+#vcard-upload .dropdown-menu{
+    padding: 1rem;
+}
+#vcard-upload input{
+    font-size: .9rem;
+}
+#checkout-cart .list-unstyled{
+    margin: 0;
+}
+#checkout-cart .price{
+    font-size: 1rem;
+}
+#checkout-cart .icons-list{
+    max-height: 5.75rem;
+    overflow: auto;
+}
+#checkout-cart .items-list{
+    height: calc(100% - 5.75rem);
+    overflow: auto;
+}
+#checkout-total-sum{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.5rem 2rem;
+    min-height: 5.75rem;
+    background: @lightbg;
+}
+#checkout-total-sum > div{
+    display: flex;
+    justify-content: space-between;
+}
+#checkout-cart .characteristic{
+    display: none;
+}
+#footer > .container > .row:first-child{
+    display: none;
+}
+.c-it.sb-it>.row>div:not(.pr)>.row:last-child{
+    justify-content: flex-end;
+}
+.c-it.sb-it > .row > div:not(.pr) > .row.first .col-lg-9{
+    white-space: normal;
+}
+form-register > .panel-wrap > fieldset:first-of-type legend{
+	display: none;
+}
+#choose-way{
+	margin-bottom: 1.5rem;
+}
+#choose-way img{
+	object-fit: contain;
+}
+#choose-way .step-box{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600; 
+	border: 1px solid @defaultborder;
+	padding: 1.3rem 1rem;
+	transition: .3s ease;
+	cursor: pointer;
+	flex-grow: 1;
+	order: 1;
+}
+#choose-way .step-box:hover,
+#choose-way .step-box.active{
+	background: #f2f2f2;
+}
+#choose-way .step-box.first{
+	right: -1px;
+	border-top-left-radius: .3rem;
+	border-bottom-left-radius: .3rem;
+	order: 0;
+}
+#choose-way .step-box.last{
+	left: -1px;
+	border-top-right-radius: .3rem;
+	border-bottom-right-radius: .3rem;
+	order: 2;
+}
+#choose-way .img-ct{
+	width: 1.5rem;
+	min-width: 1.5rem;
+	margin-right: 1rem;
+}
+#choose-way .pr{
+	margin: 0;
+}
+label[data-target="#create_account_data"]{
+	opacity: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+/* Zahlungs- und Versandarten */
+.payship-option,
+.payship-option.col-xs-12,
+#fieldset-payment #zahlung .list-group-item{
+	padding-left: 0;
+	padding-right: 0;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: 1px solid @lightborder;
+}
+.payship-option label{
+	font-weight: 400;
+    display: flex;
+}
+.payship-option .stc-input,
+#fieldset-payment #zahlung .list-group-item input[type="radio"]{
+	min-width: 14px;
+	margin-right: 1rem;
+}
+.payship-option .icon{
+	opacity: 1;
+	width: 3rem;
+}
+.payship-option .payship-img,
+#fieldset-payment #zahlung img{
+	margin-right: 1rem;
+	min-width: 3rem;
+}
+.payship-option .badge,
+#fieldset-payment #zahlung .badge{
+	padding: .05rem .4rem;
+	background: #999;
+	border-radius: .3rem;
+	color: white;
+	margin-left: 0.2rem;
+	font-size: 80%;
+	position: relative;
+	top: -.1rem;
+}
+/* Amazon Pay */
+#checkout .lpa-alternate-checkout-snippet{
+	margin: 0;
+	padding: 0;
+	margin-bottom: 1rem;
+}
+#checkout .lpa-alternate-checkout-snippet .panel-body{
+	border-top: 1px solid @lightborder;
+	padding: 1rem 0;
+	padding-left: calc(14px + 1rem);
+	position: relative;
+}
+#checkout .lpa-alternate-checkout-snippet .panel-body > div{
+	padding: 0;
+	width: 100%;
+	font-size: .9rem;
+}
+#checkout .lpa-alternate-checkout-snippet .panel-body:before{
+	content: '';
+	width: 14px;
+	margin-right: 1rem;
+	display: block;
+	height: 14px;
+	box-sizing: border-box;
+	position: absolute;
+	top: calc(50% - 7px);
+	left: 0;
+}
+#checkout .lpa-checkout-hint-button{
+	padding: 0;
+}
+#checkout .lpa-checkout-hint-button .lpa-pay-button{
+	text-align: left;
+	margin: 0;
+}
+/* Vorteile Kundenkonto / Nachteile Gastkonto */
+#create_account_data:not([style*="none"]) ~ .account-con{
+	display: none;
+}
+#create_account_data[style*="none"] ~ .account-pro{
+	display: none;
+}
+#form-register > .panel-wrap{
+	display: flex;
+	flex-wrap: wrap;
+}
+#form-register > .panel-wrap > fieldset,
+#form-register > .panel-wrap > div,
+#form-register > .panel-wrap > hr{
+	width: 100%;
+	order: 1;
+}
+#form-register > .panel-wrap > .account-pro,
+#form-register > .panel-wrap > .account-con{
+	order: 0;
+	margin: 2rem 0;
+}
+.account-pro ul,
+.account-pro ol,
+.account-con ul,
+.account-con ol{
+	padding: 0;
+	list-style: none;
+}
+.account-pro li,
+.account-con li{
+	padding-left: 1.5rem;
+	position: relative;
+	margin: .15rem 0;
+}
+.account-pro li:before{
+	    content: '';
+    width: 5px;
+    min-width: 5px;
+    height: 10px;
+    border: solid @success;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    left: 4px;
+    top: .2rem;
+    display: inline-block;
+    position: absolute;
+}
+.account-con li:before{
+	content: '\00d7';
+    color: @danger;
+    left: 4px;
+    display: inline-block;
+    position: absolute;
+    transform: scale(1.5);
+    transform-origin: left center;
+	top: -3px;
+}
+/* PayPal Zahlungsarten unter Payment wall */
+#fieldset-payment #zahlung .list-group{
+	padding: 0;
+	margin: .5rem 0;
+	list-style: none;
+}
+#fieldset-payment #zahlung .list-group-item label{
+	margin: 0;
+	font-weight: 400;
+	position: relative;
+	padding-left: 30px;
+	display: block;
+}
+#fieldset-payment #zahlung img{
+	width: 3rem;
+}
+#fieldset-payment #zahlung .text-muted{
+	color: @defaulttext; 
+}
+#fieldset-payment #zahlung .badge{
+	font-weight: 600;
+	float: none;
+}
+#fieldset-payment #zahlung input[type="radio"]{
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+#fieldset-payment #zahlung p{
+	margin: 0;
+}
+/* Styled Controls */
+.stc-radio input[type="radio"],
+.stc-checkbox input[type="checkbox"]{
+	opacity: 0;
+	width: 0;
+	height: 0;
+	position: absolute;
+}
+.stc-radio .stc-radio-btn,
+.stc-checkbox .stc-checkbox-btn,
+#checkout .lpa-alternate-checkout-snippet .panel-body:before{
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	position: relative;
+	background: white;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+}
+.stc-checkbox .stc-checkbox-btn{
+	border-radius: 3px;
+}
+.stc-radio input:checked + .stc-radio-btn,
+#checkout .lpa-alternate-checkout-snippet .panel-body:hover:before{
+	border: 5px solid @brand;
+}
+.stc-checkbox input:checked + .stc-checkbox-btn{
+	border-color: transparent;
+	background: @brand url('templates/snackys/img/icons/icon-check-w.svg')no-repeat center center/8px;
+}
+#checkout .submit.btn-lg{
+    float: none;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+@media screen and (max-width: 1199px){
+    #checkout-cart{
+        padding: 2rem 1.5rem;
+    }
+    #shop-nav .xs-order-1{
+        order: 1;
+        text-align: right;
+    }
+    #logo{
+        justify-content: flex-start;
+    }
+    body[data-page="11"] #content-wrapper {
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+    #customer{
+        width: 100%;
+    }
+	body[data-page="11"] #logo img{
+		margin: 0;
+		object-position: left;
+	}
+}
+@media screen and (max-width: 991px){
+    #checkout-cart{
+        display: none;
+    }
+    #order-confirm>.row{
+        margin-bottom: 2rem;
+    }
+    #panel-submit-order{
+        margin-top: 1rem;
+    }
+    #panel-submit-order h2{
+        text-align: left;
+    }
+    #panel-submit-order .shortdescription{
+        display: none;
+    }
+    #panel-submit-order > div >.visible-xs{
+        margin-bottom: 1.5rem;
+    }
+}
+@media screen and (max-width: 767px){
+    body[data-page="11"] #evo-nav-wrapper{
+        position: static;
+        height: auto;
+        border: 0;
+        margin: 0;
+    }
+    body:not([data-page="18"]).body-offcanvas #content-wrapper{
+        padding-top: 0;
+    }
+    body[data-page="11"] #content-wrapper{
+        margin-top: 0;
+    }
+    #checkout .nav-wizard li > *{
+        padding: 1rem 0;
+    }
+    #checkout .nav-wizard.first{
+        margin-bottom: .5rem;
+    }
+    #checkout form>.panel-wrap {
+        margin-bottom: 1.25rem;
+    }
+    #shop-nav .hidden-xs{
+        display: none
+    }
+    #shop-nav .img-ct{
+        width: 1.5rem;
+    }
+    #shop-nav .visible-xs > span{
+        margin-left: auto;
+    }
+    #check-payment-shipping{
+        margin-top: 2rem;
+    }
+    .c-it:not(.sb-it) .price{
+        font-size: 1rem;
+    }
+    .c-it>.row>div:not(.pr)>.row:last-child > .text-right{
+        margin-left: auto;
+    }
+	#choose-way .step-box{
+		flex-wrap: wrap;
+		padding: .8rem;
+	}
+	#choose-way .step-box span:not(.img-ct){
+		width: 100%;
+		text-align: center;
+	}
+	#choose-way .img-ct{
+		margin-right: 0;
+		margin-bottom: .3rem;
+	}
+	#choose-way {
+		margin-bottom: 0.5rem;
+	}
+	#shop-nav{
+		margin-bottom: 1rem;
+		border: 0;
+	}
+}
+@media screen and (max-width: 575px){
+    #panel-submit-order .submit_once{
+        width: 100%;
+    }
+    input.submit,
+    #billing-address,
+    #shipping-address{
+        width: 100%;
+    }
+}

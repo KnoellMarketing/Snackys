@@ -1,6 +1,6 @@
 {block name="footer-sidepanel-left"}
 	<aside id="sp-l" class="hidden-print col-xs-12 {if ($snackyConfig.filterPos != 1 && $nSeitenTyp === 2) || $snackyConfig.sidepanelEverywhere == 'Y'} col-md-3 col-lg-3 col-xl-2{/if}{if $snackyConfig.scrollSidebox == 'Y'} scrollBoxes{/if}{if $snackyConfig.filterOpen == 1} collapse{/if}{if !isset($smarty.get.sidebar) & $device->isMobile()} lazy{/if}{if $snackyConfig.filterPos == 1 && $snackyConfig.sidepanelEverywhere == 'N'} show-above{/if}">
-		{if isset($smarty.get.sidebar) || !$device->isMobile()}
+		{if isset($smarty.get.sidebar) || !$device->isMobile() || $device->isTablet()}
 			<div class="inside">
 				<div class="visible-xs visible-sm">
 					<span class="block h3">{lang key="filterBy" setion="global"}</span>
@@ -8,6 +8,89 @@
 				</div>
 				
 				{if $nSeitenTyp == 2}
+                
+                {if $NaviFilter->nAnzahlFilter > 0}
+        <section class="ftr-a panel panel-default box">
+            <div class="panel-heading">
+                
+                <span class="panel-title h5 m0 dpflex-a-center dpflex-j-between">
+                    {lang key="activeFilters" section="custom"}
+                    {include file="snippets/careticon.tpl"}
+                </span>
+            </div>
+        <div class="panel-body">
+            {if isset($NaviFilter->SuchspecialFilter->kKey) && $NaviFilter->SuchspecialFilter->kKey > 0 && (!isset($NaviFilter->Suchspecial) || $NaviFilter->Suchspecial->kKey != $NaviFilter->SuchspecialFilter->kKey)}
+                {strip}
+                <a href="{$NaviFilter->URL->cAlleSuchspecials}" rel="nofollow" title="{lang key="specificProducts" section="global"} {lang key="delete" section="global"}" class="label label-info filter-type-special btn btn-xs btn-block"><span class="delete">&times;</span>
+                    {if $NaviFilter->SuchspecialFilter->kKey == 1}
+                        {lang key="bestsellers" section="global"}
+                    {elseif $NaviFilter->SuchspecialFilter->kKey == 2}
+                        {lang key="specialOffer" section="global"}
+                    {elseif $NaviFilter->SuchspecialFilter->kKey == 3}
+                        {lang key="newProducts" section="global"}
+                    {elseif $NaviFilter->SuchspecialFilter->kKey == 4}
+                        {lang key="topOffer" section="global"}
+                    {elseif $NaviFilter->SuchspecialFilter->kKey == 5}
+                        {lang key="upcomingProducts" section="global"}
+                    {elseif $NaviFilter->SuchspecialFilter->kKey == 6}
+                        {lang key="topReviews" section="global"}
+                    {/if}
+                    
+                </a>
+                {/strip}
+            {/if}
+            {if !empty($NaviFilter->KategorieFilter->kKategorie)}
+                {strip}
+                    <a href="{$NaviFilter->URL->cAlleKategorien}" rel="nofollow" title="{lang key="category" section="global"} {lang key="delete" section="global"}" class="label label-info filter-type-category btn btn-xs btn-block"><span class="delete">&times;</span>{if $Einstellungen.navigationsfilter.kategoriefilter_anzeigen_als === 'HF' && !empty($NaviFilter->KategorieFilter->kKategorie) && $NaviFilter->KategorieFilter->kKategorie > 0}{$NaviFilter->KategorieFilter->cName}{else}{$Suchergebnisse->Kategorieauswahl[0]->cName}{/if}
+                        
+                    </a>
+                {/strip}
+            {/if}
+            {if !empty($NaviFilter->Hersteller->kHersteller) || !empty($NaviFilter->HerstellerFilter->kHersteller)}
+                {strip}
+                    <a href="{$NaviFilter->URL->cAlleHersteller}" rel="nofollow" title="{lang key="manufacturers" section="global"} {lang key="delete" section="global"}" class="label label-info filter-type-manufacturer btn btn-xs btn-block"><span class="delete">&times;</span>{$Suchergebnisse->Herstellerauswahl[0]->cName}
+                        
+                    </a>
+                {/strip}
+            {/if}
+            {if !empty($NaviFilter->PreisspannenFilter->fBis)}
+                {strip}
+                    <a href="{$NaviFilter->URL->cAllePreisspannen}" rel="nofollow" title="{lang key="rangeOfPrices" section="global"} {lang key="delete" section="global"}" class="label label-info  filter-type-pricerange btn btn-xs btn-block"><span class="delete">&times;</span>{$NaviFilter->PreisspannenFilter->cVonLocalized}
+                    - {$NaviFilter->PreisspannenFilter->cBisLocalized}
+                    
+                    </a>{/strip}
+            {/if}
+            {if !empty($NaviFilter->BewertungFilter->nSterne)}
+                {strip}
+                    <a href="{$NaviFilter->URL->cAlleBewertungen}" rel="nofollow" title="{lang key="paginationOrderByRating" section="global"} {lang key="delete" section="global"}" class="label label-info filter-type-review btn btn-xs btn-block"><span class="delete">&times;</span>{lang key="from" section="productDetails"} {$NaviFilter->BewertungFilter->nSterne} {if $NaviFilter->BewertungFilter->nSterne > 1}{lang key="starPlural"}{else}{lang key="starSingular"}{/if}
+                        
+                    </a>
+                {/strip}
+            {/if}
+            {if !empty($NaviFilter->TagFilter[0]->kTag)}
+                {strip}
+                    <a href="{$NaviFilter->URL->cAlleTags}" rel="nofollow" title="{lang key="tags" section="global"} {lang key="delete" section="global"}" class="label label-info filter-type-tag btn btn-xs btn-block"><span class="delete">&times;</span>{$NaviFilter->TagFilter[0]->cName}
+                        
+                    </a>
+                {/strip}
+            {/if}
+            {foreach name=merkmalfilter from=$NaviFilter->MerkmalFilter item=Merkmal}
+                {strip}
+                    <a href="{$NaviFilter->URL->cAlleMerkmalWerte[$Merkmal->kMerkmalWert]}" rel="nofollow" title="{lang key="characteristics" section="comparelist"} {lang key="delete" section="global"}" class="label label-info filter-type-characteristic btn btn-xs btn-block">
+                        <span class="delete">&times;</span>{$Merkmal->cName|escape:'html'} 
+                    </a>
+                {/strip}
+            {/foreach}
+            {if !empty($NaviFilter->URL->cNoFilter)}
+                {strip}
+                    <a href="{$NaviFilter->URL->cNoFilter}" title="{lang key="removeFilters" section="global"}" class="label label-warning btn btn-xs btn-danger btn-block">
+                        <span class="delete">&times;</span>{lang key="removeFilters" section="global"}
+                    </a>
+                {/strip}
+            {/if}
+        </div>
+        </section>{* /ftr-a *}
+    {/if}
 					
                     {if $Einstellungen.navigationsfilter.allgemein_kategoriefilter_benutzen === 'Y' && (!empty($Suchergebnisse->Kategorieauswahl) && $Suchergebnisse->Kategorieauswahl|@count > 1)}
 						<section class="panel panel-default box box-category">
@@ -40,7 +123,7 @@
 									{foreach name=herstellerauswahl from=$Suchergebnisse->Herstellerauswahl item=Hersteller}
 										<li>
 											<a rel="nofollow" href="{$Hersteller->cURL}">
-												<span class="badge pull-right">{if !isset($nMaxAnzahlArtikel) || !$nMaxAnzahlArtikel}{$Hersteller->nAnzahl}{/if}</span>
+												<span class="badge">{if !isset($nMaxAnzahlArtikel) || !$nMaxAnzahlArtikel}{$Hersteller->nAnzahl}{/if}</span>
 												<span class="value">
 													{$Hersteller->cName|escape:'html'}
 												</span>

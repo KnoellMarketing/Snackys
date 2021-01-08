@@ -254,7 +254,7 @@
         <div class="row">
             <div class="col-xs-4">
                 {if $nAktuelleSeite <= $nAnzahlSeiten && $nAktuelleSeite != 1}
-                    <button class="btn btn-default pull-left" name="back" type="submit" value="back">
+                    <button class="btn btn-default" name="back" type="submit" value="back">
                         <span>&laquo; {lang key="umfrageBack" section="umfrage"}</span>
                     </button>
                 {/if}

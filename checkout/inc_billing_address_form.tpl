@@ -14,8 +14,8 @@
                     <label for="salutation" class="control-label">{lang key="salutation" section="account data"}</label>
                     <select name="anrede" id="salutation" class="form-control" required>
                         <option value="" selected="selected" disabled>{lang key="salutation" section="account data"}</option>
-                        <option value="w" {if isset($cPost_var['anrede']) && $cPost_var['anrede'] === 'w'}selected="selected"{elseif isset($Kunde->cAnrede) && $Kunde->cAnrede === 'w'}selected="selected"{/if}>{if $isShopFive}{lang key='salutationW'}{else}{$Anrede_w}{/if}</option>
-                        <option value="m" {if isset($cPost_var['anrede']) && $cPost_var['anrede'] === 'm'}selected="selected"{elseif isset($Kunde->cAnrede) && $Kunde->cAnrede === 'm'}selected="selected"{/if}>{if $isShopFive}{lang key='salutationM'}{else}{$Anrede_m}{/if}</option>
+                        <option value="w" {if isset($cPost_var['anrede']) && $cPost_var['anrede'] === 'w'}selected="selected"{elseif isset($Kunde->cAnrede) && $Kunde->cAnrede === 'w'}selected="selected"{/if}>{$Anrede_w}</option>
+                        <option value="m" {if isset($cPost_var['anrede']) && $cPost_var['anrede'] === 'm'}selected="selected"{elseif isset($Kunde->cAnrede) && $Kunde->cAnrede === 'm'}selected="selected"{/if}>{$Anrede_m}</option>
                     </select>
                     {if isset($fehlendeAngaben.anrede)}
                         <div class="form-error-msg text-danger">

@@ -45,20 +45,20 @@
             {if isset($category->bUnterKategorien) && $category->bUnterKategorien}
                 {assign var='isDropdown' value=true}
             {/if}
-            <li class="{if $isDropdown}mgm-fw{/if}{if $category->kKategorie == $activeId || (isset($activeParents[0]) && $activeParents[0]->kKategorie == $category->kKategorie)} active{/if}">
+            <li class="{if $isDropdown}mgm-fw{/if}{if $category->kKategorie == $activeId || (isset($activeParents[0]) && $activeParents[0]->kKategorie == $category->kKategorie)} active{/if}{if is_array($category->KategorieAttribute) && !empty($category->KategorieAttribute["css_klasse"])} {$category->KategorieAttribute["css_klasse"]}{/if}">
                 <a href="{$category->cURL}" class="mm-mainlink">
                     {$category->cKurzbezeichnung}
                     {if $isDropdown}<span class="caret hidden-xs"></span>{include file='snippets/mobile-menu-arrow.tpl'}{/if}
                 </a>
                 {if $isDropdown}
                     <ul class="dropdown-menu keepopen">
-                        <li class="mgm-c">
+                        <li class="mgm-c mw-container">
                                 <div class="row dpflex-a-start">
                                     {assign var=hasInfoColumn value=false}
                                     {if isset($snackyConfig.show_maincategory_info) && $snackyConfig.show_maincategory_info !== 'N' && ($category->cBildURL !== 'gfx/keinBild.gif' || !empty($category->cBeschreibung))}
                                         {assign var=hasInfoColumn value=true}
                                         <div class="col-md-4 col-lg-3 hidden-xs hidden-sm info-col">
-											{if $category->cBildURL !== 'gfx/keinBild.gif' && isset($snackyConfig.show_category_images) && $snackyConfig.show_category_images !== 'N' && !$device->isMobile()}
+											{if $category->cBildURL !== 'gfx/keinBild.gif' && isset($snackyConfig.show_category_images) && $snackyConfig.show_category_images !== 'N'}
 												<a href="{$category->cURL}" class="block">
 													<span class="img-ct">
 														<img src="{$snackyConfig.preloadImage}" data-src="{$category->cBildURL}" class="img-responsive"
@@ -84,8 +84,8 @@
                                                     {get_category_array categoryId=$category->kKategorie assign='sub_categories'}
                                                 {/if}
                                                 {foreach name='sub_categories' from=$sub_categories item='sub'}
-                                                    <div class="col-xs-12 col-sm-3 col-lg-3{if $sub->kKategorie == $activeId || (isset($activeParents[1]) && $activeParents[1]->kKategorie == $sub->kKategorie)} active{/if}">
-                                                            {if isset($snackyConfig.show_category_images) && $snackyConfig.show_category_images !== 'N' && !$device->isMobile()}
+                                                    <div class="col-xs-12 col-sm-3 col-lg-3{if $sub->kKategorie == $activeId || (isset($activeParents[1]) && $activeParents[1]->kKategorie == $sub->kKategorie)} active{/if}{if is_array($sub->KategorieAttribute) && !empty($sub->KategorieAttribute["css_klasse"])} {$sub->KategorieAttribute["css_klasse"]}{/if}">
+                                                            {if isset($snackyConfig.show_category_images) && $snackyConfig.show_category_images !== 'N'}
                                                                 
 															<a href="{$sub->cURL}" class="hidden-xs block">
 																<span class="img-ct">
@@ -110,7 +110,7 @@
                                                                 <ul class="blanklist small subsub">
                                                                     {foreach name='subsub_categories' from=$subsub_categories item='subsub'}
                                                                         {if $smarty.foreach.subsub_categories.iteration <= $max_subsub_items}
-                                                                            <li{if $subsub->kKategorie == $activeId || (isset($activeParents[2]) && $activeParents[2]->kKategorie == $subsub->kKategorie)} class="active"{/if}>
+                                                                            <li class="{if $subsub->kKategorie == $activeId || (isset($activeParents[2]) && $activeParents[2]->kKategorie == $subsub->kKategorie)} active{/if}{if is_array($subsub->KategorieAttribute) && !empty($subsub->KategorieAttribute["css_klasse"])} {$subsub->KategorieAttribute["css_klasse"]}{/if}">
                                                                                 <a href="{$subsub->cURL}" class="defaultlink">
                                                                                     {$subsub->cKurzbezeichnung}
                                                                                 </a>
@@ -168,7 +168,7 @@
 					<div class="row row-multi">
 						{foreach name=hersteller from=$manufacturers item=hst}
 							<div class="col-xs-12 col-sm-3 col-lg-3{if isset($NaviFilter->Hersteller) && $NaviFilter->Hersteller->kHersteller == $hst->kHersteller} active{/if}">
-								{if isset($snackyConfig.show_category_images) && $snackyConfig.show_category_images !== 'N' && !$device->isMobile()}
+								{if isset($snackyConfig.show_category_images) && $snackyConfig.show_category_images !== 'N'}
 									<a class="block hidden-xs img-w" href="{$hst->cSeo}">
 										<span class="img-ct">
 											<img src="{$snackyConfig.preloadImage}" data-src="{$hst->cBildpfadNormal}" class=image alt="{$hst->cName|escape:'html'}">

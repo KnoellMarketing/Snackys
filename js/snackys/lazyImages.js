@@ -69,6 +69,18 @@ SnackyImages.prototype = {
 			el.src=el.getAttribute('data-src');
 			el.removeAttribute('data-src');
 		},
+		showAll: function(scope)
+		{
+			if(!scope) return false;
+			var entries = document.querySelectorAll(scope+' img');
+			for(i=0;i<entries.length;i++)
+			{
+				if(entries[i].getAttribute('data-src'))
+				{
+					this.show(entries[i]);
+				}
+			}
+		},
 		rewatch: function()
 		{
 

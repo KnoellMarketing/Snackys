@@ -14,7 +14,7 @@
 							</div>
 							<div class="inside text-center pr">
 								{if $oImageMapArea->cTitel|strip_tags|escape:"html"|escape:"quotes"|@strlen > 0}
-								 <h4>{$oImageMapArea->cTitel|strip_tags|escape:"html"|escape:"quotes"}</h4>
+								 <span class="block h4">{$oImageMapArea->cTitel|strip_tags|escape:"html"|escape:"quotes"}</span>
 								{/if}
 								{if $oImageMapArea->oArtikel}
 									<div class="img-ct">

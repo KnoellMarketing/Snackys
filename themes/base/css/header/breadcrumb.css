@@ -1,0 +1,17 @@
+#bc-w{
+    overflow: hidden;
+    padding-top: .8rem;
+    padding-bottom: .8rem;
+    background: @lightbg;
+	margin-bottom: 2rem;
+}
+#bc{
+	margin-top: 0;
+	margin-bottom: 0;
+	list-style: none;
+    overflow: hidden;
+}
+#bc .separator{
+    margin: 0 .5rem;
+    opacity: .6;
+}

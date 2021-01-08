@@ -1,7 +1,7 @@
 {getSliderPerDevice cAssign="oSliderDevice"}
 {if isset($oSliderDevice) && count($oSliderDevice->oSlide_arr) > 0}
 	{include file="snippets/zonen.tpl" id="before_slider" title="before_slider"}
-    <div class="sl-w panel">
+    <div class="sl-w panel-slider">
 		{if isset($oSliderDevice) && count($oSliderDevice->oSlide_arr) > 1 && !$device->isMobile() && $oSliderDevice->nPauseTime<=300}
 			<span class="sl-ar sl-pr btn inactive">
 				<span class="ar ar-l"></span>
@@ -42,7 +42,8 @@
 		{/if}
     </div>
 	
-	{getSizeBySrc src=$oSliderDevice->oSlide_arr[0]->cBildAbsolut cAssign="sliderSize"}
+	
+	{getSizeBySrc src="mediafiles{$oSliderDevice->oSlide_arr[0]->cBild}" cAssign="sliderSize"}
 	{if !empty($sliderSize.padding)}
 	<style type="text/css">
 	.fw-sl .img-ct:before {ldelim} padding-top: {$sliderSize.padding}%;{rdelim}

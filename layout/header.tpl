@@ -7,33 +7,36 @@
     {block name="head-base"}
         <base href="{$ShopURL}/">
     {/block}
-
 	{snackys_content id="html_head_start" title="html_head_start"}
 	{if $snackyConfig.pwa == 'Y'}<link rel="manifest" href="manifest.json">{/if}
 	{if !empty($snackyConfig.gtag)}<link rel="dns-prefetch preconnect" href="https://www.googletagmanager.com">{/if}
 	
     {block name="head-resources-jquery"}
 	
-        <script src="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}js/jquery-1.12.4.min.js" defer></script>
-		{if $device->version("IE") || $device->version("Opera Mini") || $device->version("baidubrowser") || $device->version("baiduboxapp") || $device->version("MQQBrowser")}
+		{include file="layout/inc_remarketing.tpl"}
+        <script src="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}js/jquery-1.12.4.min.js"></script>
+		{if $device->version("IE") || $device->version("Opera Mini") || $device->version("baidubrowser") || $device->version("baiduboxapp") || $device->version("MQQBrowser") || $device->version('Safari')<=12.1}
 			<script type="text/javascript" data-inline=1>{readJs file="js/snackys/intersectionObserver.js"}</script>
 		{/if}
 		
 		{if $device->version("IE")}<script data-inline="1">{readJs file="js/snackys/svg.min.js"}</script>{/if}
 		
 		{if !isset($Einstellungen.template.general.use_minify) || $Einstellungen.template.general.use_minify === 'N'}
-			{if isset($cPluginJsHead_arr)}{foreach from=$cPluginJsHead_arr item="cJS"}<script src="{$cJS}?v={$nTemplateVersion}" type="text/javascript" defer></script>{/foreach}{/if}
-			{foreach from=$cJS_arr item="cJS"}<script src="{$cJS}?v={$nTemplateVersion}" type="text/javascript" defer></script>{/foreach}
+			{if isset($cPluginJsHead_arr)}{foreach from=$cPluginJsHead_arr item="cJS"}<script src="{$cJS}?v={$nTemplateVersion}" type="text/javascript"></script>{/foreach}{/if}
+			{foreach from=$cJS_arr item="cJS"}<script src="{$cJS}?v={$nTemplateVersion}" type="text/javascript"></script>{/foreach}
 			{if isset($cPluginJsBody_arr)}{foreach from=$cPluginJsBody_arr item="cJS"}<script src="{$cJS}?v={$nTemplateVersion}" type="text/javascript" defer></script>{/foreach}{/if}
 		{else}
-			{if isset($cPluginJsHead_arr) && $cPluginJsHead_arr|@count > 0}<script src="asset/plugin_js_head?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}
-			<script src="asset/jtl3.js?v={$nTemplateVersion}" type="text/javascript" defer></script>
+			{if isset($cPluginJsHead_arr) && $cPluginJsHead_arr|@count > 0}
+				<script src="asset/plugin_js_head,jtl3.js?v={$nTemplateVersion}" type="text/javascript" defer></script>
+			{else}
+				<script src="asset/jtl3.js?v={$nTemplateVersion}" type="text/javascript" defer></script>
+			{/if}
 			{if isset($cPluginJsBody_arr) && $cPluginJsBody_arr|@count > 0}<script src="asset/plugin_js_body?v={$nTemplateVersion}" type="text/javascript" defer></script>{/if}
 		{/if}
 
 		{assign var="customJSPath" value=$currentTemplateDir|cat:'/js/custom.js'}
 		{if file_exists($customJSPath)}
-			<script src=""{$customJSPath}?v={$nTemplateVersion}" type="text/javascript" defer></script>
+			<script src="{$customJSPath}?v={$nTemplateVersion}" type="text/javascript" defer></script>
 		{/if}
     {/block}
 	{if $snackyConfig.showTrusted == 0 && !empty($snackyConfig.trustedID)}<link rel="dns-prefetch" href="//widgets.trustedshops.com">{/if}
@@ -86,6 +89,12 @@
 		  Shop::Smarty()->assign("css3", array());
 		{/php}
     {block name="head-resources"}
+		{if $snackyConfig.fontawesome == 'Y'}
+			<link rel="stylesheet" href="templates/snackys/themes/base/fontawesome.css" type="text/css">
+		{/if}
+		{if $snackyConfig.full_bootstrap == 'Y'}
+			<link rel="stylesheet" href="templates/snackys/themes/base/full_bootstrap.css" type="text/css">
+		{/if}
 		
 		{assign var='hasMobileSlider' value='false'}
 		 {getSliderPerDevice cAssign="oSliderDevice"}
@@ -161,8 +170,13 @@
 		{if $snackyConfig.headerPromo != 0 && !isset($smarty.session.km_promo)}
 			{append var='css3' value='/templates/snackys/themes/base/css/header-promo.css'}
 		{/if}
+        {if $snackyConfig.showTrusted == 0 && !empty($snackyConfig.trustedID)}
+			{append var='css3' value='/templates/snackys/themes/base/css/trusted.css'}
+        {/if}
 		{if $snackyConfig.posTrusted == 0}
 			{append var='css3' value='/templates/snackys/themes/base/css/trusted-left.css'}
+        {else}
+			{append var='css3' value='/templates/snackys/themes/base/css/trusted-right.css'}
 		{/if}
 		{if $snackyConfig.paymentWall != 0}
 			{append var='css3' value='/templates/snackys/themes/base/css/payment-wall.css'}
@@ -176,7 +190,7 @@
 			{append var='css3' value='/templates/snackys/themes/base/css/oldbrowser.css'}
 		 {/if}
 		  {if $snackyConfig.manSlider == 0}
-			{append var='css3' value='/templates/snackys/themes/base/css/manuslider.css'}
+			{append var='css3' value='/templates/snackys/themes/base/css/index/manuslider.css'}
 		  {/if}
 		  {if $snackyConfig.sidepanelEverywhere == 'Y'}
 			{append var='css3' value='/templates/snackys/themes/base/css/sidepanel.css'}
@@ -187,23 +201,23 @@
 			{append var='css3' value='/templates/snackys/themes/base/css/fileupload.css'}
 		   {/if}
 			{if isset($oImageMap)}
-			{append var='css3' value='/templates/snackys/themes/base/css/banner.css'}
+			{append var='css3' value='/templates/snackys/themes/base/css/elements/banner.css'}
 			{/if}
 		   {if $nSeitenTyp === 25}
-			{append var='css3' value='/templates/snackys/themes/base/css/404.css'}
+			{append var='css3' value='/templates/snackys/themes/base/css/error404/404.css'}
 		  {/if}
 		   {getSliderPerDevice cAssign="oSliderDevice"}
 			{if isset($oSliderDevice) && count($oSliderDevice->oSlide_arr) > 0}	
-			{append var='css3' value='/templates/snackys/themes/base/css/slider.css'}
+			{append var='css3' value='/templates/snackys/themes/base/css/elements/slider.css'}
 		   {/if}
 			{if $snackyConfig.headerTopbar == 0 && !$device->isMobile()}
-			{append var='css3' value='/templates/snackys/themes/base/css/topbar.css'}
+			{append var='css3' value='/templates/snackys/themes/extended/css/layout/topbar.css'}
 			{/if}
 			{if $snackyConfig.hover_productlist === 'Y' && !$device->isMobile() && $nSeitenTyp == 2}
-			{append var='css3' value='/templates/snackys/themes/base/css/listing-jtl-hover.css'}
+			{append var='css3' value='/templates/snackys/themes/base/css/listing/product-hover-jtl.css'}
 			 {/if}
 			{if $snackyConfig.listShowCart != 1}
-			{append var='css3' value='/templates/snackys/themes/base/css/listing-km-hover.css'}
+			{append var='css3' value='/templates/snackys/themes/base/css/listing/product-hover-km.css'}
 			 {/if}
 			  {if !empty($oAuswahlAssistent->kAuswahlAssistentGruppe) || isset($AWA)}
 				{append var='css3' value='/templates/snackys/themes/base/css/selectionwizard.css'}
@@ -211,12 +225,16 @@
 			   {if $Einstellungen.artikeldetails.artikeldetails_navi_blaettern === 'Y' && isset($NavigationBlaettern) && $nSeitenTyp == 1}
 				{append var='css3' value='/templates/snackys/themes/base/css/prevnext.css'}
 			   {/if}
-				{if $Artikel->bHasKonfig && $nSeitenTyp == 1}
-				{append var='css3' value='/templates/snackys/themes/base/css/konfigurator.css'}
+				{if $nSeitenTyp == 1}
+				{append var='css3' value='/templates/snackys/themes/base/css/details/configurator.css'}
 				{/if}
 				 {if $snackyConfig.filterPos == 1 && $nSeitenTyp == 2}
 				{append var='css3' value='/templates/snackys/themes/base/css/filter-above.css'}
 				 {/if}
+				 
+			{if $snackyConfig.useConsentManager == 'Y'}
+			{append var='css3' value='/templates/snackys/themes/base/css/consent.css'}
+			 {/if}
 		{loadCSS css1=$cCSS_arr css2=$cPluginCss_arr css3=$css3 cPageType=$nSeitenTyp}
         {* RSS *}
         {if isset($Einstellungen.rss.rss_nutzen) && $Einstellungen.rss.rss_nutzen === 'Y'}
@@ -252,9 +270,6 @@
 				'disableTrustbadge': 'false', /* deactivate trustbadge */
 				'variant': {if $snackyConfig.varTrusted == 0}'reviews'{else}'default',{/if}
 			};
-			{if $snackyConfig.mobileTrusted == 1}
-				_tsConfig.responsive = {ldelim}'variant': 'floating'{rdelim}; 
-			{/if}
 		</script>
 		<script src="//widgets.trustedshops.com/js/{$snackyConfig.trustedID}.js" charset="utf-8" async data-inline="1"></script>
 	{/if}
@@ -263,15 +278,6 @@
 	<link rel="apple-touch-icon" href="{if empty($snackyConfig.appleTouchIcon)}/templates/snackys/img/icons/apple-touch-icon.png{else}{$snackyConfig.appleTouchIcon}{/if}"/>
 	{if !empty($snackyConfig.pwa_icon192) && $snackyConfig.pwa == 'Y'}<link rel="icon" sizes="192x192" href="{$snackyConfig.pwa_icon192}">{/if}
 	{if !empty($snackyConfig.pwa_icon512) && $snackyConfig.pwa == 'Y'}<link rel="icon" sizes="512x512" href="{$snackyConfig.pwa_icon512}">{/if}
-
-	{if $isShopFive}
-        {if \JTL\Shop::isAdmin() && $opc->isEditMode() === false && $opc->isPreviewMode() === false}
-            <link type="text/css" href="{$ShopURL}/admin/opc/css/startmenu.css" rel="stylesheet">
-        {/if}
-        {foreach $opcPageService->getCurPage()->getCssList($opc->isEditMode()) as $cssFile => $cssTrue}
-            <link rel="stylesheet" href="{$cssFile}">
-        {/foreach}
-	{/if}
 
 	{snackys_content id="html_head_end" title="html_head_end"}
 </head>
@@ -285,7 +291,7 @@
 {block name="body-tag"}
 {strip}
 <body data-headtype="{$snackyConfig.headerType}" data-page="{$nSeitenTyp}" class="
-body-offcanvas{if $bSeiteNichtGefunden} error404{/if}{if empty($snackyConfig.youtubeID) && $nSeitenTyp == 18} no-yt{/if}{if $snackyConfig.headerUsps != 0} usps-visible{/if}
+body-offcanvas{if isset($bSeiteNichtGefunden) && $bSeiteNichtGefunden} error404{/if}{if empty($snackyConfig.youtubeID) && $nSeitenTyp == 18} no-yt{/if}{if $snackyConfig.headerUsps != 0} usps-visible{/if}
 {if $Einstellungen.template.theme.theme_default == darkmode} darkmode{/if}{if $snackyConfig.designWidth == 1} boxed-layout{/if}
 {if $snackyConfig.boxedMargin == 1} boxed-nomargin{/if}{if $snackyConfig.boxedBorder == 1} boxed-noborder{/if}
 {if $snackyConfig.fwSlider == 1 && $nSeitenTyp == 18} boxed-slider{/if}
@@ -296,8 +302,7 @@ body-offcanvas{if $bSeiteNichtGefunden} error404{/if}{if empty($snackyConfig.you
 {if $device->isiOS()} ios{/if}
 {if $device->is("Edge")} edge
 {elseif $device->version("IE")} ie ie-{$device->version("IE")|number_format:0}{/if}
-{if !empty($hinweis)}{if isset($bWarenkorbHinzugefuegt) && $bWarenkorbHinzugefuegt} basked-added{/if}{/if}
-{if $isShopFive && isset($bWarenkorbHinzugefuegt) && $bWarenkorbHinzugefuegt} basked-added{/if}
+{if !empty($hinweis)}{if isset($bWarenkorbHinzugefuegt) && $bWarenkorbHinzugefuegt} basked-added sidebasket-open{/if}{/if}
 {if $snackyConfig.sidepanelEverywhere == 'Y'} sidebar-overall{/if}
 {if $device->isMobile() && $snackyConfig.fullscreenElement == 1 && $hasMobileSlider == 'false'} no-mb-sl{/if}
 {if $snackyConfig.mmenu_link_clickable == 'N'} mmlca-n{/if}
@@ -309,11 +314,6 @@ body-offcanvas{if $bSeiteNichtGefunden} error404{/if}{if empty($snackyConfig.you
 {if !empty($snackyConfig.boxedImg) && $snackyConfig.designWidth == 1} style="background: url({$snackyConfig.boxedImg})no-repeat center center/cover;{if !$device->isMobile()} background-attachment: fixed"{/if}{/if}
 >
 {/strip}
-	
-	
-	{if $isShopFive}
-        {include file=$opcDir|cat:'tpl/startmenu.tpl'}
-	{/if}
 	{snackys_content id="html_body_start" title="html_body_start"}
     {if $device->version("IE") && $device->version("IE")|number_format:0 <= '9'}
     <div id="outdatedbrowser" class="text-center">
@@ -327,6 +327,40 @@ body-offcanvas{if $bSeiteNichtGefunden} error404{/if}{if empty($snackyConfig.you
         <a href="http://outdatedbrowser.com/de" class="btn btn-primary" target="_blank">{lang key="oldBrowserButton" section="custom"}</a>
     </div>
     {/if}
+{/block}
+{block name="consent-manager"}
+	{isBot cAssign="isBot"}
+	{if $snackyConfig.mmenu_link_clickable == 'Y' && !$isBot}
+		<div id="consentmanager" class="modal {if isset($smarty.cookies.consentState)}hidden{else}modal-dialog{/if}">
+			<div class="modal-content" id="consentmanagerBasic">
+				<div class="modal-header">
+					<span class="modal-title block h5">{lang key="consentHeadline"}</span>
+				</div>
+				<div class="modal-body">
+					<div id="consentIntro">
+						{lang key="consentIntro"}
+					</div>
+					<div id="consentDetail" class="hidden">
+						{lang key="consentDetailText"}
+					</div>
+					<input type="checkbox" class="consentNeeded" checked disabled> {lang key="consentNeeded"}
+					<input type="checkbox" name="consentAccept" id="consentAccept" class="consentCheck" {if isset($smarty.cookies.consentState) && $smarty.cookies.consentState == 2} checked{/if}> <label for="consentAccept">{lang key="consentAnalytics"}</label><br>
+					<button id="consentSave" name="consentSave" class="btn btn-default">{lang key="consentSave"}</button>
+					<button id="consentAll" class="btn btn-primary">{lang key="consentAll"}</button>
+					<p class="consentLinks">
+						<a href="{lang key="consentPrivacyURL"}">{lang key="consentPrivacy"}</a> - 
+						<a href="#" id="consentText">{lang key="consentDetail"}</a> - 
+						<a href="{lang key="consentImprintURL"}">{lang key="consentImprint"}</a>
+					</p>
+				</div>
+			</div>
+		</div>
+		<button id="consentPicker"{if !isset($smarty.cookies.consentState)} class="hidden"{/if}>
+			<span class="img-ct icon icon-xl">
+				<svg height='100px' width='100px'  fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve"><g><g><path d="M7.21,1.954C8.588,1.321,10.2,1,12.001,1c1.789,0,3.401,0.321,4.793,0.955C16.861,1.986,16.932,2,17.001,2    c0.19,0,0.372-0.109,0.456-0.293c0.114-0.251,0.003-0.548-0.248-0.662C15.686,0.352,13.934,0,12.001,0    c-1.947,0-3.7,0.352-5.209,1.046C6.542,1.161,6.432,1.458,6.547,1.709C6.663,1.959,6.958,2.069,7.21,1.954z"></path><path d="M5.357,5.852C7.2,3.986,9.496,3,11.999,3c2.513,0,4.812,0.986,6.646,2.851C18.743,5.95,18.872,6,19.001,6    c0.126,0,0.253-0.048,0.351-0.144c0.197-0.194,0.2-0.51,0.006-0.707C17.331,3.089,14.786,2,11.999,2    C9.223,2,6.68,3.089,4.646,5.148C4.452,5.345,4.454,5.662,4.65,5.856C4.847,6.05,5.163,6.047,5.357,5.852z"></path><path d="M11.999,4c-0.713,0-1.421,0.088-2.105,0.262C9.626,4.33,9.464,4.602,9.532,4.87C9.6,5.138,9.874,5.298,10.14,5.231    C10.743,5.078,11.369,5,11.999,5c4.136,0,7.5,3.364,7.5,7.5c0,0.276,0.224,0.5,0.5,0.5s0.5-0.224,0.5-0.5    C20.499,7.813,16.686,4,11.999,4z"></path><path d="M4.501,12.508c0.032-2.02,0.806-3.897,2.181-5.287c0.468-0.474,0.991-0.88,1.554-1.209    c0.238-0.139,0.318-0.445,0.179-0.684C8.277,5.091,7.972,5.01,7.731,5.149C7.093,5.522,6.5,5.983,5.971,6.519    c-1.557,1.574-2.434,3.695-2.47,5.974C3.497,12.769,3.717,12.996,3.994,13c0.002,0,0.005,0,0.008,0    C4.274,13,4.497,12.782,4.501,12.508z"></path><path d="M6.5,12.623c0-1.531,0.569-2.949,1.604-3.995C9.142,7.578,10.524,7,11.999,7c1.587,0,3.099,0.689,4.146,1.891    c0.181,0.208,0.498,0.229,0.706,0.048c0.208-0.182,0.229-0.498,0.048-0.706C15.661,6.814,13.875,6,11.999,6    c-1.744,0-3.379,0.684-4.605,1.925C6.172,9.159,5.5,10.828,5.5,12.649c0.003,1.076-0.333,2.366-0.935,3.605l-0.281,0.5    c-0.135,0.241-0.05,0.545,0.191,0.681C4.553,17.479,4.637,17.5,4.72,17.5c0.175,0,0.345-0.092,0.436-0.255l0.295-0.526    C6.142,15.297,6.504,13.889,6.5,12.623z"></path><path d="M18.865,16.419c-0.317-1.447-0.344-2.828-0.361-3.654L18.499,12.5c0-0.741-0.125-1.469-0.371-2.164    c-0.092-0.26-0.375-0.396-0.638-0.304c-0.26,0.092-0.396,0.377-0.304,0.638c0.208,0.587,0.313,1.203,0.313,1.843l0.006,0.272    c0.018,0.862,0.046,2.305,0.394,3.886l0.572,1.884c0.065,0.216,0.264,0.354,0.479,0.354c0.048,0,0.097-0.007,0.146-0.021    c0.264-0.081,0.413-0.359,0.333-0.624L18.865,16.419z"></path><path d="M17.505,19.085c-0.825-2.576-0.979-5.472-1.006-6.585c0-2.481-2.019-4.5-4.5-4.5C9.518,8,7.5,10.05,7.5,12.587    c0.002,0.526-0.095,3.305-2.207,6.351c-0.158,0.227-0.101,0.539,0.125,0.696s0.539,0.101,0.696-0.125    c2.226-3.209,2.389-6.112,2.386-6.938c0-1.969,1.57-3.57,3.499-3.57c1.93,0,3.5,1.57,3.5,3.512    c0.036,1.452,0.221,4.276,1.053,6.875l0.462,1.483c0.067,0.214,0.264,0.351,0.478,0.351c0.049,0,0.099-0.007,0.149-0.022    c0.264-0.083,0.411-0.363,0.329-0.626L17.505,19.085z"></path><path d="M14.499,12.5c0-1.378-1.122-2.5-2.5-2.5s-2.5,1.122-2.5,2.519c0.006,0.165,0.117,4.093-3.059,8.226    c-0.168,0.219-0.127,0.533,0.092,0.701c0.22,0.169,0.533,0.126,0.701-0.092c3.393-4.416,3.271-8.693,3.265-8.854    c0-0.827,0.673-1.5,1.5-1.5s1.5,0.673,1.501,1.511c0.014,0.56,0.017,5.612-3.887,10.684c-0.168,0.219-0.128,0.533,0.091,0.701    C9.795,23.966,9.902,24,10.008,24c0.15,0,0.298-0.067,0.396-0.195C14.525,18.453,14.513,13.083,14.499,12.5z"></path><path d="M11.755,14.992c0.027,0.004,0.054,0.006,0.08,0.006c0.241,0,0.454-0.175,0.493-0.42c0.204-1.269,0.171-2.067,0.169-2.1    c-0.013-0.275-0.229-0.494-0.521-0.477c-0.275,0.012-0.489,0.245-0.478,0.521c0,0.007,0.028,0.739-0.158,1.896    C11.297,14.691,11.483,14.948,11.755,14.992z"></path><path d="M11.516,16.035c-0.266-0.079-0.543,0.073-0.622,0.337c-0.625,2.111-1.665,4.085-3.089,5.869    c-0.172,0.216-0.137,0.53,0.079,0.703c0.092,0.074,0.202,0.109,0.312,0.109c0.147,0,0.292-0.064,0.391-0.188    c1.505-1.884,2.604-3.973,3.267-6.208C11.932,16.392,11.781,16.113,11.516,16.035z"></path><path d="M15.759,20.111c-0.24-0.718-0.464-1.477-0.465-1.48c-0.06-0.203-0.24-0.346-0.451-0.358    c-0.216-0.015-0.407,0.109-0.489,0.304c-0.011,0.026-1.125,2.645-2.402,4.655c-0.148,0.233-0.079,0.542,0.154,0.69    C12.189,23.975,12.282,24,12.374,24c0.166,0,0.327-0.082,0.422-0.232c0.773-1.217,1.475-2.616,1.933-3.589    c0.026,0.08,0.053,0.161,0.08,0.241l0.599,1.906c0.083,0.263,0.361,0.411,0.627,0.327c0.263-0.083,0.41-0.363,0.327-0.627    L15.759,20.111z"></path></g></g></svg>
+			</span>
+		</button>
+	{/if}
 {/block}
 {if $snackyConfig.headerType == 4 || $snackyConfig.headerType == 5}
 	{assign "darkHead" "true"}
@@ -404,6 +438,16 @@ body-offcanvas{if $bSeiteNichtGefunden} error404{/if}{if empty($snackyConfig.you
 {/if}
 {block name="content-all-starttags"}
 	
+    {if $nSeitenTyp === 2}
+    <div class="pl-heading">
+        <div class="mw-container">
+        {block name="productlist-header"}
+            {include file='productlist/header.tpl' hasFilters=$hasFilters}
+        {/block}
+        </div>
+    </div>
+    {/if}
+    
     {block name="content-wrapper-starttag"}
     <div id="content-wrapper" class="mw-container">
     {/block}
@@ -428,9 +472,14 @@ body-offcanvas{if $bSeiteNichtGefunden} error404{/if}{if empty($snackyConfig.you
     {block name="content-row-starttag"}
     <div class="row{if $nSeitenTyp === 2} dpflex-j-between{/if}">
     {/block}
-    
+        
+	{if isset($boxes.left) && !$bExclusive && !empty($boxes.left) && $nSeitenTyp == 2}
+		{assign var="hasFilters" value="true"}	
+	{else}
+		{assign var="hasFilters" value=false}	
+	{/if}
     {block name="content-starttag"}
-        <div id="content" class="col-xs-12{if (isset($boxes.left) && !$bExclusive && !empty($boxes.left) && !$device->isMobile()) && (($snackyConfig.filterPos == 0 && $nSeitenTyp === 2) || $snackyConfig.sidepanelEverywhere == 'Y')} col-md-9 col-md-push-3 col-lg-9 col-lg-push-3 col-xl-10 col-xl-push-2{/if}">
+        <div id="content" class="col-xs-12{if $hasFilters == true && (($snackyConfig.filterPos == 0 && $nSeitenTyp === 2) || $snackyConfig.sidepanelEverywhere == 'Y')} col-md-9 col-lg-9 col-xl-10{/if}">
 		{include file="snippets/zonen.tpl" id="before_content" title="before_content"}
     {/block}
     

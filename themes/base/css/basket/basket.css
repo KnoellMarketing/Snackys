@@ -1,0 +1,81 @@
+.choose_quantity button:hover .img-ct{
+    transform: rotate(360deg);
+    transition: 1s ease;
+}
+.right-boxes{
+    max-width: 26rem;
+}
+#fileupload-wrapper:empty,
+fileupload-wrapper:blank{
+    display: none;
+}
+.c-it input.quantity{
+    min-width: 3rem;
+}
+/* PayPal Finanzierung*/
+.ppf-container{
+	position: relative;
+	background: @info;
+	border: 0;
+	color: #fff;
+	border-radius: 3rem;
+	margin: .5rem 0 0 0;
+}
+.ppf-container p{
+	margin: 0;
+}
+.ppf-container p:after{
+	content: '\203A';
+	display: inline-block;
+	font-weight: bold;
+	margin-left: .25rem;
+}
+.ppf-container a.show-details{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0;
+	font-size: 0;
+	text-indent: -999em;
+}
+/* Amazon pay Button */
+.cart-sum .lpa-pay-button{
+	justify-content: center;
+	margin: .75rem 0 0 0;
+}
+/* PayPal Express Button */
+.cart-sum .paypalexpress.btn-ppe-cart{
+	text-align: center;
+	margin-top: .75rem;
+	float: none;
+	display: inline-block;
+}
+@media screen and (max-width: 991px){
+    .basket_wrapper>.panel-slider{
+        display: none;
+    }
+    .right-boxes{
+        max-width: none;
+    }
+    .choose_quantity button.pr{
+        padding: .5rem;
+    }
+}
+@media screen and (max-width: 767px){
+    #content .price {
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 575px){
+    .c-it input.quantity{
+        padding: .4rem 0;
+        font-size: .9rem;
+        min-width: 2rem;
+        text-align: center;
+    }
+    .c-it .icon-wt{
+        margin-right: 0;
+    }
+}

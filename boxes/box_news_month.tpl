@@ -14,7 +14,7 @@
                         <a href="{$oNewsMonatsUebersicht->cURL}"  title="{$oNewsMonatsUebersicht->cName}">
                             <span class="value dpflex-j-between w100">
                                 {$oNewsMonatsUebersicht->cName}
-                                <span class="badge pull-right">{$oNewsMonatsUebersicht->nAnzahl}</span>
+                                <span class="badge">{$oNewsMonatsUebersicht->nAnzahl}</span>
                             </span>
                         </a>
                     </li>
@@ -37,7 +37,7 @@
                         <a class="tooltip" href="{$oNewsMonatsUebersicht->cURL}" title="{$oNewsMonatsUebersicht->cBeschreibung|escape:"html"}">
                             <span class="value dpflex-j-between w100">
                                 {$oNewsMonatsUebersicht->cName}
-                                <span class="badge pull-right">{$oNewsMonatsUebersicht->nAnzahl}</span>
+                                <span class="badge">{$oNewsMonatsUebersicht->nAnzahl}</span>
                             </span>
                         </a>
                     </li>

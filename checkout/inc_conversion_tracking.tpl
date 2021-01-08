@@ -36,6 +36,19 @@
 			<span id="tsCheckoutOrderCurrency">{$Bestellung->Waehrung->cISO}</span>
 			<span id="tsCheckoutOrderPaymentType">{$Bestellung->cZahlungsartName}</span>
 			<span id="tsCheckoutOrderEstDeliveryDate">{$deliveryDate|date_format:"%Y-%m-%d"}</span>
+			{foreach from=$Bestellung->Positionen item=oPosition}
+				{if $oPosition->nPosTyp == 1}
+					<span class="tsCheckoutProductItem">
+						<span class="tsCheckoutProductUrl">{$smarty.const.URL_SHOP}/{$oPosition->Artikel->cURL}</span>
+						<span class="tsCheckoutProductImageUrl">{$smarty.const.URL_SHOP}/{$oPosition->Artikel->Bilder.0->cPfadGross}</span>
+						<span class="tsCheckoutProductName">{$oPosition->Artikel->cName}</span>
+						<span class="tsCheckoutProductSKU">{$oPosition->Artikel->cArtNr}</span>
+						<span class="tsCheckoutProductGTIN">{$oPosition->Artikel->cBarcode}</span>
+						<span class="tsCheckoutProductMPN">{$oPosition->Artikel->cHAN}</span>
+						<span class="tsCheckoutProductBrand">{$oPosition->Artikel->cHersteller}</span>
+					</span>
+				{/if}
+			{/foreach}
 		</div> 
 	{/if}
 {/if}

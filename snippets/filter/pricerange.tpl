@@ -13,7 +13,7 @@
         {foreach name=preisspannen from=$Suchergebnisse->Preisspanne item=oPreisspannenfilter}
             <li>
                 <a href="{$oPreisspannenfilter->cURL}" rel="nofollow">
-                    <span class="badge pull-right">{$oPreisspannenfilter->nAnzahlArtikel}</span>
+                    <span class="badge">{$oPreisspannenfilter->nAnzahlArtikel}</span>
                     <span class="value">
                         {$oPreisspannenfilter->cVonLocalized} - {$oPreisspannenfilter->cBisLocalized}
                     </span>

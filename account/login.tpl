@@ -58,8 +58,8 @@
                     <div class="clearfix"></div>
                     <div class="register-or-resetpw top15">
                         <small>
-                           <a class="register pull-left" href="{get_static_route id='registrieren.php'}">{lang key="newHere" section="global"} {lang key="registerNow" section="global"}</a>
-                           <a class="resetpw  pull-right" href="{get_static_route id='pass.php'}">{lang key="forgotPassword" section="global"}</a>
+                           <a class="register" href="{get_static_route id='registrieren.php'}">{lang key="newHere" section="global"} {lang key="registerNow" section="global"}</a>
+                           <a class="resetpw" href="{get_static_route id='pass.php'}">{lang key="forgotPassword" section="global"}</a>
                         </small>
                     </div>
                 </fieldset>

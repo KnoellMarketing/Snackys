@@ -1,7 +1,10 @@
-#tsbadge4_db8d3657bdbe440c985ae127463eaad4,
-#tscard4_db8d3657bdbe440c985ae127463eaad4,
-#tsbadge4_db8d3657bdbe440c985ae127463eaad4 .menu_db8d3657bdbe440c985ae127463eaad4, 
-#tsbadge4_db8d3657bdbe440c985ae127463eaad4 .menu_db8d3657bdbe440c985ae127463eaad4__container{
-	left: 0 !important;
-	right: auto !important;
+#snackys-tpl body > [id|="trustbadge"],
+#snackys-tpl [id|="minimized-trustbadge"],
+#snackys-tpl [id|="maximized-trustbadge"]{
+    left: 20px !important; /*  Fallback bis Variable gesetzt ist */
+    left: @ts_os_spx !important;
+    right: auto !important;    
+}
+#snackys-tpl [id|="minimized-trustbadge"] > div:last-child > div{
+    right: auto !important;    
 }

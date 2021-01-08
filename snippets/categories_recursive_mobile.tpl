@@ -38,8 +38,7 @@
                 {if isset($activeParents) && is_array($activeParents) && isset($activeParents[$i])}
                     {assign var='activeParent' value=$activeParents[$i]}
                 {/if}
-			   {if $category->cKurzbezeichnung|strstr:"Produktberater"}{else}
-                <li class="{if $hasItems}mgm-fw dropdown-style{/if}{if $category->kKategorie == $activeId || ((isset($activeParent) && isset($activeParent->kKategorie)) && $activeParent->kKategorie == $category->kKategorie)} active{/if}">
+                <li class="{if $hasItems}mgm-fw dropdown-style{/if}{if $category->kKategorie == $activeId || ((isset($activeParent) && isset($activeParent->kKategorie)) && $activeParent->kKategorie == $category->kKategorie)} active{/if}{if is_array($category->KategorieAttribute) && !empty($category->KategorieAttribute["css_klasse"])} {$category->KategorieAttribute["css_klasse"]}{/if}">
                     <a href="{$category->cURL}" class="mm-mainlink" data-ref="{$category->kKategorie}" title="{$category->cKurzbezeichnung}">
                         {$category->cKurzbezeichnung}
                         {if $hasItems}
@@ -63,7 +62,6 @@
                         </ul>
                     {/if}
                 </li>
-				{/if}
             {/foreach}
         {/if}
     {/strip}

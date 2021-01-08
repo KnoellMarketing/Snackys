@@ -51,7 +51,7 @@
 {*  WISH LIST *}
 
 {*  CART *}
-<div class="cart-menu dropdown{if $WarenkorbArtikelanzahl >= 1} items{/if}{if $nSeitenTyp == 3} current{/if}{if !empty($hinweis)}{if isset($bWarenkorbHinzugefuegt) && $bWarenkorbHinzugefuegt} open{/if}{/if}{if $isShopFive && isset($bWarenkorbHinzugefuegt) && $bWarenkorbHinzugefuegt} open{/if}" data-toggle="basket-items">
+<div class="cart-menu dropdown{if $WarenkorbArtikelanzahl >= 1} items{/if}{if $nSeitenTyp == 3} current{/if}{if !empty($hinweis)}{if isset($bWarenkorbHinzugefuegt) && $bWarenkorbHinzugefuegt} open{/if}{/if}" data-toggle="basket-items">
     {include file='basket/cart_dropdown_label.tpl'}
 </div>
 {*  CART END *}
