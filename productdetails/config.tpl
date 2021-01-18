@@ -191,6 +191,22 @@
           <hr class="hr-sm invisible">
                         
                         {if $Artikel->inWarenkorbLegbar == 1}
+							{* Prüfen ob in Warenkorb legbar *}
+							{assign var="configRequired" value=false}
+							{foreach from=$Artikel->oKonfig_arr item=oGruppe}
+								{assign var="curGroup" value=$oGruppe->getMin()}
+								{foreach from=$oGruppe->oItem_arr item=oItem name=konfigitem}
+									{if $oItem->getSelektiert()}
+										{assign var="curGroup" value=$curGroup-1}
+									{/if}
+								{/foreach}
+								{if $curGroup>0}
+									{assign var="configRequired" value=true}
+								{/if}
+							{/foreach}
+							
+							
+							
                             <div id="quantity-grp" class="choose_quantity">
                                 <input type="number"{if $Artikel->fAbnahmeintervall > 0} required step="{$Artikel->fAbnahmeintervall}"{assign var="configRequired" value=true}{/if} id="quantity"
                                        class="quantity form-control text-right" name="anzahl"

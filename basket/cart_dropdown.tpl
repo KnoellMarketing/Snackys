@@ -16,6 +16,14 @@
     {/if}
 {/if}
     {if $smarty.session.Warenkorb->PositionenArr|@count > 0}
+
+        {if !empty($WarenkorbVersandkostenfreiHinweis)}
+            <div class="alert alert-info">{$WarenkorbVersandkostenfreiHinweis|truncate:120:"..."}
+                <a class="popup" href="{if !empty($oSpezialseiten_arr) && isset($oSpezialseiten_arr[6])}{$oSpezialseiten_arr[6]->cURL}{else}#{/if}" data-toggle="tooltip"  data-placement="bottom" title="{lang section="login" key="shippingInfo"}">
+                    <i class="fa fa-info-circle"></i>
+                </a>
+            </div>
+        {/if}
 			<form id="cart-form-xs" method="post" action="{get_static_route id='warenkorb.php'}">
 			{$jtl_token}
 			<input type="hidden" name="wka" value="1" />
@@ -135,13 +143,6 @@
 					<div class="text-nowrap text-right total"><strong>{$WarensummeLocalized[0]}</strong></div>
 				</div>
 			</div>
-        {if !empty($WarenkorbVersandkostenfreiHinweis)}
-            <p class="small text-muted">{$WarenkorbVersandkostenfreiHinweis|truncate:120:"..."}
-                <a class="popup" href="{if !empty($oSpezialseiten_arr) && isset($oSpezialseiten_arr[6])}{$oSpezialseiten_arr[6]->cURL}{else}#{/if}" data-toggle="tooltip"  data-placement="bottom" title="{lang section="login" key="shippingInfo"}">
-                    <i class="fa fa-info-circle"></i>
-                </a>
-            </p>
-        {/if}
     {else}
         <div class="alert alert-info text-center">{lang section='checkout' key='emptybasket'}</div>
     {/if}

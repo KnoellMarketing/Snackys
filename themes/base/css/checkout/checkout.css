@@ -25,6 +25,7 @@ body{
     overflow: auto;
     background: #f6f6f6;
     max-width: 28rem;
+    width: 100%;
 }
 #checkout .nav-wizard li {
     border-top: 1px solid @lightborder;
@@ -400,6 +401,14 @@ label[data-target="#create_account_data"]{
     text-align: center;
     justify-content: center;
 }
+@media screen and (max-width: 1600px){
+    #checkout-cart{
+        max-width: 25rem;
+    }
+    body {
+        padding-right: 25rem;
+    }
+}
 @media screen and (max-width: 1199px){
     #checkout-cart{
         padding: 2rem 1.5rem;
@@ -424,6 +433,9 @@ label[data-target="#create_account_data"]{
 	}
 }
 @media screen and (max-width: 991px){
+    body{
+        padding: 0;
+    }
     #checkout-cart{
         display: none;
     }

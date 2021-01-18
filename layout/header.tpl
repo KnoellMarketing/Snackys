@@ -90,10 +90,10 @@
 		{/php}
     {block name="head-resources"}
 		{if $snackyConfig.fontawesome == 'Y'}
-			<link rel="stylesheet" href="templates/snackys/themes/base/fontawesome.css" type="text/css">
+			<link rel="stylesheet" href="templates/snackys/themes/base/fontawesome.css?v={$nTemplateVersion}" type="text/css">
 		{/if}
 		{if $snackyConfig.full_bootstrap == 'Y'}
-			<link rel="stylesheet" href="templates/snackys/themes/base/full_bootstrap.css" type="text/css">
+			<link rel="stylesheet" href="templates/snackys/themes/base/full_bootstrap.css?v={$nTemplateVersion}" type="text/css">
 		{/if}
 		
 		{assign var='hasMobileSlider' value='false'}
@@ -311,7 +311,7 @@ body-offcanvas{if isset($bSeiteNichtGefunden) && $bSeiteNichtGefunden} error404{
 
 
 {if isset($Link) && !empty($Link->cIdentifier)} id="{$Link->cIdentifier}"{/if}
-{if !empty($snackyConfig.boxedImg) && $snackyConfig.designWidth == 1} style="background: url({$snackyConfig.boxedImg})no-repeat center center/cover;{if !$device->isMobile()} background-attachment: fixed"{/if}{/if}
+{if !empty($snackyConfig.boxedImg) && $snackyConfig.designWidth == 1} style="background: url({$snackyConfig.boxedImg})no-repeat center center/cover;{if !$device->isMobile()} background-attachment: fixed{/if}"{/if}
 >
 {/strip}
 	{snackys_content id="html_body_start" title="html_body_start"}
@@ -330,7 +330,7 @@ body-offcanvas{if isset($bSeiteNichtGefunden) && $bSeiteNichtGefunden} error404{
 {/block}
 {block name="consent-manager"}
 	{isBot cAssign="isBot"}
-	{if $snackyConfig.mmenu_link_clickable == 'Y' && !$isBot}
+	{if $snackyConfig.useConsentManager == 'Y' && !$isBot}
 		<div id="consentmanager" class="modal {if isset($smarty.cookies.consentState)}hidden{else}modal-dialog{/if}">
 			<div class="modal-content" id="consentmanagerBasic">
 				<div class="modal-header">

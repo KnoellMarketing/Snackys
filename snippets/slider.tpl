@@ -19,7 +19,7 @@
                     <div class="slide">
                 {/if}
 				<div class="img-ct">
-					<img alt="{if !empty($oSlide->cTitel)}{$oSlide->cTitel}{else}Slide{/if}" src="{$snackyConfig.preloadImage}" data-src="mediafiles/{$oSlide->cBild}"/>
+					<img alt="{if !empty($oSlide->cTitel)}{$oSlide->cTitel}{else}Slide{/if}" src="{$snackyConfig.preloadImage}" data-src="{$oSlide->cBildAbsolut}"/>
                 </div>
                     {if !empty($oSlide->cText) || !empty($oSlide->cTitel)}
                         <div id="slide_caption_{$oSlide->kSlide}" class="htmlcaption">
@@ -43,7 +43,7 @@
     </div>
 	
 	
-	{getSizeBySrc src="mediafiles{$oSliderDevice->oSlide_arr[0]->cBild}" cAssign="sliderSize"}
+	{getSizeBySrc src="{$oSliderDevice->oSlide_arr[0]->cBildAbsolut}" cAssign="sliderSize"}
 	{if !empty($sliderSize.padding)}
 	<style type="text/css">
 	.fw-sl .img-ct:before {ldelim} padding-top: {$sliderSize.padding}%;{rdelim}

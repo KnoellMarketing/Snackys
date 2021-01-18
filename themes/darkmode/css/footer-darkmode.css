@@ -1,42 +1,14 @@
-/* Dark Background */
-#footer{
-	background: @blackbg;
-}
-#copyright{
-	margin-bottom: 0;
-	padding-bottom: 3rem;
-}
-
-/* Dark Border */
-#footer-boxes{
-	border-color: #444;
-}
-
-/* White Color */
 #footer,
-#footer .panel-title,
-#footer .panel-title h5,
-#footer-boxes a:not(.btn),
-#footer-boxes label{
-	color: #f2f2f2;
+#footer .dropdown-menu{
+    background: @blackbg;
 }
-
-/* Dropdowns im Footer */
-#footer-boxes .dropdown-menu a:not(.btn):not(:hover){
-    color: @defaulttext;
+#footer,
+#footer .panel-title{
+    color: white;
 }
-
-/* Others */
-[data-page="11"] #footer{
-	margin-left: -15px;
-	padding-left: 15px;
-	margin-right: -15px; 
-	padding-right: 15px;
-	padding-top: 2rem;
+#footer a{
+    color: @lightbg;
 }
-
-@media screen and (max-width: 768px){
-	#footer-boxes .icon-caret svg{
-		fill: white;
-	}
+#footer-boxes{
+    border-color: @darkbg;
 }

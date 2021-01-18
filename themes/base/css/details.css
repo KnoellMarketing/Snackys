@@ -136,10 +136,6 @@
     max-width: 1000px;
     margin: auto;
 }
-#tab-votes{
-    padding-top: 4rem;
-    margin-top: -4rem;
-}
 #tab-description .tab-content-wrapper > hr{
     display: none;
 }
@@ -262,9 +258,14 @@ span[itemprop="reviewRating"] .review-helpful .img-ct{
     position: relative;
     z-index: 1;
 }
+#article-tabs.notabs .panel{
+    padding: 0;
+    background: none;
+    box-shadow: none;
+}
 /* Ähnliche Artikel */
 .item-related .row{
-    display: flex;
+    flex-direction: row;
     align-items: center;
 }
 .item-related .row .img-w{
@@ -273,6 +274,9 @@ span[itemprop="reviewRating"] .review-helpful .img-ct{
 }
 .item-related .p-c .price{
     font-size: 1.1rem;
+}
+.item-related .row h4.title{
+    margin-bottom: .5rem;
 }
 .recommendations > section{
     margin-top: 4rem;
@@ -607,10 +611,6 @@ span[itemprop="reviewRating"] .review-helpful .img-ct{
     #reviews-overview .rating {
         min-width: 6rem;
         justify-content: flex-end;
-    }
-    #tab-votes{
-        padding-top: 5rem;
-        margin-top: -5rem;
     }
     #result-wrapper>.alert{
         margin: 0 0 1.5rem 0;

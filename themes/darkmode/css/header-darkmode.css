@@ -1,141 +1,68 @@
-[data-page="11"] #shop-nav{
-	margin-top: 0;
-	margin-left: -15px;
-	padding-left: 15px;
-	margin-right: -15px; 
-	padding-right: 15px;
-	margin-bottom: 3rem;
-}
-
-/* Border hinzufügen */
-#usps-header.theme-dark{
-	border: 1px solid;
-}
-
-/* Icons Opacity 1 */
-#top-bar-wrapper .img-ct.icon,
-#shop-nav .img-ct.icon{
-	opacity: 1;
-}
-
-/* Dark Background */
+#top-bar-wrapper,
+#top-bar-wrapper .dropdown-menu,
 #shop-nav,
-#km-fullscreen-wrapper #top-bar-wrapper,
-#top-bar-wrapper,
-[data-page="11"] #shop-nav,
-.mgm .mgm-c,
-[id*="mm-dropdown"] .dropdown-menu,
-[data-headtype="6"] #shop-nav,
+[data-headtype="2"] #cat-w,
+[data-headtype="4"] #km-fullscreen-wrapper #top-bar-wrapper,
+[data-headtype="4.5"] #km-fullscreen-wrapper #top-bar-wrapper,
+[data-headtype="5"] #km-fullscreen-wrapper #top-bar-wrapper,
+[data-headtype="5.5"] #km-fullscreen-wrapper #top-bar-wrapper{
+    background: @blackbg;
+}
+#top-bar-wrapper .dropdown-menu{
+    border-color: @blackbg;
+}
+
+#search input,
+#snackys-tpl #h-us:not(.th-l){
+    background: @darkbg;
+}
+#snackys-tpl #top-bar-wrapper,
 [data-headtype="2"] #cat-w{
-	background: @blackbg;
+    border-color: @darkbg;
 }
 
-/* Dark Border */
-#usps-header.theme-dark,
+#search input:focus{
+    background: #555;
+}
+
+
 #top-bar-wrapper,
-[data-headtype="1"] #shop-nav,
-[data-headtype="2"] #cat-w{
-	border-color: #444;
+#top-bar-wrapper a,
+#search input,
+#snackys-tpl #h-us:not(.th-l){
+    color: white;
 }
-
-/* White Background */
-.burger-line{
-	background: white;
-}
-
-/* White Color */
-#top-bar-wrapper a:not(.btn):not(:hover):not(.active),
-#km-fullscreen-wrapper #top-bar-wrapper,
-#top-bar-wrapper,
-[data-page="11"] #shop-nav,
-#cat-w .fullscreen-menu li:not(:hover):not(.active) > .mm-mainlink,
-.fullscreen-title .close-btn,
-.fullscreen-title .notextov,
-.mgm .mgm-c,
-.mgm .mgm-c a:not(:hover),
-[id*="mm-dropdown"] li >.dropdown-link,
-[data-headtype="1"] #cat-w li:not(.active) > .mm-mainlink,
-[data-headtype="2"] #cat-w li:not(.active) > .mm-mainlink,
-[data-headtype="5.5"] #cat-w li:not(.active) > .mm-mainlink,
-[data-headtype="7"] #cat-w li:not(.active) > .mm-mainlink{
-	color: #f2f2f2;
-}
-
-/* White Fill */
-.mgm .home-icon svg,
-#cat-w .mgm .icon-wt svg{
-	fill: white;
-}
-
-/* No background */
-[data-headtype="4.5"][data-page="18"]:not(.no-mb-sl) #shop-nav,
-[data-headtype="4"][data-page="18"]:not(.no-mb-sl)  #shop-nav,
-[data-headtype="5"][data-page="18"]:not(.no-mb-sl)  #shop-nav,
-[data-headtype="5.5"][data-page="18"]:not(.no-mb-sl)  #shop-nav{
-	background: none;
-}
-
-/* Others */
-#cat-w li:hover > .mm-mainlink,
-[id*="mm-dropdown"] .active>.dropdown-link, 
-[id*="mm-dropdown"] li:hover>.dropdown-link{
-	background: rgba(255,255,255,.1);
-}
-
 @media screen and (min-width: 768px){
-	#cat-w li:hover > .mm-mainlink{
-		color: @brand;
-	}
-    #cat-w .mgm > ul.blanklist > li,
-    .fullscreen-title,
-    .fullscreen-title:before{
-        background: @blackbg;
+    body:not([data-headtype="4"]):not([data-headtype="4.5"]):not([data-headtype="6"]) #cat-w .mm-mainlink:not(:hover){
+        color: white;
     }
 }
 
-/* Mobile Shop-Nav */
-@media screen and (max-width: 767px){
-	#cat-w,
-	#shop-nav,
-	#cat-w .mgm .open > a .fa-caret-down, 
-	#cat-w .mgm .open > span .fa-caret-down{
-		background: @blackbg;
-		border-color: @blackbg;
-	}
-	#cat-w .mgm .open > a .fa-caret-down, 
-	#cat-w .mgm .open > span .fa-caret-down,
-	.menu-title .close-btn,
-	.menu-title .notextov,
-	#cat-w .mm-mainlink, 
-	#cat-w a{
-		color: #f2f2f2;
-	}
-	#cat-w .ar{
-		border-color: #f2f2f2;
-	}
-	#cat-w li, 
-	#cat-w .row > div{
-		border-color: #444;
-	}
-	#cat-w li:hover>.mm-mainlink, 
-	[id*="mm-dropdown"] .active>.dropdown-link, 
-	[id*="mm-dropdown"] li:hover>.dropdown-link{
-		color: @brand;
-	}
-	#cat-w a:hover,
-	#cat-w span:hover,
-	#cat-w .active > a,
-	#cat-w .active > span{
-		color: @brand;
-		background: rgba(255,255,255,.1);
-	}
-	#cat-w .subsub{
-		background: @blackbg;
-	}
-	#sr-tg-m .close-btn{
-		color: white;
-	}
-	#cat-w li.active .mm-mainlink{
-		background: none;
-	}
+#top-bar-wrapper a:hover{
+    color: @brand;
+}
+
+#search svg{
+    fill: white;
+}
+#top-bar-wrapper .icon,
+#search .icon,
+.hdr-nav .icon{
+    opacity: 1;
+}
+
+.cart-menu .dropdown-menu{
+    background: transparent;
+    border: 0;
+}
+
+[data-headtype="4"] #shop-nav,
+[data-headtype="5"] #shop-nav,
+[data-headtype="5.5"] #shop-nav,
+[data-headtype="4.5"] #shop-nav{
+    background: none;
+}
+
+.burger-line{
+    background: white;
 }

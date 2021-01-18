@@ -106,9 +106,7 @@
         },
 
         pushedToBasket: function(response) {
-			console.log('ja los gehts');
 			if (typeof mainEventListener !== 'undefined' && typeof mainEventListener === 'function') { 
-			console.log('ja alles klar');
 				window.setTimeout(function(){
 					mainEventListener();
 					if(sImages)

@@ -72,7 +72,7 @@
 	#sp-l.show-above > .inside > section,
 	.p-sl .p-w,
 	.ar-ct-m .ar-ct,
-    .sc-w .col-xs-6
+    .sc-w .col-xs-6{
         width: calc(100% / @listElmLg);
         min-width: calc(100% / @listElmLg);
     }

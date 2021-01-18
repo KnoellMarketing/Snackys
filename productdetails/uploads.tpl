@@ -4,16 +4,16 @@
  *}
 
 {if !empty($oUploadSchema_arr)}
-    <script type="text/javascript" src="{$currentTemplateDir}js/fileinput.min.js"></script>
+    <script type="text/javascript" src="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}js/fileinput.min.js"></script>
     {assign var=availableLocale value=array('ar', 'bg', 'cr', 'cz', 'da', 'de', 'el', 'es', 'fa', 'fr', 'hu', 'lt', 'nl', 'pl', 'pt', 'sk', 'uk')}
     {if isset($smarty.session.currentLanguage->cISO639) && $smarty.session.currentLanguage->cISO639|in_array:$availableLocale}
         {assign var=uploaderLang value=$smarty.session.currentLanguage->cISO639}
     {else}
         {assign var=uploaderLang value='en'}
     {/if}
-    <script type="text/javascript" src="{$currentTemplateDir}js/fileinput_locale_{$uploaderLang}.js"></script>
+    <script type="text/javascript" src="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}js/fileinput_locale_{$uploaderLang}.js"></script>
 
-    <link href="{$currentTemplateDir}themes/base/fileinput.min.css" rel="stylesheet" type="text/css">
+    <link href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}themes/base/fileinput.min.css" rel="stylesheet" type="text/css">
     <h3 class="section-heading">{lang key="uploadHeadline"}</h3>
     <div class="alert alert-info">{lang key="maxUploadSize"}: <strong>{$cMaxUploadSize}</strong></div>
     {foreach from=$oUploadSchema_arr item=oUploadSchema name=schema}

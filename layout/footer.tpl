@@ -55,7 +55,7 @@
             {block name="footer-boxes"}
 				{load_boxes_raw type='bottom' assign='arrBoxBottom' array=true}
                 {if isset($arrBoxBottom) && count($arrBoxBottom) > 0}
-                    <div id="footer-boxes" class="mw-container{if $snackyConfig.footerBoxesOpen === '0'} collapsable{/if}">
+                    <div id="footer-boxes" class="mw-container{if $snackyConfig.footerBoxesOpen === '0'} collapse block{/if}">
                         <div class="row row-multi">
 							 {if $snackyConfig.logoFooter == 0}
                              {if isset($ShopLogoURL) || !empty($snackyConfig.svgLogo)}
