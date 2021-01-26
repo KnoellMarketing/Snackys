@@ -2,7 +2,7 @@
 #consentmanager .modal-body {text-align: center;}
 #consentIntro, #consentDetail {text-align: left;}
 #consentSave {color: #888; margin-right: 20px;border: none;font-weight: 400;font-size: 0.8rem!important;}
-#consentAll {background:green;}
+#consentAll {background:@success;}
 #consentmanager label {display: inline-block; margin: 20px 0;}
 #consentPicker {
     position: fixed;

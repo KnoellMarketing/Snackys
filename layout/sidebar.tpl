@@ -1,5 +1,5 @@
 {block name="footer-sidepanel-left"}
-	<aside id="sp-l" class="hidden-print col-xs-12 {if ($snackyConfig.filterPos != 1 && $nSeitenTyp === 2) || $snackyConfig.sidepanelEverywhere == 'Y'} col-md-3 col-lg-3 col-xl-2{/if}{if $snackyConfig.scrollSidebox == 'Y'} scrollBoxes{/if}{if $snackyConfig.filterOpen == 1} collapse{/if}{if !isset($smarty.get.sidebar) & $device->isMobile()} lazy{/if}{if $snackyConfig.filterPos == 1 && $snackyConfig.sidepanelEverywhere == 'N'} show-above{/if}">
+	<aside id="sp-l" class="hidden-print col-xs-12 {if ($snackyConfig.filterPos != 1 && $nSeitenTyp === 2) || $snackyConfig.sidepanelEverywhere == 'Y'} col-md-3 col-lg-3{if $snackyConfig.designWidth == 0} col-xl-2{/if}{/if}{if $snackyConfig.scrollSidebox == 'Y'} scrollBoxes{/if}{if $snackyConfig.filterOpen == 1} collapse{/if}{if !isset($smarty.get.sidebar) & $device->isMobile()} lazy{/if}{if $snackyConfig.filterPos == 1 && $snackyConfig.sidepanelEverywhere == 'N'} show-above{/if}">
 		{if isset($smarty.get.sidebar) || !$device->isMobile() || $device->isTablet()}
 			<div class="inside">
 				<div class="visible-xs visible-sm">

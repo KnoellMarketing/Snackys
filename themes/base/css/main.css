@@ -1043,3 +1043,7 @@ body.show-sidebar #evo-nav-wrapper{
 
 /* Amazon Pay V2 Anpassung */
 .lpa-checkout-wrapper .nav-wizard {display: none;}
+
+#snackys-tpl .dropdown-backdrop{
+    display: none;
+}

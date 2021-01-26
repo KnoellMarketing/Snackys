@@ -109,6 +109,16 @@
 				$('#article-tabs > div#' + tabSelector).addClass('active');
 				
 			});
+			
+			$('#jump-to-votes-tab').on('click',function(event){
+				event.preventDefault();
+				$('span[aria-controls=tab-votes]').trigger('click');
+				window.setTimeout(function(){
+					document.querySelector('#tab-votes').scrollIntoView({
+					  behavior: 'smooth' 
+					});
+				},150);
+			});
 		},
 
         registerGallery: function() {

@@ -479,7 +479,7 @@ body-offcanvas{if isset($bSeiteNichtGefunden) && $bSeiteNichtGefunden} error404{
 		{assign var="hasFilters" value=false}	
 	{/if}
     {block name="content-starttag"}
-        <div id="content" class="col-xs-12{if $hasFilters == true && (($snackyConfig.filterPos == 0 && $nSeitenTyp === 2) || $snackyConfig.sidepanelEverywhere == 'Y')} col-md-9 col-lg-9 col-xl-10{/if}">
+        <div id="content" class="col-xs-12{if $hasFilters == true && (($snackyConfig.filterPos == 0 && $nSeitenTyp === 2) || $snackyConfig.sidepanelEverywhere == 'Y')} col-md-9 col-lg-9{if $snackyConfig.designWidth == 0} col-xl-10{/if}{/if}">
 		{include file="snippets/zonen.tpl" id="before_content" title="before_content"}
     {/block}
     

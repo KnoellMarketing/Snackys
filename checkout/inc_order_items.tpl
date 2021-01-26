@@ -191,11 +191,18 @@
                                                 <input name="anzahl[{$smarty.foreach.positionen.index}]" type="hidden" class="form-control" value="{$oPosition->nAnzahl}" />
                                                 <div id="cartitem-dropdown-menu{$smarty.foreach.positionen.index}" class="">
                                                     <div class="panel-body text-center">
-                                                        <div class="form-inline dpflex-j-end">
+                                                        <div class="form-inline dpflex-j-end dpflex-a-center">
                                                             <span class="btn-group">
+                                                                <input name="anzahl[{$smarty.foreach.positionen.index}]" id="quantity{$smarty.foreach.positionen.index}" class="form-control quantity form-control text-right" size="3" value="{$oPosition->nAnzahl}" />
                                                                 <a class="btn btn-default configurepos"
                                                                    href="index.php?a={$oPosition->kArtikel}&ek={$smarty.foreach.positionen.index}">
-                                                                    <span class="visible-xs visible-sm"></span>
+                                                                    <span class="visible-xs visible-sm">
+                                                                        <span class="img-ct icon">
+																			<svg>
+																			  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-edit"></use>
+																			</svg>
+                                                                        </span>
+                                                                    </span>
                                                                     <span class="hidden-xs hidden-sm">{lang key='configure'}</span>
                                                                 </a>
                                                             </span>

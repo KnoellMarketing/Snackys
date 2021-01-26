@@ -22,19 +22,6 @@
 	body.boxed-noborder #bxt-w{
 		border: 0;	
 	}
-	[data-page="11"] #checkout-cart{
-		position: absolute;
-		font-size: .8rem;
-	}
-	#checkout-cart .price {
-		font-size: 0.8rem;
-	}
-	[data-page="11"] #checkout-cart .img-col{
-		display: none;
-	}
-	[data-page="11"] #checkout-cart .img-col + .col-xs-9{
-		width: 100%;
-	}
 	#account > .col-lg-2{
 		width: 25%;
 	}
