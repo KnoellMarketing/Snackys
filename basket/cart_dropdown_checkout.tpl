@@ -50,7 +50,7 @@
 								<span class="img-ct icon icon">
 									<svg>
 									  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-info"></use>
-									</svg
+									</svg>
 								</span>
 							</button>
 							</div>

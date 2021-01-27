@@ -59,7 +59,7 @@
 								<span class="img-ct icon icon">
 									<svg>
 									  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-edit"></use>
-									</svg
+									</svg>
 								</span>
 							</button>
                             {/if}
@@ -95,7 +95,7 @@
 									<span class="img-ct icon op1">
 										<svg class="icon-darkmode">
 											<use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-bin"></use>
-										</svg
+										</svg>
 									</span>
                             	</button>
 							</div>
