@@ -299,7 +299,7 @@
                                         <span class="img-ct icon icon-wt">
 											<svg>
 											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-bin"></use>
-											</svg
+											</svg>
                                         </span> <span class="hidden-xxs">{lang key="delete" section="global"}</span>
                             </button>
                                 {/if}
