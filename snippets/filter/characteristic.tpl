@@ -9,7 +9,7 @@
         {if $MerkmalWert->nAktiv}
             <li class="active">
                 <a rel="nofollow" href="{$NaviFilter->URL->cAlleMerkmalWerte[$MerkmalWert->kMerkmalWert]}"{if $Merkmal->cTyp === 'BILD'} title="{$MerkmalWert->cWert}"{/if}>
-                    <span class="badge">{$MerkmalWert->nAnzahl}</span>
+                    <span class="badge pull-right">{$MerkmalWert->nAnzahl}</span>
                         <span class="value">
                         {if $Einstellungen.navigationsfilter.merkmal_anzeigen_als !== 'T' &&
                         !empty($MerkmalWert->cBildpfadKlein) &&
@@ -27,7 +27,7 @@
         {else}
             <li>
                 <a rel="nofollow" href="{$MerkmalWert->cURL}"{if $Merkmal->cTyp === 'BILD'} title="{$MerkmalWert->cWert|escape:'html'}"{/if}>
-                    <span class="badge">{$MerkmalWert->nAnzahl}</span>
+                    <span class="badge pull-right">{$MerkmalWert->nAnzahl}</span>
                     <span class="value">
                         {if $Einstellungen.navigationsfilter.merkmal_anzeigen_als !== 'T' &&
                         !empty($MerkmalWert->cBildpfadKlein) &&

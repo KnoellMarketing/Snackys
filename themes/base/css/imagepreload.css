@@ -106,3 +106,9 @@ body.ie-10 .img-ct:before{
 .img-ct.rt2x3:before{
     padding-top: 150%;
 }
+/*
+.img-ct img[alt=""],
+.img-ct img:not([alt]){
+    border: 4px inset red;
+}
+*/

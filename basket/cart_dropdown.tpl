@@ -59,7 +59,7 @@
 								<span class="img-ct icon icon">
 									<svg>
 									  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-edit"></use>
-									</svg
+                                    </svg>
 								</span>
 							</button>
                             {/if}
@@ -95,7 +95,7 @@
 									<span class="img-ct icon op1">
 										<svg class="icon-darkmode">
 											<use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-bin"></use>
-										</svg
+                                        </svg>
 									</span>
                             	</button>
 							</div>
@@ -108,7 +108,7 @@
 									{if $oPosition->Artikel->Bilder[0]->cPfadNormal !== $BILD_KEIN_ARTIKELBILD_VORHANDEN && isset($oPosition->Artikel->Bilder[0]->cPfadNormal)}
 										<img src="{$snackyConfig.preloadImage}" data-src="{$oPosition->Artikel->Bilder[0]->cPfadMini}" alt="{$oPosition->cName|trans|escape:"htmlall"}">
 									{else}
-										<img src="{$snackyConfig.preloadImage}" data-src="gfx/keinBild.gif" alt="{$oPosition->cName|trans|escape:"htmlall"}"> 
+										<img src="{$snackyConfig.preloadImage}" data-src="{$snackyConfig.preloadImage}" alt="{$oPosition->cName|trans|escape:"htmlall"}"> 
 									{/if}
 								</span>
 							</div>
@@ -118,6 +118,13 @@
                             <div class="cols-price">
                                 <strong>{$oPosition->cEinzelpreisLocalized[$NettoPreise][$smarty.session.cWaehrungName]}</strong>
                             </div>
+							<button class="editpos invisible">
+								<span class="img-ct icon icon">
+									<svg>
+									  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-info"></use>
+                                    </svg>
+								</span>
+							</button>
                         </div>
                     {/if}
                 {/if}

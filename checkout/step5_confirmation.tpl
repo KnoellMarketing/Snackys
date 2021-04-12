@@ -233,7 +233,7 @@
                             <div class="">
                             {include file="checkout/inc_order_items.tpl" tplscope="confirmation"}
 								<hR>
-							<div class="cart-sum mb-spacer">
+							<div class="cart-sum mb-spacer mb-small">
 								{if $NettoPreise}
 									<div class="total-net dpflex-a-center dpflex-j-between">
 										<span class="price_label"><strong>{lang key="totalSum" section="global"} ({lang key="net" section="global"}):</strong></span>
@@ -263,8 +263,10 @@
 								</div>
 							</div>
                             </div>
-                            <input type="submit" value="{lang key="orderLiableToPay" section="checkout"}" id="complete-order-button" class="btn btn-primary btn-lg submit submit_once" />
-                            <a href="{get_static_route id='warenkorb.php'}" class="btn btn-link btn-lg hidden-xxs">{lang key="modifyBasket" section="checkout"}</a>
+                            <div class="mb-spacer mb-xs">
+                                <input type="submit" value="{lang key="orderLiableToPay" section="checkout"}" id="complete-order-button" class="btn btn-primary btn-lg submit submit_once" />
+                            </div>
+                            <a href="{get_static_route id='warenkorb.php'}" class="btn btn-link btn-lg hidden-xxs btn-block">{lang key="modifyBasket" section="checkout"}</a>
                         </div>
                     </div>
                 </div>

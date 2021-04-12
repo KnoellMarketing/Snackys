@@ -5391,3 +5391,71 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+/* Override Trashy Bootrap CSS */
+#sp-l .badge{
+    padding: 0;
+    font-weight: 400;
+    min-width: 0;
+    background: none;
+    border-radius: 0;
+}
+#sp-l .nav a{
+    padding: 0;
+}
+#cat-w .fa-caret-down:before{
+    display: none;
+}
+#footer .nav > li > a{
+    padding: 0;
+    background: none;
+}
+.selectric .label{
+    padding: 0;
+    text-align: left;
+    font-weight: 400;
+    border-radius: 0;
+    vertical-align: middle;
+}
+#quantity-grp button{
+    border-radius: 3rem;
+}
+#buy_form .input-group-addon.unit,
+.product-matrix .input-group-addon{
+    background: none;
+    width: auto;
+    border: 0;
+    padding: 0;
+}
+#article-tab-nav{
+    border-bottom: 0;
+}
+.c-it .form-inline .input-group{
+    display: flex;
+}
+select#country{
+    width: 100%;
+}
+#checkout .nav-wizard .badge{
+    font-size: inherit;
+    padding: 0;
+    background: none;
+    color: currentcolor;
+    vertical-align: baseline;
+    border-radius: 0;
+}
+#checkout .label-default{
+    background: none;
+}
+#checkout input.radio-checkbox{
+    position: static;
+    margin: 0;
+}
+@media screen and (max-width: 767px){
+    #cat-w{
+        display: block !important;
+    }
+    #cat-w .mm-mainlink .fa-caret-down.visible-xs, #cat-w .fa-caret-down.visible-xs{
+        display: flex !important;
+    }
+}

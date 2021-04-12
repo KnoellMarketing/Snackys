@@ -193,7 +193,7 @@
                                                     <div class="panel-body text-center">
                                                         <div class="form-inline dpflex-j-end dpflex-a-center">
                                                             <span class="btn-group">
-                                                                <input name="anzahl[{$smarty.foreach.positionen.index}]" id="quantity{$smarty.foreach.positionen.index}" class="form-control quantity form-control text-right" size="3" value="{$oPosition->nAnzahl}" />
+                                                                <input name="anzahl[{$smarty.foreach.positionen.index}]" id="quantity{$smarty.foreach.positionen.index}" class="form-control quantity form-control text-right" size="3" value="{$oPosition->nAnzahl}" readonly />
                                                                 <a class="btn btn-default configurepos"
                                                                    href="index.php?a={$oPosition->kArtikel}&ek={$smarty.foreach.positionen.index}">
                                                                     <span class="visible-xs visible-sm">
@@ -299,7 +299,7 @@
                                         <span class="img-ct icon icon-wt">
 											<svg>
 											  <use xlink:href="{if empty($parentTemplateDir)}{$currentTemplateDir}{else}{$parentTemplateDir}{/if}img/icons/icons.svg#icon-bin"></use>
-											</svg
+											</svg>
                                         </span> <span class="hidden-xxs">{lang key="delete" section="global"}</span>
                             </button>
                                 {/if}

@@ -9,7 +9,7 @@
 			<span class="payship-img">
 				<span class="img-ct icon">
 					<img src="{$snackyConfig.preloadImage}" data-src="{$zahlungsart->cBild}" alt="{$zahlungsart->angezeigterName|trans}" >
-				</span
+                </span>
 			</span>
 			{/if}
 			<span class="payship-content">

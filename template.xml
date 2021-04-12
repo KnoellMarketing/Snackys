@@ -3,7 +3,7 @@
     <Name>Snackys</Name>
     <Author>Knoell Marketing</Author>
     <URL>https://www.knoell-marketing.de</URL>
-    <Version>3.06</Version>
+    <Version>3.07</Version>
     <ShopVersion>406</ShopVersion>
     <Preview>preview-snackys.png</Preview>
     <Description>Ultraschnelles responsive JTL Template von Knoell Marketing</Description>
@@ -113,7 +113,6 @@
 				<File Path="js/snackys/classList.js" />
 				<File Path="js/snackys/listing.js" />
 				<File Path="js/snackys/checkout.js" />
-				<File Path="js/snackys/consent.js" />
 				<File Path="js/Chart.js" DependsOnSettingGroup="CONF_PREISVERLAUF" DependsOnSetting="preisverlauf.preisverlauf_anzeigen" DependsOnSettingValue="Y"/>
 			</JS>
 		</Minify>

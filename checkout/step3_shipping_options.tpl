@@ -90,11 +90,6 @@
                     </fieldset>
                 </div>
                 {/if}
-				{if isset($bAjaxRequest) && $bAjaxRequest}
-				<div class="hidden" id="checkout-cart-ajaxversand">
-					{include file="basket/cart_dropdown_checkout.tpl"}
-				</div>
-				{/if}
                 <div class="panel-wrap">
                     <fieldset id="fieldset-payment">
                         <legend>{lang section='global' key='paymentOptions'}</legend>
@@ -109,6 +104,12 @@
                 </div>
                 {/if}
             </form>
+			
+			{if isset($bAjaxRequest) && $bAjaxRequest}
+			<div class="hidden" id="checkout-cart-ajaxversand">
+				{include file="basket/cart_dropdown_checkout.tpl"}
+			</div>
+			{/if}
         {/if}
     </div>
 </div>
